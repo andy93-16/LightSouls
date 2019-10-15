@@ -2,21 +2,15 @@ package com.eswproject.lightsouls.Domain;
 
 import java.util.*;
 
-public class Modalita {
-
-	public void ModalitaStoria() {
-        Dungeon dungeon = new Dungeon();
-		throw new UnsupportedOperationException();
-	}
+public abstract class Modalita {
 
 	public Dungeon getCurrentDungeon() {
 		return this.currentDungeon;
 	}
 
-	public void setCurrentDungeon(Dungeon dungeon) {
-		this.currentDungeon = dungeon;
+	public void setCurrentDungeon(Dungeon currentDungeon) {
+		this.currentDungeon = currentDungeon;
 	}
-
 	private Dungeon currentDungeon;
 
 

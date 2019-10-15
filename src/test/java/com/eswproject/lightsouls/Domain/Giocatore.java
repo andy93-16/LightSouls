@@ -2,17 +2,15 @@ package com.eswproject.lightsouls.Domain;
 
 public class Giocatore {
 
+	private Partita partita;
 	private Personaggio personaggio;
-	private Modalita modalita;
 
 	public void SettaModalitaStoria() {
-		Modalita modalita = new Modalita();
-		modalita.ModalitaStoria();
 		throw new UnsupportedOperationException();
 	}
 
 	public void IniziaNuovaPartita() {
-		// TODO - implement Giocatore.IniziaNuovaPartita
+		Partita partita =new Partita();
 		throw new UnsupportedOperationException();
 	}
 

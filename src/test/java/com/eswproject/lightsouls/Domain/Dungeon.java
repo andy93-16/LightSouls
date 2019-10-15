@@ -11,7 +11,6 @@ public class Dungeon {
 	public void setIncontroCorrente(Incontro incontroCorrente) {
 		this.incontroCorrente = incontroCorrente;
 	}
-
 	private Incontro incontroCorrente;
 
 }

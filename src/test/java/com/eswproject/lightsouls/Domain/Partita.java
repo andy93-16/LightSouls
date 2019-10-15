@@ -3,6 +3,10 @@ package com.eswproject.lightsouls.Domain;
 public class Partita {
 	private Modalita modalita;
 
+	public Partita(){
+		this.modalita=new Modalita();
+	}
+
 	public void Termina() {
 		// TODO - implement Partita.Termina
 		throw new UnsupportedOperationException();
