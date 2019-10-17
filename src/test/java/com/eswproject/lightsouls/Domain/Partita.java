@@ -4,7 +4,7 @@ public class Partita {
 	private Modalita modalita;
 
 	public Partita(){
-		this.modalita=new Modalita();
+		this.modalita=new Storia();
 	}
 
 	public void Termina() {
