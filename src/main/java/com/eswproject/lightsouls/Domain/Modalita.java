@@ -4,10 +4,14 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Modalita {
+public class Modalita
+{
 
     @Id
     String name;
 
-
+    public String getName()
+    {
+        return name;
+    }
 }

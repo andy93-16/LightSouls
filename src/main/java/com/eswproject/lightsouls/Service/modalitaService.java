@@ -12,6 +12,9 @@ public class modalitaService
     private modalitaRepository mR;
 
     public Modalita findByName(String name) {
+
+        System.out.println("Nome = " + name);
+        System.out.println("Trovato = " + mR.findByName(name).getName());
         return mR.findByName(name);
     }
 
