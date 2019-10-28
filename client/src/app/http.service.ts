@@ -20,5 +20,9 @@ export class HttpService {
         {responseType: 'text'}).subscribe(url=>this.routerservice.RouteTo(url)
     );
     }
-
+  public AvviaIncontro(){
+      this.httpclient.get('http://localhost:8080/AvviaIncontro',
+        {responseType: 'text'}).subscribe(url=>this.routerservice.RouteTo(url)
+    );
+    }
 }
