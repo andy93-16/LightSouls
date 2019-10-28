@@ -1,15 +1,17 @@
 package com.eswproject.lightsouls.Domain;
 import com.eswproject.lightsouls.Service.modalitaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class costruttoreModalitaStoria extends costruttoreModalita {
 
+    @Autowired
     modalitaService service;
+
     Modalita m;
 
     public costruttoreModalitaStoria(){
-        this.service=new modalitaService();
     }
 
     public Modalita getM() {

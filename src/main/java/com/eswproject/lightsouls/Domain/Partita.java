@@ -17,10 +17,10 @@ public class Partita {
 
 	@GetMapping("/ModalitaStoria")
 	public String CostruisciModalitaStoria() {
-		this.cm=new costruttoreModalitaStoria();
 		this.cm.reset();
 		this.cm.SetupModalita();
         this.modalita=cm.getM();
+        System.out.println(this.modalita.name);
 		return "/Falo";
 	}
 

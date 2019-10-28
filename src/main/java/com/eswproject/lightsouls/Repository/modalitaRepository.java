@@ -3,9 +3,11 @@ package com.eswproject.lightsouls.Repository;
 
 import com.eswproject.lightsouls.Domain.Modalita;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-
-public interface modalitaRepository extends CrudRepository<Modalita, Long>
+@Repository
+public interface modalitaRepository extends CrudRepository<Modalita, String>
 {
-    //public Modalita findByName(String name);
+    public Modalita findByName(String name);
+
 }
