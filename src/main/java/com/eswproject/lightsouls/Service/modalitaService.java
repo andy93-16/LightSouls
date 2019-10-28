@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public class modalitaService implements modalitaRepository
 {
-
     private static modalitaService single_instance = null;
 
     // static method to create instance of Singleton class
