@@ -9,10 +9,7 @@ public class costruttoreModalitaStoria extends costruttoreModalita {
     @Autowired
     modalitaService service;
 
-    Modalita m;
-
-    public costruttoreModalitaStoria(){
-    }
+    private Modalita m;
 
     public Modalita getM() {
         return m;
@@ -22,7 +19,8 @@ public class costruttoreModalitaStoria extends costruttoreModalita {
         this.m=new Modalita();}
 
     public void SetupModalita(){
-        this.service.findByName("storia");
+
+        this.m=this.service.findByName("storia");
     }
 
 }

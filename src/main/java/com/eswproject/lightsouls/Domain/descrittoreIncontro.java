@@ -6,7 +6,11 @@ import javax.persistence.*;
 public class descrittoreIncontro {
 
     @Id
-    Long idDescrittoreIncontro;
+    private Long idDescrittoreIncontro;
+
+    public Long getIdDescrittoreIncontro() {
+        return idDescrittoreIncontro;
+    }
 
     public void setIdDescrittoreIncontro(long idDescrittoreIncontro) {
         this.idDescrittoreIncontro = idDescrittoreIncontro;

@@ -11,6 +11,9 @@ public class descrittoreDungeon {
     }
 
     @Id
-    String BossName;
+    private String BossName;
+
+    @OneToMany
+    private List<descrittoreIncontro> listaIncontri;
 
 }

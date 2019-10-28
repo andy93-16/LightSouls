@@ -8,10 +8,17 @@ public class Modalita
 {
 
     @Id
-    String name;
+    private String name;
 
     public String getName()
     {
         return name;
+    }
+
+    @OneToMany
+    private List<descrittoreDungeon> listaDungeons;
+
+    public List<descrittoreDungeon> getListaDungeons() {
+        return listaDungeons;
     }
 }

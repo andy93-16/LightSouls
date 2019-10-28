@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class Partita {
 
 	@Autowired
-	costruttoreModalita cm;
+	costruttoreModalita cM;
 	Dungeon dungeonCorrente;
 	Incontro incontroCorrente;
-	Modalita modalita;
+	Modalita m;
 
 	@GetMapping("/ModalitaStoria")
 	public String CostruisciModalitaStoria() {
-		this.cm.reset();
-		this.cm.SetupModalita();
-        this.modalita=cm.getM();
-        System.out.println(this.modalita.name);
+		this.cM.reset();
+		this.cM.SetupModalita();
+        this.m=cM.getM();
+        //System.out.println(this.m.getListaDungeons().get(0).BossName);
 		return "/Falo";
 	}
 
