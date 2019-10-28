@@ -20,10 +20,8 @@ public class Partita {
 		this.cM.reset();
 		this.cM.SetupModalita();
         this.m=cM.getM();
-        //System.out.println(this.m.getListaDungeons().get(0).BossName);
-		return "/Falo";
+        return "/Falo";
 	}
-
 
 	public void Termina() {
 
