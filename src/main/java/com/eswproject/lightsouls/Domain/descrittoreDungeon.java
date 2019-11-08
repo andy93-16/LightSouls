@@ -17,7 +17,7 @@ public class descrittoreDungeon{
         return listaIncontri;
     }
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<descrittoreIncontro> listaIncontri;
 
 }
