@@ -1,14 +1,18 @@
 package com.eswproject.lightsouls.Domain;
 
-import java.util.Iterator;
+import org.springframework.stereotype.Component;
 
-public class Incontro {
 
-	boolean isComplete=false;
-	Iterator<descrittoreIncontro> iter;
+public class Incontro extends Osservabile {
 
-	public Incontro(Iterator<descrittoreIncontro> iter){
-		this.iter=iter;
+	descrittoreIncontro descIncontro;
+
+	Incontro(descrittoreIncontro descrittoreIncontro){
+		this.descIncontro=descrittoreIncontro;
+	}
+
+	void Avvia() {
+		Notify();
 	}
 
 }

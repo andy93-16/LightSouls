@@ -2,12 +2,25 @@ package com.eswproject.lightsouls.Domain;
 
 import java.util.Iterator;
 
-public class Dungeon {
+public class Dungeon extends Osservabile implements Osservatore{
 
-	boolean isComplete=false;
-	Iterator<descrittoreDungeon> iter;
+	Iterator<descrittoreIncontro> iterIncontri;
+	Incontro incontroCorrente ;
 
-	public Dungeon(Iterator<descrittoreDungeon> iter){
-		this.iter=iter;
+	@Override
+	public void Update(){
+		System.out.println(incontroCorrente.descIncontro.getIdDescrittoreIncontro());
+		if(iterIncontri.hasNext()) {
+			nextIncontro();
+		}
+		else Notify();
+
 	}
+	void nextIncontro() {
+		incontroCorrente=new Incontro(iterIncontri.next().clone());
+		incontroCorrente.Subscribe(this);
+	}
+	void resettaIncontri() {
+	}
+
 }

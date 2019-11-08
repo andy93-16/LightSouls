@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 public class costruttoreModalitaStoria extends costruttoreModalita {
 
     @Autowired
-    modalitaService service;
+    modalitaService attribute;
 
     private Modalita m;
+	@Autowired
+	private modalitaService service;
 
     public Modalita getM() {
         return m;

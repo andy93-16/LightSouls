@@ -9,11 +9,11 @@ import java.util.Iterator;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-public class Partita {
+public class Partita implements Osservatore {
 
 	@Autowired
 	costruttoreModalita cM;
-	Incontro incontroCorrente;
+	Iterator<descrittoreDungeon> iterDungeons;
 	Dungeon dungeonCorrente;
 	Modalita m;
 
@@ -22,22 +22,35 @@ public class Partita {
 		this.cM.reset();
 		this.cM.SetupModalita();
         this.m=cM.getM();
-
+        InitModalita();
         return "/Falo";
 	}
 
+	private void nextDungeon(){
+		dungeonCorrente=new Dungeon();
+		dungeonCorrente.Subscribe(this);
+		this.dungeonCorrente.iterIncontri=this.iterDungeons.next().getListaIncontri().iterator();
+		Incontro i= new Incontro(dungeonCorrente.iterIncontri.next().clone());
+		i.Subscribe(dungeonCorrente);
+		this.dungeonCorrente.incontroCorrente=i;
+	}
+
 	private void InitModalita(){
-		this.dungeonCorrente=new Dungeon(this.m.getListaDungeons().iterator());
-		this.incontroCorrente=new Incontro(this.dungeonCorrente.iter.next().getListaIncontri().iterator());
+		this.iterDungeons=this.m.getListaDungeons().iterator();
+     	nextDungeon();
 	}
 
-	public void Termina() {
-
-	}
 	@GetMapping("/AvviaIncontro")
 	public String AvviaIncontro(){
-
+		this.dungeonCorrente.incontroCorrente.Avvia();
 		return "/Falo";
+	}
+
+	@Override
+	public void Update(){
+		if(this.iterDungeons.hasNext()) {
+			nextDungeon();
+		}
 	}
 
 }
