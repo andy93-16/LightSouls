@@ -33,6 +33,7 @@ public class Partita implements Osservatore {
 		Incontro i= new Incontro(dungeonCorrente.iterIncontri.next().clone());
 		i.Subscribe(dungeonCorrente);
 		this.dungeonCorrente.incontroCorrente=i;
+
 	}
 
 	private void InitModalita(){
