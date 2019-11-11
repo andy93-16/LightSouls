@@ -14,7 +14,7 @@ export class FaloComponent implements OnInit {
   }
 
   AvviaIncontro():void{
-    this.httpservice.AvviaIncontro()
+    this.httpservice.AvviaIncontro();
   }
 
 }

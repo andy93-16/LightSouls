@@ -1,9 +1,9 @@
 package com.eswproject.lightsouls.Domain;
 
-import org.springframework.stereotype.Component;
+import java.util.Observable;
 
 
-public class Incontro extends Osservabile {
+public class Incontro extends Observable {
 
 	descrittoreIncontro descIncontro;
 
@@ -12,7 +12,8 @@ public class Incontro extends Osservabile {
 	}
 
 	void Avvia() {
-		Notify();
+		notifyObservers();
 	}
+
 
 }
