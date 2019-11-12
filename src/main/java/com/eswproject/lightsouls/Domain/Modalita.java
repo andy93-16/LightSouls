@@ -1,5 +1,7 @@
 package com.eswproject.lightsouls.Domain;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
 import javax.persistence.*;
 import java.util.List;
 

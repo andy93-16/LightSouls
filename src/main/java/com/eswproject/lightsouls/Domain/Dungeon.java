@@ -17,19 +17,12 @@ public class Dungeon extends Observable implements Observer {
 	Iterator<descrittoreIncontro> iterIncontri;
 	Incontro incontroCorrente ;
 
-
 	@Override
 	public void update(Observable incontro,Object stato){
 		if(iterIncontri.hasNext()) {
 			nextIncontro();
 		}
 		else notifyObservers();
-	}
-
-	@GetMapping("/AvviaIncontro")
-	public Dungeon AvviaIncontro(){
-		this.incontroCorrente.Avvia();
-		return this;
 	}
 
 	void nextIncontro() {

@@ -1,5 +1,7 @@
 package com.eswproject.lightsouls.Domain;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,13 +37,25 @@ public class Partita implements Observer {
 		this.dungeonCorrente.nextIncontro();
 	}
 
+	@GetMapping("/AvviaIncontro")
+	public String AvviaIncontro() {
+		this.dungeonCorrente.incontroCorrente.Avvia();
+		try {
+			System.out.println(this.dungeonCorrente.incontroCorrente);
+			return new ObjectMapper().writeValueAsString(this.dungeonCorrente.incontroCorrente);
+		} catch (JsonProcessingException j) {
+			return j.getMessage();
+
+		}
+	}
+
 	private void InitModalita(){
 		this.iterDungeons=this.m.getListaDungeons().iterator();
      	nextDungeon();
 	}
 
 	@Override
-	public void update(Observable dungeon,Object result){
+	public void update(Observable incontro, Object stato){
 		if(this.iterDungeons.hasNext()) {
 			nextDungeon();
 		}
