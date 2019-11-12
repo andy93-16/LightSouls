@@ -6,7 +6,6 @@ import java.util.List;
 @Entity
 public class Modalita
 {
-
     @Id
     private String name;
 

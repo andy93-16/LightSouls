@@ -1,9 +1,6 @@
 package com.eswproject.lightsouls.Domain;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Iterator;
@@ -12,31 +9,55 @@ import java.util.Observer;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-public class Dungeon extends Observable implements Observer {
+public class Dungeon extends Observable implements Observer
+{
 
-	Iterator<descrittoreIncontro> iterIncontri;
-	Incontro incontroCorrente ;
+	private Iterator<DescrittoreIncontro> iterIncontri;
+	private Incontro incontroCorrente ;
 
 
 	@Override
-	public void update(Observable incontro,Object stato){
-		if(iterIncontri.hasNext()) {
+	public void update(Observable incontro, Object stato)
+	{
+		if(iterIncontri.hasNext())
+		{
 			nextIncontro();
 		}
 		else notifyObservers();
 	}
 
-	@GetMapping("/AvviaIncontro")
-	public Dungeon AvviaIncontro(){
-		this.incontroCorrente.Avvia();
-		return this;
+	public void AvviaIncontro()
+	{
+		this.incontroCorrente.avvia();
+		//return this.incontroCorrente;
 	}
 
-	void nextIncontro() {
+	public void nextIncontro()
+	{
 		this.incontroCorrente=new Incontro(iterIncontri.next().clone());
 		this.incontroCorrente.addObserver(this);
 	}
 
-	void resettaIncontri(){}
+	public void resettaIncontri()
+	{}
 
+	public Iterator<DescrittoreIncontro> getIterIncontri()
+	{
+		return iterIncontri;
+	}
+
+	public void setIterIncontri(Iterator<DescrittoreIncontro> iterIncontri)
+	{
+		this.iterIncontri = iterIncontri;
+	}
+
+	public Incontro getIncontroCorrente()
+	{
+		return incontroCorrente;
+	}
+
+	public void setIncontroCorrente(Incontro incontroCorrente)
+	{
+		this.incontroCorrente = incontroCorrente;
+	}
 }
