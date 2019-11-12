@@ -12,17 +12,19 @@ export class HttpService {
 
   public IniziaNuovaPartita() {
       this.httpclient.get('http://localhost:8080/Modalita',
-        {responseType: 'text'}).subscribe(url=>this.routerservice.RouteTo(url)
+        {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url)
       );
     }
-  public ModalitaStoria(){
+  public ModalitaStoria() {
       this.httpclient.get('http://localhost:8080/ModalitaStoria',
-        {responseType: 'text'}).subscribe(url=>this.routerservice.RouteTo(url)
+        {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url)
     );
     }
-  public AvviaIncontro(){
-      this.httpclient.get('http://localhost:8080/AvviaIncontro',
-        {responseType: 'text'}).subscribe(url=>this.routerservice.RouteTo(url)
-    );
+  public AvviaIncontro() {
+      return this.httpclient.get('http://localhost:8080/AvviaIncontro',
+        {responseType: 'text'}).subscribe(incontro => {
+        console.log(incontro);
+        return incontro;});
+
     }
 }

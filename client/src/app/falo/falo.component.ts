@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from "../http.service";
+import {Incontro} from "../incontro";
 
 @Component({
   selector: 'app-falo',
@@ -8,13 +9,15 @@ import {HttpService} from "../http.service";
 })
 export class FaloComponent implements OnInit {
 
-  constructor(private httpservice:HttpService) { }
+  incontroCorrente: Incontro ;
+
+  constructor(private httpservice: HttpService ) { }
 
   ngOnInit() {
   }
 
-  AvviaIncontro():void{
-    this.httpservice.AvviaIncontro();
+  AvviaIncontro(): void {
+    this.incontroCorrente = this.httpservice.AvviaIncontro();
   }
 
 }
