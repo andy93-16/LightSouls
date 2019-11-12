@@ -13,11 +13,11 @@ public class descrittoreDungeon{
     @Id
     private String BossName;
 
-    public List<DescrittoreIncontro> getListaIncontri() {
+    public List<descrittoreIncontro> getListaIncontri() {
         return listaIncontri;
     }
 
     @OneToMany
-    private List<DescrittoreIncontro> listaIncontri;
+    private List<descrittoreIncontro> listaIncontri;
 
 }

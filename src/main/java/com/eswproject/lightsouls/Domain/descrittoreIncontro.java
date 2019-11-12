@@ -3,7 +3,7 @@ package com.eswproject.lightsouls.Domain;
 import javax.persistence.*;
 
 @Entity
-public class DescrittoreIncontro implements Cloneable
+public class descrittoreIncontro implements Cloneable
 {
 
     @Id
@@ -18,9 +18,9 @@ public class DescrittoreIncontro implements Cloneable
     }
 
     @Override
-    public DescrittoreIncontro clone() {
+    public descrittoreIncontro clone() {
         try {
-            return (DescrittoreIncontro) super.clone();
+            return (descrittoreIncontro) super.clone();
         }
         catch (CloneNotSupportedException e) {
             return null;

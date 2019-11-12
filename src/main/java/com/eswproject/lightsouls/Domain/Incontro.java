@@ -6,34 +6,26 @@ import java.util.Observable;
 public class Incontro extends Observable
 {
 
-	private DescrittoreIncontro descrittoreIncontro;
+	private descrittoreIncontro descrittoreIncontro;
 
-	public Incontro(DescrittoreIncontro descrittoreIncontro)
+	public Incontro(descrittoreIncontro descrittoreIncontro)
 	{
 		this.descrittoreIncontro = descrittoreIncontro;
 	}
 
-	public void avvia()
+	public void Avvia()
 	{
 		notifyObservers(this);
 	}
 
-	public DescrittoreIncontro getDescrittoreIncontro()
+	public descrittoreIncontro getDescrittoreIncontro()
 	{
 		return descrittoreIncontro;
 	}
 
-	public void setDescrittoreIncontro(DescrittoreIncontro descrittoreIncontro)
+	public void setDescrittoreIncontro(descrittoreIncontro descrittoreIncontro)
 	{
 		this.descrittoreIncontro = descrittoreIncontro;
 	}
 
-//	@Override
-//	public String toString()
-//	{
-//		//return super.toString();
-//		return "{" +
-//				"\"descrittoreIncontro\":" + this.descrittoreIncontro +
-//				"}";
-//	}
 }

@@ -2,6 +2,7 @@ package com.eswproject.lightsouls.Domain;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,23 +42,17 @@ public class Partita implements Observer
 	}
 
 	@GetMapping("/AvviaIncontro")
-	public String avviaIncontro()
+	public String AvviaIncontro()
 	{
-		this.dungeonCorrente.getIncontroCorrente().avvia();
-		String returnMeSenpai = "";
+		this.dungeonCorrente.getIncontroCorrente().Avvia();
 		try
 		{
-			System.out.println("L'incCorrente è " + this.dungeonCorrente.getIncontroCorrente().toString());
-			System.out.println("avente ID = " + this.dungeonCorrente.getIncontroCorrente().getDescrittoreIncontro().getIdDescrittoreIncontro());
-			returnMeSenpai = new ObjectMapper().writeValueAsString(this.dungeonCorrente.getIncontroCorrente());
+			return new ObjectMapper().writeValueAsString(this.dungeonCorrente.getIncontroCorrente());
 		}
-		catch(JsonProcessingException e)
+		catch(JsonProcessingException j)
 		{
-			System.out.println("Ciao, qualcosa è andato storto!");
+			return j.toString() ;
 		}
-
-		System.out.println("Ritornami! " + returnMeSenpai);
-		return returnMeSenpai;
 	}
 
 	private void InitModalita()

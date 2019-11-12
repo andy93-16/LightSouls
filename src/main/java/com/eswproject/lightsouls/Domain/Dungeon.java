@@ -12,7 +12,7 @@ import java.util.Observer;
 public class Dungeon extends Observable implements Observer
 {
 
-	private Iterator<DescrittoreIncontro> iterIncontri;
+	private Iterator<descrittoreIncontro> iterIncontri;
 	private Incontro incontroCorrente ;
 
 
@@ -28,7 +28,7 @@ public class Dungeon extends Observable implements Observer
 
 	public void AvviaIncontro()
 	{
-		this.incontroCorrente.avvia();
+		this.incontroCorrente.Avvia();
 		//return this.incontroCorrente;
 	}
 
@@ -41,12 +41,12 @@ public class Dungeon extends Observable implements Observer
 	public void resettaIncontri()
 	{}
 
-	public Iterator<DescrittoreIncontro> getIterIncontri()
+	public Iterator<descrittoreIncontro> getIterIncontri()
 	{
 		return iterIncontri;
 	}
 
-	public void setIterIncontri(Iterator<DescrittoreIncontro> iterIncontri)
+	public void setIterIncontri(Iterator<descrittoreIncontro> iterIncontri)
 	{
 		this.iterIncontri = iterIncontri;
 	}
