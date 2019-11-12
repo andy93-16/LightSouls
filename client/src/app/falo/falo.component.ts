@@ -17,7 +17,7 @@ export class FaloComponent implements OnInit {
   }
 
   AvviaIncontro(): void {
-    this.incontroCorrente = this.httpservice.AvviaIncontro();
+    this.httpservice.AvviaIncontro(this.incontroCorrente);
   }
 
 }

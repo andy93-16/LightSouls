@@ -20,11 +20,8 @@ export class HttpService {
         {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url)
     );
     }
-  public AvviaIncontro() {
-      return this.httpclient.get('http://localhost:8080/AvviaIncontro',
-        {responseType: 'text'}).subscribe(incontro => {
-        console.log(incontro);
-        return incontro;});
-
+  public AvviaIncontro(incontroCorrente) {
+      this.httpclient.get('http://localhost:8080/AvviaIncontro',
+        {responseType: 'text'}).subscribe(incontro => incontroCorrente);
     }
 }
