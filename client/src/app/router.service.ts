@@ -6,10 +6,9 @@ import {Router, Routes} from "@angular/router";
 })
 export class RouterService {
 
-  constructor(private router : Router) { }
+  constructor(private router: Router) { }
 
-  public RouteTo(url){
-    this.router.navigate([url]);}
+  public RouteTo(url) {this.router.navigate([url]);}
 
   }
 

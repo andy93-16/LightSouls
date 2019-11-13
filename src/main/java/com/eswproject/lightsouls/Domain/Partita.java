@@ -6,12 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Iterator;
-import java.util.Observable;
-import java.util.Observer;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-public class Partita implements Observer
+public class Partita
 {
 
 	@Autowired
@@ -33,30 +31,38 @@ public class Partita implements Observer
 	private void nextDungeon()
 	{
 		this.dungeonCorrente=new Dungeon();
-		this.dungeonCorrente.addObserver(this);
 		this.dungeonCorrente.setIterIncontri(this.iterDungeons.next().getListaIncontri().iterator());
-		this.dungeonCorrente.nextIncontro();
+	}
+
+	@GetMapping("/ProssimoIncontro")
+	public Incontro ProssimoIncontro()
+	{
+		if(this.dungeonCorrente.getIsComplete())
+		{
+			if(iterDungeons.hasNext()){
+			   nextDungeon();
+			   this.dungeonCorrente.nextIncontro();
+			}
+			else
+				return null;
+		}
+		return this.dungeonCorrente.getIncontroCorrente();
 	}
 
 	@GetMapping("/AvviaIncontro")
-	public Incontro AvviaIncontro()
-	{
-		this.dungeonCorrente.getIncontroCorrente().Avvia();
-		return this.dungeonCorrente.getIncontroCorrente();
+	public String AvviaIncontro(){
+		return this.dungeonCorrente.getIncontroCorrente().Avvia();
 	}
 
 	private void InitModalita()
 	{
 		this.iterDungeons=this.m.getListaDungeons().iterator();
      	nextDungeon();
+     	this.dungeonCorrente.nextIncontro();
 	}
 
-	@Override
-	public void update(Observable dungeon,Object result)
-	{
-		if(this.iterDungeons.hasNext())
-		{
-			nextDungeon();
-		}
+	@GetMapping("/Termina")
+	public String Termina(){
+		return "/Giocatore";
 	}
 }

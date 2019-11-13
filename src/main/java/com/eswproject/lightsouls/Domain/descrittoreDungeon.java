@@ -2,6 +2,7 @@ package com.eswproject.lightsouls.Domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.*;
 
 @Entity
 public class descrittoreDungeon{
@@ -13,11 +14,12 @@ public class descrittoreDungeon{
     @Id
     private String BossName;
 
-    public List<descrittoreIncontro> getListaIncontri() {
+	public List<descrittoreIncontro> getListaIncontri() {
         return listaIncontri;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
+
+    @OneToMany(fetch=FetchType.EAGER)
     private List<descrittoreIncontro> listaIncontri;
 
 }

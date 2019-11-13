@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpService} from "../http.service";
+import {HttpService} from '../http.service';
+import {RouterService} from '../router.service';
 
 @Component({
   selector: 'app-falo',
@@ -8,17 +9,17 @@ import {HttpService} from "../http.service";
 })
 export class FaloComponent implements OnInit {
 
-  incontroCorrente: any = "";
-
-  constructor(private httpservice: HttpService) { }
+  constructor(private httpservice: HttpService, private routerService: RouterService){}
 
   ngOnInit() {
   }
 
-  AvviaIncontro(): void {
-    this.httpservice.AvviaIncontro().subscribe(
-      incontro => {
-        this.incontroCorrente = incontro; });
+  ProssimoIncontro(): void {
+    this.routerService.RouteTo('/Incontro');
+  }
+
+  Termina(): void {
+    this.httpservice.Termina();
   }
 
 }

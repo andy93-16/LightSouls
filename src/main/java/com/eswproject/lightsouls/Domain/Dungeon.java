@@ -7,10 +7,18 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
-@RestController
-@CrossOrigin("http://localhost:4200")
-public class Dungeon extends Observable implements Observer
+public class Dungeon implements Observer
 {
+
+	private boolean isComplete=false;
+
+	public boolean getIsComplete() {
+		return isComplete;
+	}
+
+	public void setIsComplete(boolean complete) {
+		isComplete = complete;
+	}
 
 	private Iterator<descrittoreIncontro> iterIncontri;
 	private Incontro incontroCorrente ;
@@ -23,11 +31,10 @@ public class Dungeon extends Observable implements Observer
 		{
 			nextIncontro();
 		}
-		else
-		{
-			setChanged();
-			notifyObservers();
+		else{
+			setIsComplete(true);
 		}
+
 	}
 
 	public void nextIncontro()
