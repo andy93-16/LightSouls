@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {RouterService} from "./router.service";
-import {Incontro} from "./incontro";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -22,8 +21,7 @@ export class HttpService {
         {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url)
     );
     }
-  public AvviaIncontro():Observable<Incontro> {
-      return this.httpclient.get<Incontro>('http://localhost:8080/AvviaIncontro',
-        {responseType: 'text'}).subscribe(incontro => {console.log(incontro);});
+  public AvviaIncontro(): Observable<any> {
+      return this.httpclient.get<any>('http://localhost:8080/AvviaIncontro') ;
     }
 }
