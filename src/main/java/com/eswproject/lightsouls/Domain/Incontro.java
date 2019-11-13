@@ -15,7 +15,8 @@ public class Incontro extends Observable
 
 	public void Avvia()
 	{
-		notifyObservers(this);
+		setChanged();
+		notifyObservers();
 	}
 
 	public descrittoreIncontro getDescrittoreIncontro()

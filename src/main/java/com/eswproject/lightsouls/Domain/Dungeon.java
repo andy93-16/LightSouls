@@ -23,13 +23,11 @@ public class Dungeon extends Observable implements Observer
 		{
 			nextIncontro();
 		}
-		else notifyObservers();
-	}
-
-	public void AvviaIncontro()
-	{
-		this.incontroCorrente.Avvia();
-		//return this.incontroCorrente;
+		else
+		{
+			setChanged();
+			notifyObservers();
+		}
 	}
 
 	public void nextIncontro()
