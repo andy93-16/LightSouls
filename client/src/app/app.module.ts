@@ -8,14 +8,16 @@ import {HttpService} from './http.service';
 import { ModalitaComponent } from './modalita/modalita.component';
 import { FaloComponent } from './falo/falo.component';
 import { IncontroComponent } from './incontro/incontro.component';
+import { RisultatoIncontroComponent } from './risultato-incontro/risultato-incontro.component';
 
 const appRoutes: Routes = [
   { path: 'Giocatore', component: GiocatoreComponent },
   { path: 'Modalita' , component: ModalitaComponent},
   { path: 'Falo', component: FaloComponent},
-  { path: 'Incontro', component: IncontroComponent}
+  { path: 'Incontro', component: IncontroComponent},
+  { path: 'RisultatoIncontro', component: RisultatoIncontroComponent}
 //  { path: '**', component: PageNotFoundComponent }
-];
+  ];
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ const appRoutes: Routes = [
     GiocatoreComponent,
     ModalitaComponent,
     FaloComponent,
-    IncontroComponent
+    IncontroComponent,
+    RisultatoIncontroComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)],
   providers: [HttpService],
   bootstrap: [AppComponent],
-  exports:[RouterModule]
+  exports: [RouterModule]
 })
 export class AppModule { }

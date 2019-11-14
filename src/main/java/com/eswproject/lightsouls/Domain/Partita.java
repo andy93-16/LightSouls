@@ -44,7 +44,7 @@ public class Partita
 			   this.dungeonCorrente.nextIncontro();
 			}
 			else
-				return null;
+			   return null;
 		}
 		return this.dungeonCorrente.getIncontroCorrente();
 	}
