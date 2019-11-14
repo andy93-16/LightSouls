@@ -9,16 +9,13 @@ import {RouterService} from '../router.service';
 })
 export class FaloComponent implements OnInit {
 
-  incontroCorrente: any;
-
   constructor(private httpservice: HttpService, private routerService: RouterService) {}
 
   ngOnInit() {
     this.httpservice.ProssimoIncontro().subscribe( incontro => {
       if (incontro === null) {
         this.routerService.RouteTo('/RisultatoPartita');
-      } else {
-        this.incontroCorrente = incontro; }
+     }
     });
   }
 
