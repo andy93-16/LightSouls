@@ -1,7 +1,5 @@
 package com.eswproject.lightsouls.Domain;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,9 +15,9 @@ public class Modalita
     }
 
     @OneToMany(fetch=FetchType.EAGER)
-    private List<descrittoreDungeon> listaDungeons;
+    private List<DescrittoreDungeon> listaDungeons;
 
-    public List<descrittoreDungeon> getListaDungeons() {
+    public List<DescrittoreDungeon> getListaDungeons() {
         return listaDungeons;
     }
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Giocatore {
 
 	Partita partita;
-	Personaggio personaggio;
 
 	@GetMapping("/Modalita")
 	public String IniziaNuovaPartita() {

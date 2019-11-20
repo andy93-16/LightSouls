@@ -1,9 +1,5 @@
 package com.eswproject.lightsouls.Domain;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -20,7 +16,7 @@ public class Dungeon implements Observer
 		isComplete = complete;
 	}
 
-	private Iterator<descrittoreIncontro> iterIncontri;
+	private java.util.Iterator<DescrittoreIncontro> iterIncontri;
 	private Incontro incontroCorrente ;
 
 
@@ -46,12 +42,12 @@ public class Dungeon implements Observer
 	public void resettaIncontri()
 	{}
 
-	public Iterator<descrittoreIncontro> getIterIncontri()
+	public java.util.Iterator<DescrittoreIncontro> getIterIncontri()
 	{
 		return iterIncontri;
 	}
 
-	public void setIterIncontri(Iterator<descrittoreIncontro> iterIncontri)
+	public void setIterIncontri(java.util.Iterator<DescrittoreIncontro> iterIncontri)
 	{
 		this.iterIncontri = iterIncontri;
 	}

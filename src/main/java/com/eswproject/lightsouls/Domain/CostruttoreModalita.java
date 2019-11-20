@@ -1,12 +1,12 @@
 package com.eswproject.lightsouls.Domain;
 
-import com.eswproject.lightsouls.Service.modalitaService;
+import com.eswproject.lightsouls.Service.ModalitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class costruttoreModalita {
+public abstract class CostruttoreModalita {
 
 	@Autowired
-	modalitaService service;
+	ModalitaService service;
 
 	Modalita m;
 

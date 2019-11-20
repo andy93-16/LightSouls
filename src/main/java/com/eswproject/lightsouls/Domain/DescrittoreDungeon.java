@@ -1,11 +1,13 @@
 package com.eswproject.lightsouls.Domain;
 
+import org.springframework.data.repository.cdi.Eager;
+
 import javax.persistence.*;
+import javax.persistence.criteria.Fetch;
 import java.util.List;
-import java.util.*;
 
 @Entity
-public class descrittoreDungeon{
+public class DescrittoreDungeon {
 
     public void setBossName(String bossName) {
         BossName = bossName;
@@ -14,12 +16,12 @@ public class descrittoreDungeon{
     @Id
     private String BossName;
 
-	public List<descrittoreIncontro> getListaIncontri() {
+	public List<DescrittoreIncontro> getListaIncontri() {
         return listaIncontri;
     }
 
 
     @OneToMany(fetch=FetchType.EAGER)
-    private List<descrittoreIncontro> listaIncontri;
+    private List<DescrittoreIncontro> listaIncontri;
 
 }

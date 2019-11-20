@@ -21,8 +21,8 @@ export class HttpService {
         {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url)
     );
     }
-  public ProssimoIncontro(): Observable<any> {
-      return this.httpclient.get<any>('http://localhost:8080/ProssimoIncontro') ;
+  public ProcediAdIncontro(): Observable<any> {
+      return this.httpclient.get<any>('http://localhost:8080/ProcediAdIncontro') ;
     }
   public Termina() {
       this.httpclient.get('http://localhost:8080/Termina',

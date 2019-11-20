@@ -13,10 +13,11 @@ public class Partita
 {
 
 	@Autowired
-	costruttoreModalita cM;
-	Iterator<descrittoreDungeon> iterDungeons;
+	CostruttoreModalita cM;
+	Iterator<DescrittoreDungeon> iterDungeons;
 	Dungeon dungeonCorrente;
 	Modalita m;
+	private Personaggio personaggio;
 
 	@GetMapping("/ModalitaStoria")
 	public String CostruisciModalitaStoria()
@@ -34,8 +35,8 @@ public class Partita
 		this.dungeonCorrente.setIterIncontri(this.iterDungeons.next().getListaIncontri().iterator());
 	}
 
-	@GetMapping("/ProssimoIncontro")
-	public Incontro ProssimoIncontro()
+	@GetMapping("/ProcediAdIncontro")
+	public Incontro ProcediAdIncontro()
 	{
 		if(this.dungeonCorrente.getIsComplete())
 		{
