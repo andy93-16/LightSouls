@@ -1,0 +1,1 @@
+const static String modalitaStoria = "storia";
