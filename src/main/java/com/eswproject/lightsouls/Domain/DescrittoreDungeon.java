@@ -21,7 +21,7 @@ public class DescrittoreDungeon {
     }
 
 
-    @OneToMany(fetch=FetchType.EAGER)
+    @javax.persistence.Transient
     private List<DescrittoreIncontro> listaIncontri;
 
 }

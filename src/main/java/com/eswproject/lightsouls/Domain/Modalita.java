@@ -14,7 +14,7 @@ public class Modalita
         return name;
     }
 
-    @OneToMany(fetch=FetchType.EAGER)
+    @javax.persistence.Transient
     private List<DescrittoreDungeon> listaDungeons;
 
 
