@@ -12,12 +12,12 @@ public class Dice
         return this.get_Element(new Random().nextInt(this.getTotal_Faces()));
     }
 
-    public int getTotal_Faces()
+    private int getTotal_Faces()
     {
         return this.values.length;
     }
 
-    public int get_Element(int i)
+    private int get_Element(int i)
     {
         return values[i];
     }
