@@ -17,6 +17,8 @@ public class Modalita
     @OneToMany(fetch=FetchType.EAGER)
     private List<DescrittoreDungeon> listaDungeons;
 
+
+
     public List<DescrittoreDungeon> getListaDungeons() {
         return listaDungeons;
     }
