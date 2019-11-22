@@ -35,6 +35,7 @@ public class Partita
 		this.dungeonCorrente.setIterIncontri(this.iterDungeons.next().getListaIncontri().iterator());
 	}
 
+
 	@GetMapping("/ProcediAdIncontro")
 	public Incontro ProcediAdIncontro()
 	{

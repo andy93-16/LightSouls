@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {RouterService} from './router.service';
 import {Observable} from 'rxjs';
+import {runInThisContext} from "vm";
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class HttpService {
   public AvviaIncontro() {
       this.httpclient.get('http://localhost:8080/AvviaIncontro',
         {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url));
+  }
+  public RiepilogoEquipaggiabili() {
+      this.httpclient.get( 'http://localhost:8080/RiepilogoEquipaggiabili',
+        {responseType:'text'});
   }
 }

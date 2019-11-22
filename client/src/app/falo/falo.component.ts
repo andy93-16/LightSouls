@@ -27,4 +27,8 @@ export class FaloComponent implements OnInit {
     this.httpservice.Termina();
   }
 
+  GestisciPersonaggio(): void {
+    this.routerService.RouteTo('/GestisciPersonaggio');
+  }
+
 }
