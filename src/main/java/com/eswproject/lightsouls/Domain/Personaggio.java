@@ -1,6 +1,7 @@
 package com.eswproject.lightsouls.Domain;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Artefatto;
+import com.eswproject.lightsouls.Domain.Artifacts.ArtefattoEquip;
 import com.eswproject.lightsouls.Domain.Artifacts.StatisticaBase;
 import com.eswproject.lightsouls.Domain.Artifacts.StatisticaCombattimento;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,13 +20,11 @@ public class Personaggio {
 	private int anime;
 
 	@GetMapping("/RiepilogoEquipaggiabili")
-	public List<Artefatto> RiepilogoEquipaggiabili(){
-		return "/PotenziaOggetto";
+	public List<Artefatto> RiepilogoEquipaggiabili() {
+		ArrayList<Artefatto> equipaggiabili = new ArrayList<>();
+		for (Artefatto artefatto : this.artefatti)
+			if (artefatto instanceof ArtefattoEquip)
+				equipaggiabili.add(artefatto);
+		return equipaggiabili;
 	}
-
-//	@GetMapping("/CambiaEquipaggianmento")
-//	public String CambiaEquipaggiamento(){
-//		return "/CambiaEquipaggiamento";
-//	}
-
 }

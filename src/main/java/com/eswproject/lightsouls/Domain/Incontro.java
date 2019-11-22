@@ -5,8 +5,7 @@ import java.util.Observable;
 public class Incontro extends Observable
 {
 
-	private DescrittoreIncontro attribute;
-	private descrittoreIncontro descrittoreIncontro;
+	private DescrittoreIncontro descrittoreIncontro;
 
 	public Incontro(DescrittoreIncontro descrittoreIncontro)
 	{
@@ -22,19 +21,19 @@ public class Incontro extends Observable
 
 	public DescrittoreIncontro getAttribute()
 	{
-		return attribute;
+		return descrittoreIncontro;
 	}
 
 	public void setAttribute(DescrittoreIncontro descrittoreIncontro)
 	{
-		this.attribute = descrittoreIncontro;
+		this.descrittoreIncontro = descrittoreIncontro;
 	}
 
-	public descrittoreIncontro getDescrittoreIncontro() {
+	public DescrittoreIncontro getDescrittoreIncontro() {
 		return this.descrittoreIncontro;
 	}
 
-	public void setDescrittoreIncontro(descrittoreIncontro descrittoreIncontro) {
+	public void setDescrittoreIncontro(DescrittoreIncontro descrittoreIncontro) {
 		this.descrittoreIncontro = descrittoreIncontro;
 	}
 

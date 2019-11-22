@@ -1,5 +1,8 @@
 package com.eswproject.lightsouls.Domain;
 
+import org.hibernate.engine.profile.Fetch;
+import org.springframework.data.repository.cdi.Eager;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,10 +17,8 @@ public class Modalita
         return name;
     }
 
-    @javax.persistence.Transient
+    @OneToMany(fetch = FetchType.EAGER)
     private List<DescrittoreDungeon> listaDungeons;
-
-
 
     public List<DescrittoreDungeon> getListaDungeons() {
         return listaDungeons;
