@@ -1,4 +1,4 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
-public abstract class Statistica {
+public class Titanite extends Artefatto {
 }

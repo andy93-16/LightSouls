@@ -21,7 +21,7 @@ public class DescrittoreDungeon {
     }
 
 
-    @OneToMany(fetch=FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<DescrittoreIncontro> listaIncontri;
 
 }

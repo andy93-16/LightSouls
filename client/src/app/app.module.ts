@@ -10,6 +10,8 @@ import { FaloComponent } from './falo/falo.component';
 import { IncontroComponent } from './incontro/incontro.component';
 import { RisultatoIncontroComponent } from './risultato-incontro/risultato-incontro.component';
 import { RisultatoPartitaComponent } from './risultato-partita/risultato-partita.component';
+import { GestisciPersonaggioComponent } from './gestisci-personaggio/gestisci-personaggio.component';
+import { RiepilogoEquipaggiabiliComponent } from './riepilogo-equipaggiabili/riepilogo-equipaggiabili.component';
 
 const appRoutes: Routes = [
   { path: 'Giocatore', component: GiocatoreComponent },
@@ -17,7 +19,9 @@ const appRoutes: Routes = [
   { path: 'Falo', component: FaloComponent},
   { path: 'Incontro', component: IncontroComponent},
   { path: 'RisultatoIncontro', component: RisultatoIncontroComponent},
-  { path: 'RisultatoPartita', component: RisultatoPartitaComponent}
+  { path: 'RisultatoPartita', component: RisultatoPartitaComponent},
+  { path: 'GestisciPersonaggio', component: GestisciPersonaggioComponent},
+  { path: 'RiepilogoEquipaggiabili', component: RiepilogoEquipaggiabiliComponent}
 //  { path: '**', component: PageNotFoundComponent }
   ];
 
@@ -29,7 +33,9 @@ const appRoutes: Routes = [
     FaloComponent,
     IncontroComponent,
     RisultatoIncontroComponent,
-    RisultatoPartitaComponent
+    RisultatoPartitaComponent,
+    GestisciPersonaggioComponent,
+    RiepilogoEquipaggiabiliComponent
   ],
   imports: [
     BrowserModule,

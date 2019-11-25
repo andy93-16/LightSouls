@@ -7,14 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class LightsoulsApplication
-{
+public class LightsoulsApplication {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         SpringApplication.run(LightsoulsApplication.class, args);
         Giocatore giocatore= new Giocatore();
-
+        Personaggio personaggio = new Personaggio();
     }
 }
 

@@ -32,4 +32,7 @@ export class HttpService {
       this.httpclient.get('http://localhost:8080/AvviaIncontro',
         {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url));
   }
+  public RiepilogoEquipaggiabili(): Observable<any> {
+      return this.httpclient.get<any>( 'http://localhost:8080/RiepilogoEquipaggiabili');
+  }
 }
