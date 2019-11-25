@@ -23,4 +23,4 @@ INSERT INTO descrittore_dungeon_lista_incontri(descrittore_dungeon_boss_name,lis
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova1');
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova2');
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova3');
-INSERT INTO equipment(upgrades_left,statistica_base)
+-- INSERT INTO equipment(upgrades_left,statistica_base)

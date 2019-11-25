@@ -4,21 +4,44 @@ import java.util.Random;
 
 public class Dice
 {
-    protected int total_Faces;
-    protected int[] values;
+    public int[] black = new int[]{0, 0, 1, 1, 1, 2};
+    public int[] blue = new int[]{1, 1, 2, 2, 2, 3};
+    public int[] orange = new int[]{1, 2, 2, 2, 3, 4};
 
-    public int throw_Dice()
+
+    private int throw_Dice(DiceColor color)
     {
-        return this.get_Element(new Random().nextInt(this.getTotal_Faces()));
+        int face;
+        switch(color)
+        {
+            case BLACK:
+                face = this.black[new Random().nextInt(this.black.length)];
+                break;
+
+            case BLUE:
+                face = this.blue[new Random().nextInt(this.blue.length)];
+                break;
+
+            case ORANGE:
+                face = this.orange[new Random().nextInt(this.orange.length)];
+                break;
+
+            default: //Like BLACK
+                face = this.black[new Random().nextInt(this.black.length)];
+                break;
+
+        }
+        return face;
     }
 
-    private int getTotal_Faces()
+    public int throw_Dice(DiceColor color, int numeroTiri)
     {
-        return this.values.length;
+        int total = 0;
+        for(int i = 0; i < numeroTiri; i++)
+        {
+            total += this.throw_Dice(color);
+        }
+        return total;
     }
 
-    private int get_Element(int i)
-    {
-        return values[i];
-    }
 }

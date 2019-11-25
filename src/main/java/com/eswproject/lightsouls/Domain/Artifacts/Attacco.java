@@ -1,14 +1,16 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
+import com.eswproject.lightsouls.Domain.Dice.Dice;
+import com.eswproject.lightsouls.Domain.Dice.DiceColor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Attacco extends Azione{
-
-
+public class Attacco extends Azione
+{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -25,4 +27,9 @@ public class Attacco extends Azione{
 		this.staminaCost = staminaCost;
 	}
 
+	public void setAttack()
+	{
+		Dice d = new Dice();
+		//d.throw_Dice(DiceColor.BLACK);
+	}
 }
