@@ -7,13 +7,8 @@ import java.util.HashMap;
 public abstract class Azione
 {
 
-	private HashMap<DiceColor, Integer> danno;
+	private HashMap<DiceColor, Integer> danno = new HashMap<>();
 	private Type type;
-
-	public Azione()
-	{
-		this.danno = new HashMap<>();
-	}
 
 	public int getDanno()
 	{
