@@ -6,14 +6,11 @@ import java.util.Observer;
 public class Dungeon implements Observer
 {
 
-	private boolean isComplete=false;
+	private boolean complete=false;
 
-	public boolean getIsComplete() {
-		return isComplete;
-	}
 
-	public void setIsComplete(boolean complete) {
-		isComplete = complete;
+	public void setComplete(boolean complete) {
+		complete = complete;
 	}
 
 	private java.util.Iterator<DescrittoreIncontro> iterIncontri;
@@ -28,7 +25,7 @@ public class Dungeon implements Observer
 			nextIncontro();
 		}
 		else{
-			setIsComplete(true);
+			setComplete(true);
 		}
 
 	}
@@ -60,5 +57,9 @@ public class Dungeon implements Observer
 	public void setIncontroCorrente(Incontro incontroCorrente)
 	{
 		this.incontroCorrente = incontroCorrente;
+	}
+
+	public boolean isComplete() {
+		return this.complete;
 	}
 }

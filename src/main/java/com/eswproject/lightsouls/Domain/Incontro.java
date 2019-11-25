@@ -4,8 +4,8 @@ import java.util.Observable;
 
 public class Incontro extends Observable
 {
-
 	private DescrittoreIncontro descrittoreIncontro;
+	boolean complete = false;
 
 	public Incontro(DescrittoreIncontro descrittoreIncontro)
 	{
@@ -18,16 +18,7 @@ public class Incontro extends Observable
 		notifyObservers();
 		return "/RisultatoIncontro";
 	}
-
-	public DescrittoreIncontro getAttribute()
-	{
-		return descrittoreIncontro;
-	}
-
-	public void setAttribute(DescrittoreIncontro descrittoreIncontro)
-	{
-		this.descrittoreIncontro = descrittoreIncontro;
-	}
+	
 
 	public DescrittoreIncontro getDescrittoreIncontro() {
 		return this.descrittoreIncontro;
@@ -35,6 +26,14 @@ public class Incontro extends Observable
 
 	public void setDescrittoreIncontro(DescrittoreIncontro descrittoreIncontro) {
 		this.descrittoreIncontro = descrittoreIncontro;
+	}
+
+	public boolean isComplete() {
+		return this.complete;
+	}
+
+	public void setComplete(boolean isComplete) {
+		this.complete = isComplete;
 	}
 
 }

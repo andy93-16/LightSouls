@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Iterator;
-
 @RestController
 @CrossOrigin("http://localhost:4200")
 public class Partita
@@ -14,7 +12,7 @@ public class Partita
 
 	@Autowired
 	CostruttoreModalita cM;
-	Iterator<DescrittoreDungeon> iterDungeons;
+	java.util.Iterator<DescrittoreDungeon> iterDungeons;
 	Dungeon dungeonCorrente;
 	Modalita m;
 	private Personaggio personaggio;
@@ -39,7 +37,7 @@ public class Partita
 	@GetMapping("/ProcediAdIncontro")
 	public Incontro ProcediAdIncontro()
 	{
-		if(this.dungeonCorrente.getIsComplete())
+		if(this.dungeonCorrente.isComplete())
 		{
 			if(iterDungeons.hasNext()){
 			   nextDungeon();
@@ -67,4 +65,5 @@ public class Partita
 	public String Termina(){
 		return "/Giocatore";
 	}
-}
+
+	}
