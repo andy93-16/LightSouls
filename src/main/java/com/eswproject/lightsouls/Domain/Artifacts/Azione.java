@@ -2,12 +2,18 @@ package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Dice.*;
 
+import javax.persistence.*;
 import java.util.HashMap;
 
+@MappedSuperclass
 public abstract class Azione
 {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@OneToMany
 	private HashMap<DiceColor, Integer> danno = new HashMap<>();
+	@OneToOne
 	private Type type;
 
 	public int getDanno()
