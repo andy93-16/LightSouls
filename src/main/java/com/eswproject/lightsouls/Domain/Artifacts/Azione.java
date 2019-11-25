@@ -1,6 +1,7 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Dice.*;
+import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -11,10 +12,12 @@ public abstract class Azione
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	@OneToMany
 	private HashMap<DiceColor, Integer> danno = new HashMap<>();
+
 	@OneToOne
-	private Type type;
+	private ActionType type;
 
 	public int getDanno()
 	{
@@ -30,5 +33,15 @@ public abstract class Azione
 	public void setDanno(DiceColor color, Integer dice)
 	{
 		this.danno.put(color, dice);
+	}
+
+	public void setType(ActionType t)
+	{
+		this.type = t;
+	}
+
+	public void setType(String t)
+	{
+		this.type = ActionType.valueOf(t);
 	}
 }

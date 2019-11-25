@@ -23,5 +23,5 @@ INSERT INTO descrittore_dungeon_lista_incontri(descrittore_dungeon_boss_name,lis
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova1');
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova2');
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova3');
-INSERT INTO attacco(stamina_cost) values (1)
+INSERT INTO attacco(diceColor, noDice, tipo, stamina_cost) values (BLACK, 2, "Fisico", 2);
 --INSERT INTO equipment(upgrades_left,statistica_base)
