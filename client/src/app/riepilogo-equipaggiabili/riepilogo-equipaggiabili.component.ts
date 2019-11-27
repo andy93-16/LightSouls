@@ -9,7 +9,7 @@ import {RouterService} from '../router.service';
 })
 export class RiepilogoEquipaggiabiliComponent implements OnInit {
 
-  equipaggiabili: any;
+  equipaggiabili: any[];
 
   constructor(private httpservice: HttpService, private routerService: RouterService) { }
 
