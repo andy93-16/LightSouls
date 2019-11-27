@@ -1,14 +1,8 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Difesa extends Azione{
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private int id;
 }

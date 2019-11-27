@@ -1,17 +1,13 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
-import org.hibernate.annotations.Entity;
-
-@Entity
-public enum ActionType
+public enum AttaccoType
 {
     FISICO("Fisico"),
     MAGICO("Magico");
 
-
     public final String label;
 
-    private ActionType(String label)
+    private AttaccoType(String label)
     {
         this.label = label;
     }

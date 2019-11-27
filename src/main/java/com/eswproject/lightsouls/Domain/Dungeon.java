@@ -1,5 +1,6 @@
 package com.eswproject.lightsouls.Domain;
 
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -7,13 +8,7 @@ public class Dungeon implements Observer
 {
 
 	private boolean complete=false;
-
-
-	public void setComplete(boolean complete) {
-		complete = complete;
-	}
-
-	private java.util.Iterator<DescrittoreIncontro> iterIncontri;
+	private Iterator<DescrittoreIncontro> iterIncontri;
 	private Incontro incontroCorrente ;
 
 
@@ -21,12 +16,9 @@ public class Dungeon implements Observer
 	public void update(Observable incontro, Object stato)
 	{
 		if(iterIncontri.hasNext())
-		{
 			nextIncontro();
-		}
-		else{
+		else
 			setComplete(true);
-		}
 
 	}
 
@@ -39,11 +31,6 @@ public class Dungeon implements Observer
 	public void resettaIncontri()
 	{}
 
-	public java.util.Iterator<DescrittoreIncontro> getIterIncontri()
-	{
-		return iterIncontri;
-	}
-
 	public void setIterIncontri(java.util.Iterator<DescrittoreIncontro> iterIncontri)
 	{
 		this.iterIncontri = iterIncontri;
@@ -54,12 +41,11 @@ public class Dungeon implements Observer
 		return incontroCorrente;
 	}
 
-	public void setIncontroCorrente(Incontro incontroCorrente)
-	{
-		this.incontroCorrente = incontroCorrente;
-	}
-
 	public boolean isComplete() {
 		return this.complete;
+	}
+
+	public void setComplete(boolean complete) {
+		this.complete = complete;
 	}
 }

@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ModalitaRepository extends CrudRepository<Modalita, String>
 {
-    public Modalita findByName(String name);
-
+    Modalita findByName(String name);
 }

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class StatisticaBase {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int forza;
 	private int destrezza;
@@ -48,18 +48,5 @@ public class StatisticaBase {
 		this.fede = fede;
 	}
 
-	public void getAttribute() {
-		// TODO - implement StatisticaBase.getAttribute
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param attribute
-	 */
-	public void setAttribute(int attribute) {
-		// TODO - implement StatisticaBase.setAttribute
-		throw new UnsupportedOperationException();
-	}
 
 }

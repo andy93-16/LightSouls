@@ -10,11 +10,11 @@ public abstract class CostruttoreModalita {
 
 	Modalita m;
 
-	abstract void reset();
+	public abstract void reset();
 
-	abstract void SetupModalita();
+	public abstract void SetupModalita();
 
-	abstract Modalita getM();
+	public abstract Modalita getM();
 
 
 }

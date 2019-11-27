@@ -9,10 +9,6 @@ import java.util.List;
 @Entity
 public class DescrittoreDungeon {
 
-    public void setBossName(String bossName) {
-        BossName = bossName;
-    }
-
     @Id
     private String BossName;
 

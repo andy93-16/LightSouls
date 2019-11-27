@@ -1,33 +1,36 @@
 package com.eswproject.lightsouls.Domain;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Artefatto;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.*;
-import com.eswproject.lightsouls.Domain.Artifacts.*;
+import javax.persistence.*;
 
-@RestController
-@CrossOrigin("http://localhost:4200")
+
+@Entity
 public class Personaggio {
 
-	private List<Artefatto> artefatti;
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@OneToOne
 	private StatisticaBase statisticaBase;
-	private int anime;
 
-	@GetMapping("/RiepilogoEquipaggiabili")
-	public List<Artefatto> RiepilogoEquipaggiabili() {
-		ArrayList<Artefatto> equipaggiabili = new ArrayList<>();
-		for (Artefatto artefatto : this.artefatti)
-			if (artefatto instanceof Equipment)
-				equipaggiabili.add(artefatto);
-		return equipaggiabili;
+	@Transient
+	private int anime=0;
+
+	public List<Artefatto> getArtefatti() {
+		return artefatti;
 	}
 
-	@GetMapping("/PotenziaOggetto")
-	public String PotenziaOggetto() {
-		// TODO - implement Personaggio.PotenziaOggetto
-		throw new UnsupportedOperationException();
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Artefatto> artefatti;
+
+	public void setStatisticaBase(StatisticaBase statisticaBase) {
+		this.statisticaBase = statisticaBase;
 	}
+
+	public StatisticaBase getStatisticaBase() {
+		return statisticaBase;
+	}
+
 }

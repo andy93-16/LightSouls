@@ -1,3 +1,4 @@
+--CREATE MODALITA STORIA
 INSERT INTO modalita(name) values ('storia');
 INSERT INTO descrittore_dungeon(boss_name) values ('prova1');
 INSERT INTO descrittore_dungeon(boss_name) values ('prova2');
@@ -23,5 +24,17 @@ INSERT INTO descrittore_dungeon_lista_incontri(descrittore_dungeon_boss_name,lis
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova1');
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova2');
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova3');
-INSERT INTO attacco(stamina_cost) values (1)
---INSERT INTO equipment(upgrades_left,statistica_base)
+--CREATE SOME EQUIPMENT
+INSERT INTO attacco(stamina_cost) VALUES (1);
+INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (1,1,0);
+INSERT INTO difesa VALUES ();
+INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (1,1,1,1);
+INSERT INTO artefatto(artefatto_type,min_requirements_id,upgrades_left) VALUES ('Equipment',1,1);
+INSERT INTO artefatto_attacchi(equipment_id,attacchi_id) VALUES (1,1);
+INSERT INTO artefatto_difese(equipment_id,difese_id) VALUES (1,1);
+
+--CREATE SOME PERSONAGGIO
+INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
+INSERT INTO personaggio(statistica_base_id) VALUES (2);
+INSERT INTO personaggio_artefatti(artefatti_id,personaggio_id) VALUES (1,1);
+

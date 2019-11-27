@@ -1,25 +1,16 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Dice.Dice;
-import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 
 import javax.persistence.*;
 
 @Entity
 public class Attacco extends Azione
 {
-	@Column
 	private int staminaCost;
+
 	public int getStaminaCost() {
 		return this.staminaCost;
-	}
-
-	/**
-	 * 
-	 * @param staminaCost
-	 */
-	public void setStaminaCost(int staminaCost) {
-		this.staminaCost = staminaCost;
 	}
 
 	public void setAttack()

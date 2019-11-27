@@ -11,12 +11,12 @@ export class HttpService {
   constructor(private httpclient: HttpClient, private routerservice: RouterService) {
   }
 
-  public IniziaNuovaPartita() {
+  public IniziaNuovaPartita(): void {
       this.httpclient.get('http://localhost:8080/Modalita',
         {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url)
       );
     }
-  public ModalitaStoria() {
+  public ModalitaStoria(): void {
       this.httpclient.get('http://localhost:8080/ModalitaStoria',
         {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url)
     );
@@ -24,15 +24,18 @@ export class HttpService {
   public ProcediAdIncontro(): Observable<any> {
       return this.httpclient.get<any>('http://localhost:8080/ProcediAdIncontro') ;
     }
-  public Termina() {
+  public Termina(): void {
       this.httpclient.get('http://localhost:8080/Termina',
         {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url));
   }
-  public AvviaIncontro() {
+  public AvviaIncontro(): void {
       this.httpclient.get('http://localhost:8080/AvviaIncontro',
         {responseType: 'text'}).subscribe(url => this.routerservice.RouteTo(url));
   }
   public RiepilogoEquipaggiabili(): Observable<any> {
       return this.httpclient.get<any>( 'http://localhost:8080/RiepilogoEquipaggiabili');
+  }
+  public SetPersonaggio(): void  {
+      this.httpclient.get('http://localhost:8080/SetPersonaggio').subscribe();
   }
 }
