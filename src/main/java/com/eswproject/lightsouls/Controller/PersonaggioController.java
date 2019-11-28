@@ -5,9 +5,8 @@ import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Personaggio;
 import com.eswproject.lightsouls.Service.PersonaggioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +35,10 @@ public class PersonaggioController {
 
     }
 
-//	@GetMapping("/PotenziaOggetto")
-//	public String PotenziaOggetto() {
-//		// TODO - implement Personaggio.PotenziaOggetto
-//		throw new UnsupportedOperationException();
-//	}
+	@PostMapping(name="/PotenziaEquipaggiabile",consumes = "application/json")
+	public String PotenziaEquipaggiabile(@RequestBody Equipment equipment){
+        System.out.println(equipment);
+        return "/RiepilogoEquipaggiabili";
+	}
 
 }

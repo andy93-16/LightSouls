@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {RouterService} from './router.service';
 import {Observable} from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'})};
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +41,9 @@ export class HttpService {
   }
   public SetPersonaggio(): void  {
       this.httpclient.get('http://localhost:8080/SetPersonaggio').subscribe();
+  }
+  public PotenziaEquipaggiabile(equipaggiabile): void {
+      this.httpclient.post('http://locahost:8080/PotenziaEquipaggiabile',
+        equipaggiabile, httpOptions).subscribe();
   }
 }

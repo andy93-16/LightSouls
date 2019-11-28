@@ -7,8 +7,9 @@
       <!--th class="hidden">Id<th-->
     <th>upgradesLeft</th>
     <th>minRequirements</th>
-    <th>attacchi</th>
-    <th>difese</th>
+    <!--th>attacchi</th>
+    <th>difese</th-->
+    <th></th>
     </tr>
     </thead>
     <tbody>
@@ -17,6 +18,7 @@
       <td>{{equipaggiabile.minRequirmenets}}</td>
       <!--td>{{equipaggaibile.attacchi}}</td>
       <td>{{equipaggaibile.difese}}</td-->
+      <td><button class="btn btn-danger" (click)="PotenziaEquipaggiabile(equipaggiabile)">Potenzia</button></td>
     </tr>
     </tbody>
   </table>

@@ -18,5 +18,9 @@ export class RiepilogoEquipaggiabiliComponent implements OnInit {
       this.equipaggiabili = equipaggiabili;
     });
   }
+  PotenziaEquipaggiabile(equipaggiabile): void {
+    console.log(equipaggiabile);
+    this.httpservice.PotenziaEquipaggiabile(equipaggiabile);
+  }
 
 }
