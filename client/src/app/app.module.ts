@@ -11,7 +11,8 @@ import { IncontroComponent } from './incontro/incontro.component';
 import { RisultatoIncontroComponent } from './risultato-incontro/risultato-incontro.component';
 import { RisultatoPartitaComponent } from './risultato-partita/risultato-partita.component';
 import { GestisciPersonaggioComponent } from './gestisci-personaggio/gestisci-personaggio.component';
-import { RiepilogoEquipaggiabiliComponent } from './riepilogo-equipaggiabili/riepilogo-equipaggiabili.component';
+import { RiepilogoEquipaggiamentiComponent } from './riepilogo-equipaggiamenti/riepilogo-equipaggiamenti.component';
+import { DettagliEquipaggiamentoComponent } from './dettagli-equipaggiamento/dettagli-equipaggiamento.component';
 
 const appRoutes: Routes = [
   { path: 'Giocatore', component: GiocatoreComponent },
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
   { path: 'RisultatoIncontro', component: RisultatoIncontroComponent},
   { path: 'RisultatoPartita', component: RisultatoPartitaComponent},
   { path: 'GestisciPersonaggio', component: GestisciPersonaggioComponent},
-  { path: 'RiepilogoEquipaggiabili', component: RiepilogoEquipaggiabiliComponent}
+  { path: 'RiepilogoEquipaggiamenti', component: RiepilogoEquipaggiamentiComponent},
+  { path: 'RiepilogoEquipaggiamenti/:id', component: DettagliEquipaggiamentoComponent}
 //  { path: '**', component: PageNotFoundComponent }
   ];
 
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     RisultatoIncontroComponent,
     RisultatoPartitaComponent,
     GestisciPersonaggioComponent,
-    RiepilogoEquipaggiabiliComponent
+    RiepilogoEquipaggiamentiComponent,
+    DettagliEquipaggiamentoComponent
   ],
   imports: [
     BrowserModule,

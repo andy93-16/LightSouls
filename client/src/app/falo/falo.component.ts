@@ -14,13 +14,13 @@ export class FaloComponent implements OnInit {
   ngOnInit() {
     this.httpservice.ProcediAdIncontro().subscribe( incontro => {
       if (incontro === null) {
-        this.routerService.RouteTo('/RisultatoPartita');
+        this.routerService.RouteTo(['/RisultatoPartita']);
      }
     });
   }
 
   ProcediAdIncontro(): void {
-    this.routerService.RouteTo('/Incontro');
+    this.routerService.RouteTo(['/Incontro']);
   }
 
   Termina(): void {
@@ -28,7 +28,7 @@ export class FaloComponent implements OnInit {
   }
 
   GestisciPersonaggio(): void {
-    this.routerService.RouteTo('/GestisciPersonaggio');
+    this.routerService.RouteTo(['/GestisciPersonaggio']);
   }
 
 }

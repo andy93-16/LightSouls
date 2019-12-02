@@ -7,7 +7,24 @@ import javax.persistence.*;
 @DiscriminatorColumn(name="artefatto_type",discriminatorType = DiscriminatorType.STRING)
 public abstract class Artefatto {
 
+    public int getId() {
+        return id;
+    }
+
+    public SlotType getSlotType() {
+        return slotType;
+    }
+
+    private SlotType slotType;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+}
+
+enum SlotType{
+
+    ARMA,
+    ARMATURA;
+
 }

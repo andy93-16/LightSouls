@@ -8,10 +8,10 @@ import {HttpService} from "../http.service";
 })
 export class ModalitaComponent implements OnInit {
 
-  constructor(private httpservice:HttpService) { }
+  constructor(private httpservice: HttpService) { }
 
-  ModalitaStoria():void{
-    this.httpservice.ModalitaStoria()
+  ModalitaStoria(): void{
+    this.httpservice.ModalitaStoria();
 
   }
 

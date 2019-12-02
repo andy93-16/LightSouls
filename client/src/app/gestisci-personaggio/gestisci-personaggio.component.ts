@@ -13,8 +13,8 @@ export class GestisciPersonaggioComponent implements OnInit {
   ngOnInit() {
   }
 
-  PotenziaOggetto(): void {
-    this.routerService.RouteTo('/RiepilogoEquipaggiabili');
+  PotenziaEquipaggiamento(): void {
+    this.routerService.RouteTo(['/RiepilogoEquipaggiamenti']);
   }
 
   CambiaEquipaggiamento(): void {

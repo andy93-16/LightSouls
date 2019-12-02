@@ -40,4 +40,5 @@ public class Equipment extends Artefatto {
 		return upgradesLeft;
 	}
 
+
 }

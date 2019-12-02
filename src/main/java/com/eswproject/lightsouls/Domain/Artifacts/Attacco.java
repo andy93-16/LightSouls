@@ -19,3 +19,16 @@ public class Attacco extends Azione
 		//d.throw_Dice(DiceColor.BLACK);
 	}
 }
+
+enum AttaccoType
+{
+	FISICO("Fisico"),
+	MAGICO("Magico");
+
+	public final String label;
+
+	private AttaccoType(String label)
+	{
+		this.label = label;
+	}
+}

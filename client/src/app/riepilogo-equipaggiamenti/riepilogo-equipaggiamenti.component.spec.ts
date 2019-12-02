@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RiepilogoEquipaggiabiliComponent } from './riepilogo-equipaggiabili.component';
+import { RiepilogoEquipaggiamentiComponent } from './riepilogo-equipaggiamenti.component';
 
 describe('RiepilogoEquipaggiabiliComponent', () => {
-  let component: RiepilogoEquipaggiabiliComponent;
-  let fixture: ComponentFixture<RiepilogoEquipaggiabiliComponent>;
+  let component: RiepilogoEquipaggiamentiComponent;
+  let fixture: ComponentFixture<RiepilogoEquipaggiamentiComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RiepilogoEquipaggiabiliComponent ]
+      declarations: [ RiepilogoEquipaggiamentiComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RiepilogoEquipaggiabiliComponent);
+    fixture = TestBed.createComponent(RiepilogoEquipaggiamentiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

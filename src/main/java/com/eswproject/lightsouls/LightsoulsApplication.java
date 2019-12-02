@@ -1,10 +1,5 @@
 package com.eswproject.lightsouls;
 
-import com.eswproject.lightsouls.Domain.*;
-import com.eswproject.lightsouls.Domain.Artifacts.Attacco;
-import com.eswproject.lightsouls.Domain.Dice.Dice;
-import com.eswproject.lightsouls.Domain.Dice.DiceColor;
-import com.eswproject.lightsouls.Service.PersonaggioService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -20,6 +15,5 @@ public class LightsoulsApplication {
 //        SysIntegertem.out.println(dice.throw_Dice(DiceColor.BLACK,1));
 
     }
-
 }
 
