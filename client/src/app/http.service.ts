@@ -43,11 +43,9 @@ export class HttpService {
       );
   }
   public Potenzia(id: number, diceColor: any): Observable<any>{
-    const httpParams = new HttpParams();
-    httpParams.append('idE', id.toString());
-    httpParams.append('diceColor', diceColor)
-    return this.httpclient.get('http://localhost:8080/PotenziaEquipaggiamento',
-      { responseType: 'text', params: httpParams});
+    return this.httpclient.get('http://localhost:8080/PotenziaEquipaggiamento/'
+      + id + '&' + diceColor,
+      { responseType: 'text'});
   }
 
 

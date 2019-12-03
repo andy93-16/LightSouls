@@ -32,8 +32,8 @@ public class PersonaggioController {
 		return personaggio.getEquipaggiamenti();
     }
 
-	@GetMapping("/PotenziaEquipaggiamento/?{idE}&{idT}")
-	public String PotenziaEquipaggiamento(@PathVariable(name="idE")int idE,@PathVariable(name="diceColor")DiceColor diceColor){
+	@GetMapping("/PotenziaEquipaggiamento/{idE}&{idT}")
+	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@PathVariable("idT")DiceColor diceColor){
         System.out.println(idE);
         System.out.println(diceColor);
        return "/RiepilogoEquipaggiamenti";
