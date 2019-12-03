@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RouterService} from '../router.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-risultato-incontro',
@@ -8,13 +8,13 @@ import {RouterService} from '../router.service';
 })
 export class RisultatoIncontroComponent implements OnInit {
 
-  constructor(private routerService: RouterService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   TornaAlFalo(): void  {
-    this.routerService.RouteTo('/Falo') ;
+    this.router.navigate(['/Falo']) ;
   }
 
 }

@@ -1,14 +1,11 @@
 package com.eswproject.lightsouls.Controller;
 
-import com.eswproject.lightsouls.Domain.Artifacts.Artefatto;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import com.eswproject.lightsouls.Domain.Personaggio;
 import com.eswproject.lightsouls.Service.PersonaggioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,31 +26,27 @@ public class PersonaggioController {
 
     @GetMapping("/RiepilogoEquipaggiamenti")
     public List<Equipment> RiepilogoEquipaggiamenti() {
-		ArrayList<Equipment> equipaggiamenti=new ArrayList<>();
-		for (Artefatto artefatto : this.personaggio.getArtefatti()){
-			if (artefatto instanceof Equipment)
-				equipaggiamenti.add((Equipment) artefatto);}
-				return equipaggiamenti;
-
+		return personaggio.getEquipaggiamenti();
     }
-//
-//	@PostMapping("/PotenziaEquipaggiamento")
-//	public Equipment PotenziaEquipaggiamento(@RequestBody Equipment equipment){
-//       System.out.println(equipment);
-//       return equipment;
-//    }
+
+	@PostMapping("/PotenziaEquipaggiamento")
+	public String PotenziaEquipaggiamento(@RequestBody Equipment equipment,Titanite titanite){
+        System.out.println(equipment);
+        System.out.print(titanite);
+       return "/RiepilogoEquipaggiamenti";
+    }
 
     @GetMapping("/DettagliEquipaggiamento/{id}")
     public List<Titanite> DettagliEquipaggiamento(@PathVariable(name="id")int id){
         Equipment eq = new Equipment();
-        for (Artefatto artefatto : this.personaggio.getArtefatti()) {
-            if (artefatto instanceof Equipment & artefatto.getId() == id)
-                eq = (Equipment) artefatto;
+        for (Equipment equipment : this.personaggio.getEquipaggiamenti()) {
+            if (equipment.getId() == id)
+                eq = equipment;
         }
         ArrayList<Titanite> titanites= new ArrayList<>();
-        for (Artefatto artefatto : this.personaggio.getArtefatti()) {
-            if (artefatto instanceof Titanite & artefatto.getSlotType()== eq.getSlotType())
-                titanites.add((Titanite)artefatto);
+        for (Titanite titanite: this.personaggio.getTitaniti()) {
+            if (titanite.getSlotType()== eq.getSlotType())
+                titanites.add(titanite);
         }
         return titanites;
     }

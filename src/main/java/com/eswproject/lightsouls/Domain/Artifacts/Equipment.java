@@ -8,8 +8,21 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue(value = "Equipment")
-public class Equipment extends Artefatto {
+//@DiscriminatorValue(value = "Equipment")
+public class Equipment {
+	public int getId() {
+		return id;
+	}
+
+	public SlotType getSlotType() {
+		return slotType;
+	}
+
+	private SlotType slotType;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	private int upgradesLeft;
 

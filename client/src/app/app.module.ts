@@ -23,7 +23,8 @@ const appRoutes: Routes = [
   { path: 'RisultatoPartita', component: RisultatoPartitaComponent},
   { path: 'GestisciPersonaggio', component: GestisciPersonaggioComponent},
   { path: 'RiepilogoEquipaggiamenti', component: RiepilogoEquipaggiamentiComponent},
-  { path: 'RiepilogoEquipaggiamenti/:id', component: DettagliEquipaggiamentoComponent}
+  //{ path: 'RiepilogoEquipaggiamenti/:id', component: DettagliEquipaggiamentoComponent}
+  { path: 'DettagliEquipaggiamento', component: DettagliEquipaggiamentoComponent}
 //  { path: '**', component: PageNotFoundComponent }
   ];
 

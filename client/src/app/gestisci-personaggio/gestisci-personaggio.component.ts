@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RouterService} from "../router.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-gestisci-personaggio',
@@ -8,15 +8,19 @@ import {RouterService} from "../router.service";
 })
 export class GestisciPersonaggioComponent implements OnInit {
 
-  constructor(private routerService: RouterService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   PotenziaEquipaggiamento(): void {
-    this.routerService.RouteTo(['/RiepilogoEquipaggiamenti']);
+    this.router.navigate(['/RiepilogoEquipaggiamenti']);
   }
 
   CambiaEquipaggiamento(): void {
+  }
+
+  TornaAlFalo():void {
+    this.router.navigate(['/Falo']);
   }
 }

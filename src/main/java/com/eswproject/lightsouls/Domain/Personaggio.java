@@ -1,6 +1,10 @@
 package com.eswproject.lightsouls.Domain;
 
-import com.eswproject.lightsouls.Domain.Artifacts.Artefatto;
+import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
+import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.*;
 import javax.persistence.*;
 
@@ -18,12 +22,21 @@ public class Personaggio {
 	@Transient
 	private int anime=0;
 
-	public List<Artefatto> getArtefatti() {
-		return artefatti;
+	public List<Titanite> getTitaniti() {
+		return titaniti;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER)
-	private List<Artefatto> artefatti;
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Titanite> titaniti;
+
+	public List<Equipment> getEquipaggiamenti() {
+		return equipaggiamenti;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Equipment> equipaggiamenti;
 
 	public void setStatisticaBase(StatisticaBase statisticaBase) {
 		this.statisticaBase = statisticaBase;
