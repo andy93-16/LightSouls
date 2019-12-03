@@ -32,9 +32,10 @@ public class PersonaggioController {
 		return personaggio.getEquipaggiamenti();
     }
 
-	@PostMapping("/PotenziaEquipaggiamento")
-	public String PotenziaEquipaggiamento(@RequestBody String s){
-        System.out.println(s);
+	@GetMapping("/PotenziaEquipaggiamento/?{idE}&{idT}")
+	public String PotenziaEquipaggiamento(@PathVariable(name="idE")int idE,@PathVariable(name="diceColor")DiceColor diceColor){
+        System.out.println(idE);
+        System.out.println(diceColor);
        return "/RiepilogoEquipaggiamenti";
     }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 
@@ -43,9 +43,11 @@ export class HttpService {
       );
   }
   public Potenzia(id: number, diceColor: any): Observable<any>{
-    return this.httpclient.post('http://localhost:8080/PotenziaEquipaggiamento',
-      { equpaggiamentoid: id, TitaniteColor: diceColor},
-      { responseType: 'text'});
+    const httpParams = new HttpParams();
+    httpParams.append('idE', id.toString());
+    httpParams.append('diceColor', diceColor)
+    return this.httpclient.get('http://localhost:8080/PotenziaEquipaggiamento',
+      { responseType: 'text', params: httpParams});
   }
 
 
