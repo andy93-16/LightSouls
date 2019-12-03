@@ -1,0 +1,27 @@
+<div class="col-md-6">
+  <h2>Titaniti compatibili</h2>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <!--th class="hidden">Id<th-->
+      <th>Tipo Titanite</th>
+      <th>Available</th>
+      <th>Looted</th>
+    <!--th>difese</th-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let titanite of titaniti">
+      <td>{{titanite.diceColor}}</td>
+      <td>{{titanite.available}}</td>
+      <td>{{titanite.looted}}</td>
+      <td><button  class="btn btn-danger" (click)="Usa(titanite.diceColor)">Usa</button></td>
+    </tr>
+    </tbody>
+  </table>
+
+
+
+  <button class="btn btn-success" (click)="TornaRiepilogoEquipaggiamenti()">TornaRiepilogoEquipaggiamenti</button>
+
