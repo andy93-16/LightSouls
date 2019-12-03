@@ -9,49 +9,58 @@ import java.util.List;
 
 @Entity
 //@DiscriminatorValue(value = "Equipment")
-public class Equipment {
+public class Equipment
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+
+    private String name;
+
+    private int upgradesLeft;
+
+    private SlotType slotType;
+
+    @OneToOne
+    private StatisticaBase minRequirements;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Attacco> attacchi;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Difesa> difese;
+
+
+
 	public int getId() {
 		return id;
 	}
+
+    public String getName()
+    {
+        return name;
+    }
 
 	public SlotType getSlotType() {
 		return slotType;
 	}
 
-	private SlotType slotType;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
-	private int upgradesLeft;
-
 	public StatisticaBase getMinRequirements() {
 		return minRequirements;
 	}
-
-	@OneToOne
-	private StatisticaBase minRequirements;
 
 	public List<Attacco> getAttacchi() {
 		return attacchi;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@Fetch(FetchMode.SUBSELECT)
-	private List<Attacco> attacchi;
-
 	public List<Difesa> getDifese() {
 		return difese;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@Fetch(FetchMode.SUBSELECT)
-	private List<Difesa> difese;
-
 	public int getUpgradesLeft() {
 		return upgradesLeft;
 	}
-
-
 }

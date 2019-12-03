@@ -5,16 +5,38 @@
     <thead>
     <tr>
       <!--th class="hidden">Id<th-->
-      <th>upgradesLeft</th>
-      <th >Type</th>
+      <th>Name</th>
+      <th>Upgrades left</th>
+      <th>Type</th>
+      <th>Dice throwable</th>
+      <th>Action</th>
       <!--th>attacchi</th>
     <th>difese</th-->
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let equipaggiamento of equipaggiamenti">
+      <td>{{equipaggiamento.name}}</td>
       <td>{{equipaggiamento.upgradesLeft}}</td>
       <td>{{equipaggiamento.slotType}}</td>
+      <td>
+<!--        <table class="table table-striped">-->
+<!--          <tbody>-->
+<!--            <tr *ngFor="let attacco of equipaggiamento.attacchi">-->
+<!--              <td>-->
+<!--                <table class="table table-striped">-->
+<!--                  <tbody>-->
+<!--                  <tr *ngFor="let combination of attacco">-->
+<!--                    <td>-->
+<!--                    </td>-->
+<!--                  </tr>-->
+<!--                  </tbody>-->
+<!--                </table>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          </tbody>-->
+<!--        </table>-->
+      </td>
       <!--td>{{equipaggiamento.attacchi}}</td>
       <td>{{equipaggiamento.difese}}</td-->
       <td><button  class="btn btn-danger" (click)="DettagliEquipaggiamento(equipaggiamento)">Potenzia</button></td>
