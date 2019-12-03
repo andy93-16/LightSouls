@@ -32,6 +32,11 @@ public class Titanite {
         return available;
     }
 
+    public void setAvailable(int available)
+    {
+        this.available = available;
+    }
+
     private int available;
 
     public int getLooted() {

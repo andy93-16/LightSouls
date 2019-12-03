@@ -5,8 +5,6 @@ import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import com.eswproject.lightsouls.Domain.Personaggio;
 import com.eswproject.lightsouls.Service.PersonaggioService;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -33,9 +31,29 @@ public class PersonaggioController {
     }
 
 	@GetMapping("/PotenziaEquipaggiamento/{idE}&{idT}")
-	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@PathVariable("idT")DiceColor diceColor){
-        System.out.println(idE);
-        System.out.println(diceColor);
+	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@PathVariable("idT")DiceColor diceColor)
+    {    Equipment eq = new Equipment();
+        for (Equipment equipment : this.personaggio.getEquipaggiamenti())
+        {
+            if (equipment.getId() == idE)
+            {
+                eq = equipment;
+                break;
+            }
+        }
+
+        if(eq.getUpgradesLeft()<=0) //No more upgradable
+        {
+            return "/RiepilogoEquipaggiamenti";
+        }
+
+        eq.setUpgradesLeft(eq.getUpgradesLeft()-1);
+        eq.addAttackDice(diceColor);
+        for (Titanite titanite: this.personaggio.getTitaniti())
+        {
+            if (titanite.getSlotType()== eq.getSlotType() &  titanite.getDiceColor()==diceColor)
+                titanite.setAvailable(titanite.getAvailable()-1);
+        }
        return "/RiepilogoEquipaggiamenti";
     }
 
@@ -46,7 +64,7 @@ public class PersonaggioController {
             if (equipment.getId() == id)
                 eq = equipment;
         }
-        ArrayList<Titanite> titanites= new ArrayList<>();
+        List<Titanite> titanites= new ArrayList<>();
         for (Titanite titanite: this.personaggio.getTitaniti()) {
             if (titanite.getSlotType()== eq.getSlotType())
                 titanites.add(titanite);

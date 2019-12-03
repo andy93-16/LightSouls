@@ -24,18 +24,17 @@
           <tbody>
             <tr *ngFor="let attacco of equipaggiamento.attacchi; let i = index">
               <td>
-            <tr style="color:red">{{"Attacco "+(i+1)}}</tr>
-            <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
-            <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
-            <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+                <tr style="color:red">{{"Attacco "+(i+1)}}</tr>
+                <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+                <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+                <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
               </td>
             </tr>
           </tbody>
         </table>
       </td>
-      <!--td>{{equipaggiamento.attacchi}}</td>
-      <td>{{equipaggiamento.difese}}</td-->
-      <td><button  class="btn btn-danger" (click)="DettagliEquipaggiamento(equipaggiamento)">Potenzia</button></td>
+<!--      <td *ngIf="equipaggiamento.upgradesLeft>0"><button class="btn btn-danger" (click)="DettagliEquipaggiamento(equipaggiamento)">Usa</button></td>-->
+      <td><button class="btn btn-danger" (click)="DettagliEquipaggiamento(equipaggiamento)">Usa</button></td>
     </tr>
     </tbody>
   </table>

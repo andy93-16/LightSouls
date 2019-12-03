@@ -12,9 +12,7 @@ public abstract class Azione
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	public Map<DiceColor, Integer> getCombination() {
-		return combination;
-	}
+	//private AttaccoType attaccoType;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name="dice_combination",joinColumns ={@JoinColumn(name="azione_id",referencedColumnName = "id")})
@@ -22,7 +20,10 @@ public abstract class Azione
 	private Map<DiceColor, Integer> combination;
 
 
-	//private AttaccoType attaccoType;
+	public Map<DiceColor, Integer> getCombination() {
+		return combination;
+	}
+
 
 //	public int getDanno()
 //	{
