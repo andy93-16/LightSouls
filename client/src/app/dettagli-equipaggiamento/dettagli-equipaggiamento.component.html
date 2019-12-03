@@ -1,6 +1,39 @@
 <div class="col-md-6">
+  <h2>Equipaggiamento Selezionato</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <!--th class="hidden">Id<th-->
+      <th>Name</th>
+      <th>Upgrades left</th>
+      <th>Type</th>
+      <th>Dice throwable</th>
+      <!--th>attacchi</th>
+    <th>difese</th-->
+    </tr>
+    </thead>
+    <tbody>
+      <td>{{equipaggiamento.name}}</td>
+      <td>{{equipaggiamento.upgradesLeft}}</td>
+      <td>{{equipaggiamento.slotType}}</td>
+      <td>
+        <table class="table table-striped">
+          <tbody>
+          <tr *ngFor="let attacco of equipaggiamento.attacchi; let i = index">
+            <td>
+          <tr style="color:red">{{"Attacco "+(i+1)}}</tr>
+          <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+          <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+          <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+          </td>
+          </tr>
+          </tbody>
+        </table>
+      </td>
+    </tbody>
+  </table>
+</div>
   <h2>Titaniti compatibili</h2>
-
   <table class="table table-striped">
     <thead>
     <tr>

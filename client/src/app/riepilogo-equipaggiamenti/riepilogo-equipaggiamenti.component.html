@@ -20,22 +20,18 @@
       <td>{{equipaggiamento.upgradesLeft}}</td>
       <td>{{equipaggiamento.slotType}}</td>
       <td>
-<!--        <table class="table table-striped">-->
-<!--          <tbody>-->
-<!--            <tr *ngFor="let attacco of equipaggiamento.attacchi">-->
-<!--              <td>-->
-<!--                <table class="table table-striped">-->
-<!--                  <tbody>-->
-<!--                  <tr *ngFor="let combination of attacco">-->
-<!--                    <td>-->
-<!--                    </td>-->
-<!--                  </tr>-->
-<!--                  </tbody>-->
-<!--                </table>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--          </tbody>-->
-<!--        </table>-->
+        <table class="table table-striped">
+          <tbody>
+            <tr *ngFor="let attacco of equipaggiamento.attacchi; let i = index">
+              <td>
+            <tr style="color:red">{{"Attacco "+(i+1)}}</tr>
+            <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+            <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+            <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </td>
       <!--td>{{equipaggiamento.attacchi}}</td>
       <td>{{equipaggiamento.difese}}</td-->

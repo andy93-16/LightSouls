@@ -44,7 +44,7 @@ export class HttpService {
   }
   public Potenzia(id: number, diceColor: any): Observable<any>{
     return this.httpclient.post('http://localhost:8080/PotenziaEquipaggiamento',
-      { equpaggiamenetoid: id, TitaniteColor: diceColor},
+      { equpaggiamentoid: id, TitaniteColor: diceColor},
       { responseType: 'text'});
   }
 

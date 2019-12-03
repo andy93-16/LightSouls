@@ -2,8 +2,11 @@ package com.eswproject.lightsouls.Controller;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
+import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import com.eswproject.lightsouls.Domain.Personaggio;
 import com.eswproject.lightsouls.Service.PersonaggioService;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -30,9 +33,8 @@ public class PersonaggioController {
     }
 
 	@PostMapping("/PotenziaEquipaggiamento")
-	public String PotenziaEquipaggiamento(@RequestBody Equipment equipment,Titanite titanite){
-        System.out.println(equipment);
-        System.out.print(titanite);
+	public String PotenziaEquipaggiamento(@RequestBody String s){
+        System.out.println(s);
        return "/RiepilogoEquipaggiamenti";
     }
 

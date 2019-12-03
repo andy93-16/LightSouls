@@ -10,7 +10,7 @@ import {HttpService} from '../http.service';
 export class DettagliEquipaggiamentoComponent implements OnInit {
 
   id ;
-  equipaggiamento:any;
+  equipaggiamento: any;
   titaniti: any[];
 
   constructor(private httpservice: HttpService, private router: Router) {
