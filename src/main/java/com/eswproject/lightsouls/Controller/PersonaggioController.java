@@ -1,6 +1,7 @@
 package com.eswproject.lightsouls.Controller;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
+import com.eswproject.lightsouls.Domain.Artifacts.SlotType;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import com.eswproject.lightsouls.Domain.Personaggio;
@@ -27,13 +28,13 @@ public class PersonaggioController {
 
     @GetMapping("/RiepilogoEquipaggiamenti")
     public List<Equipment> RiepilogoEquipaggiamenti() {
-		return personaggio.getEquipaggiamenti();
+		return personaggio.getZainoEquip();
     }
 
 	@GetMapping("/PotenziaEquipaggiamento/{idE}&{idT}")
 	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@PathVariable("idT")DiceColor diceColor)
-    {    Equipment eq = new Equipment();
-        for (Equipment equipment : this.personaggio.getEquipaggiamenti())
+    {    Equipment eq = null;
+        for (Equipment equipment : this.personaggio.getZainoEquip())
         {
             if (equipment.getId() == idE)
             {
@@ -48,7 +49,7 @@ public class PersonaggioController {
         }
 
         eq.setUpgradesLeft(eq.getUpgradesLeft()-1);
-        eq.addAttackDice(diceColor);
+        eq.addDice(diceColor);
         for (Titanite titanite: this.personaggio.getTitaniti())
         {
             if (titanite.getSlotType()== eq.getSlotType() &  titanite.getDiceColor()==diceColor)
@@ -59,16 +60,21 @@ public class PersonaggioController {
 
     @GetMapping("/DettagliEquipaggiamento/{id}")
     public List<Titanite> DettagliEquipaggiamento(@PathVariable(name="id")int id){
-        Equipment eq = new Equipment();
-        for (Equipment equipment : this.personaggio.getEquipaggiamenti()) {
+        Equipment eq;
+        for (Equipment equipment : this.personaggio.getZainoEquip())
+        {
             if (equipment.getId() == id)
                 eq = equipment;
         }
         List<Titanite> titanites= new ArrayList<>();
-        for (Titanite titanite: this.personaggio.getTitaniti()) {
-            if (titanite.getSlotType()== eq.getSlotType())
-                titanites.add(titanite);
+        for (Titanite titanite: this.personaggio.getTitaniti())
+        {
+            SlotType type=titanite.getSlotType()
+            if (type is type)
+                    titanites.add(titanite);
         }
         return titanites;
     }
+
+
 }

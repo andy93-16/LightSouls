@@ -9,8 +9,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@DiscriminatorValue(value = "Equipment")
-public class Equipment
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class Equipment
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,13 +32,23 @@ public class Equipment
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    private List<Attacco> attacchi;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
     private List<Difesa> difese;
 
 
+    public void addDice(DiceColor c)
+    {
+        for(Difesa difesa : this.getDifese())
+        {
+            if(difesa.getCombination().containsKey(c))
+            {
+                difesa.getCombination().put(c, difesa.getCombination().get(c) + 1);
+            }
+            else
+            {
+                difesa.getCombination().put(c, 1);
+            }
+        }
+    }
 
 	public int getId() {
 		return id;
@@ -57,9 +67,6 @@ public class Equipment
 		return minRequirements;
 	}
 
-	public List<Attacco> getAttacchi() {
-		return attacchi;
-	}
 
 	public List<Difesa> getDifese() {
 		return difese;
@@ -69,19 +76,5 @@ public class Equipment
 		return upgradesLeft;
 	}
 
-	public void addAttackDice(DiceColor c)
-    {
-        for(Attacco attacco: this.getAttacchi())
-        {
-            if (attacco.getCombination().containsKey(c))
-            {
-                attacco.getCombination().put(c, attacco.getCombination().get(c)+1);
-            }
-            else
-            {
-                attacco.getCombination().put(c,1);
-            }
-        }
 
-    }
 }

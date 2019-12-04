@@ -10,8 +10,8 @@ import javax.persistence.*;
 
 
 @Entity
-public class Personaggio {
-
+public class Personaggio
+{
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -22,28 +22,75 @@ public class Personaggio {
 	@Transient
 	private int anime=0;
 
-	public List<Titanite> getTitaniti() {
-		return titaniti;
-	}
-
 	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Titanite> titaniti;
 
-	public List<Equipment> getEquipaggiamenti() {
-		return equipaggiamenti;
-	}
-
 	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
-	private List<Equipment> equipaggiamenti;
+	private List<Equipment> zainoEquip;
+
+	private Equipment manoDestra;
+	private Equipment manoSinistra;
+	private Equipment armatura;
+
+
+	public List<Equipment> getZainoEquip()
+	{
+		return this.zainoEquip;
+	}
+
+	public List<Titanite> getTitaniti()
+	{
+		return this.titaniti;
+	}
 
 	public void setStatisticaBase(StatisticaBase statisticaBase) {
 		this.statisticaBase = statisticaBase;
 	}
 
 	public StatisticaBase getStatisticaBase() {
-		return statisticaBase;
+		return this.statisticaBase;
+	}
+
+	public int getAnime()
+	{
+		return anime;
+	}
+
+	public void setAnime(int anime)
+	{
+		this.anime = anime;
+	}
+
+	public Equipment getManoDestra()
+	{
+		return manoDestra;
+	}
+
+	public void setManoDestra(Equipment manoDestra)
+	{
+		this.manoDestra = manoDestra;
+	}
+
+	public Equipment getManoSinistra()
+	{
+		return manoSinistra;
+	}
+
+	public void setManoSinistra(Equipment manoSinistra)
+	{
+		this.manoSinistra = manoSinistra;
+	}
+
+	public Equipment getArmatura()
+	{
+		return armatura;
+	}
+
+	public void setArmatura(Equipment armatura)
+	{
+		this.armatura = armatura;
 	}
 
 }
