@@ -69,7 +69,9 @@ public class PersonaggioController {
         for (Titanite titanite: this.personaggio.getTitaniti())
         {
             if (titanite.getSlotType()== eq.getSlotType())
+            {
                 titanites.add(titanite);
+            }
         }
         return titanites;
     }
