@@ -30,8 +30,14 @@ public class Personaggio
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Equipment> zainoEquip;
 
+
+	@OneToOne
 	private Equipment armaManoSinistra;
+
+	@OneToOne
 	private Equipment armaManoDestra;
+
+	@OneToOne
 	private Equipment armatura;
 
 

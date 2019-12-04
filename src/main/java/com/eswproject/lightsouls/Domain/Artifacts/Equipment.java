@@ -17,10 +17,7 @@ public class Equipment
 
     private String name;
 
-    public void setUpgradesLeft(int upgradesLeft)
-    {
-        this.upgradesLeft = upgradesLeft;
-    }
+    private int weight;
 
     private int upgradesLeft;
 
@@ -115,5 +112,18 @@ public class Equipment
     public void setAttacchi(List<Attacco> attacchi)
     {
         this.attacchi = attacchi;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public void setUpgradesLeft(int upgradesLeft)
+    {
+        this.upgradesLeft = upgradesLeft;
     }
 }
