@@ -30,9 +30,9 @@ public class PersonaggioController {
 		return personaggio.getEquipaggiamenti();
     }
 
-	@GetMapping("/PotenziaEquipaggiamento/{idE}&{idT}")
-	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@PathVariable("idT")DiceColor diceColor)
-    {    Equipment eq = new Equipment();
+	@GetMapping("/PotenziaEquipaggiamento/{idE}&{dC}")
+	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@PathVariable("dC")DiceColor diceColor)
+    {   Equipment eq = new Equipment();
         for (Equipment equipment : this.personaggio.getEquipaggiamenti())
         {
             if (equipment.getId() == idE)
@@ -41,18 +41,14 @@ public class PersonaggioController {
                 break;
             }
         }
-
-        if(eq.getUpgradesLeft()<=0) //No more upgradable
+        if(eq.getUpgradesLeft()>0) //No more upgradable
         {
-            return "/RiepilogoEquipaggiamenti";
-        }
-
-        eq.setUpgradesLeft(eq.getUpgradesLeft()-1);
-        eq.addAttackDice(diceColor);
-        for (Titanite titanite: this.personaggio.getTitaniti())
-        {
-            if (titanite.getSlotType()== eq.getSlotType() &  titanite.getDiceColor()==diceColor)
-                titanite.setAvailable(titanite.getAvailable()-1);
+            eq.setUpgradesLeft(eq.getUpgradesLeft() - 1);
+            eq.addAttackDice(diceColor);
+            for (Titanite titanite : this.personaggio.getTitaniti()) {
+                if (titanite.getSlotType() == eq.getSlotType() & titanite.getDiceColor() == diceColor)
+                    titanite.setAvailable(titanite.getAvailable() - 1);
+            }
         }
        return "/RiepilogoEquipaggiamenti";
     }
@@ -66,7 +62,7 @@ public class PersonaggioController {
         }
         List<Titanite> titanites= new ArrayList<>();
         for (Titanite titanite: this.personaggio.getTitaniti()) {
-            if (titanite.getSlotType()== eq.getSlotType())
+            if (titanite.getSlotType() == eq.getSlotType())
                 titanites.add(titanite);
         }
         return titanites;
