@@ -1,6 +1,5 @@
 package com.eswproject.lightsouls.Domain;
 
-import com.eswproject.lightsouls.Domain.Artifacts.Arma;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import org.hibernate.annotations.Fetch;
@@ -13,7 +12,7 @@ import javax.persistence.*;
 @Entity
 public class Personaggio
 {
-    @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
@@ -21,7 +20,7 @@ public class Personaggio
 	private StatisticaBase statisticaBase;
 
 	@Transient
-	private int anime=0;
+	private int anime = 0;
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
@@ -31,8 +30,8 @@ public class Personaggio
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Equipment> zainoEquip;
 
-	private Arma manoDestra;
-	private Arma manoSinistra;
+	private Equipment armaManoSinistra;
+	private Equipment armaManoDestra;
 	private Equipment armatura;
 
 
@@ -46,11 +45,13 @@ public class Personaggio
 		return this.titaniti;
 	}
 
-	public void setStatisticaBase(StatisticaBase statisticaBase) {
+	public void setStatisticaBase(StatisticaBase statisticaBase)
+	{
 		this.statisticaBase = statisticaBase;
 	}
 
-	public StatisticaBase getStatisticaBase() {
+	public StatisticaBase getStatisticaBase()
+	{
 		return this.statisticaBase;
 	}
 
@@ -64,24 +65,24 @@ public class Personaggio
 		this.anime = anime;
 	}
 
-	public Equipment getManoDestra()
+	public Equipment getArmaManoSinistra()
 	{
-		return manoDestra;
+		return armaManoSinistra;
 	}
 
-	public void setManoDestra(Arma manoDestra)
+	public void setArmaManoSinistra(Equipment armaManoSinistra)
 	{
-		this.manoDestra = manoDestra;
+		this.armaManoSinistra = armaManoSinistra;
 	}
 
-	public Equipment getManoSinistra()
+	public Equipment getArmaManoDestra()
 	{
-		return manoSinistra;
+		return armaManoDestra;
 	}
 
-	public void setManoSinistra(Arma manoSinistra)
+	public void setArmaManoDestra(Equipment armaManoDestra)
 	{
-		this.manoSinistra = manoSinistra;
+		this.armaManoDestra = armaManoDestra;
 	}
 
 	public Equipment getArmatura()
@@ -93,5 +94,4 @@ public class Personaggio
 	{
 		this.armatura = armatura;
 	}
-
 }

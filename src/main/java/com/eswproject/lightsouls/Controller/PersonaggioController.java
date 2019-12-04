@@ -58,7 +58,8 @@ public class PersonaggioController {
     }
 
     @GetMapping("/DettagliEquipaggiamento/{id}")
-    public List<Titanite> DettagliEquipaggiamento(@PathVariable(name="id")int id){
+    public List<Titanite> DettagliEquipaggiamento(@PathVariable(name="id")int id)
+    {
         Equipment eq = new Equipment();
         for (Equipment equipment : this.personaggio.getZainoEquip())
         {

@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Equipment
 {
     @Id
@@ -34,6 +33,9 @@ public class Equipment
     @Fetch(FetchMode.SUBSELECT)
     private List<Difesa> difese;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Attacco> attacchi;
 
     public Equipment()
     {
@@ -42,20 +44,39 @@ public class Equipment
 
     public void addDice(DiceColor c)
     {
-        for(Difesa difesa : this.getDifese())
+        if(this.slotType == SlotType.ARMA)
         {
-            if(difesa.getCombination().containsKey(c))
+            for(Attacco attacco : this.getAttacchi())
             {
-                difesa.getCombination().put(c, difesa.getCombination().get(c) + 1);
+                if(attacco.getCombination().containsKey(c))
+                {
+                    attacco.getCombination().put(c, attacco.getCombination().get(c) + 1);
+                }
+                else
+                {
+                    attacco.getCombination().put(c, 1);
+                }
             }
-            else
+        }
+
+        else
+        {
+            for(Difesa difesa : this.getDifese())
             {
-                difesa.getCombination().put(c, 1);
+                if(difesa.getCombination().containsKey(c))
+                {
+                    difesa.getCombination().put(c, difesa.getCombination().get(c) + 1);
+                }
+                else
+                {
+                    difesa.getCombination().put(c, 1);
+                }
             }
         }
     }
 
-	public int getId() {
+	public int getId()
+    {
 		return id;
 	}
 
@@ -81,5 +102,18 @@ public class Equipment
 		return upgradesLeft;
 	}
 
+    public void setDifese(List<Difesa> difese)
+    {
+        this.difese = difese;
+    }
 
+    public List<Attacco> getAttacchi()
+    {
+        return attacchi;
+    }
+
+    public void setAttacchi(List<Attacco> attacchi)
+    {
+        this.attacchi = attacchi;
+    }
 }

@@ -26,20 +26,20 @@ INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) valu
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova3');
 
 --CREATE SOME EQUIPMENT
---EQUIPMENT1
-INSERT INTO attacco(stamina_cost) VALUES (1);
-INSERT INTO attacco(stamina_cost) VALUES (2);
+--EQUIPMENT1 - Spada Leggera
+INSERT INTO attacco(stamina_cost) VALUES (1); --id = 1
+INSERT INTO attacco(stamina_cost) VALUES (2); --id = 2
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (1,1,0);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (2,2,2);
 INSERT INTO difesa VALUES ();
 INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (1,1,1,1); --E' il primo oggetto creato quindi il suo ID = 1
 INSERT INTO equipment(slot_type,min_requirements_id,upgrades_left, name) VALUES (0,1,1, 'Spada leggera');
-INSERT INTO equipment_attacchi(equipment_id,attacchi_id) VALUES (1,1);
-INSERT INTO equipment_attacchi(equipment_id,attacchi_id) VALUES (1,2);--Tabella di JOIN
+INSERT INTO equipment_attacchi(equipment_id,attacchi_id) VALUES (1,1); --Tabella di JOIN
+INSERT INTO equipment_attacchi(equipment_id,attacchi_id) VALUES (1,2); --Tabella di JOIN
 INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (1,1); --Tabella di JOIN
 
---EQUIPMENT2
-INSERT INTO attacco(stamina_cost) VALUES (2);
+--EQUIPMENT2 - Armatura leggera
+INSERT INTO attacco(stamina_cost) VALUES (2); --id = 3
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (3,2,1);
 INSERT INTO difesa VALUES ();
 INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
