@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Equipment
+public class Equipment
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public abstract class Equipment
 
     private int upgradesLeft;
 
-    private SlotType slotType;
+    protected SlotType slotType;
 
     @OneToOne
     private StatisticaBase minRequirements;
@@ -34,6 +34,11 @@ public abstract class Equipment
     @Fetch(FetchMode.SUBSELECT)
     private List<Difesa> difese;
 
+
+    public Equipment()
+    {
+        this.slotType = SlotType.ARMATURA;
+    }
 
     public void addDice(DiceColor c)
     {

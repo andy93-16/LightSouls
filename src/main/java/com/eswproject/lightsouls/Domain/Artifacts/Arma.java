@@ -1,7 +1,6 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
-import jdk.vm.ci.meta.Value;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -18,6 +17,12 @@ public class Arma extends Equipment
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     private List<Attacco> attacchi;
+
+    public Arma()
+    {
+        this.slotType = SlotType.ARMA;
+    }
+
 
     public List<Attacco> getAttacchi()
     {

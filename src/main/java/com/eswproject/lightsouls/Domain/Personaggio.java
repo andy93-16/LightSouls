@@ -1,5 +1,6 @@
 package com.eswproject.lightsouls.Domain;
 
+import com.eswproject.lightsouls.Domain.Artifacts.Arma;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import org.hibernate.annotations.Fetch;
@@ -30,8 +31,8 @@ public class Personaggio
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Equipment> zainoEquip;
 
-	private Equipment manoDestra;
-	private Equipment manoSinistra;
+	private Arma manoDestra;
+	private Arma manoSinistra;
 	private Equipment armatura;
 
 
@@ -68,7 +69,7 @@ public class Personaggio
 		return manoDestra;
 	}
 
-	public void setManoDestra(Equipment manoDestra)
+	public void setManoDestra(Arma manoDestra)
 	{
 		this.manoDestra = manoDestra;
 	}
@@ -78,7 +79,7 @@ public class Personaggio
 		return manoSinistra;
 	}
 
-	public void setManoSinistra(Equipment manoSinistra)
+	public void setManoSinistra(Arma manoSinistra)
 	{
 		this.manoSinistra = manoSinistra;
 	}
