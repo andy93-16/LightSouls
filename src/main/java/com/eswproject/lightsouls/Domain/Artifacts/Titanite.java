@@ -5,22 +5,21 @@ import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import javax.persistence.*;
 
 @Entity
-//@DiscriminatorValue("Titanite")
 public class Titanite {
 
     public int getId() {
         return id;
     }
 
-    public SlotType getSlotType() {
-        return slotType;
-    }
-
-    private SlotType slotType;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    public EquipmentType getEquipmentType() {
+        return equipmentType;
+    }
+
+    private EquipmentType equipmentType;
 
     public DiceColor getDiceColor() {
         return diceColor;
@@ -44,6 +43,7 @@ public class Titanite {
     }
 
     private int looted;
-
 }
+
+
 

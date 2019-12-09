@@ -1,7 +1,7 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
-import jdk.vm.ci.meta.Value;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 

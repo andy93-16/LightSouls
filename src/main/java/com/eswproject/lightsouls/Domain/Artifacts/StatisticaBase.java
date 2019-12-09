@@ -1,4 +1,4 @@
-package com.eswproject.lightsouls.Domain;
+package com.eswproject.lightsouls.Domain.Artifacts;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

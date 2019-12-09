@@ -4,21 +4,18 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <!--th class="hidden">Id<th-->
       <th>Name</th>
       <th>Upgrades left</th>
       <th>Type</th>
       <th>Dice throwable</th>
       <th>Action</th>
-      <!--th>attacchi</th>
-    <th>difese</th-->
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let equipaggiamento of equipaggiamenti">
       <td>{{equipaggiamento.name}}</td>
       <td>{{equipaggiamento.upgradesLeft}}</td>
-      <td>{{equipaggiamento.slotType}}</td>
+      <td>{{equipaggiamento.type}}</td>
       <td>
         <table class="table table-striped">
           <tbody>
@@ -32,6 +29,18 @@
             </tr>
           </tbody>
         </table>
+        <table class="table table-striped">
+          <tbody>
+          <tr *ngFor="let attacco of equipaggiamento.difese; let i = index">
+            <td>
+          <tr style="color:red">{{"Difesa "+(i+1)}}</tr>
+          <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+          <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+          <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+          </td>
+          </tr>
+          </tbody>
+        </table>
       </td>
       <td *ngIf="equipaggiamento.upgradesLeft>0"><button class="btn btn-danger" (click)="DettagliEquipaggiamento(equipaggiamento)">Potenzia</button></td>
     </tr>
@@ -39,3 +48,4 @@
   </table>
 </div>
 <button class="btn btn-success" (click)="TornaGestisciPersonaggio()">TornaGestisciPersonaggio</button>
+

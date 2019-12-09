@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../http.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-riepilogo-equipaggiamenti',
@@ -20,9 +20,9 @@ export class RiepilogoEquipaggiamentiComponent implements OnInit {
   }
 
   DettagliEquipaggiamento(equipaggiamento: any): void {
-    this.router.navigate(['/DettagliEquipaggiamento'],{state: equipaggiamento});
+    this.router.navigate(['/DettagliEquipaggiamento'],{ state: equipaggiamento});
   }
-  TornaGestisciPersonaggio(): void{
+  TornaGestisciPersonaggio(): void {
     this.router.navigate(['/GestisciPersonaggio']);
   }
 }

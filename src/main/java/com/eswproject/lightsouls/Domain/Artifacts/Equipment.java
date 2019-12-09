@@ -1,7 +1,9 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
-import com.eswproject.lightsouls.Domain.StatisticaBase;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -10,6 +12,11 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY,property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(name = "Arma", value = Arma.class),
+        @JsonSubTypes.Type(name = "Armatura", value = Armatura.class)
+})
 public abstract class Equipment
 {
     @Id
@@ -24,8 +31,6 @@ public abstract class Equipment
     }
 
     private int upgradesLeft;
-
-    private SlotType slotType;
 
     @OneToOne
     private StatisticaBase minRequirements;
@@ -58,10 +63,6 @@ public abstract class Equipment
     {
         return name;
     }
-
-	public SlotType getSlotType() {
-		return slotType;
-	}
 
 	public StatisticaBase getMinRequirements() {
 		return minRequirements;

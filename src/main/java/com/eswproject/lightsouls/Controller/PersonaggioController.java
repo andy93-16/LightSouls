@@ -27,12 +27,15 @@ public class PersonaggioController {
 
     @GetMapping("/RiepilogoEquipaggiamenti")
     public List<Equipment> RiepilogoEquipaggiamenti() {
-		return personaggio.getZainoEquip();
+        List<Equipment> equipaggiamenti= new ArrayList<>();
+        equipaggiamenti.addAll(personaggio.getZainoEquip());
+        equipaggiamenti.addAll(personaggio.getEquippedEquipments().values());
+		return equipaggiamenti;
     }
 
 	@GetMapping("/PotenziaEquipaggiamento/{idE}&{idT}")
 	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@PathVariable("idT")DiceColor diceColor)
-    {    Equipment eq = null;
+    {   Equipment eq = null;
         for (Equipment equipment : this.personaggio.getZainoEquip())
         {
             if (equipment.getId() == idE)
@@ -41,25 +44,21 @@ public class PersonaggioController {
                 break;
             }
         }
-
-        if(eq.getUpgradesLeft()<=0) //No more upgradable
+        if(eq.getUpgradesLeft()>0) //No more upgradable
         {
-            return "/RiepilogoEquipaggiamenti";
-        }
-
-        eq.setUpgradesLeft(eq.getUpgradesLeft()-1);
-        eq.addDice(diceColor);
-        for (Titanite titanite: this.personaggio.getTitaniti())
-        {
-            if (titanite.getSlotType()== eq.getSlotType() &  titanite.getDiceColor()==diceColor)
-                titanite.setAvailable(titanite.getAvailable()-1);
+            eq.setUpgradesLeft(eq.getUpgradesLeft() - 1);
+            eq.addDice(diceColor);
+            for (Titanite titanite : this.personaggio.getTitaniti()) {
+                if (titanite.getEquipmentType().EquipmentClass().isInstance(eq) & titanite.getDiceColor() == diceColor)
+                    titanite.setAvailable(titanite.getAvailable() - 1);
+            }
         }
        return "/RiepilogoEquipaggiamenti";
     }
 
     @GetMapping("/DettagliEquipaggiamento/{id}")
     public List<Titanite> DettagliEquipaggiamento(@PathVariable(name="id")int id){
-        Equipment eq;
+        Equipment eq=null;
         for (Equipment equipment : this.personaggio.getZainoEquip())
         {
             if (equipment.getId() == id)
@@ -68,8 +67,7 @@ public class PersonaggioController {
         List<Titanite> titanites= new ArrayList<>();
         for (Titanite titanite: this.personaggio.getTitaniti())
         {
-            SlotType type=titanite.getSlotType()
-            if (type is type)
+            if (titanite.getEquipmentType().EquipmentClass().isInstance(eq))
                     titanites.add(titanite);
         }
         return titanites;

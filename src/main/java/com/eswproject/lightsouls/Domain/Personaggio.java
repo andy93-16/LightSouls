@@ -1,7 +1,6 @@
 package com.eswproject.lightsouls.Domain;
 
-import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
-import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
+import com.eswproject.lightsouls.Domain.Artifacts.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -10,9 +9,8 @@ import javax.persistence.*;
 
 
 @Entity
-public class Personaggio
-{
-    @Id
+public class Personaggio {
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
@@ -20,7 +18,7 @@ public class Personaggio
 	private StatisticaBase statisticaBase;
 
 	@Transient
-	private int anime=0;
+	private int anime = 0;
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
@@ -30,18 +28,24 @@ public class Personaggio
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Equipment> zainoEquip;
 
-	private Equipment manoDestra;
-	private Equipment manoSinistra;
-	private Equipment armatura;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @MapKeyColumn(name="body_personaggio")
+    @Fetch(FetchMode.SUBSELECT)
+    private Map<BodyPersonaggio,Equipment> equippedEquipments;
 
+    public Map<BodyPersonaggio, Equipment> getEquippedEquipments() {
+        return equippedEquipments;
+    }
 
-	public List<Equipment> getZainoEquip()
-	{
+    public int getId() {
+        return id;
+    }
+
+	public List<Equipment> getZainoEquip() {
 		return this.zainoEquip;
 	}
 
-	public List<Titanite> getTitaniti()
-	{
+	public List<Titanite> getTitaniti() {
 		return this.titaniti;
 	}
 
@@ -53,44 +57,12 @@ public class Personaggio
 		return this.statisticaBase;
 	}
 
-	public int getAnime()
-	{
+	public int getAnime() {
 		return anime;
 	}
 
-	public void setAnime(int anime)
-	{
+	public void setAnime(int anime) {
 		this.anime = anime;
-	}
-
-	public Equipment getManoDestra()
-	{
-		return manoDestra;
-	}
-
-	public void setManoDestra(Equipment manoDestra)
-	{
-		this.manoDestra = manoDestra;
-	}
-
-	public Equipment getManoSinistra()
-	{
-		return manoSinistra;
-	}
-
-	public void setManoSinistra(Equipment manoSinistra)
-	{
-		this.manoSinistra = manoSinistra;
-	}
-
-	public Equipment getArmatura()
-	{
-		return armatura;
-	}
-
-	public void setArmatura(Equipment armatura)
-	{
-		this.armatura = armatura;
 	}
 
 }

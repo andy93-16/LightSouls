@@ -5,7 +5,8 @@ import com.eswproject.lightsouls.Domain.Dice.*;
 import javax.persistence.*;
 import java.util.Map;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Azione
 {
 	@Id
