@@ -13,8 +13,6 @@ public abstract class Azione
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	//private AttaccoType attaccoType;
-
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name="dice_combination",joinColumns ={@JoinColumn(name="azione_id",referencedColumnName = "id")})
 	@MapKeyColumn(name="dice_color")
