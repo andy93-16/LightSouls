@@ -14,6 +14,7 @@ import { GestisciPersonaggioComponent } from './gestisci-personaggio/gestisci-pe
 import { RiepilogoEquipaggiamentiComponent } from './riepilogo-equipaggiamenti/riepilogo-equipaggiamenti.component';
 import { DettagliEquipaggiamentoComponent } from './dettagli-equipaggiamento/dettagli-equipaggiamento.component';
 import { CambiaEquipaggiamentoComponent } from './cambia-equipaggiamento/cambia-equipaggiamento.component';
+import { RiepilogoEquipaggiabiliComponent } from './riepilogo-equipaggiabili/riepilogo-equipaggiabili.component';
 
 const appRoutes: Routes = [
   { path: 'Giocatore', component: GiocatoreComponent },
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
   { path: 'GestisciPersonaggio', component: GestisciPersonaggioComponent},
   { path: 'RiepilogoEquipaggiamenti', component: RiepilogoEquipaggiamentiComponent},
   { path: 'DettagliEquipaggiamento', component: DettagliEquipaggiamentoComponent},
-  { path: 'CambiaEquipaggiamento' , component: CambiaEquipaggiamentoComponent}
+  { path: 'CambiaEquipaggiamento' , component: CambiaEquipaggiamentoComponent},
+  { path: 'RiepilogoEquipaggiabili' , component: RiepilogoEquipaggiabiliComponent}
 //  { path: '**', component: PageNotFoundComponent }
   ];
 
@@ -42,6 +44,7 @@ const appRoutes: Routes = [
     RiepilogoEquipaggiamentiComponent,
     DettagliEquipaggiamentoComponent,
     CambiaEquipaggiamentoComponent,
+    RiepilogoEquipaggiabiliComponent,
   ],
   imports: [
     BrowserModule,

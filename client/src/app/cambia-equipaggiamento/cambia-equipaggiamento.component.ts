@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from '../http.service';
 import {Router} from "@angular/router";
-import {RouterEvoService} from "../router-evo.service";
 
 @Component({
   selector: 'app-cambia-equipaggiamento',
@@ -9,16 +9,21 @@ import {RouterEvoService} from "../router-evo.service";
 })
 export class CambiaEquipaggiamentoComponent implements OnInit {
 
-  constructor(private routerEvo: RouterEvoService) { }
+  currentEquipped: any[];
+
+  constructor(private router: Router, private httpservice: HttpService) {
+    this.httpservice.RiepilogoEquipaggiati().subscribe(equipaggiati => this.currentEquipped = equipaggiati);
+  }
 
   ngOnInit() {
   }
-  TornaIndietro(): void {
-    this.routerEvo.navigate([this.routerEvo.previousUrl]);
+
+  Cambia(equipaggiamentoDaCambiare: any): void {
+    this.router.navigate(['/RiepilogoEquipaggiabili'],{state : equipaggiamentoDaCambiare});
   }
 
-  GetRouterEvo(): RouterEvoService {
-    return this.routerEvo;
-  }
+/*  TornaIndietro(): void {
+    this.routerEvo.navigate([this.routerpreviousUrl]);
+  }*/
 
 }

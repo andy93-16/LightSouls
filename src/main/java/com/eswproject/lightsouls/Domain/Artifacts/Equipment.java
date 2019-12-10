@@ -1,7 +1,7 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
-import com.fasterxml.jackson.annotation.JsonRootName;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.hibernate.annotations.Fetch;
@@ -24,6 +24,9 @@ public abstract class Equipment
     private int id;
 
     private String name;
+
+    @Column(nullable = false, columnDefinition = "int default 0")
+    private int weight;
 
     public void setUpgradesLeft(int upgradesLeft)
     {
@@ -77,5 +80,7 @@ public abstract class Equipment
 		return upgradesLeft;
 	}
 
-
+    public int getWeight() {
+        return weight;
+    }
 }

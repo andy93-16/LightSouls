@@ -47,6 +47,16 @@ export class HttpService {
       + id + '&' + diceColor,
       { responseType: 'text'});
   }
+  public RiepilogoEquipaggiati(): Observable<any> {
+    return this.httpclient.get('http://localhost:8080/RiepilogoEquipaggiati');
+  }
+  public RiepilogoEquipaggiabili(id: number): Observable<any[]> {
+    return this.httpclient.get<any[]>('http://localhost:8080/RiepilogoEquipaggiabili/' + id);
+  }
+  public Scambia(equipaggiamentoOutId: number, equipaggiamentoInId: number): Observable<any> {
+    return this.httpclient.get('http://localhost:8080/Scambia/' + equipaggiamentoOutId + '&' + equipaggiamentoInId,
+      { responseType: 'text'});
+  }
 
 
 }

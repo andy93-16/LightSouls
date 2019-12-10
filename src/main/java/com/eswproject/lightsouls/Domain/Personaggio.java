@@ -31,10 +31,10 @@ public class Personaggio {
     @ElementCollection(fetch = FetchType.EAGER)
     @MapKeyColumn(name="body_personaggio")
     @Fetch(FetchMode.SUBSELECT)
-    private Map<BodyPersonaggio,Equipment> equippedEquipments;
+    private Map<BodyPersonaggio,Equipment> currentEquipped;
 
-    public Map<BodyPersonaggio, Equipment> getEquippedEquipments() {
-        return equippedEquipments;
+    public Map<BodyPersonaggio, Equipment> getCurrentEquipped() {
+        return this.currentEquipped;
     }
 
     public int getId() {

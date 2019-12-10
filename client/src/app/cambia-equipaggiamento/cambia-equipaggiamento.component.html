@@ -1,1 +1,53 @@
-<button class="btn btn-success" (click)="TornaIndietro()">{{'TornaA'+GetRouterEvo().previousUrl.replace('/','')}}</button>
+<div class="col-md-6">
+  <h2>Riepilogo Equipaggiati</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <!--th class="hidden">Id<th-->
+      <th>Slot</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Weight</th>
+      <th>Throwable dice</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let equipaggiato of currentEquipped | keyvalue" >
+          <td>{{equipaggiato.key}}</td>
+          <td>{{equipaggiato.value.name}}</td>
+          <td>{{equipaggiato.value.type}}</td>
+          <td>{{equipaggiato.value.weight}}</td>
+          <td>
+            <table class="table table-striped">
+              <tbody>
+              <tr *ngFor="let attacco of equipaggiato.value.attacchi; let i = index">
+                <td>
+              <tr style="color:red">{{"Attacco "+(i+1)}}</tr>
+              <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+              <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+              <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+              </td>
+              </tr>
+              </tbody>
+            </table>
+            <table class="table table-striped">
+              <tbody>
+              <tr *ngFor="let attacco of equipaggiato.value.difese; let i = index">
+                <td>
+              <tr style="color:red">{{"Difesa "+(i+1)}}</tr>
+              <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+              <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+              <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+              </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+          <td><button  class="btn btn-danger" (click)="Cambia(equipaggiato)">Cambia</button></td>
+
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<button class="btn btn-success" (click)="TornaIndietro()"></button>

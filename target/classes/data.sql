@@ -31,7 +31,7 @@ INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',2);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (1,1,0);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (2,2,2);
 INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (1,1,1,1); --E' il primo oggetto creato quindi il suo ID = 1
-INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name) VALUES ('Arma',1,1, 'Spada leggera');
+INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name,weight) VALUES ('Arma',1,1, 'Spada leggera',1);
 INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (1,1);
 INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (1,2);--Tabella di JOIN
 --EQUIPMENT2
@@ -52,30 +52,58 @@ INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (5,2,1);
 INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (6,2,1);
 INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
-INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name) VALUES ('Arma',2,2, 'Ascia');
+INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name,weight) VALUES ('Arma',4,2, 'Ascia',1);
 INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (4,5); --Tabella di JOIN
 INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (4,6); --Tabella di JOIN
 --EQUIPMENT5
 INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',2);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (7,2,1);
-INSERT INTO azione(dtype,stamina_cost) VALUES ('Difesa',1);
+INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (8,2,1);
 INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
-INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name) VALUES ('Arma',2,2,'Pugnale');
+INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name,weight) VALUES ('Arma',5,2,'Spadone Imperiale',2);
 INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (5,7); --Tabella di JOIN
 INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (5,8); --Tabella di JOIN
+--EQUIPMENT6
+INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',1);
+INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (9,1,1);
+INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (0,0,0,0);
+INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name,weight) VALUES ('Arma',6,0,'Mano Sinistra',0);
+INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (6,9); --Tabella di JOIN
+
+
+--EQUIPMENT7
+INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',1);
+INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (10,1,1);
+INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (0,0,0,0);
+INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name,weight) VALUES ('Arma',7,0,'Mano Sinistra',0);
+INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (7,10); --Tabella di JOIN
+
+
+--EQUIPMENT8
+INSERT INTO azione(dtype) VALUES ('Difesa');
+INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (11,1,1);
+INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (0,0,0,0);
+INSERT INTO equipment(dtype,min_requirements_id,upgrades_left,name,weight) VALUES ('Armatura',8,0,'Corpo Libero',0);
+INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (8,11); --Tabella di JOIN
+
+
 --TITANITE
 INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (0,4,4,0);
 INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (0,4,4,1);
 INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (1,3,3,1);
+
 --CREATE SOME PERSONAGGIO AND ADD SOME ARTIFACTS
 INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
 INSERT INTO personaggio(statistica_base_id) VALUES (6);
+INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (1,1);
 INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (2,1);
+INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (3,1);
+INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (4,1);
 INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (5,1);
-INSERT INTO personaggio_equipped_equipments(personaggio_id,equipped_equipments_id,body_personaggio) VALUES (1,1,0);
-INSERT INTO personaggio_equipped_equipments(personaggio_id,equipped_equipments_id,body_personaggio) VALUES (1,4,1);
-INSERT INTO personaggio_equipped_equipments(personaggio_id,equipped_equipments_id,body_personaggio) VALUES (1,3,2);
+INSERT INTO personaggio_current_equipped(personaggio_id,current_equipped_id,body_personaggio) VALUES (1,7,0);
+INSERT INTO personaggio_current_equipped(personaggio_id,current_equipped_id,body_personaggio) VALUES (1,6,1);
+INSERT INTO personaggio_current_equipped(personaggio_id,current_equipped_id,body_personaggio) VALUES (1,8,2);
 INSERT INTO personaggio_titaniti(titaniti_id,personaggio_id) VALUES (1,1);
 INSERT INTO personaggio_titaniti(titaniti_id,personaggio_id) VALUES (2,1);
 INSERT INTO personaggio_titaniti(titaniti_id,personaggio_id) VALUES (3,1);

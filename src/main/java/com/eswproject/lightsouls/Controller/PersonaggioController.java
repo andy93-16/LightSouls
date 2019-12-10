@@ -1,5 +1,6 @@
 package com.eswproject.lightsouls.Controller;
 
+import com.eswproject.lightsouls.Domain.Artifacts.BodyPersonaggio;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -29,7 +31,7 @@ public class PersonaggioController {
     public List<Equipment> RiepilogoEquipaggiamenti() {
         List<Equipment> equipaggiamenti= new ArrayList<>();
         equipaggiamenti.addAll(personaggio.getZainoEquip());
-        equipaggiamenti.addAll(personaggio.getEquippedEquipments().values());
+        equipaggiamenti.addAll(personaggio.getCurrentEquipped().values());
 		return equipaggiamenti;
     }
 
@@ -61,8 +63,10 @@ public class PersonaggioController {
         Equipment eq=null;
         for (Equipment equipment : this.personaggio.getZainoEquip())
         {
-            if (equipment.getId() == id)
+            if (equipment.getId() == id) {
                 eq = equipment;
+                break;
+            }
         }
         List<Titanite> titanites= new ArrayList<>();
         for (Titanite titanite: this.personaggio.getTitaniti())
@@ -73,5 +77,32 @@ public class PersonaggioController {
         return titanites;
     }
 
+    @GetMapping("/RiepilogoEquipaggiati")
+    public Map<BodyPersonaggio,Equipment> RiepilogoEquipaggiati(){
+        return this.personaggio.getCurrentEquipped();
+    }
 
+    @GetMapping("/RiepilogoEquipaggiabili/{id}")
+    public List<Equipment> RiepilogoEquipaggiabili(@PathVariable(name="id")int id){
+        Equipment eq=null;
+        for(Equipment equipment: this.personaggio.getCurrentEquipped().values())
+        {
+            if(equipment.getId()==id) {
+                eq = equipment;
+                break;
+            }
+        }
+        List<Equipment> equipaggiabili=new ArrayList<>();
+        for(Equipment equipment: this.personaggio.getZainoEquip())
+        {
+            if(equipment.getClass()==eq.getClass())
+                equipaggiabili.add(equipment);
+        }
+        return equipaggiabili;
+    }
+    @GetMapping("/Scambia/{idOut}&{idIn}")
+    public String Scambia(@PathVariable("idOut")int idOut,@PathVariable("idIn")int idIn){
+       
+       return "/CambiaEquipaggiamento";
+    }
 }

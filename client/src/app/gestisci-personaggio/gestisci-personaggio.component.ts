@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {RouterEvoService} from "../router-evo.service";
+
 
 @Component({
   selector: 'app-gestisci-personaggio',
@@ -9,20 +9,20 @@ import {RouterEvoService} from "../router-evo.service";
 })
 export class GestisciPersonaggioComponent implements OnInit {
 
-  constructor(private routerEvo: RouterEvoService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   PotenziaEquipaggiamento(): void {
-    this.routerEvo.navigate(['/RiepilogoEquipaggiamenti']);
+    this.router.navigate(['/RiepilogoEquipaggiamenti']);
   }
 
   CambiaEquipaggiamento(): void {
-    this.routerEvo.navigate(['/CambiaEquipaggiamento']);
+    this.router.navigate(['/CambiaEquipaggiamento']);
   }
 
   TornaAlFalo(): void {
-    this.routerEvo.navigate(['/Falo']);
+    this.router.navigate(['/Falo']);
   }
 }

@@ -20,7 +20,7 @@ export class RiepilogoEquipaggiamentiComponent implements OnInit {
   }
 
   DettagliEquipaggiamento(equipaggiamento: any): void {
-    this.router.navigate(['/DettagliEquipaggiamento'],{ state: equipaggiamento});
+    this.router.navigate(['/DettagliEquipaggiamento'], { state: equipaggiamento});
   }
   TornaGestisciPersonaggio(): void {
     this.router.navigate(['/GestisciPersonaggio']);
