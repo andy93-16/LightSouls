@@ -54,6 +54,7 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent],
   exports: [RouterModule]
 })
+
 export class AppModule{
 
 }

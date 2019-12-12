@@ -76,7 +76,7 @@ INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (6,9); --Tabella di J
 INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',1);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (10,1,1);
 INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (0,0,0,0);
-INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name,weight) VALUES ('Arma',7,0,'Mano Sinistra',0);
+INSERT INTO equipment(dtype,min_requirements_id,upgrades_left, name,weight) VALUES ('Arma',7,0,'Mano Destra',0);
 INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (7,10); --Tabella di JOIN
 
 

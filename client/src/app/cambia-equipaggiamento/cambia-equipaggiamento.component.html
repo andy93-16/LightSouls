@@ -14,9 +14,35 @@
     <tbody>
         <tr *ngFor="let equipaggiato of currentEquipped | keyvalue" >
           <td>{{equipaggiato.key}}</td>
-          <td>{{equipaggiato.value.name}}</td>
-          <td>{{equipaggiato.value.type}}</td>
-          <td>{{equipaggiato.value.weight}}</td>
+          <td *ngIf="equipaggiato.value==null; else notShowName">
+            -
+          </td>
+          <ng-template #notShowName>
+            <td>
+              {{equipaggiato.value.name}}
+            </td>
+          </ng-template>
+          <!--<td>{{equipaggiato.value.name}}</td>-->
+          <td *ngIf="equipaggiato.value==null; else notShowType">
+            -
+          </td>
+          <ng-template #notShowType>
+            <td>
+              {{equipaggiato.value.type}}
+            </td>
+          </ng-template>
+          <td *ngIf="equipaggiato.value==null; else notShowWeight">
+            -
+          </td>
+          <ng-template #notShowWeight>
+            <td>
+              {{equipaggiato.value.weight}}
+            </td>
+          </ng-template>
+          <td *ngIf="equipaggiato.value==null; else notShowActions">
+            -
+          </td>
+          <ng-template #notShowActions>
           <td>
             <table class="table table-striped">
               <tbody>
@@ -43,11 +69,16 @@
               </tbody>
             </table>
           </td>
-          <td><button  class="btn btn-danger" (click)="Cambia(equipaggiato)">Cambia</button></td>
-
+          </ng-template>
+          <td *ngIf="equipaggiato.value==null; else notShowButton">
+          </td>
+          <ng-template #notShowButton>
+            <td>
+              <button  class="btn btn-danger" (click)="Cambia(equipaggiato)">Cambia</button>
+            </td>
+          </ng-template>
         </tr>
     </tbody>
   </table>
 </div>
-
-<button class="btn btn-success" (click)="TornaIndietro()"></button>
+<button class="btn btn-success" (click)="TornaGestisciPersonaggio()">TornaGestisciPersonaggio</button>
