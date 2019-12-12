@@ -27,4 +27,8 @@ export class CambiaEquipaggiamentoComponent implements OnInit {
     this.router.navigate([ '/GestisciPersonaggio']);
   }
 
+  Rimuovi(equipaggiamento: any): void {
+    this.httpservice.Rimuovi(equipaggiamento.key).subscribe( url => this.router.navigate(url));
+  }
+
 }

@@ -57,6 +57,10 @@ export class HttpService {
     return this.httpclient.get('http://localhost:8080/Scambia/' + equipaggiamentoOutId + '&' + equipaggiamentoInId,
       { responseType: 'text'});
   }
+  public Rimuovi(equipaggiamento: string): Observable<any> {
+    return this.httpclient.get('http://localhost:8080/RimuoviEquipment/' + equipaggiamento,
+      {responseType: 'text'});
+  }
 
 
 }

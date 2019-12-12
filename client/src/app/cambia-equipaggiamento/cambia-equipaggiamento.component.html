@@ -75,6 +75,7 @@
           <ng-template #notShowButton>
             <td>
               <button  class="btn btn-danger" (click)="Cambia(equipaggiato)">Cambia</button>
+              <button class="btn btn-dark" *ngIf="equipaggiato.value.weight>0" (click)="Rimuovi(equipaggiato)">Rimuovi</button>
             </td>
           </ng-template>
         </tr>

@@ -12,6 +12,8 @@ public abstract class StrategiaCambioEquipments {
 
     public void RimuoviEquipment(BodyPersonaggio bp){
         this.p.getZainoEquip().add(this.p.getCurrentEquipped().get(bp));
+        //TODO
+        System.out.println(this.pC.geteS().findByName(bp.name()));
         this.p.getCurrentEquipped().replace(bp,this.pC.geteS().findByName(bp.getEqType()));
     }
 

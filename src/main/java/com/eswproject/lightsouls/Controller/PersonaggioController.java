@@ -140,7 +140,7 @@ public class PersonaggioController {
         return "/CambiaEquipaggiamento";
     }
     @GetMapping("/RimuoviEquipment/{bp}")
-    public void RimuoviEquipment(@PathVariable("bp")BodyPersonaggio bp){
+    public String RimuoviEquipment(@PathVariable("bp")BodyPersonaggio bp){
         String eqclassname = bp.getClass().getPackage().getName()+".Cambio"+bp.getEqType();
         try
         {
@@ -151,6 +151,7 @@ public class PersonaggioController {
         catch(InstantiationException ie){System.out.println(ie);}
         catch(IllegalAccessException ia){System.out.println(ia);}
         this.sce.RimuoviEquipment(bp);
+        return "/CambiaEquipaggiamento";
     }
 
 }

@@ -4,7 +4,7 @@ import com.eswproject.lightsouls.Domain.Personaggio;
 
 public class CambioArma extends StrategiaCambioEquipments
 {
-
+    //TODO
     @Override
     public void CambioEquipments(BodyPersonaggio EqOutPartName, int eqInPosition){
         Personaggio p=this.pC.getPersonaggio();
