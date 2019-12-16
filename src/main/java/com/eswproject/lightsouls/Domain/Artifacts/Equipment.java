@@ -83,5 +83,4 @@ public abstract class Equipment
 	public int getUpgradesMax() {
 		return upgradesMax;
 	}
-
 }

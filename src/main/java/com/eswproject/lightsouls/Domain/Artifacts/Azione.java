@@ -31,22 +31,23 @@ public abstract class Azione
 	}
 
 
-//	public int getDanno()
-//	{
-//		Dice d = new Dice();
-//		int danno = 0;
-//		for(Map.Entry<DiceColor, Integer> dado : this.danno.entrySet())
-//		{
-//			danno += d.throw_Dice(dado.getKey(), dado.getValue());
-//		}
-//		return danno;
-//	}
-//
+	public int getDanno()
+	{
+		Dice d = new Dice();
+		int danno = 0;
+		for(Map.Entry<DiceColor, Integer> dado : this.combination.entrySet())
+		{
+			danno += d.throw_Dice(dado.getKey(), dado.getValue());
+		}
+		return danno;
+	}
+
 //	public void setDanno(DiceColor color, Integer dice)
 //	{
-//		this.danno.put(color, dice);
+//		this.combination.put(color, dice);
 //	}
-//
+
+
 //	public void setType(AttaccoType t)
 //	{
 //		this.attaccoType = t;
