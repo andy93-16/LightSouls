@@ -2,6 +2,8 @@ package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 
+import com.eswproject.lightsouls.Domain.Personaggio.BodyPart;
+import com.eswproject.lightsouls.Domain.Personaggio.BodyPartType;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.hibernate.annotations.Fetch;
@@ -25,38 +27,41 @@ public abstract class Equipment
 
     private String name;
 
-    @Column(nullable = false, columnDefinition = "int default 0")
-    private int weight;
+    @OneToOne
+    private BodyPartRequirement bodyPartRequirement;
 
-    public void setUpgradesLeft(int upgradesLeft)
-    {
-        this.upgradesLeft = upgradesLeft;
-    }
+    public BodyPartRequirement getBodyPartRequirement() {
+    return bodyPartRequirement;
+}
 
-    private int upgradesLeft;
+    private int upgradesMax;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Titanite> equippedTitaniti;
 
     @OneToOne
     private StatisticaBase minRequirements;
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    private List<Difesa> difese;
+    private List<Azione> azioni;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<BodyPart> equippedBodyParts;
 
-    public void addDice(DiceColor c)
-    {
-        for(Difesa difesa : this.getDifese())
-        {
-            if(difesa.getCombination().containsKey(c))
-            {
-                difesa.getCombination().put(c, difesa.getCombination().get(c) + 1);
-            }
-            else
-            {
-                difesa.getCombination().put(c, 1);
-            }
-        }
+    public List<BodyPart> getEquippedBodyParts() {
+        return equippedBodyParts;
     }
+
+    public List<Titanite> getEquippedTitaniti() {
+        return equippedTitaniti;
+    }
+
+    public abstract void addDice(DiceColor c);
+
+    public abstract void removeDice(DiceColor c);
 
 	public int getId() {
 		return id;
@@ -71,16 +76,12 @@ public abstract class Equipment
 		return minRequirements;
 	}
 
-
-	public List<Difesa> getDifese() {
-		return difese;
-	}
-
-	public int getUpgradesLeft() {
-		return upgradesLeft;
-	}
-
-    public int getWeight() {
-        return weight;
+    public List<Azione> getAzioni() {
+        return azioni;
     }
+
+	public int getUpgradesMax() {
+		return upgradesMax;
+	}
+
 }

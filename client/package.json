@@ -7,8 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "j2ts": "j2ts -f \"[glob]\" -d \"path\""
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

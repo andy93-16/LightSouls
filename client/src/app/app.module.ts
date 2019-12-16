@@ -12,9 +12,10 @@ import { RisultatoIncontroComponent } from './risultato-incontro/risultato-incon
 import { RisultatoPartitaComponent } from './risultato-partita/risultato-partita.component';
 import { GestisciPersonaggioComponent } from './gestisci-personaggio/gestisci-personaggio.component';
 import { RiepilogoEquipaggiamentiComponent } from './riepilogo-equipaggiamenti/riepilogo-equipaggiamenti.component';
-import { DettagliEquipaggiamentoComponent } from './dettagli-equipaggiamento/dettagli-equipaggiamento.component';
-import { CambiaEquipaggiamentoComponent } from './cambia-equipaggiamento/cambia-equipaggiamento.component';
-import { RiepilogoEquipaggiabiliComponent } from './riepilogo-equipaggiabili/riepilogo-equipaggiabili.component';
+import { DettagliPotenziamentoComponent } from './dettagli-potenziamento/dettagli-potenziamento.component';
+import { EquipaggiaPersonaggioComponent } from './equipaggia-personaggio/equipaggia-personaggio.component';
+import { ChooseBodyPartComponent } from './choose-body-part/choose-body-part.component';
+import { DettagliDepotenziamentoComponent } from './dettagli-depotenziamento/dettagli-depotenziamento.component';
 
 const appRoutes: Routes = [
   { path: 'Giocatore', component: GiocatoreComponent },
@@ -25,9 +26,10 @@ const appRoutes: Routes = [
   { path: 'RisultatoPartita', component: RisultatoPartitaComponent},
   { path: 'GestisciPersonaggio', component: GestisciPersonaggioComponent},
   { path: 'RiepilogoEquipaggiamenti', component: RiepilogoEquipaggiamentiComponent},
-  { path: 'DettagliEquipaggiamento', component: DettagliEquipaggiamentoComponent},
-  { path: 'CambiaEquipaggiamento' , component: CambiaEquipaggiamentoComponent},
-  { path: 'RiepilogoEquipaggiabili' , component: RiepilogoEquipaggiabiliComponent}
+  { path: 'DettagliPotenziamento', component: DettagliPotenziamentoComponent},
+  { path: 'EquipaggiaPersonaggio' , component: EquipaggiaPersonaggioComponent},
+  { path: 'DettagliDepotenziamento', component: DettagliDepotenziamentoComponent},
+  { path: 'ChooseBodyPart' , component: ChooseBodyPartComponent}
 //  { path: '**', component: PageNotFoundComponent }
   ];
 
@@ -42,19 +44,20 @@ const appRoutes: Routes = [
     RisultatoPartitaComponent,
     GestisciPersonaggioComponent,
     RiepilogoEquipaggiamentiComponent,
-    DettagliEquipaggiamentoComponent,
-    CambiaEquipaggiamentoComponent,
-    RiepilogoEquipaggiabiliComponent,
+    DettagliPotenziamentoComponent,
+    EquipaggiaPersonaggioComponent,
+    ChooseBodyPartComponent,
+    DettagliDepotenziamentoComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)],
+    RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload'})],
   providers: [HttpService],
   bootstrap: [AppComponent],
   exports: [RouterModule]
 })
 
-export class AppModule{
+export class AppModule {
 
 }

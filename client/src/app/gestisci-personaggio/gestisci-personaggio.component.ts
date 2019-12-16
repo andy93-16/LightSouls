@@ -18,8 +18,8 @@ export class GestisciPersonaggioComponent implements OnInit {
     this.router.navigate(['/RiepilogoEquipaggiamenti']);
   }
 
-  CambiaEquipaggiamento(): void {
-    this.router.navigate(['/CambiaEquipaggiamento']);
+  EquipaggiaPersonaggio(): void {
+    this.router.navigate(['/EquipaggiaPersonaggio']);
   }
 
   TornaAlFalo(): void {

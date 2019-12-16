@@ -1,12 +1,19 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Dice.*;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import javax.persistence.*;
 import java.util.Map;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY,property = "type")
+@JsonSubTypes({
+		@JsonSubTypes.Type(name = "Attacco", value = Attacco.class),
+		@JsonSubTypes.Type(name = "Difesa", value = Difesa.class)
+})
 public abstract class Azione
 {
 	@Id

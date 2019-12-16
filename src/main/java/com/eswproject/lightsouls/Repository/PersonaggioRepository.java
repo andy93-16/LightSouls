@@ -1,6 +1,6 @@
 package com.eswproject.lightsouls.Repository;
 
-import com.eswproject.lightsouls.Domain.Personaggio;
+import com.eswproject.lightsouls.Domain.Personaggio.Personaggio;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

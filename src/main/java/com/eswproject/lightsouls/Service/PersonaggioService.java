@@ -1,6 +1,6 @@
 package com.eswproject.lightsouls.Service;
 
-import com.eswproject.lightsouls.Domain.Personaggio;
+import com.eswproject.lightsouls.Domain.Personaggio.Personaggio;
 import com.eswproject.lightsouls.Repository.PersonaggioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

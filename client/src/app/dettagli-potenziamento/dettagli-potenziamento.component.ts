@@ -4,18 +4,17 @@ import {HttpService} from '../http.service';
 
 @Component({
   selector: 'app-dettagli-equipaggiamento',
-  templateUrl: './dettagli-equipaggiamento.component.html',
-  styleUrls: ['./dettagli-equipaggiamento.component.css']
+  templateUrl: './dettagli-potenziamento.component.html',
+  styleUrls: ['./dettagli-potenziamento.component.css']
 })
-export class DettagliEquipaggiamentoComponent implements OnInit {
+export class DettagliPotenziamentoComponent implements OnInit {
 
-  id ;
   equipaggiamento: any;
   titaniti: any[];
 
   constructor(private httpservice: HttpService, private router: Router) {
     this.equipaggiamento = this.router.getCurrentNavigation().extras.state;
-    this.httpservice.DettagliEquipaggiamento(this.equipaggiamento.id).subscribe(titaniti => this.titaniti = titaniti);
+    this.httpservice.TitanitiForEquipment(this.equipaggiamento).subscribe(titaniti => this.titaniti = titaniti);
   }
   ngOnInit() {
   }
@@ -24,8 +23,8 @@ export class DettagliEquipaggiamentoComponent implements OnInit {
     this.router.navigate(['/RiepilogoEquipaggiamenti']);
   }
 
-  Usa(diceColor: any): void {
-    this.httpservice.Potenzia(this.equipaggiamento.id, diceColor).subscribe(url => this.router.navigate([url]));
+  Usa(titanite: any): void {
+    this.httpservice.Potenzia(this.equipaggiamento.id, titanite).subscribe(url => this.router.navigate([url]));
 }
 
 

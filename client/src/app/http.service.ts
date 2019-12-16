@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 
@@ -38,29 +38,45 @@ export class HttpService {
   public SetPersonaggio(): void  {
       this.httpclient.get('http://localhost:8080/SetPersonaggio').subscribe();
   }
-  public DettagliEquipaggiamento(id: number): Observable<any[]> {
-    return this.httpclient.get<any[]>('http://localhost:8080/DettagliEquipaggiamento/' + id,
-      );
+  public TitanitiForEquipment(equipaggiamento: any): Observable<any[]> {
+    return this.httpclient.get<any[]>('http://localhost:8080/TitanitiForEquipment/' +
+      equipaggiamento.id);
   }
-  public Potenzia(id: number, diceColor: any): Observable<any>{
-    return this.httpclient.get('http://localhost:8080/PotenziaEquipaggiamento/'
-      + id + '&' + diceColor,
+  public TitanitiOfEquipment(equipaggiamento: any): Observable<any[]> {
+    return this.httpclient.get<any[]>('http://localhost:8080/TitanitiOfEquipment/' +
+      equipaggiamento.id);
+  }
+  public Potenzia(id: number, titanite: any): Observable<any>{
+    return this.httpclient.post('http://localhost:8080/PotenziaEquipaggiamento/'
+      + id, titanite ,
       { responseType: 'text'});
   }
-  public RiepilogoEquipaggiati(): Observable<any> {
-    return this.httpclient.get('http://localhost:8080/RiepilogoEquipaggiati');
-  }
-  public RiepilogoEquipaggiabili(id: number): Observable<any[]> {
-    return this.httpclient.get<any[]>('http://localhost:8080/RiepilogoEquipaggiabili/' + id);
-  }
-  public Scambia(equipaggiamentoOutId: number, equipaggiamentoInId: number): Observable<any> {
-    return this.httpclient.get('http://localhost:8080/Scambia/' + equipaggiamentoOutId + '&' + equipaggiamentoInId,
+  public Depotenzia(id: number, titanite: any): Observable<any>{
+    return this.httpclient.post('http://localhost:8080/DepotenziaEquipaggiamento/'
+      + id, titanite ,
       { responseType: 'text'});
   }
-  public Rimuovi(equipaggiamento: string): Observable<any> {
-    return this.httpclient.get('http://localhost:8080/RimuoviEquipment/' + equipaggiamento,
+  public RiepilogoEquipaggiati(): Observable<any[]> {
+    return this.httpclient.get<any[]>('http://localhost:8080/RiepilogoEquipaggiati');
+  }
+  public RiepilogoNonEquipaggiabili(): Observable<any[]> {
+    return this.httpclient.get<any[]>('http://localhost:8080/RiepilogoNonEquipaggiabili');
+  }
+  public RiepilogoEquipaggiabili(): Observable<any[]> {
+    return this.httpclient.get<any[]>('http://localhost:8080/RiepilogoEquipaggiabili');
+  }
+  public BodyPartsForEquipment(equipaggiamento: any): Observable<any[]> {
+    return this.httpclient.post<any[]>('http://localhost:8080/BodyPartsForEquipment', equipaggiamento);
+  }
+  public Equipaggia(bodyParts: any[], equipaggiamentoId: number): Observable<any> {
+    return this.httpclient.post('http://localhost:8080/Equipaggia/' + equipaggiamentoId , bodyParts ,
       {responseType: 'text'});
   }
+  public Disequipaggia(equipaggiamentoId: number): Observable<any> {
+    return this.httpclient.get('http://localhost:8080/Disequipaggia/' + equipaggiamentoId,
+      {responseType: 'text'});
+  }
+
 
 
 }

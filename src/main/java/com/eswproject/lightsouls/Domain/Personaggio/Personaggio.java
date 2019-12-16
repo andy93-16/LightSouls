@@ -1,4 +1,4 @@
-package com.eswproject.lightsouls.Domain;
+package com.eswproject.lightsouls.Domain.Personaggio;
 
 import com.eswproject.lightsouls.Domain.Artifacts.*;
 import org.hibernate.annotations.Fetch;
@@ -6,7 +6,6 @@ import org.hibernate.annotations.FetchMode;
 
 import java.util.*;
 import javax.persistence.*;
-
 
 @Entity
 public class Personaggio {
@@ -28,13 +27,12 @@ public class Personaggio {
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Equipment> zainoEquip;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @MapKeyColumn(name="body_personaggio")
+    @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    private Map<BodyPersonaggio,Equipment> currentEquipped;
+    private List<BodyPart> bodyParts;
 
-    public Map<BodyPersonaggio, Equipment> getCurrentEquipped() {
-        return this.currentEquipped;
+    public List<BodyPart> getBodyParts() {
+        return this.bodyParts;
     }
 
     public int getId() {

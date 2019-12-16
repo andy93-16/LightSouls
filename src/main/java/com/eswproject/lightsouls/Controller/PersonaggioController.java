@@ -1,18 +1,15 @@
 package com.eswproject.lightsouls.Controller;
 
-import com.eswproject.lightsouls.Domain.Artifacts.BodyPersonaggio;
+import com.eswproject.lightsouls.Domain.Artifacts.BodyPartRequirement;
+import com.eswproject.lightsouls.Domain.Personaggio.*;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
-import com.eswproject.lightsouls.Domain.Artifacts.StrategiaCambioEquipments;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
-import com.eswproject.lightsouls.Domain.Personaggio;
-import com.eswproject.lightsouls.Service.EquipmentService;
 import com.eswproject.lightsouls.Service.PersonaggioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 
 @RestController
@@ -22,35 +19,26 @@ public class PersonaggioController {
     @Autowired
     PersonaggioService pS;
 
-    @Autowired
-    EquipmentService eS;
+    private Personaggio personaggio;
 
-    Personaggio personaggio;
-
-    StrategiaCambioEquipments sce;
-
-    public Personaggio getPersonaggio() {
-        return personaggio;
-    }
-    public EquipmentService geteS() {
-        return eS;
-    }
+    GestoreEquipaggiamenti gestoreEquipaggiamenti;
 
     @GetMapping("/SetPersonaggio")
     public void SetPersonaggio() {
-        personaggio=this.pS.findById(1);
+        this.personaggio=this.pS.findById(1);
+        this.gestoreEquipaggiamenti=new GestoreEquipaggiamenti();
+        this.gestoreEquipaggiamenti.setP(this.personaggio);
     }
+
+////////////POTENZIAMENTO EQUIPMENT///////////
 
     @GetMapping("/RiepilogoEquipaggiamenti")
     public List<Equipment> RiepilogoEquipaggiamenti() {
-        List<Equipment> equipaggiamenti= new ArrayList<>();
-        equipaggiamenti.addAll(personaggio.getZainoEquip());
-        equipaggiamenti.addAll(personaggio.getCurrentEquipped().values());
-		return equipaggiamenti;
+        return this.personaggio.getZainoEquip();
     }
 
-	@GetMapping("/PotenziaEquipaggiamento/{idE}&{idT}")
-	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@PathVariable("idT")DiceColor diceColor)
+	@PostMapping("/PotenziaEquipaggiamento/{idE}")
+	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@RequestBody Titanite titanite)
     {   Equipment eq = null;
         for (Equipment equipment : this.personaggio.getZainoEquip())
         {
@@ -60,29 +48,37 @@ public class PersonaggioController {
                 break;
             }
         }
-        if(eq.getUpgradesLeft()>0) //No more upgradable
-        {
-            eq.setUpgradesLeft(eq.getUpgradesLeft() - 1);
-            eq.addDice(diceColor);
-            for (Titanite titanite : this.personaggio.getTitaniti()) {
-                if (titanite.getEquipmentType().EquipmentClass().isInstance(eq) & titanite.getDiceColor() == diceColor)
-                    titanite.setAvailable(titanite.getAvailable() - 1);
-            }
-        }
+       this.gestoreEquipaggiamenti.Potenzia(eq,titanite);
        return "/RiepilogoEquipaggiamenti";
     }
 
-    @GetMapping("/DettagliEquipaggiamento/{id}")
-    public List<Titanite> DettagliEquipaggiamento(@PathVariable(name="id")int id){
-        Equipment eq=null;
+    @PostMapping("/DepotenziaEquipaggiamento/{idE}")
+    public String DepotenziaEquipaggiamento(@PathVariable("idE")int idE,@RequestBody Titanite titanite)
+    {   Equipment eq = null;
         for (Equipment equipment : this.personaggio.getZainoEquip())
         {
-            if (equipment.getId() == id) {
+            if (equipment.getId() == idE)
+            {
                 eq = equipment;
                 break;
             }
         }
+        this.gestoreEquipaggiamenti.Depotenzia(eq,titanite);
+        return "/RiepilogoEquipaggiamenti";
+    }
+
+    @GetMapping("/TitanitiForEquipment/{idE}")
+    public List<Titanite> TitanitiForEquipment(@PathVariable("idE") int idE){
         List<Titanite> titanites= new ArrayList<>();
+        Equipment eq = null;
+        for (Equipment equipment : this.personaggio.getZainoEquip())
+        {
+            if (equipment.getId() == idE)
+            {
+                eq = equipment;
+                break;
+            }
+        }
         for (Titanite titanite: this.personaggio.getTitaniti())
         {
             if (titanite.getEquipmentType().EquipmentClass().isInstance(eq))
@@ -91,67 +87,78 @@ public class PersonaggioController {
         return titanites;
     }
 
-    @GetMapping("/RiepilogoEquipaggiati")
-    public Map<BodyPersonaggio,Equipment> RiepilogoEquipaggiati(){
-        return this.personaggio.getCurrentEquipped();
-    }
-
-    @GetMapping("/RiepilogoEquipaggiabili/{id}")
-    public List<Equipment> RiepilogoEquipaggiabili(@PathVariable(name="id")int id){
-        Equipment eq=null;
-        for(Equipment equipment: this.personaggio.getCurrentEquipped().values())
+    @GetMapping("/TitanitiOfEquipment/{idE}")
+    public List<Titanite> TitanitiOfEquipment(@PathVariable("idE") int idE){
+        Equipment eq = null;
+        for (Equipment equipment : this.personaggio.getZainoEquip())
         {
-            if(equipment.getId()==id) {
+            if (equipment.getId() == idE)
+            {
                 eq = equipment;
                 break;
             }
         }
+        return eq.getEquippedTitaniti();
+    }
+
+////////////////////EQUIPMENT CHANGE///////////////////////
+
+    @GetMapping("/RiepilogoEquipaggiabili")
+    public List<Equipment> RiepilogoEquipaggiabili(){
         List<Equipment> equipaggiabili=new ArrayList<>();
-        for(Equipment equipment: this.personaggio.getZainoEquip())
-        {
-            if(equipment.getClass()==eq.getClass())
+        for(Equipment equipment : this.personaggio.getZainoEquip()) {
+            BodyPartRequirement bodyPartRequirement = equipment.getBodyPartRequirement();
+            if (BodyPartsForEquipment(equipment).size() >=
+                    bodyPartRequirement.getNumberbodyPart()) {
+                equipaggiabili.add(equipment);
+                System.out.println(equipment.getEquippedBodyParts().isEmpty());
+            }
+        }
+        return equipaggiabili;
+    }
+
+    @GetMapping("/RiepilogoEquipaggiati")
+    public List<Equipment> RiepilogoEquipaggiati(){
+        List<Equipment> equipaggiabili=new ArrayList<>();
+        for(Equipment equipment : this.personaggio.getZainoEquip()) {
+            if(!equipment.getEquippedBodyParts().isEmpty())
                 equipaggiabili.add(equipment);
         }
         return equipaggiabili;
     }
-    @GetMapping("/Scambia/{idOut}&{idIn}")
-    public String Scambia(@PathVariable("idOut")int idOut,@PathVariable("idIn")int idIn){
-        int eqInPosition=0;
-        BodyPersonaggio eqOutPartName=null;
-        for(int i=0;i<this.personaggio.getZainoEquip().size();i++)
-        {
-            if(this.personaggio.getZainoEquip().get(i).getId()==idIn)
-                eqInPosition=i;
+
+    @GetMapping("/RiepilogoNonEquipaggiabili")
+    public List<Equipment> RiepilogoNonEquipaggiabili(){
+        List<Equipment> nonEquipaggiabili=new ArrayList<>();
+        for(Equipment equipment : this.personaggio.getZainoEquip()) {
+            if (BodyPartsForEquipment(equipment).size() < equipment.getBodyPartRequirement().getNumberbodyPart()
+               && equipment.getEquippedBodyParts().isEmpty())
+                nonEquipaggiabili.add(equipment);
         }
-        for(BodyPersonaggio bp: this.personaggio.getCurrentEquipped().keySet())
-        {
-            if(this.personaggio.getCurrentEquipped().get(bp).getId()==idOut)
-                eqOutPartName=bp;
-        }
-        try {
-            String eqclassname = eqOutPartName.getClass().getPackage().getName()+".Cambio"+eqOutPartName.getEqType();
-            this.sce=(StrategiaCambioEquipments) Class.forName(eqclassname).newInstance();
-            this.sce.setpC(this);
-        }
-        catch(ClassNotFoundException cnf){System.out.println(cnf);}
-        catch(InstantiationException ie){System.out.println(ie);}
-        catch(IllegalAccessException ia){System.out.println(ia);}
-        this.sce.CambioEquipments(eqOutPartName,eqInPosition);
-        return "/CambiaEquipaggiamento";
+        return nonEquipaggiabili;
     }
-    @GetMapping("/RimuoviEquipment/{bp}")
-    public String RimuoviEquipment(@PathVariable("bp")BodyPersonaggio bp){
-        String eqclassname = bp.getClass().getPackage().getName()+".Cambio"+bp.getEqType();
-        try
-        {
-        this.sce=(StrategiaCambioEquipments) Class.forName(eqclassname).newInstance();
-        this.sce.setpC(this);
+
+    @PostMapping("/BodyPartsForEquipment")
+    public List<BodyPart> BodyPartsForEquipment(@RequestBody Equipment equipment){
+        List<BodyPart> bodyPartsFiltered=new ArrayList<>();
+        for (BodyPart bodyPart: this.personaggio.getBodyParts()) {
+            if(!bodyPart.getEquipped() && bodyPart.getBodyPartType().
+                    equals(equipment.getBodyPartRequirement().getBodyPartType()))
+                bodyPartsFiltered.add(bodyPart);
         }
-        catch(ClassNotFoundException cnf){System.out.println(cnf);}
-        catch(InstantiationException ie){System.out.println(ie);}
-        catch(IllegalAccessException ia){System.out.println(ia);}
-        this.sce.RimuoviEquipment(bp);
-        return "/CambiaEquipaggiamento";
+        return bodyPartsFiltered;
+    }
+
+    @PostMapping("/Equipaggia/{IdEquipment}")
+    public String Equipaggia(@RequestBody List<BodyPart> bodyParts,@PathVariable("IdEquipment") int idEquipment)
+    {   this.gestoreEquipaggiamenti.Equipaggia(bodyParts,idEquipment);
+        return "/EquipaggiaPersonaggio";
+    }
+
+    @GetMapping("/Disequipaggia/{IdEquipment}")
+    public String Disequipaggia(@PathVariable("IdEquipment") int idEquipment){
+        this.gestoreEquipaggiamenti.Disequipaggia(idEquipment);
+        return "/EquipaggiaPersonaggio";
     }
 
 }

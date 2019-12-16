@@ -1,5 +1,7 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
+import com.eswproject.lightsouls.Domain.Dice.DiceColor;
+
 import javax.persistence.*;
 
 @Entity
