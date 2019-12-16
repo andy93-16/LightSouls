@@ -29,28 +29,32 @@ public class GestoreEquipaggiamenti {
 
     }
 
-    public void Potenzia(Equipment equipment, Titanite titanite){
+    public void Potenzia(Equipment equipment, Titanite clientTitanite)
+    {
         if(equipment.getEquippedTitaniti().size()<equipment.getUpgradesMax())
         {
-            Titanite tmp=null;
-            for (Titanite titan : this.personaggio.getTitaniti()) {
-                if (titanite.getEquipmentType().EquipmentClass().isInstance(equipment)
-                        && titanite.getDiceColor() == titan.getDiceColor()){
-                    tmp=titan;
-                    System.out.println("dfasf");
+            for (Titanite titan : this.personaggio.getTitaniti())
+            {
+                if(clientTitanite.getEquipmentType().EquipmentClass().isInstance(equipment)
+                        && clientTitanite.getDiceColor() == titan.getDiceColor())
+                {
+                    equipment.addDice(titan.getDiceColor());
+                    equipment.getEquippedTitaniti().add(titan);
+                    titan.setAvailable(titan.getAvailable() - 1);
+                    break;
                 }
-
-
             }
-            equipment.addDice(tmp.getDiceColor());
-            equipment.getEquippedTitaniti().add(tmp);
-            tmp.setAvailable(tmp.getAvailable() - 1);
         }
     }
-    public void Depotenzia(Equipment equipment, Titanite titanite) {
+
+
+    public void Depotenzia(Equipment equipment, Titanite clientTitanite)
+    {
         Titanite tmp=null;
-        for (Titanite titan : equipment.getEquippedTitaniti()) {
-            if (titan.equals(titanite)) {
+        for (Titanite titan : equipment.getEquippedTitaniti())
+        {
+            if (titan.getDiceColor() == clientTitanite.getDiceColor())
+            {
                 titan.setAvailable(titan.getAvailable() + 1);
                 equipment.removeDice(titan.getDiceColor());
                 tmp=titan;

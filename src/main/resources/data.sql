@@ -80,7 +80,7 @@ INSERT INTO body_part(name,body_part_type) VALUES ('Due Mani',0);
 --TITANITE
 INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (0,4,4,0);
 INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (0,4,4,1);
-INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (1,3,3,1);
+INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (1,3,3,2);
 --CREATE SOME PERSONAGGIO AND ADD SOME ARTIFACTS
 INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
 INSERT INTO personaggio(statistica_base_id) VALUES (6);

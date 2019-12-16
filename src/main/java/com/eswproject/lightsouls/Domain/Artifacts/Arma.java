@@ -26,8 +26,9 @@ public class Arma extends Equipment
                 }
             }
         }
-
     }
+
+
     @Override
     public void removeDice(DiceColor c){
         for(Azione azione: this.getAzioni())
