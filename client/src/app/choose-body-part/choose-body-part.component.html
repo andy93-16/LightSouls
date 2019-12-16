@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+  <h2>Equipaggiamento Selezionato</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>BodyPartsRequirements</th>
+        <th>Throwable dice</th>
+      </tr>
+      </thead>
+      <tbody>
+        <td>{{equipaggiamento.name}}</td>
+        <td>{{equipaggiamento.type}}</td>
+        <td>{{equipaggiamento.bodyPartRequirement.bodyPartType+" : "+equipaggiamento.bodyPartRequirement.numberbodyPart}}</td>
+        <td>
+          <table class="table table-striped">
+            <tbody>
+            <tr *ngFor="let azione of equipaggiamento.azioni">
+              <td>
+            <tr style="color:red">{{azione.type}}</tr>
+            <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
+            <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
+            <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
+            </td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <h2>Parti Corpo</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Equipment</th>
+      <th>Throwable dice</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let bodyPart of bodyParts">
+    <td>{{bodyPart.name}}</td>
+    <td *ngIf="bodyPart.equipment!=null;else notEquipped">{{bodyPart.equipment.name}}</td>
+    <ng-template #notEquipped>-</ng-template>
+    <td>
+      <table class="table table-striped">
+        <tbody>
+        <tr *ngFor="let azione of bodyPart.azioni">
+          <td>
+        <tr style="color:red">{{azione.type}}</tr>
+        <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
+        <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
+        <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
+        </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+      <td >
+        <button class="btn btn-danger" aria-pressed="true" (click)="Select(bodyPart)">Select</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="bodyPartsSelected.length==equipaggiamento.bodyPartRequirement.numberbodyPart;else notShowConferma">
+  <button class="btn btn-success" (click)="Conferma()">Conferma</button>
+</div>
+<ng-template #notShowConferma>
+  <div></div>
+</ng-template>
+<div><button class="btn btn-success" (click)="TornaAEquipaggiaPersonaggio()">TornaAEquipaggiaPersonaggio</button></div>
+

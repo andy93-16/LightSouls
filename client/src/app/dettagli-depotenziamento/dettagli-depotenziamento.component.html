@@ -1,0 +1,61 @@
+<div class="col-md-6">
+  <h2>Equipaggiamento Selezionato</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <!--th class="hidden">Id<th-->
+      <th>Name</th>
+      <th>Upgrades left</th>
+      <th>Type</th>
+      <th>Dice throwable</th>
+      <!--th>attacchi</th>
+    <th>difese</th-->
+    </tr>
+    </thead>
+    <tbody>
+    <td>{{equipaggiamento.name}}</td>
+    <td>{{equipaggiamento.upgradesMax-equipaggiamento.equippedTitaniti.length}}</td>
+    <td>{{equipaggiamento.type}}</td>
+    <td>
+      <table class="table table-striped">
+        <tbody>
+        <tr *ngFor="let azione of equipaggiamento.azioni">
+          <td>
+        <tr style="color:red">{{azione.type}}</tr>
+        <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
+        <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
+        <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
+        </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+    </tbody>
+  </table>
+</div>
+<h2>Titaniti Usate</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <!--th class="hidden">Id<th-->
+    <th>Tipo Titanite</th>
+    <th>Available</th>
+    <th>Looted</th>
+    <!--th>difese</th-->
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let titanite of titaniti">
+    <td>{{titanite.diceColor}}</td>
+    <td>{{titanite.available}}</td>
+    <td>{{titanite.looted}}</td>
+    <td><button  class="btn btn-danger" (click)="Rimuovi(titanite)">Rimuovi</button></td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+<button class="btn btn-success" (click)="TornaRiepilogoEquipaggiamenti()">TornaRiepilogoEquipaggiamenti</button>
+
+
