@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpService} from '../http.service';
+import {HttpService} from '../../http.service';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-incontro',
-  templateUrl: './incontro.component.html',
-  styleUrls: ['./incontro.component.css']
+  templateUrl: './riepilogo-incontro.component.html',
+  styleUrls: ['./riepilogo-incontro.css']
 })
-export class IncontroComponent implements OnInit {
+export class RiepilogoIncontroComponent implements OnInit {
 
   incontroCorrente: any;
 

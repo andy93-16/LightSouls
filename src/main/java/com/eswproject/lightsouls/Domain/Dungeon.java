@@ -1,5 +1,7 @@
 package com.eswproject.lightsouls.Domain;
 
+import com.eswproject.lightsouls.Domain.Combattimento.Incontro;
+
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;

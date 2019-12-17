@@ -1,16 +1,16 @@
 package com.eswproject.lightsouls.Domain;
 
-import java.util.*;
+import com.eswproject.lightsouls.Domain.Combattimento.Incontro;
 
 public class Dungeon
 {
 
-	public Incontro getIncontroCorrente()
+	public com.eswproject.lightsouls.Domain.Combattimento.Incontro getIncontroCorrente()
 	{
 		return this.incontroCorrente;
 	}
 
-	public void setIncontroCorrente(Incontro incontroCorrente)
+	public void setIncontroCorrente(com.eswproject.lightsouls.Domain.Combattimento.Incontro incontroCorrente)
 	{
 		this.incontroCorrente = incontroCorrente;
 	}

@@ -26,7 +26,7 @@ export class FaloComponent implements OnInit {
 
   ProcediAdIncontro(): void {
     console.log(this.incontroCorrente);
-    this.router.navigate(['/Incontro'],{state: this.incontroCorrente, skipLocationChange: true });
+    this.router.navigate(['/RiepilogoIncontro'],{state: this.incontroCorrente, skipLocationChange: true });
   }
 
   Termina(): void {

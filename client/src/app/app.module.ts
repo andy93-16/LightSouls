@@ -7,21 +7,24 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpService} from './http.service';
 import { ModalitaComponent } from './modalita/modalita.component';
 import { FaloComponent } from './falo/falo.component';
-import { IncontroComponent } from './incontro/incontro.component';
-import { RisultatoIncontroComponent } from './risultato-incontro/risultato-incontro.component';
+import { RiepilogoIncontroComponent } from './Combattimento/riepilogo-incontro/riepilogo-incontro.component';
+import { RisultatoIncontroComponent } from './Combattimento/risultato-incontro/risultato-incontro.component';
 import { RisultatoPartitaComponent } from './risultato-partita/risultato-partita.component';
 import { GestisciPersonaggioComponent } from './gestisci-personaggio/gestisci-personaggio.component';
-import { RiepilogoEquipaggiamentiComponent } from './riepilogo-equipaggiamenti/riepilogo-equipaggiamenti.component';
-import { DettagliPotenziamentoComponent } from './dettagli-potenziamento/dettagli-potenziamento.component';
-import { EquipaggiaPersonaggioComponent } from './equipaggia-personaggio/equipaggia-personaggio.component';
-import { ChooseBodyPartComponent } from './choose-body-part/choose-body-part.component';
-import { DettagliDepotenziamentoComponent } from './dettagli-depotenziamento/dettagli-depotenziamento.component';
+import { RiepilogoEquipaggiamentiComponent } from './Potenziamento/riepilogo-equipaggiamenti/riepilogo-equipaggiamenti.component';
+import { DettagliPotenziamentoComponent } from './Potenziamento/dettagli-potenziamento/dettagli-potenziamento.component';
+import { EquipaggiaPersonaggioComponent } from './CambioEquipaggiamento/equipaggia-personaggio/equipaggia-personaggio.component';
+import { ChooseBodyPartComponent } from './CambioEquipaggiamento/choose-body-part/choose-body-part.component';
+import { DettagliDepotenziamentoComponent } from './Potenziamento/dettagli-depotenziamento/dettagli-depotenziamento.component';
+import { TurnoNemicoComponent } from './Combattimento/turno-nemico/turno-nemico.component';
+import { TurnoPersonaggioComponent } from './Combattimento/turno-personaggio/turno-personaggio.component';
+import { GestoreAttaccoComponent } from './Combattimento/gestore-attacco/gestore-attacco.component';
 
 const appRoutes: Routes = [
   { path: 'Giocatore', component: GiocatoreComponent },
   { path: 'Modalita' , component: ModalitaComponent},
   { path: 'Falo', component: FaloComponent},
-  { path: 'Incontro', component: IncontroComponent},
+  { path: 'RiepilogoIncontro', component: RiepilogoIncontroComponent},
   { path: 'RisultatoIncontro', component: RisultatoIncontroComponent},
   { path: 'RisultatoPartita', component: RisultatoPartitaComponent},
   { path: 'GestisciPersonaggio', component: GestisciPersonaggioComponent},
@@ -39,7 +42,7 @@ const appRoutes: Routes = [
     GiocatoreComponent,
     ModalitaComponent,
     FaloComponent,
-    IncontroComponent,
+    RiepilogoIncontroComponent,
     RisultatoIncontroComponent,
     RisultatoPartitaComponent,
     GestisciPersonaggioComponent,
@@ -48,6 +51,9 @@ const appRoutes: Routes = [
     EquipaggiaPersonaggioComponent,
     ChooseBodyPartComponent,
     DettagliDepotenziamentoComponent,
+    TurnoNemicoComponent,
+    TurnoPersonaggioComponent,
+    GestoreAttaccoComponent,
   ],
   imports: [
     BrowserModule,

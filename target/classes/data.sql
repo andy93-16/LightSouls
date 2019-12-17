@@ -83,7 +83,7 @@ INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (0,4,4,1
 INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (1,3,3,2);
 --CREATE SOME PERSONAGGIO AND ADD SOME ARTIFACTS
 INSERT INTO statistica_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
-INSERT INTO personaggio(statistica_base_id) VALUES (6);
+INSERT INTO personaggio(statistica_base_id,anime) VALUES (6,1000);
 INSERT INTO personaggio_body_parts(personaggio_id,body_parts_name) VALUES (1,'Mano Sinistra');
 INSERT INTO personaggio_body_parts(personaggio_id,body_parts_name) VALUES (1,'Mano Destra');
 INSERT INTO personaggio_body_parts(personaggio_id,body_parts_name) VALUES (1,'Corpo');

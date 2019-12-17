@@ -1,7 +1,7 @@
 package com.eswproject.lightsouls.Controller;
 
 import com.eswproject.lightsouls.Domain.CostruttoreModalita;
-import com.eswproject.lightsouls.Domain.Incontro;
+import com.eswproject.lightsouls.Domain.Combattimento.Incontro;
 import com.eswproject.lightsouls.Domain.Partita;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

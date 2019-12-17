@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IncontroComponent } from './incontro.component';
+import { TurnoNemicoComponent } from './turno-nemico.component';
 
-describe('IncontroComponent', () => {
-  let component: IncontroComponent;
-  let fixture: ComponentFixture<IncontroComponent>;
+describe('TurnoNemicoComponent', () => {
+  let component: TurnoNemicoComponent;
+  let fixture: ComponentFixture<TurnoNemicoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IncontroComponent ]
+      declarations: [ TurnoNemicoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IncontroComponent);
+    fixture = TestBed.createComponent(TurnoNemicoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

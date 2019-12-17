@@ -1,4 +1,6 @@
-package com.eswproject.lightsouls.Domain;
+package com.eswproject.lightsouls.Domain.Combattimento;
+
+import com.eswproject.lightsouls.Domain.DescrittoreIncontro;
 
 import java.util.Observable;
 
