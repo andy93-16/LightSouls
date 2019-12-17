@@ -1,6 +1,8 @@
 package com.eswproject.lightsouls.Domain.Personaggio;
 
 import com.eswproject.lightsouls.Domain.Artifacts.*;
+import com.eswproject.lightsouls.Domain.Combattimento.PersonaggioBase;
+import com.eswproject.lightsouls.Domain.Combattimento.StatisticheCombattimentoPersonaggio;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -8,7 +10,8 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Personaggio {
+public class Personaggio extends StatisticheCombattimentoPersonaggio
+{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -29,6 +32,11 @@ public class Personaggio {
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     private List<BodyPart> bodyParts;
+
+
+
+
+
 
     public List<BodyPart> getBodyParts() {
         return this.bodyParts;
