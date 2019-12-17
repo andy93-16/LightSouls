@@ -1,30 +1,38 @@
 package com.eswproject.lightsouls.Domain;
 
+import com.eswproject.lightsouls.Domain.Combattimento.NemiciWrapper;
+import com.eswproject.lightsouls.Domain.Combattimento.Nemico;
+
 import javax.persistence.*;
 
+import java.util.List;
+import java.util.Map;
+
 @Entity
-public class DescrittoreIncontro implements Cloneable
+public class DescrittoreIncontro
 {
 
     @Id
-    private Long idDescrittoreIncontro;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    public Long getIdDescrittoreIncontro() {
-        return idDescrittoreIncontro;
+    public int getId() {
+        return id;
     }
 
-    public void setIdDescrittoreIncontro(long idDescrittoreIncontro) {
-        this.idDescrittoreIncontro = idDescrittoreIncontro;
+    /*@ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="enemy_combination",joinColumns ={@JoinColumn(name="descrittore_incontro_id",referencedColumnName = "id")})
+    private Map<Nemico,Integer> nemici;
+
+    public Map<Nemico,Integer> getNemici() {
+        return nemici;
+    }*/
+
+    public List<NemiciWrapper> getNemiciWrappers() {
+        return nemiciWrappers;
     }
 
-    @Override
-    public DescrittoreIncontro clone() {
-        try {
-            return (DescrittoreIncontro) super.clone();
-        }
-        catch (CloneNotSupportedException e) {
-            return null;
-        }
-    }
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<NemiciWrapper> nemiciWrappers;
 
 }

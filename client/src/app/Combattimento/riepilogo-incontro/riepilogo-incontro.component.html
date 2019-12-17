@@ -1,5 +1,26 @@
 <div class="container">
-  <h2>ID Incontro : {{incontroCorrente.descrittoreIncontro.idDescrittoreIncontro}}</h2>
+  <div class="col">
+    <div class="row">
+    <h2>ID Incontro : {{this.descrittoreIncontro.id}}</h2>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>HP</th>
+          <th>Speed</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let nemicoWrapper of this.descrittoreIncontro.nemiciWrappers">
+          <td>{{nemicoWrapper.nemico.nome}}</td>
+          <td>{{nemicoWrapper.numberNemici}}</td>
+          <td>{{nemicoWrapper.nemico.hp_max}}</td>
+          <td>{{nemicoWrapper.nemico.velocita}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  <button class="btn btn-success" (click)="AvviaIncontro()">AvviaIncontro</button>
+ </div>
 </div>
-<button class="btn btn-success" (click)="AvviaIncontro()">AvviaIncontro</button>
-

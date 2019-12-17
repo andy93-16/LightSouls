@@ -21,7 +21,7 @@ public class IncontroController extends Observable {
 		return "/RisultatoIncontro";
 	}
 
-
+	@GetMapping("/RiepilogoIncontro")
 	public DescrittoreIncontro getDescrittoreIncontro() {
 		return this.descrittoreIncontro;
 	}

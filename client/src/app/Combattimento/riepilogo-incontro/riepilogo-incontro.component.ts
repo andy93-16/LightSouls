@@ -9,10 +9,12 @@ import {Router} from '@angular/router';
 })
 export class RiepilogoIncontroComponent implements OnInit {
 
-  incontroCorrente: any;
+  descrittoreIncontro: any;
 
   constructor(private httpservice: HttpService, private router: Router) {
-    this.incontroCorrente = this.router.getCurrentNavigation().extras.state;
+    this.httpservice.RiepilogoIncontro().subscribe(
+      descrittoreIncontro => this.descrittoreIncontro = descrittoreIncontro
+    );
   }
 
   ngOnInit() {

@@ -76,6 +76,9 @@ export class HttpService {
     return this.httpclient.get('http://localhost:8080/Disequipaggia/' + equipaggiamentoId,
       {responseType: 'text'});
   }
+  public RiepilogoIncontro(): Observable<any>{
+    return this.httpclient.get('http://localhost:8080/RiepilogoIncontro/');
+  }
 
 
 

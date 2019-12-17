@@ -25,11 +25,9 @@ public abstract class Azione
 	@MapKeyColumn(name="dice_color")
 	private Map<DiceColor, Integer> combination;
 
-
 	public Map<DiceColor, Integer> getCombination() {
 		return combination;
 	}
-
 
 	public int getDanno()
 	{

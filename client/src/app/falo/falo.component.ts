@@ -14,19 +14,10 @@ export class FaloComponent implements OnInit {
   constructor(private httpservice: HttpService, private router: Router) {}
 
   ngOnInit() {
-    this.httpservice.ProcediAdIncontro().subscribe( incontro => {
-      if (incontro === null) {
-        this.router.navigate(['/RisultatoPartita']);
-     }
-     else {
-       this.incontroCorrente = incontro;
-      }
-    });
   }
 
   ProcediAdIncontro(): void {
-    console.log(this.incontroCorrente);
-    this.router.navigate(['/RiepilogoIncontro'],{state: this.incontroCorrente, skipLocationChange: true });
+    this.router.navigate(['/RiepilogoIncontro']);
   }
 
   Termina(): void {

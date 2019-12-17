@@ -39,7 +39,7 @@ public class PartitaController implements Observer {
 
     private void nextIncontro()
     {
-        this.incontroController.setDescrittoreIncontro(iterIncontri.next().clone());
+        this.incontroController.setDescrittoreIncontro(iterIncontri.next());
         this.incontroController.addObserver(this);
     }
 

@@ -1,21 +1,20 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
-public class PersonaggioBase
+import javax.persistence.*;
+
+@MappedSuperclass
+public abstract class PersonaggioBase
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nome;
     private int HP_max;
     private int velocita;
 
-
-
     public int getHP_max()
     {
         return this.HP_max;
-    }
-
-    public void setHP_max(int HP_max)
-    {
-        this.HP_max = HP_max;
     }
 
     public int getVelocita()
@@ -23,8 +22,9 @@ public class PersonaggioBase
         return this.velocita;
     }
 
-    public void setVelocita(int velocita)
-    {
-        this.velocita = velocita;
+    public String getNome() {
+        return nome;
     }
+
+
 }
