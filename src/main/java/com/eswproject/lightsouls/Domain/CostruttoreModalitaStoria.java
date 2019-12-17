@@ -1,9 +1,10 @@
 package com.eswproject.lightsouls.Domain;
+
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class CostruttoreModalitaStoria extends CostruttoreModalita {
 
+public class CostruttoreModalitaStoria extends CostruttoreModalita {
 
     public Modalita getM() {
         return m;

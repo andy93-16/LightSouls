@@ -1,26 +1,21 @@
-package com.eswproject.lightsouls.Domain.Combattimento;
+package com.eswproject.lightsouls.Controller;
 
 import com.eswproject.lightsouls.Domain.DescrittoreIncontro;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Observable;
 
-public class Incontro extends Observable
-{
+public class IncontroController extends Observable {
+
 	private DescrittoreIncontro descrittoreIncontro;
 	boolean complete = false;
 
-	public Incontro(DescrittoreIncontro descrittoreIncontro)
-	{
-		this.descrittoreIncontro = descrittoreIncontro;
-	}
-
-	public String Avvia()
-	{
+	public String Avvia() {
 		setChanged();
 		notifyObservers();
 		return "/RisultatoIncontro";
 	}
-	
+
 
 	public DescrittoreIncontro getDescrittoreIncontro() {
 		return this.descrittoreIncontro;
@@ -38,4 +33,8 @@ public class Incontro extends Observable
 		this.complete = isComplete;
 	}
 
+	@GetMapping("/AvviaIncontro")
+	public String AvviaIncontro() {
+		return Avvia();
+	}
 }

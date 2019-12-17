@@ -1,52 +1,56 @@
 package com.eswproject.lightsouls.Controller;
 
-import com.eswproject.lightsouls.Domain.CostruttoreModalita;
-import com.eswproject.lightsouls.Domain.Combattimento.Incontro;
-import com.eswproject.lightsouls.Domain.Partita;
+import com.eswproject.lightsouls.Domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Iterator;
+
 @RestController
 @CrossOrigin("http://localhost:4200")
 public class PartitaController {
 
-
-
     @Autowired
     CostruttoreModalita cM;
-    Partita partita=new Partita();
 
-    @GetMapping("/ProcediAdIncontro")
-    public Incontro ProcediAdIncontro()
+    @Autowired
+    DungeonController dungeonCorrente;
+
+    Iterator<DescrittoreDungeon> iterDungeons;
+
+    Modalita m;
+
+
+    public void InitModalita()
     {
-        if(this.partita.getDungeonCorrente().isComplete())
-        {
-            if(this.partita.getIterDungeons().hasNext()){
-                this.partita.nextDungeon();
-                this.partita.getDungeonCorrente().nextIncontro();
-            }
-            else
-                return null;
-        }
-        return this.partita.getDungeonCorrente().getIncontroCorrente();
+        this.iterDungeons=this.m.getListaDungeons().iterator();
+        nextDungeon();
+        this.dungeonCorrente.nextIncontro();
     }
 
-    @GetMapping("/AvviaIncontro")
-    public String AvviaIncontro(){
-        return this.partita.getDungeonCorrente().getIncontroCorrente().Avvia();
-    }
 
     @GetMapping("/ModalitaStoria")
     public String CostruisciModalitaStoria()
     {
-        cM.reset();
-        cM.SetupModalita();
-        partita.setM(cM.getM());
-        partita.InitModalita();
+
+        this.cM.reset();
+        this.cM.SetupModalita();
+        this.m=cM.getM();
+        InitModalita();
         return "/Falo";
     }
+
+
+
+
+
+    public void nextDungeon()
+    {
+        this.dungeonCorrente.setIterIncontri(this.iterDungeons.next().getListaIncontri().iterator());
+    }
+
 
     @GetMapping("/Termina")
     public String Termina(){

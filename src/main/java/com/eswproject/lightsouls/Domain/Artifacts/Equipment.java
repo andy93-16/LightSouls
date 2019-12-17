@@ -1,9 +1,7 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
-import com.eswproject.lightsouls.Domain.Dice.DiceColor;
-
 import com.eswproject.lightsouls.Domain.Personaggio.BodyPart;
-import com.eswproject.lightsouls.Domain.Personaggio.BodyPartType;
+import com.eswproject.lightsouls.Domain.Personaggio.StatisticheBase;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.hibernate.annotations.Fetch;
@@ -41,7 +39,7 @@ public abstract class Equipment
     private List<Titanite> equippedTitaniti;
 
     @OneToOne
-    private StatisticaBase minRequirements;
+    private StatisticheBase minRequirements;
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
@@ -72,7 +70,7 @@ public abstract class Equipment
         return name;
     }
 
-	public StatisticaBase getMinRequirements() {
+	public StatisticheBase getMinRequirements() {
 		return minRequirements;
 	}
 

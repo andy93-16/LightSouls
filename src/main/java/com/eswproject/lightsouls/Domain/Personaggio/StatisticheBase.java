@@ -1,4 +1,4 @@
-package com.eswproject.lightsouls.Domain.Artifacts;
+package com.eswproject.lightsouls.Domain.Personaggio;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class StatisticaBase {
+public class StatisticheBase {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,7 +4,6 @@ import com.eswproject.lightsouls.Domain.Artifacts.BodyPartRequirement;
 import com.eswproject.lightsouls.Domain.Personaggio.*;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
-import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import com.eswproject.lightsouls.Service.PersonaggioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

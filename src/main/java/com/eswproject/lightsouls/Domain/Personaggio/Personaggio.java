@@ -17,7 +17,7 @@ public class Personaggio extends StatisticheCombattimentoPersonaggio
 	private int id;
 
 	@OneToOne
-	private StatisticaBase statisticaBase;
+	private StatisticheBase statisticheBase;
 
 	private int anime;
 
@@ -54,12 +54,12 @@ public class Personaggio extends StatisticheCombattimentoPersonaggio
 		return this.titaniti;
 	}
 
-	public void setStatisticaBase(StatisticaBase statisticaBase) {
-		this.statisticaBase = statisticaBase;
+	public void setStatisticaBase(StatisticheBase statisticaBase) {
+		this.statisticheBase = statisticaBase;
 	}
 
-	public StatisticaBase getStatisticaBase() {
-		return this.statisticaBase;
+	public StatisticheBase getStatisticaBase() {
+		return this.statisticheBase;
 	}
 
 	public int getAnime() {

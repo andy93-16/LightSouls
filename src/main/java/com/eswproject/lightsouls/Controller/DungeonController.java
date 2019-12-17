@@ -1,17 +1,25 @@
-package com.eswproject.lightsouls.Domain;
+package com.eswproject.lightsouls.Controller;
 
-import com.eswproject.lightsouls.Domain.Combattimento.Incontro;
+import com.eswproject.lightsouls.Domain.DescrittoreIncontro;
+
+
+import org.springframework.stereotype.Controller;
+
+
 
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Dungeon implements Observer
+@Controller
+public class DungeonController implements Observer
 {
 
 	private boolean complete=false;
+
 	private Iterator<DescrittoreIncontro> iterIncontri;
-	private Incontro incontroCorrente ;
+
+	private IncontroController incontroController ;
 
 
 	@Override
@@ -26,8 +34,8 @@ public class Dungeon implements Observer
 
 	public void nextIncontro()
 	{
-		this.incontroCorrente=new Incontro(iterIncontri.next().clone());
-		this.incontroCorrente.addObserver(this);
+		this.incontroController.setDescrittoreIncontro(iterIncontri.next().clone());
+		this.incontroController.addObserver(this);
 	}
 
 	public void resettaIncontri()
@@ -38,10 +46,6 @@ public class Dungeon implements Observer
 		this.iterIncontri = iterIncontri;
 	}
 
-	public Incontro getIncontroCorrente()
-	{
-		return incontroCorrente;
-	}
 
 	public boolean isComplete() {
 		return this.complete;
