@@ -7,29 +7,68 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Iterator;
+import java.util.Observable;
+import java.util.Observer;
+
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-public class PartitaController {
+public class PartitaController implements Observer {
 
     @Autowired
     CostruttoreModalita cM;
 
     @Autowired
-    DungeonController dungeonCorrente;
+    IncontroController incontroController ;
 
     Iterator<DescrittoreDungeon> iterDungeons;
 
+    Iterator<DescrittoreIncontro> iterIncontri;
+
     Modalita m;
 
+    private boolean dungeonComplete=false;
 
-    public void InitModalita()
+
+    private void InitModalita()
     {
         this.iterDungeons=this.m.getListaDungeons().iterator();
         nextDungeon();
-        this.dungeonCorrente.nextIncontro();
+        nextIncontro();
     }
 
+    private void nextIncontro()
+    {
+        this.incontroController.setDescrittoreIncontro(iterIncontri.next().clone());
+        this.incontroController.addObserver(this);
+    }
+
+    private void nextDungeon()
+    {
+        this.iterIncontri=this.iterDungeons.next().getListaIncontri().iterator();
+        this.dungeonComplete=false;
+    }
+
+    @GetMapping("/ProcediAdIncontro")
+    public IncontroController ProcediAdIncontro(){
+        if(this.dungeonComplete){
+            if(this.iterDungeons.hasNext()){
+                nextDungeon();
+                nextIncontro();
+            }
+            else return null;
+        }
+        return incontroController ;
+    }
+
+    @Override
+    public void update(Observable incontro, Object stato)
+    {
+        if(iterIncontri.hasNext())
+            nextIncontro();
+        else
+            dungeonComplete=true;
+    }
 
     @GetMapping("/ModalitaStoria")
     public String CostruisciModalitaStoria()
@@ -41,16 +80,6 @@ public class PartitaController {
         InitModalita();
         return "/Falo";
     }
-
-
-
-
-
-    public void nextDungeon()
-    {
-        this.dungeonCorrente.setIterIncontri(this.iterDungeons.next().getListaIncontri().iterator());
-    }
-
 
     @GetMapping("/Termina")
     public String Termina(){
