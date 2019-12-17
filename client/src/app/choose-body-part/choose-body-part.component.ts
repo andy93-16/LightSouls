@@ -25,6 +25,9 @@ export class ChooseBodyPartComponent implements OnInit {
   Select(bodypart: any): void{
     this.bodyPartsSelected.push(bodypart);
   }
+  Deselect(bodypart: any): void {
+    this.bodyPartsSelected.splice(bodypart);
+  }
 
   Conferma(): void {
     this.httpservice.Equipaggia(this.bodyPartsSelected, this.equipaggiamento.id).subscribe(

@@ -111,7 +111,6 @@ public class PersonaggioController {
             if (BodyPartsForEquipment(equipment).size() >=
                     bodyPartRequirement.getNumberbodyPart()) {
                 equipaggiabili.add(equipment);
-                System.out.println(equipment.getEquippedBodyParts().isEmpty());
             }
         }
         return equipaggiabili;

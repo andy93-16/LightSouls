@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="col">
   <div class="row">
   <h2>Equipaggiamento Selezionato</h2>
     <table class="table table-striped">
@@ -62,17 +63,22 @@
       </table>
     </td>
       <td >
-        <button class="btn btn-danger" aria-pressed="true" (click)="Select(bodyPart)">Select</button>
+      <button *ngIf="this.bodyPartsSelected.length<this.equipaggiamento.bodyPartRequirement.numberbodyPart" type="button" class="btn btn-danger" (click)="Select(bodyPart)">Select</button>
+      <button type="button" class="btn btn-dark" (click)="Deselect(bodyPart)">Deselect</button>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
-<div *ngIf="bodyPartsSelected.length==equipaggiamento.bodyPartRequirement.numberbodyPart;else notShowConferma">
-  <button class="btn btn-success" (click)="Conferma()">Conferma</button>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-success" (click)="TornaAEquipaggiaPersonaggio()">TornaAEquipaggiaPersonaggio</button>
+    </div>
+  <div class="col">
+    <button *ngIf="this.bodyPartsSelected.length==this.equipaggiamento.bodyPartRequirement.numberbodyPart;else notShowConferma"class="btn btn-success" (click)="Conferma()">Conferma</button>
+    <ng-template #notShowConferma>
+    </ng-template>
+  </div>
+  </div>
+  </div>
 </div>
-<ng-template #notShowConferma>
-  <div></div>
-</ng-template>
-<div><button class="btn btn-success" (click)="TornaAEquipaggiaPersonaggio()">TornaAEquipaggiaPersonaggio</button></div>
-

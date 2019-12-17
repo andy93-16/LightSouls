@@ -59,9 +59,9 @@ public abstract class Equipment
         return equippedTitaniti;
     }
 
-    public abstract void addDice(DiceColor c);
+    public abstract void addTitanite(Titanite titanite);
 
-    public abstract void removeDice(DiceColor c);
+    public abstract void removeTitanite(Titanite titanite);
 
 	public int getId() {
 		return id;

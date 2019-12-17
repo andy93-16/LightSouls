@@ -38,8 +38,7 @@ public class GestoreEquipaggiamenti {
                 if(clientTitanite.getEquipmentType().EquipmentClass().isInstance(equipment)
                         && clientTitanite.getDiceColor() == titan.getDiceColor())
                 {
-                    equipment.addDice(titan.getDiceColor());
-                    equipment.getEquippedTitaniti().add(titan);
+                    equipment.addTitanite(titan);
                     titan.setAvailable(titan.getAvailable() - 1);
                     break;
                 }
@@ -56,11 +55,10 @@ public class GestoreEquipaggiamenti {
             if (titan.getDiceColor() == clientTitanite.getDiceColor())
             {
                 titan.setAvailable(titan.getAvailable() + 1);
-                equipment.removeDice(titan.getDiceColor());
                 tmp=titan;
             }
         }
-        equipment.getEquippedTitaniti().remove(tmp);
+        equipment.removeTitanite(tmp);
     }
 
     private Equipment getLocalEquipment(int idEquipment){

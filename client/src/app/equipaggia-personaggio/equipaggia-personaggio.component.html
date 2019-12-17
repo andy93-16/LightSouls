@@ -1,18 +1,18 @@
-<div clas="container">
+<div class="container">
+  <div class="col">
   <div class="row">
-    <div clas="col">
       <h2>Riepilogo Equipaggiati</h2>
-     <table class="table table-striped">
-     <thead>
-     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>BodyPartEquipped</th>
-      <th>Throwable dice</th>
-      <th>Action</th>
-     </tr>
-     </thead>
-     <tbody>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Body Part Equipped</th>
+          <th>Throwable dice</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
         <tr *ngFor="let equipaggiamento of equipaggiati" >
           <td>{{equipaggiamento.name}}</td>
           <td>{{equipaggiamento.type}}</td>
@@ -29,29 +29,26 @@
             </table>
           </td>
           <td>
-              <table class="table table-striped">
-                <tbody >
-                <tr *ngFor="let azione of equipaggiamento.azioni">
-                  <td>
-                <tr style="color:red">{{azione.type}}</tr>
-                <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
-                <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
-                <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
-                </td>
-                </tr>
-                </tbody>
-              </table>
+            <table class="table table-striped">
+              <tbody>
+              <tr *ngFor="let azione of equipaggiamento.azioni">
+                <td>
+              <tr style="color:red">{{azione.type}}</tr>
+              <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
+              <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
+              <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
+               </td>
+              </tr>
+              </tbody>
+            </table>
           </td>
           <td>
-            <button class="btn btn-dark"  (click)="Disequipaggia(equipaggiamento.id)">Disequipaggia</button>
+            <button class="btn btn-dark" (click)="Disequipaggia(equipaggiamento.id)">Disequipaggia</button>
           </td>
-        </tr>
-      </tbody>
-     </table>
-    </div>
+        </tbody>
+      </table>
     </div>
 <div class="row">
-  <div class="col">
 <h2>Riepilogo Equipaggiabili</h2>
 <table class="table table-striped">
   <thead>
@@ -87,11 +84,9 @@
   </tr>
   </tbody>
 </table>
-  </div>
 </div>
   <div class="row">
-    <div class="col">
-    <h2>Riepilogo NonEquipaggiabili</h2>
+    <h2>Riepilogo Non Equipaggiabili</h2>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -124,6 +119,6 @@
       </tbody>
     </table>
   </div>
-  </div>
 <button class="btn btn-success" (click)="TornaGestisciPersonaggio()">TornaGestisciPersonaggio</button>
+</div>
 </div>

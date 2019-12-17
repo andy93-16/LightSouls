@@ -16,8 +16,7 @@ public class Personaggio {
 	@OneToOne
 	private StatisticaBase statisticaBase;
 
-	@Transient
-	private int anime = 0;
+	private int anime;
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)

@@ -29,8 +29,8 @@ const appRoutes: Routes = [
   { path: 'DettagliPotenziamento', component: DettagliPotenziamentoComponent},
   { path: 'EquipaggiaPersonaggio' , component: EquipaggiaPersonaggioComponent},
   { path: 'DettagliDepotenziamento', component: DettagliDepotenziamentoComponent},
-  { path: 'ChooseBodyPart' , component: ChooseBodyPartComponent}
-//  { path: '**', component: PageNotFoundComponent }
+  { path: 'ChooseBodyPart' , component: ChooseBodyPartComponent},
+  { path: '**', component: GiocatoreComponent }
   ];
 
 @NgModule({
