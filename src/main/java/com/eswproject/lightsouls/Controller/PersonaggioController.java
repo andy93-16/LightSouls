@@ -35,13 +35,7 @@ public class PersonaggioController extends PersonaggioBase {
     }
 
 
-////////////POTENZIAMENTO EQUIPMENT///////////
-
-    @GetMapping("/RiepilogoEquipaggiamenti")
-    public List<Equipment> RiepilogoEquipaggiamenti() {
-        return this.descrittorePersonaggio.getZainoEquip();
-    }
-
+////////////POTENZIAMENTO EQUIPMENT///////////Dep
 	@PostMapping("/PotenziaEquipaggiamento/{idE}")
 	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@RequestBody Titanite titanite)
     {   Equipment eq = null;
@@ -92,19 +86,6 @@ public class PersonaggioController extends PersonaggioBase {
         return titanites;
     }
 
-    @GetMapping("/TitanitiOfEquipment/{idE}")
-    public List<Titanite> TitanitiOfEquipment(@PathVariable("idE") int idE){
-        Equipment eq = null;
-        for (Equipment equipment : this.descrittorePersonaggio.getZainoEquip())
-        {
-            if (equipment.getId() == idE)
-            {
-                eq = equipment;
-                break;
-            }
-        }
-        return eq.getEquippedTitaniti();
-    }
 
 ////////////////////EQUIPMENT CHANGE///////////////////////
 

@@ -10,11 +10,9 @@ import {Router} from "@angular/router";
 })
 export class DettagliDepotenziamentoComponent implements OnInit {
   equipaggiamento: any;
-  titaniti: any[];
 
   constructor(private httpservice: HttpService, private router: Router) {
     this.equipaggiamento = this.router.getCurrentNavigation().extras.state;
-    this.httpservice.TitanitiOfEquipment(this.equipaggiamento).subscribe(titaniti => this.titaniti = titaniti);
   }
 
   ngOnInit() {

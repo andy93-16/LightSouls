@@ -9,14 +9,18 @@ import {Router} from '@angular/router';
 })
 export class RiepilogoEquipaggiamentiComponent implements OnInit {
 
-  equipaggiamenti: any[];
+  personaggio: any;
+  equipaggiamenti: any[] = [];
 
-  constructor(private httpservice: HttpService, private router: Router) { }
+  constructor(private httpservice: HttpService, private router: Router) {
+    this.httpservice.RiepilogoPersonaggio().subscribe(personaggio => {
+      this.personaggio = personaggio;
+      this.equipaggiamenti = this.equipaggiamenti.concat(this.personaggio.zainoEquip)
+        .concat(this.personaggio.equipaggiati);
+      });
+  }
 
   ngOnInit() {
-    this.httpservice.RiepilogoEquipaggiamenti().subscribe(equipaggiamenti => {
-      this.equipaggiamenti = equipaggiamenti;
-    });
   }
 
   DettagliPotenziamento(equipaggiamento: any): void {
