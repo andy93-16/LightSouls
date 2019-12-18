@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: 'GestisciPersonaggio', component: GestisciPersonaggioComponent},
   { path: 'RiepilogoEquipaggiamenti', component: RiepilogoEquipaggiamentiComponent},
   { path: 'DettagliPotenziamento', component: DettagliPotenziamentoComponent},
-  { path: 'EquipaggiaPersonaggio' , component: EquipaggiaPersonaggioComponent},
+  { path: 'EquipaggiaPersonaggio' , component: EquipaggiaPersonaggioComponent , runGuardsAndResolvers: 'always'},
   { path: 'DettagliDepotenziamento', component: DettagliDepotenziamentoComponent},
   { path: 'ChooseBodyPart' , component: ChooseBodyPartComponent},
   { path: '**', component: GiocatoreComponent }

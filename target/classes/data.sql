@@ -82,20 +82,20 @@ INSERT INTO body_part(name,body_part_type) VALUES ('Due Mani',0);
 INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (0,4,4,0);
 INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (0,4,4,1);
 INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (1,3,3,2);
---CREATE SOME PERSONAGGIO AND ADD SOME ARTIFACTS
+--CREATE SOME descrittore_personaggio AND ADD SOME ARTIFACTS
 INSERT INTO statistiche_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
-INSERT INTO personaggio(hp_max,velocita,statistiche_base_id,anime) VALUES (200,5,6,1000);
-INSERT INTO personaggio_body_parts(personaggio_id,body_parts_name) VALUES (1,'Mano Sinistra');
-INSERT INTO personaggio_body_parts(personaggio_id,body_parts_name) VALUES (1,'Mano Destra');
-INSERT INTO personaggio_body_parts(personaggio_id,body_parts_name) VALUES (1,'Corpo');
-INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (1,1);
-INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (2,1);
-INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (3,1);
-INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (4,1);
-INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (5,1);
-INSERT INTO personaggio_titaniti(titaniti_id,personaggio_id) VALUES (1,1);
-INSERT INTO personaggio_titaniti(titaniti_id,personaggio_id) VALUES (2,1);
-INSERT INTO personaggio_titaniti(titaniti_id,personaggio_id) VALUES (3,1);
+INSERT INTO descrittore_personaggio(hp_max,velocita,statistiche_base_id,anime) VALUES (200,5,6,1000);
+INSERT INTO descrittore_personaggio_body_parts(descrittore_personaggio_id,body_parts_name) VALUES (1,'Mano Sinistra');
+INSERT INTO descrittore_personaggio_body_parts(descrittore_personaggio_id,body_parts_name) VALUES (1,'Mano Destra');
+INSERT INTO descrittore_personaggio_body_parts(descrittore_personaggio_id,body_parts_name) VALUES (1,'Corpo');
+INSERT INTO descrittore_personaggio_zaino_equip(zaino_equip_id,descrittore_personaggio_id) VALUES (1,1);
+INSERT INTO descrittore_personaggio_zaino_equip(zaino_equip_id,descrittore_personaggio_id) VALUES (2,1);
+INSERT INTO descrittore_personaggio_zaino_equip(zaino_equip_id,descrittore_personaggio_id) VALUES (3,1);
+INSERT INTO descrittore_personaggio_zaino_equip(zaino_equip_id,descrittore_personaggio_id) VALUES (4,1);
+INSERT INTO descrittore_personaggio_zaino_equip(zaino_equip_id,descrittore_personaggio_id) VALUES (5,1);
+INSERT INTO descrittore_personaggio_titaniti(titaniti_id,descrittore_personaggio_id) VALUES (1,1);
+INSERT INTO descrittore_personaggio_titaniti(titaniti_id,descrittore_personaggio_id) VALUES (2,1);
+INSERT INTO descrittore_personaggio_titaniti(titaniti_id,descrittore_personaggio_id) VALUES (3,1);
 --CREATE SOME NEMICO AND ADD TO ENCOUNTERS
 INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',0);

@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let equipaggiamento of equipaggiati" >
+        <tr *ngFor="let equipaggiamento of this.personaggio.equipaggiati" >
           <td>{{equipaggiamento.name}}</td>
           <td>{{equipaggiamento.type}}</td>
           <td>

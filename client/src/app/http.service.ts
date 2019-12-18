@@ -29,6 +29,9 @@ export class HttpService {
       this.httpclient.get('http://localhost:8080/AvviaIncontro',
         {responseType: 'text'}).subscribe(url => this.router.navigate([url]));
   }
+  public RiepilogoPersonaggio(): Observable<any>{
+    return this.httpclient.get<any>('http://localhost:8080/RiepilogoPersonaggio');
+  }
   public RiepilogoEquipaggiamenti(): Observable<any[]> {
       return this.httpclient.get<any[]>( 'http://localhost:8080/RiepilogoEquipaggiamenti');
   }
@@ -52,18 +55,6 @@ export class HttpService {
     return this.httpclient.post('http://localhost:8080/DepotenziaEquipaggiamento/'
       + id, titanite ,
       { responseType: 'text'});
-  }
-  public RiepilogoEquipaggiati(): Observable<any[]> {
-    return this.httpclient.get<any[]>('http://localhost:8080/RiepilogoEquipaggiati');
-  }
-  public RiepilogoNonEquipaggiabili(): Observable<any[]> {
-    return this.httpclient.get<any[]>('http://localhost:8080/RiepilogoNonEquipaggiabili');
-  }
-  public RiepilogoEquipaggiabili(): Observable<any[]> {
-    return this.httpclient.get<any[]>('http://localhost:8080/RiepilogoEquipaggiabili');
-  }
-  public BodyPartsForEquipment(equipaggiamento: any): Observable<any[]> {
-    return this.httpclient.post<any[]>('http://localhost:8080/BodyPartsForEquipment', equipaggiamento);
   }
   public Equipaggia(bodyParts: any[], equipaggiamentoId: number): Observable<any> {
     return this.httpclient.post('http://localhost:8080/Equipaggia/' + equipaggiamentoId , bodyParts ,

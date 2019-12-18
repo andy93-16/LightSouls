@@ -33,52 +33,56 @@
     </table>
   </div>
   <div class="row">
-    <h2>Parti Corpo</h2>
+    <h2>Parti Corpo Disponibili</h2>
   <table class="table table-striped">
     <thead>
     <tr>
       <th>Name</th>
-      <th>Equipment</th>
-      <th>Throwable dice</th>
+      <th>Type</th>
       <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let bodyPart of bodyParts">
     <td>{{bodyPart.name}}</td>
-    <td *ngIf="bodyPart.equipment!=null;else notEquipped">{{bodyPart.equipment.name}}</td>
-    <ng-template #notEquipped>-</ng-template>
+    <td>{{bodyPart.type}}</td>
     <td>
-      <table class="table table-striped">
-        <tbody>
-        <tr *ngFor="let azione of bodyPart.azioni">
-          <td>
-        <tr style="color:red">{{azione.type}}</tr>
-        <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
-        <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
-        <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
-        </td>
-        </tr>
-        </tbody>
-      </table>
+      <button type="button" class="btn btn-danger" (click)="Select(bodyPart)">Select</button>
     </td>
-      <td >
-      <button *ngIf="this.bodyPartsSelected.length<this.equipaggiamento.bodyPartRequirement.numberbodyPart" type="button" class="btn btn-danger" (click)="Select(bodyPart)">Select</button>
-      <button type="button" class="btn btn-dark" (click)="Deselect(bodyPart)">Deselect</button>
-      </td>
     </tr>
     </tbody>
   </table>
 </div>
+    <div class="row">
+      <h2>Parti Corpo Selezionate</h2>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let bodyPart of bodyPartsSelected">
+          <td>{{bodyPart.name}}</td>
+          <td>{{bodyPart.type}}</td>
+          <td>
+          <button type="button" class="btn btn-dark" (click)="Deselect(bodyPart)">Deselect</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
   <div class="row">
     <div class="col">
       <button class="btn btn-success" (click)="TornaAEquipaggiaPersonaggio()">TornaAEquipaggiaPersonaggio</button>
     </div>
   <div class="col">
-    <button *ngIf="this.bodyPartsSelected.length==this.equipaggiamento.bodyPartRequirement.numberbodyPart;else notShowConferma"class="btn btn-success" (click)="Conferma()">Conferma</button>
+    <button *ngIf="bodyPartsSelected.length===equipaggiamento.bodyPartRequirement.numberbodyPart;else notShowConferma"class="btn btn-success" (click)="Conferma()">Conferma</button>
     <ng-template #notShowConferma>
     </ng-template>
   </div>
   </div>
   </div>
+ </div>
 </div>

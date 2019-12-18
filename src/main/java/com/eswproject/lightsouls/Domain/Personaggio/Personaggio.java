@@ -1,3 +1,4 @@
+/*
 package com.eswproject.lightsouls.Domain.Personaggio;
 
 import com.eswproject.lightsouls.Domain.Artifacts.*;
@@ -59,4 +60,4 @@ public class Personaggio extends PersonaggioBase
 		this.anime = anime;
 	}
 
-}
+}*/

@@ -1,26 +1,21 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
-public class StatisticheCombattimento{
+public class StatisticheCombattimentoPersonaggio extends StatisticheCombattimentoBase{
 
-    private int HP;
-    private int velocita;
+
+
+
+    private int stamina_max;
     private int stamina;
     private int staminaRegen;
 
-    public int getHP() {
-        return HP;
+
+    public int getStamina_max() {
+        return stamina_max;
     }
 
-    public void setHP(int HP) {
-        this.HP = HP;
-    }
-
-    public int getVelocita() {
-        return velocita;
-    }
-
-    public void setVelocita(int velocita) {
-        this.velocita = velocita;
+    public void setStamina_max(int stamina_max) {
+        this.stamina_max = stamina_max;
     }
 
     public int getStamina()
