@@ -12,14 +12,12 @@ import javax.persistence.*;
 
 public class Personaggio extends PersonaggioBase
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
 	@OneToOne
 	private StatisticheBase statisticheBase;
 
 	private int anime;
+	private int stamina;
+	private int staminaRegen;
 
 	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
@@ -35,10 +33,6 @@ public class Personaggio extends PersonaggioBase
 
     public List<BodyPart> getBodyParts() {
         return this.bodyParts;
-    }
-
-    public int getId() {
-        return id;
     }
 
 	public List<Equipment> getZainoEquip() {

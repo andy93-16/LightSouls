@@ -1,6 +1,9 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
+import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
+
 import javax.persistence.*;
+import java.util.List;
 
 @MappedSuperclass
 public abstract class PersonaggioBase
@@ -26,5 +29,10 @@ public abstract class PersonaggioBase
         return nome;
     }
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Equipment> equipaggiati;
 
+    public List<Equipment> getEquipaggiati() {
+        return equipaggiati;
+    }
 }

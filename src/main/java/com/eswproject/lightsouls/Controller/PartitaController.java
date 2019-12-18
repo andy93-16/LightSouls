@@ -73,7 +73,6 @@ public class PartitaController implements Observer {
     @GetMapping("/ModalitaStoria")
     public String CostruisciModalitaStoria()
     {
-
         this.cM.reset();
         this.cM.SetupModalita();
         this.m=cM.getM();
@@ -85,7 +84,5 @@ public class PartitaController implements Observer {
     public String Termina(){
         return "/Giocatore";
     }
-
-
 
 }

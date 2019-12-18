@@ -21,9 +21,6 @@ export class HttpService {
         {responseType: 'text'}).subscribe(url => this.router.navigate([url])
     );
     }
-  public ProcediAdIncontro(): Observable<any> {
-      return this.httpclient.get<any>('http://localhost:8080/ProcediAdIncontro') ;
-    }
   public Termina(): void {
       this.httpclient.get('http://localhost:8080/Termina',
         {responseType: 'text'}).subscribe(url => this.router.navigate([url]));

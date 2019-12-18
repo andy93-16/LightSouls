@@ -15,17 +15,26 @@ public class GestoreEquipaggiamenti {
     }
 
     public void Equipaggia(List<BodyPart> bodyParts, int equipmentId){
-        for(BodyPart bodyPart : getLocalBodyPartList(bodyParts)) {
-            bodyPart.setEquipped(true);
-            getLocalEquipment(equipmentId).getEquippedBodyParts().add(bodyPart);
+        Equipment eqIn=getLocalEquipmentInZaino(equipmentId);
+        List<BodyPart> bodyPartSelected=getLocalBodyPartList(bodyParts);
+        for(BodyPart bodyPart :bodyPartSelected) {
+            eqIn.getEquippedBodyParts().add(bodyPart);
+            this.personaggio.getBodyParts().remove(bodyPart);
         }
+        this.personaggio.getEquipaggiati().add(eqIn);
+        this.personaggio.getZainoEquip().remove(eqIn);
+
     }
 
     public void Disequipaggia(int equipmentId){
-        for(BodyPart bodyPart : getLocalEquipment(equipmentId).getEquippedBodyParts()) {
-            bodyPart.setEquipped(false);
+        Equipment eqOut=getLocalEquipmentInEquipaggiati(equipmentId);
+        for(BodyPart bodyPart : eqOut.getEquippedBodyParts()) {
+            this.personaggio.getBodyParts().add(bodyPart);
+
         }
-        getLocalEquipment(equipmentId).getEquippedBodyParts().clear();
+        eqOut.getEquippedBodyParts().clear();
+        this.personaggio.getEquipaggiati().remove(eqOut);
+        this.personaggio.getZainoEquip().add(eqOut);
 
     }
 
@@ -61,10 +70,21 @@ public class GestoreEquipaggiamenti {
         equipment.removeTitanite(tmp);
     }
 
-    private Equipment getLocalEquipment(int idEquipment){
+    private Equipment getLocalEquipmentInZaino(int idEquipment){
         Equipment eq=null;
         for(Equipment equipment:this.personaggio.getZainoEquip()){
             if(equipment.getId()==idEquipment) {
+                eq = equipment;
+                break;
+            }
+        }
+        return eq;
+    }
+
+    private Equipment getLocalEquipmentInEquipaggiati(int idEquipment){
+        Equipment eq=null;
+        for(Equipment equipment:this.personaggio.getEquipaggiati()) {
+            if (equipment.getId() == idEquipment) {
                 eq = equipment;
                 break;
             }
@@ -76,9 +96,9 @@ public class GestoreEquipaggiamenti {
     private List<BodyPart> getLocalBodyPartList(List<BodyPart> bodyParts){
         List<BodyPart> bodyPartList=new ArrayList<>();
         for (BodyPart bodyPart:bodyParts){
-            for(BodyPart bodyPart1:this.personaggio.getBodyParts()){
-                if(bodyPart.getName().equals(bodyPart1.getName()))
-                    bodyPartList.add(bodyPart1);
+            for(BodyPart personaggioBodyPart:this.personaggio.getBodyParts()){
+                if(bodyPart.getName().equals(personaggioBodyPart.getName()))
+                    bodyPartList.add(personaggioBodyPart);
             }
         }
         return  bodyPartList;

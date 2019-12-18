@@ -13,9 +13,6 @@ public class BodyPart {
 
     private BodyPartType bodyPartType;
 
-    @Transient
-    private Boolean equipped=false;
-
     public String getName() {
         return name;
     }
@@ -24,12 +21,5 @@ public class BodyPart {
         return bodyPartType;
     }
 
-    public Boolean getEquipped() {
-        return equipped;
-    }
-
-    public void setEquipped(Boolean equipped) {
-        this.equipped = equipped;
-    }
 
 }

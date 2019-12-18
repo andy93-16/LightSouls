@@ -117,12 +117,7 @@ public class PersonaggioController {
 
     @GetMapping("/RiepilogoEquipaggiati")
     public List<Equipment> RiepilogoEquipaggiati(){
-        List<Equipment> equipaggiabili=new ArrayList<>();
-        for(Equipment equipment : this.personaggio.getZainoEquip()) {
-            if(!equipment.getEquippedBodyParts().isEmpty())
-                equipaggiabili.add(equipment);
-        }
-        return equipaggiabili;
+       return this.personaggio.getEquipaggiati();
     }
 
     @GetMapping("/RiepilogoNonEquipaggiabili")
@@ -140,8 +135,7 @@ public class PersonaggioController {
     public List<BodyPart> BodyPartsForEquipment(@RequestBody Equipment equipment){
         List<BodyPart> bodyPartsFiltered=new ArrayList<>();
         for (BodyPart bodyPart: this.personaggio.getBodyParts()) {
-            if(!bodyPart.getEquipped() && bodyPart.getBodyPartType().
-                    equals(equipment.getBodyPartRequirement().getBodyPartType()))
+            if(bodyPart.getBodyPartType().equals(equipment.getBodyPartRequirement().getBodyPartType()))
                 bodyPartsFiltered.add(bodyPart);
         }
         return bodyPartsFiltered;

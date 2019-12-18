@@ -96,18 +96,25 @@ INSERT INTO personaggio_zaino_equip(zaino_equip_id,personaggio_id) VALUES (5,1);
 INSERT INTO personaggio_titaniti(titaniti_id,personaggio_id) VALUES (1,1);
 INSERT INTO personaggio_titaniti(titaniti_id,personaggio_id) VALUES (2,1);
 INSERT INTO personaggio_titaniti(titaniti_id,personaggio_id) VALUES (3,1);
---CREATE SOME NEMICO AND ADD TO ENCONUTERS
+--CREATE SOME NEMICO AND ADD TO ENCOUNTERS
 INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',0);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (9,2,1);
+INSERT INTO equipment(dtype,name,upgrades_max) VALUES ('Arma','Spada Nemico',0);
+INSERT INTO equipment_azioni(equipment_id,azioni_id) VALUES (6,9);
+INSERT INTO equipment_azioni(equipment_id,azioni_id) VALUES (6,10);
 INSERT INTO nemico(nome,hp_max,velocita) VALUES ('Undead Hollow',200,5);
-INSERT INTO nemico_azioni(nemico_id,azioni_id) VALUES (1,9);
+INSERT INTO nemico_equipaggiati(nemico_id,equipaggiati_id) VALUES (1,6);
 INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',0);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (11,1,2);
+INSERT INTO equipment(dtype,name,upgrades_max) VALUES ('Arma','Spada Nemico',0);
+INSERT INTO equipment_azioni(equipment_id,azioni_id) VALUES (7,11);
+INSERT INTO equipment_azioni(equipment_id,azioni_id) VALUES (7,12);
 INSERT INTO nemico(nome,hp_max,velocita) VALUES ('Soldier',300,2);
-INSERT INTO nemico_azioni(nemico_id,azioni_id) VALUES (2,11);
+INSERT INTO nemico_equipaggiati(nemico_id,equipaggiati_id) VALUES (2,7);
 INSERT INTO nemici_wrapper(number_nemici,nemico_id) VALUES (1,1);
 INSERT INTO nemici_wrapper(number_nemici,nemico_id) VALUES (2,2);
+--ADD ENEMY TO ENCOUNTER ID:1
 INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,1);
 INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,2);

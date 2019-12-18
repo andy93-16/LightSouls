@@ -13,13 +13,7 @@ public class IncontroController extends Observable {
 
 	private DescrittoreIncontro descrittoreIncontro;
 
-	boolean complete = false;
-
-	public String Avvia() {
-		setChanged();
-		notifyObservers();
-		return "/RisultatoIncontro";
-	}
+	boolean isComplete = false;
 
 	@GetMapping("/RiepilogoIncontro")
 	public DescrittoreIncontro getDescrittoreIncontro() {
@@ -31,15 +25,21 @@ public class IncontroController extends Observable {
 	}
 
 	public boolean isComplete() {
-		return this.complete;
+		return this.isComplete;
 	}
 
-	public void setComplete(boolean isComplete) {
-		this.complete = isComplete;
+	public void setIsComplete(boolean isComplete) {
+		this.isComplete = isComplete;
 	}
 
 	@GetMapping("/AvviaIncontro")
 	public String AvviaIncontro() {
 		return Avvia();
+	}
+
+	public String Avvia() {
+		setChanged();
+		notifyObservers();
+		return "/RisultatoIncontro";
 	}
 }
