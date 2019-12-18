@@ -19,6 +19,7 @@ import { DettagliDepotenziamentoComponent } from './Potenziamento/dettagli-depot
 import { TurnoNemicoComponent } from './Combattimento/turno-nemico/turno-nemico.component';
 import { TurnoPersonaggioComponent } from './Combattimento/turno-personaggio/turno-personaggio.component';
 import { GestoreAttaccoComponent } from './Combattimento/gestore-attacco/gestore-attacco.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: 'Giocatore', component: GiocatoreComponent },
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload'})],
+    RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload'}),
+    NoopAnimationsModule],
   providers: [HttpService],
   bootstrap: [AppComponent],
   exports: [RouterModule]

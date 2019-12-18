@@ -23,6 +23,7 @@ export class DettagliDepotenziamentoComponent implements OnInit {
   }
 
   Rimuovi(titanite: any): void {
+
     this.httpservice.Depotenzia(this.equipaggiamento.id, titanite).subscribe(url => this.router.navigate([url]));
   }
 
