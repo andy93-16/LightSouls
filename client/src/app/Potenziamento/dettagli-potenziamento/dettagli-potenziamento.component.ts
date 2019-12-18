@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpService} from '../../http.service';
-import {MatDialog} from "@angular/material";
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-dettagli-equipaggiamento',
@@ -13,9 +13,9 @@ export class DettagliPotenziamentoComponent implements OnInit {
   equipaggiamento: any;
   titaniti: any[];
 
-  constructor(private httpservice: HttpService, private router: Router, private dialog: MatDialog  ) {
-    this.equipaggiamento = this.router.getCurrentNavigation().extras.state;
-    this.httpservice.TitanitiForEquipment(this.equipaggiamento).subscribe(titaniti => this.titaniti = titaniti);
+  constructor(private httpservice: HttpService, private router: Router) {
+    this.equipaggiamento = this.router.getCurrentNavigation().extras.state.equipaggiamentoSelezionato;
+    this.titaniti = this.router.getCurrentNavigation().extras.state.titanitiForEquipment;
   }
   ngOnInit() {
   }
@@ -25,11 +25,7 @@ export class DettagliPotenziamentoComponent implements OnInit {
   }
 
   Usa(titanite: any): void {
-    this.dialog.openDialogs.
     this.httpservice.Potenzia(this.equipaggiamento.id, titanite).subscribe(url => this.router.navigate([url]));
-}
-
-
-
+  }
 
 }

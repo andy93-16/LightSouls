@@ -34,41 +34,21 @@ public class PersonaggioController extends PersonaggioBase {
         return this.descrittorePersonaggio;
     }
 
-
-////////////POTENZIAMENTO EQUIPMENT///////////Dep
 	@PostMapping("/PotenziaEquipaggiamento/{idE}")
 	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@RequestBody Titanite titanite)
-    {   Equipment eq = null;
-        for (Equipment equipment : this.descrittorePersonaggio.getZainoEquip())
-        {
-            if (equipment.getId() == idE)
-            {
-                eq = equipment;
-                break;
-            }
-        }
-       this.gestoreEquipaggiamenti.Potenzia(eq,titanite);
+    {
+       this.gestoreEquipaggiamenti.Potenzia(getLocalEquipment(idE),titanite);
        return "/RiepilogoEquipaggiamenti";
     }
 
     @PostMapping("/DepotenziaEquipaggiamento/{idE}")
     public String DepotenziaEquipaggiamento(@PathVariable("idE")int idE,@RequestBody Titanite titanite)
-    {   Equipment eq = null;
-        for (Equipment equipment : this.descrittorePersonaggio.getZainoEquip())
-        {
-            if (equipment.getId() == idE)
-            {
-                eq = equipment;
-                break;
-            }
-        }
-        this.gestoreEquipaggiamenti.Depotenzia(eq,titanite);
+    {
+        this.gestoreEquipaggiamenti.Depotenzia(getLocalEquipment(idE),titanite);
         return "/RiepilogoEquipaggiamenti";
     }
 
-    @GetMapping("/TitanitiForEquipment/{idE}")
-    public List<Titanite> TitanitiForEquipment(@PathVariable("idE") int idE){
-        List<Titanite> titanites= new ArrayList<>();
+    private Equipment getLocalEquipment(int idE){
         Equipment eq = null;
         for (Equipment equipment : this.descrittorePersonaggio.getZainoEquip())
         {
@@ -78,16 +58,9 @@ public class PersonaggioController extends PersonaggioBase {
                 break;
             }
         }
-        for (Titanite titanite: this.descrittorePersonaggio.getTitaniti())
-        {
-            if (titanite.getEquipmentType().EquipmentClass().isInstance(eq))
-                    titanites.add(titanite);
-        }
-        return titanites;
+        return eq;
     }
 
-
-////////////////////EQUIPMENT CHANGE///////////////////////
 
     @PostMapping("/Equipaggia/{IdEquipment}")
     public String Equipaggia(@RequestBody List<BodyPart> bodyParts,@PathVariable("IdEquipment") int idEquipment)

@@ -23,8 +23,19 @@ export class RiepilogoEquipaggiamentiComponent implements OnInit {
   ngOnInit() {
   }
 
+  TitanitiForEquipment(equipaggiamento: any): any[] {
+    const titaniti: any[] = [];
+    this.personaggio.titaniti.forEach( titanite => {
+      if (titanite.equipmentType === equipaggiamento.type) {
+            titaniti.push(titanite);
+      }
+    });
+    return titaniti;
+  }
+
   DettagliPotenziamento(equipaggiamento: any): void {
-    this.router.navigate(['/DettagliPotenziamento'], { state: equipaggiamento});
+    this.router.navigate(['/DettagliPotenziamento'], { state: { equipaggiamentoSelezionato : equipaggiamento,
+      titanitiForEquipment : this.TitanitiForEquipment(equipaggiamento)}});
   }
 
   DettagliDepotenziamento(equipaggiamento: any): void {

@@ -29,22 +29,14 @@ export class HttpService {
       this.httpclient.get('http://localhost:8080/AvviaIncontro',
         {responseType: 'text'}).subscribe(url => this.router.navigate([url]));
   }
-  public RiepilogoPersonaggio(): Observable<any>{
-    return this.httpclient.get<any>('http://localhost:8080/RiepilogoPersonaggio');
-  }
-  public RiepilogoEquipaggiamenti(): Observable<any[]> {
-      return this.httpclient.get<any[]>( 'http://localhost:8080/RiepilogoEquipaggiamenti');
+  public RiepilogoIncontro(): Observable<any>{
+    return this.httpclient.get('http://localhost:8080/RiepilogoIncontro/');
   }
   public SetPersonaggio(): void  {
       this.httpclient.get('http://localhost:8080/SetPersonaggio').subscribe();
   }
-  public TitanitiForEquipment(equipaggiamento: any): Observable<any[]> {
-    return this.httpclient.get<any[]>('http://localhost:8080/TitanitiForEquipment/' +
-      equipaggiamento.id);
-  }
-  public TitanitiOfEquipment(equipaggiamento: any): Observable<any[]> {
-    return this.httpclient.get<any[]>('http://localhost:8080/TitanitiOfEquipment/' +
-      equipaggiamento.id);
+  public RiepilogoPersonaggio(): Observable<any>{
+    return this.httpclient.get<any>('http://localhost:8080/RiepilogoPersonaggio');
   }
   public Potenzia(id: number, titanite: any): Observable<any>{
     return this.httpclient.post('http://localhost:8080/PotenziaEquipaggiamento/'
@@ -64,10 +56,4 @@ export class HttpService {
     return this.httpclient.get('http://localhost:8080/Disequipaggia/' + equipaggiamentoId,
       {responseType: 'text'});
   }
-  public RiepilogoIncontro(): Observable<any>{
-    return this.httpclient.get('http://localhost:8080/RiepilogoIncontro/');
-  }
-
-
-
 }
