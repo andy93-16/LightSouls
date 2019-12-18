@@ -20,6 +20,9 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
         this.RiepilogoEquipaggiabili(); });
   }
 
+  ngOnInit(): void {
+  }
+
   BodyPartsForEquipment(equipaggiamento: any): any[] {
     const bodyPartsFiltered: any[] = [];
     this.personaggio.bodyParts.forEach(bodyPart => {
@@ -49,6 +52,7 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
     this.httpservice.Disequipaggia(equipaggiamentoId).subscribe(
       url => this.router.navigate([url])
     );
+    location.reload();
   }
 
   TornaGestisciPersonaggio(): void {

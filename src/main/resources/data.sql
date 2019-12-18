@@ -79,9 +79,9 @@ INSERT INTO body_part(name,body_part_type) VALUES ('Corpo',1);
 --BODYPART4
 INSERT INTO body_part(name,body_part_type) VALUES ('Due Mani',0);
 --TITANITE
-INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (0,4,4,0);
-INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (0,4,4,1);
-INSERT INTO titanite(equipment_type,available,looted,dice_color) VALUES (1,3,3,2);
+INSERT INTO titanite(equipment_type,available,looted,dice_color,anime) VALUES (0,4,4,0,2);
+INSERT INTO titanite(equipment_type,available,looted,dice_color,anime) VALUES (0,4,4,1,1);
+INSERT INTO titanite(equipment_type,available,looted,dice_color,anime) VALUES (1,3,3,2,1);
 --CREATE SOME descrittore_personaggio AND ADD SOME ARTIFACTS
 INSERT INTO statistiche_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
 INSERT INTO descrittore_personaggio(hp_max,velocita,statistiche_base_id,anime) VALUES (200,5,6,1000);

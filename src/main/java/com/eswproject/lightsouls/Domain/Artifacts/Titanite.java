@@ -15,6 +15,12 @@ public class Titanite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    public int getAnime() {
+        return anime;
+    }
+
+    private int anime;
+
     public EquipmentType getEquipmentType() {
         return equipmentType;
     }
