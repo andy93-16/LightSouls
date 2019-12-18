@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpService} from '../../http.service';
 import {NavigationEnd, Router} from '@angular/router';
 
@@ -15,12 +15,12 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
 
 
   constructor(private httpservice: HttpService, private router: Router) {
-    this.httpservice.RiepilogoPersonaggio().subscribe(personaggio => {
-        this.personaggio = personaggio;
-        this.RiepilogoEquipaggiabili(); });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.httpservice.RiepilogoPersonaggio().subscribe(personaggio => {
+      this.personaggio = personaggio;
+      this.RiepilogoEquipaggiabili(); });
   }
 
   BodyPartsForEquipment(equipaggiamento: any): any[] {
@@ -39,8 +39,11 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
         this.equipaggiabili.push(equipaggiamento); } else {
         this.nonEquipaggiabili.push(equipaggiamento);
       }});
-    console.log(this.personaggio.zainoEquip.length);
+  }
 
+  ClearRiepilogoEquipaggiabili(): void {
+    this.equipaggiabili = [];
+    this.nonEquipaggiabili = [];
   }
 
   Equipaggia(equipaggiamento: any): void {
@@ -50,11 +53,11 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
 
   Disequipaggia(equipaggiamentoId: number): void {
     this.httpservice.Disequipaggia(equipaggiamentoId).subscribe(
-      url => this.router.navigate([url])
-    );
-    location.reload();
-  }
-
+      url => {
+        this.ClearRiepilogoEquipaggiabili();
+        this.ngOnInit();
+        }
+    ); }
   TornaGestisciPersonaggio(): void {
     this.router.navigate([ '/GestisciPersonaggio']);
   }
