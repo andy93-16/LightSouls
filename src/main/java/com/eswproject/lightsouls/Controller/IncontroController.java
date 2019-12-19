@@ -1,14 +1,12 @@
 package com.eswproject.lightsouls.Controller;
 
 import com.eswproject.lightsouls.Domain.Combattimento.GestoreIncontro;
-import com.eswproject.lightsouls.Domain.Combattimento.StatisticheCombattimentoBase;import com.eswproject.lightsouls.Domain.DescrittoreIncontro;
+import com.eswproject.lightsouls.Domain.Combattimento.DescrittoreIncontro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Observable;
 
 @RestController
@@ -22,11 +20,11 @@ public class IncontroController extends Observable {
 	@Autowired
 	private PersonaggioController personaggio;
 
-	private List<StatisticheCombattimentoBase> statisticheCombattimentoBase;
+    private GestoreIncontro gestoreIncontro;
 
-	private GestoreIncontro gestoreIncontro;
-
-	private Iterator<StatisticheCombattimentoBase> iterator;
+    public GestoreIncontro getGestoreIncontro() {
+        return gestoreIncontro;
+    }
 
 	@GetMapping("/RiepilogoIncontro")
 	public DescrittoreIncontro getDescrittoreIncontro() {
@@ -47,7 +45,7 @@ public class IncontroController extends Observable {
 
 	@GetMapping("/AvviaIncontro")
 	public String AvviaIncontro() {
-		this.gestoreIncontro.Init();
+		this.gestoreIncontro.Init(this.personaggio.GetPersonaggio(),this.descrittoreIncontro.getNemicoWrappers());
 		return Avvia();
 	}
 

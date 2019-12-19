@@ -1,4 +1,4 @@
-package com.eswproject.lightsouls.Domain.Combattimento;
+package com.eswproject.lightsouls.Domain.Personaggio;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 
@@ -6,18 +6,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @MappedSuperclass
-public abstract class PersonaggioBase
+public abstract class DescrittorePersonaggioBase
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    private int HP_max;
+    private int HP;
     private int velocita;
 
     public int getHP_max()
     {
-        return this.HP_max;
+        return this.HP;
     }
 
     public int getVelocita()

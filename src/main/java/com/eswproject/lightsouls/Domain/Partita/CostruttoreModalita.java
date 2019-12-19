@@ -1,4 +1,4 @@
-package com.eswproject.lightsouls.Domain;
+package com.eswproject.lightsouls.Domain.Partita;
 
 import com.eswproject.lightsouls.Service.ModalitaService;
 import org.springframework.beans.factory.annotation.Autowired;

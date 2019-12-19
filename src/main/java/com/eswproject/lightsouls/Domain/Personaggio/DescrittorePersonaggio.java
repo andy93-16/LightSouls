@@ -2,7 +2,6 @@ package com.eswproject.lightsouls.Domain.Personaggio;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
-import com.eswproject.lightsouls.Domain.Combattimento.PersonaggioBase;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -10,11 +9,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class DescrittorePersonaggio extends PersonaggioBase {
+public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
 
     @OneToOne
     private StatisticheBase statisticheBase;
-
     private int anime;
     @Transient
     private int stamina;

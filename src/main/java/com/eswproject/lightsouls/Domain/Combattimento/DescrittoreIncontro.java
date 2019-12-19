@@ -1,6 +1,4 @@
-package com.eswproject.lightsouls.Domain;
-
-import com.eswproject.lightsouls.Domain.Combattimento.NemiciWrapper;
+package com.eswproject.lightsouls.Domain.Combattimento;
 
 import javax.persistence.*;
 
@@ -19,9 +17,9 @@ public class DescrittoreIncontro
     }
 
     @OneToMany(fetch = FetchType.EAGER)
-    private List<NemiciWrapper> nemiciWrappers;
+    private List<NemicoWrapper> nemiciWrappers;
 
-    public List<NemiciWrapper> getNemiciWrappers() {
+    public List<NemicoWrapper> getNemicoWrappers() {
         return nemiciWrappers;
     }
 

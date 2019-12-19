@@ -1,6 +1,9 @@
 package com.eswproject.lightsouls.Controller;
 
-import com.eswproject.lightsouls.Domain.*;
+import com.eswproject.lightsouls.Domain.Combattimento.DescrittoreIncontro;
+import com.eswproject.lightsouls.Domain.Partita.CostruttoreModalita;
+import com.eswproject.lightsouls.Domain.Partita.DescrittoreDungeon;
+import com.eswproject.lightsouls.Domain.Partita.Modalita;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

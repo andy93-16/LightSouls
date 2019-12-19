@@ -1,21 +1,23 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
+import com.eswproject.lightsouls.Domain.Personaggio.DescrittoreNemico;
+
 import javax.persistence.*;
 
 @Entity
-public class NemiciWrapper {
+public class NemicoWrapper {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @OneToOne
-    private Nemico nemico;
+    private DescrittoreNemico descrittoreNemico;
 
     private int numberNemici;
 
-    public Nemico getNemico() {
-        return nemico;
+    public DescrittoreNemico getDescrittoreNemico() {
+        return descrittoreNemico;
     }
 
     public int getNumberNemici() {

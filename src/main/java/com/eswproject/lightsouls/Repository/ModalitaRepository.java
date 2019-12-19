@@ -1,7 +1,7 @@
 package com.eswproject.lightsouls.Repository;
 
 
-import com.eswproject.lightsouls.Domain.Modalita;
+import com.eswproject.lightsouls.Domain.Partita.Modalita;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

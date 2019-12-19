@@ -1,4 +1,4 @@
-package com.eswproject.lightsouls.Domain;
+package com.eswproject.lightsouls.Domain.Partita;
 
 import org.springframework.stereotype.Controller;
 

@@ -1,4 +1,6 @@
-package com.eswproject.lightsouls.Domain;
+package com.eswproject.lightsouls.Domain.Partita;
+
+import com.eswproject.lightsouls.Domain.Combattimento.DescrittoreIncontro;
 
 import javax.persistence.*;
 import java.util.List;

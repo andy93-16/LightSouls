@@ -1,12 +1,11 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
-import com.eswproject.lightsouls.Controller.PersonaggioController;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.eswproject.lightsouls.Domain.Personaggio.DescrittorePersonaggio;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class GestoreIncontro {
-
-    @Autowired
-    private PersonaggioController personaggio;
 
     private static GestoreIncontro obj;
 
@@ -19,6 +18,11 @@ public class GestoreIncontro {
         return obj;
     }
 
-    public void Init(){}
+    private List<StatisticheCombattimentoBase> statisticheCombattimentoBase;
+
+    private Iterator<StatisticheCombattimentoBase> iterator;
+
+    public void Init(DescrittorePersonaggio personaggio,List<NemicoWrapper> nemiciWrapper) {
+    }
 
 }

@@ -1,10 +1,12 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
+import com.eswproject.lightsouls.Domain.Personaggio.DescrittorePersonaggioBase;
+
 public class StatisticheCombattimentoBase {
 
-    private int HP_max;
     private int HP;
-    private int velocita;
+
+    private DescrittorePersonaggioBase descrittorePersonaggioBase;
 
     public int getHP() {
         return HP;
@@ -14,19 +16,13 @@ public class StatisticheCombattimentoBase {
         this.HP = HP;
     }
 
-    public int getVelocita() {
-        return velocita;
+    public DescrittorePersonaggioBase getPersonaggio() {
+        return descrittorePersonaggioBase;
     }
 
-    public void setVelocita(int velocita) {
-        this.velocita = velocita;
+    public void setPersonaggio(DescrittorePersonaggioBase descrittorePersonaggioBase) {
+        this.descrittorePersonaggioBase = descrittorePersonaggioBase;
     }
 
-    public int getHP_max() {
-        return HP_max;
-    }
 
-    public void setHP_max(int HP_max) {
-        this.HP_max = HP_max;
-    }
 }

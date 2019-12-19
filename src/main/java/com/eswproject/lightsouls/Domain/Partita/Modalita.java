@@ -1,7 +1,4 @@
-package com.eswproject.lightsouls.Domain;
-
-import org.hibernate.engine.profile.Fetch;
-import org.springframework.data.repository.cdi.Eager;
+package com.eswproject.lightsouls.Domain.Partita;
 
 import javax.persistence.*;
 import java.util.List;
