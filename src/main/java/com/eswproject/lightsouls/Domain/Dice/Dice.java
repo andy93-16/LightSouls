@@ -4,9 +4,20 @@ import java.util.Random;
 
 public class Dice
 {
-    public int[] black = new int[]{0, 0, 1, 1, 1, 2};
-    public int[] blue = new int[]{1, 1, 2, 2, 2, 3};
-    public int[] orange = new int[]{1, 2, 2, 2, 3, 4};
+    private int[] black = new int[]{0, 0, 1, 1, 1, 2};
+    private int[] blue = new int[]{1, 1, 2, 2, 2, 3};
+    private int[] orange = new int[]{1, 2, 2, 2, 3, 4};
+
+    private static Dice obj;
+
+    private Dice() {}
+
+    public static Dice getInstance()
+    {
+        if (obj==null)
+            obj = new Dice();
+        return obj;
+    }
 
     private int throw_Dice(DiceColor color)
     {

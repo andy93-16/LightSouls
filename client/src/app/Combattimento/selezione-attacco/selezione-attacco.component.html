@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Dice Combination</th>
+          <th>Stamina cost</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let attaccoOfArma of listaAttaccoOfArma">
+          <td>{{attaccoOfArma.arma.name}}</td>
+          <td>
+        <tr *ngIf="attaccoOfArma.attacco.combination.ORANGE">{{"ORANGE:"+attaccoOfArma.attacco.combination.ORANGE}}</tr>
+        <tr *ngIf="attaccoOfArma.attacco.combination.BLACK">{{"BLACK:"+attaccoOfArma.attacco.combination.BLACK}}</tr>
+        <tr *ngIf="attaccoOfArma.attacco.combination.BLUE">{{"BLUE:"+attaccoOfArma.attacco.combination.BLUE}}</tr>
+         </td>
+         <td>{{attaccoOfArma.attacco.staminaCost}}</td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="Usa(attaccoOfArma.attacco)">Usa</button>
+        </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

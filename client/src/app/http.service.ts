@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {AttaccoOfArma} from "./Combattimento/selezione-attacco/attacco-of-arma";
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +38,7 @@ export class HttpService {
   public RiepilogoPersonaggio(): Observable<any>{
     return this.httpclient.get<any>('http://localhost:8080/RiepilogoPersonaggio');
   }
-  public Potenzia(id: number, titanite: any): Observable<any>{
+  public Potenzia(id: number, titanite: any): Observable<any> {
     return this.httpclient.post('http://localhost:8080/PotenziaEquipaggiamento/'
       + id, titanite ,
       { responseType: 'text'});
@@ -60,8 +59,8 @@ export class HttpService {
   public ListaTurni(): Observable<any>{
     return this.httpclient.get('http://localhost:8080/ListaTurni');
   }
-  public Attacca(attaccoOfArma: AttaccoOfArma, posizioneNemico: number): Observable<any> {
+  public Attacca(attacco: any, posizioneNemico: number): Observable<any> {
     return this.httpclient.post('http://localhost:8080/Attacca/' + posizioneNemico,
-       attaccoOfArma);
+       attacco, {responseType: 'text'});
   }
 }

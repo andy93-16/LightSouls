@@ -1,7 +1,5 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
-
-import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -13,15 +11,15 @@ public class Armatura extends Equipment
     public void addTitanite(Titanite titanite)
     {
         this.getEquippedTitaniti().add(titanite);
-        for(Azione azione: this.getAzioni())
+        for(Difesa difesa: this.getDifese())
         {
-            if (azione.getCombination().containsKey(titanite.getDiceColor()))
+            if (difesa.getCombination().containsKey(titanite.getDiceColor()))
             {
-                azione.getCombination().put(titanite.getDiceColor(), azione.getCombination().get(titanite.getDiceColor())+1);
+                difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor())+1);
             }
             else
             {
-                azione.getCombination().put(titanite.getDiceColor(),1);
+                difesa.getCombination().put(titanite.getDiceColor(),1);
             }
         }
 
@@ -30,14 +28,14 @@ public class Armatura extends Equipment
     public void removeTitanite(Titanite titanite){
 
         this.getEquippedTitaniti().remove(titanite);
-        for(Azione azione: this.getAzioni())
+        for(Difesa difesa: this.getDifese())
         {
-            if (azione.getCombination().containsKey(titanite.getDiceColor()))
+            if (difesa.getCombination().containsKey(titanite.getDiceColor()))
             {
-                if (azione.getCombination().get(titanite.getDiceColor())>1)
-                  azione.getCombination().put(titanite.getDiceColor(), azione.getCombination().get(titanite.getDiceColor())-1);
+                if (difesa.getCombination().get(titanite.getDiceColor())>1)
+                  difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor())-1);
                 else
-                  azione.getCombination().remove(titanite.getDiceColor());
+                  difesa.getCombination().remove(titanite.getDiceColor());
 
             }
         }

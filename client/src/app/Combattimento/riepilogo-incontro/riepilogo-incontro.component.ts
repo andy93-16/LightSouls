@@ -9,12 +9,11 @@ import {Router} from '@angular/router';
 })
 export class RiepilogoIncontroComponent implements OnInit {
 
-  descrittoreIncontro: any;
+  descrittoreIncontro: any = [];
 
   constructor(private httpservice: HttpService, private router: Router) {
     this.httpservice.RiepilogoIncontro().subscribe(
-      descrittoreIncontro => {this.descrittoreIncontro = descrittoreIncontro;
-      console.log(this.descrittoreIncontro);}
+      descrittoreIncontro => {this.descrittoreIncontro = descrittoreIncontro;}
     );
   }
 

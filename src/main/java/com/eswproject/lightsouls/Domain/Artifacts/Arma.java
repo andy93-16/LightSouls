@@ -17,6 +17,10 @@ import java.util.List;
 public class Arma extends Equipment
 {
 
+    public List<Attacco> getAttacchi() {
+        return attacchi;
+    }
+
     @OneToMany(fetch = FetchType.EAGER)
     private List<Attacco> attacchi;
 
@@ -26,7 +30,7 @@ public class Arma extends Equipment
         this.getEquippedTitaniti().add(titanite);
         for(Attacco attacco: this.attacchi)
         {
-            if(attacco.getClass().getSimpleName().equals("Attacco")) {
+            if(attacco.getClass().getSimpleName().equals(this.getClass().getSimpleName())) {
                 if (attacco.getCombination().containsKey(titanite.getDiceColor())) {
                     attacco.getCombination().put(titanite.getDiceColor(), attacco.getCombination().get(titanite.getDiceColor()) + 1);
                 } else {
@@ -36,19 +40,18 @@ public class Arma extends Equipment
         }
     }
 
-
     @Override
     public void removeTitanite(Titanite titanite){
         this.getEquippedTitaniti().remove(titanite);
-        for(Attacco attacco: this.getAzioni())
+        for(Attacco attacco: this.getAttacchi())
         {
 
-            if (azione.getCombination().containsKey(titanite.getDiceColor()) && azione.getClass().getSimpleName().equals("Attacco"))
+            if (attacco.getCombination().containsKey(titanite.getDiceColor()) && attacco.getClass().getSimpleName().equals(this.getClass().getSimpleName()))
             {
-                if (azione.getCombination().get(titanite.getDiceColor())>1)
-                    azione.getCombination().put(titanite.getDiceColor(), azione.getCombination().get(titanite.getDiceColor())-1);
+                if (attacco.getCombination().get(titanite.getDiceColor())>1)
+                    attacco.getCombination().put(titanite.getDiceColor(), attacco.getCombination().get(titanite.getDiceColor())-1);
                 else
-                    azione.getCombination().remove(titanite.getDiceColor());
+                    attacco.getCombination().remove(titanite.getDiceColor());
 
             }
         }

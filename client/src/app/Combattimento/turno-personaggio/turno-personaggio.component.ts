@@ -9,15 +9,15 @@ import {Router} from '@angular/router';
 })
 export class TurnoPersonaggioComponent implements OnInit {
 
-  listaTurni: any[];
+  listaTurni: any[] = [];
   listaNemici: any[] = [];
-  personaggio: any;
+  personaggio: any = [];
 
   constructor(private httpservice: HttpService, private router: Router) {
     this.httpservice.ListaTurni().subscribe(listaTurni => {
       this.listaTurni = listaTurni;
-      this.ListaNemici();
       this.GetPersonaggio();
+      this.ListaNemici();
     });
 
   }

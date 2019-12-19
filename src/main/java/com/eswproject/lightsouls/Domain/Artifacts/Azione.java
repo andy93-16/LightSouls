@@ -31,7 +31,7 @@ public abstract class Azione
 
 	public int getDiceRoll()
 	{
-		Dice d = new Dice();
+		Dice d = Dice.getInstance();
 		int danno = 0;
 		for(Map.Entry<DiceColor, Integer> dado : this.combination.entrySet())
 		{
