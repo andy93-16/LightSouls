@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import {AttaccoOfArma} from "./Combattimento/selezione-attacco/attacco-of-arma";
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +56,12 @@ export class HttpService {
   public Disequipaggia(equipaggiamentoId: number): Observable<any> {
     return this.httpclient.get('http://localhost:8080/Disequipaggia/' + equipaggiamentoId,
       {responseType: 'text'});
+  }
+  public ListaTurni(): Observable<any>{
+    return this.httpclient.get('http://localhost:8080/ListaTurni');
+  }
+  public Attacca(attaccoOfArma: AttaccoOfArma, posizioneNemico: number): Observable<any> {
+    return this.httpclient.post('http://localhost:8080/Attacca/' + posizioneNemico,
+       attaccoOfArma);
   }
 }

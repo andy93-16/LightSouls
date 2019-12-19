@@ -2,8 +2,7 @@ package com.eswproject.lightsouls.Domain.Combattimento;
 
 import com.eswproject.lightsouls.Domain.Personaggio.DescrittorePersonaggio;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class GestoreIncontro {
 
@@ -18,11 +17,5 @@ public class GestoreIncontro {
         return obj;
     }
 
-    private List<StatisticheCombattimentoBase> statisticheCombattimentoBase;
-
-    private Iterator<StatisticheCombattimentoBase> iterator;
-
-    public void Init(DescrittorePersonaggio personaggio,List<NemicoWrapper> nemiciWrapper) {
-    }
 
 }

@@ -13,11 +13,17 @@ public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
 
     @OneToOne
     private StatisticheBase statisticheBase;
+
     private int anime;
-    @Transient
+
     private int stamina;
+
+    public int getStaminaRegen() {
+        return staminaRegen;
+    }
+
     @Transient
-    private int staminaRegen;
+    private int staminaRegen=2;
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
@@ -57,6 +63,10 @@ public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
 
     public void setAnime(int anime) {
         this.anime = anime;
+    }
+
+    public int getStamina() {
+        return stamina;
     }
 
 }

@@ -44,7 +44,11 @@ public abstract class Equipment
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    private List<Azione> azioni;
+    private List<Difesa> difese;
+
+    public List<Difesa> getDifese() {
+        return difese;
+    }
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
@@ -74,10 +78,6 @@ public abstract class Equipment
 	public StatisticheBase getMinRequirements() {
 		return minRequirements;
 	}
-
-    public List<Azione> getAzioni() {
-        return azioni;
-    }
 
 	public int getUpgradesMax() {
 		return upgradesMax;

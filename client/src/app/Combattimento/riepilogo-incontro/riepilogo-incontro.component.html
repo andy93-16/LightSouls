@@ -12,11 +12,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let nemicoWrapper of this.descrittoreIncontro.nemiciWrappers">
-          <td>{{nemicoWrapper.nemico.nome}}</td>
+        <tr *ngFor="let nemicoWrapper of descrittoreIncontro.nemiciWrappers">
+          <td>{{nemicoWrapper.descrittoreNemico.nome}}</td>
           <td>{{nemicoWrapper.numberNemici}}</td>
-          <td>{{nemicoWrapper.nemico.hp_max}}</td>
-          <td>{{nemicoWrapper.nemico.velocita}}</td>
+          <td>{{nemicoWrapper.descrittoreNemico.hp}}</td>
+          <td>{{nemicoWrapper.descrittoreNemico.velocita}}</td>
         </tr>
         </tbody>
       </table>

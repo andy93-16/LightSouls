@@ -14,10 +14,5 @@ public class Attacco extends Azione
 		return this.staminaCost;
 	}
 
-	public void setAttack()
-	{
-		Dice d = new Dice();
-		//d.throw_Dice(DiceColor.BLACK);
-	}
 }
 

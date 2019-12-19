@@ -1,9 +1,10 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
+import com.eswproject.lightsouls.Domain.Personaggio.DescrittorePersonaggio;
+
 public class StatisticheCombattimentoPersonaggio extends StatisticheCombattimentoBase{
 
     private int stamina;
-    private int staminaRegen;
 
     public int getStamina()
     {
@@ -15,14 +16,12 @@ public class StatisticheCombattimentoPersonaggio extends StatisticheCombattiment
         this.stamina = stamina;
     }
 
-    public int getStaminaRegen()
+    public StatisticheCombattimentoPersonaggio(DescrittorePersonaggio descrittorePersonaggio)
     {
-        return staminaRegen;
+        super(descrittorePersonaggio);
+        this.stamina=descrittorePersonaggio.getStamina();
+
     }
 
-    public void setStaminaRegen(int staminaRegen)
-    {
-        this.staminaRegen = staminaRegen;
-    }
 
 }

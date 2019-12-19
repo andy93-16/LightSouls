@@ -1,7 +1,7 @@
 package com.eswproject.lightsouls.Controller;
 
 
-import com.eswproject.lightsouls.Domain.Combattimento.PersonaggioBase;
+
 import com.eswproject.lightsouls.Domain.Personaggio.*;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
@@ -13,7 +13,7 @@ import java.util.*;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-public class PersonaggioController extends PersonaggioBase {
+public class PersonaggioController {
 
 
     @Autowired
@@ -30,7 +30,7 @@ public class PersonaggioController extends PersonaggioBase {
     }
 
     @GetMapping("RiepilogoPersonaggio")
-    public DescrittorePersonaggio GetPersonaggio(){
+    public DescrittorePersonaggio getDescrittorePersonaggio(){
         return this.descrittorePersonaggio;
     }
 

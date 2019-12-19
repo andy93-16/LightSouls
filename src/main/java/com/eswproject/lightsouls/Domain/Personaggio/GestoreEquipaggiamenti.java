@@ -97,7 +97,7 @@ public class GestoreEquipaggiamenti{
         return eq;
     }
 
-    private Equipment getLocalEquipmentInEquipaggiati(int idEquipment){
+    public Equipment getLocalEquipmentInEquipaggiati(int idEquipment){
         Equipment eq=null;
         for(Equipment equipment:this.descrittorePersonaggio.getEquipaggiati()) {
             if (equipment.getId() == idEquipment) {

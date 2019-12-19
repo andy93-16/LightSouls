@@ -29,7 +29,7 @@ public abstract class Azione
 		return combination;
 	}
 
-	public int getDanno()
+	public int getDiceRoll()
 	{
 		Dice d = new Dice();
 		int danno = 0;

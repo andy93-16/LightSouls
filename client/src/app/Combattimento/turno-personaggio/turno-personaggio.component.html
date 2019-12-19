@@ -1,1 +1,67 @@
-<p>turno-personaggio works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Lista Nemici</h2>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>HP</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let nemico of listaNemici">
+          <td>{{nemico.descrittorePersonaggioBase.nome}}</td>
+          <td>{{nemico.hp+'/'+nemico.descrittorePersonaggioBase.hp}}</td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="Attacca(nemico)">Attacca</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-6">
+      <div class="row">
+    <div class="col-lg-6">
+    </div>
+    <div class="col-lg-6" >
+      <h2>Lista Turni</h2>
+      <table class="table table-striped">
+        <tbody>
+        <tr *ngFor="let turno of listaTurni">
+          <td>{{turno.descrittorePersonaggioBase.nome}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <div class="row">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>HP</th>
+          <th>Stamina</th>
+          <th>StaminaReg</th>
+        </tr>
+        </thead>
+        <tbody>
+         <td>{{personaggio.descrittorePersonaggioBase.nome}}</td>
+         <td>{{personaggio.hp+'/'+personaggio.descrittorePersonaggioBase.hp}}</td>
+         <td>{{personaggio.stamina+'/'+personaggio.descrittorePersonaggioBase.stamina}}</td>
+         <td>{{personaggio.descrittorePersonaggioBase.staminaRegen}}</td>
+        </tbody>
+      </table>
+    </div>
+   </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <button type="button" class="btn btn-success" (click)="PassaTurno()">Passa Turno</button>
+    </div>
+    <div class="col-lg-6">
+      <button type="button" class="btn btn-danger" (click)="CambiaEquipaggiamento()">Cambia Equipaggaimento</button>
+    </div>
+  </div>
+</div>

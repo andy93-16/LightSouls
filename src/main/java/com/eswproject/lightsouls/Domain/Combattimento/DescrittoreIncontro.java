@@ -19,7 +19,7 @@ public class DescrittoreIncontro
     @OneToMany(fetch = FetchType.EAGER)
     private List<NemicoWrapper> nemiciWrappers;
 
-    public List<NemicoWrapper> getNemicoWrappers() {
+    public List<NemicoWrapper> getNemiciWrappers() {
         return nemiciWrappers;
     }
 

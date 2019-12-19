@@ -2,11 +2,13 @@ package com.eswproject.lightsouls.Domain.Combattimento;
 
 import com.eswproject.lightsouls.Domain.Personaggio.DescrittorePersonaggioBase;
 
-public class StatisticheCombattimentoBase {
+import java.util.Comparator;
+
+public class StatisticheCombattimentoBase implements Comparable<StatisticheCombattimentoBase> {
 
     private int HP;
 
-    private DescrittorePersonaggioBase descrittorePersonaggioBase;
+    protected DescrittorePersonaggioBase descrittorePersonaggioBase;
 
     public int getHP() {
         return HP;
@@ -16,13 +18,25 @@ public class StatisticheCombattimentoBase {
         this.HP = HP;
     }
 
-    public DescrittorePersonaggioBase getPersonaggio() {
+    public DescrittorePersonaggioBase getDescrittorePersonaggioBase() {
         return descrittorePersonaggioBase;
     }
 
-    public void setPersonaggio(DescrittorePersonaggioBase descrittorePersonaggioBase) {
+    public void setDescrittorePersonaggioBase(DescrittorePersonaggioBase descrittorePersonaggioBase) {
         this.descrittorePersonaggioBase = descrittorePersonaggioBase;
     }
+
+    public StatisticheCombattimentoBase(DescrittorePersonaggioBase descrittorePersonaggioBase){
+        this.descrittorePersonaggioBase=descrittorePersonaggioBase;
+        this.HP=descrittorePersonaggioBase.getHP();
+    }
+
+    @Override
+    public int compareTo(StatisticheCombattimentoBase statisticheCombattimentoBase){
+        return statisticheCombattimentoBase.descrittorePersonaggioBase.getVelocita()-this.descrittorePersonaggioBase.getVelocita();
+    }
+
+
 
 
 }

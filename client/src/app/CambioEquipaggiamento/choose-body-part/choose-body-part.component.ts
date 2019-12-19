@@ -24,9 +24,7 @@ export class ChooseBodyPartComponent implements OnInit {
 
   Select(bodypart: any): void {
     this.bodyPartsSelected.push(bodypart);
-    console.log(this.bodyParts.length);
     this.bodyParts.splice( this.bodyParts.indexOf(bodypart),1);
-    console.log(this.bodyParts.length);
   }
   Deselect(bodypart: any): void {
     this.bodyPartsSelected.splice(this.bodyPartsSelected.indexOf(bodypart),1)

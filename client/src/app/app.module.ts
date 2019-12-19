@@ -18,8 +18,8 @@ import { ChooseBodyPartComponent } from './CambioEquipaggiamento/choose-body-par
 import { DettagliDepotenziamentoComponent } from './Potenziamento/dettagli-depotenziamento/dettagli-depotenziamento.component';
 import { TurnoNemicoComponent } from './Combattimento/turno-nemico/turno-nemico.component';
 import { TurnoPersonaggioComponent } from './Combattimento/turno-personaggio/turno-personaggio.component';
-import { GestoreAttaccoComponent } from './Combattimento/gestore-attacco/gestore-attacco.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SelezioneAttaccoComponent } from './Combattimento/selezione-attacco/selezione-attacco.component';
 
 const appRoutes: Routes = [
   { path: 'Giocatore', component: GiocatoreComponent },
@@ -34,6 +34,9 @@ const appRoutes: Routes = [
   { path: 'EquipaggiaPersonaggio' , component: EquipaggiaPersonaggioComponent , runGuardsAndResolvers: 'always'},
   { path: 'DettagliDepotenziamento', component: DettagliDepotenziamentoComponent},
   { path: 'ChooseBodyPart' , component: ChooseBodyPartComponent},
+  { path: 'TurnoPersonaggio', component: TurnoPersonaggioComponent},
+  { path: 'TurnoNemico', component: TurnoNemicoComponent},
+  { path: 'SelezioneAttacco', component: SelezioneAttaccoComponent},
   { path: '**', component: GiocatoreComponent }
   ];
 
@@ -54,7 +57,7 @@ const appRoutes: Routes = [
     DettagliDepotenziamentoComponent,
     TurnoNemicoComponent,
     TurnoPersonaggioComponent,
-    GestoreAttaccoComponent,
+    SelezioneAttaccoComponent,
   ],
   imports: [
     BrowserModule,
