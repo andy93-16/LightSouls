@@ -1,11 +1,9 @@
 package com.eswproject.lightsouls.Domain.Personaggio;
 
-import com.eswproject.lightsouls.Domain.Artifacts.Arma;
-import com.eswproject.lightsouls.Domain.Artifacts.Armatura;
-import com.eswproject.lightsouls.Domain.Artifacts.Difesa;
-import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -38,6 +36,8 @@ public abstract class DescrittorePersonaggioBase
     public String getNome() {
         return nome;
     }
+
+
 
 
 }

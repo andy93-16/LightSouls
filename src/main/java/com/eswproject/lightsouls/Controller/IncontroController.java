@@ -1,8 +1,10 @@
 package com.eswproject.lightsouls.Controller;
 
 import com.eswproject.lightsouls.Domain.Combattimento.*;
+import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoTurno;
+import com.eswproject.lightsouls.Domain.Combattimento.Stato.TurnoNemico;
+import com.eswproject.lightsouls.Domain.Combattimento.Stato.TurnoPersonaggio;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Observable;
@@ -20,7 +22,13 @@ public class IncontroController extends Observable implements Observer {
 		this.statisticheCombattimentoPersonaggio = statisticheCombattimentoPersonaggio;
 	}
 
+	public StatisticheCombattimentoPersonaggio getStatisticheCombattimentoPersonaggio() {
+		return statisticheCombattimentoPersonaggio;
+	}
+
 	private StatisticheCombattimentoPersonaggio statisticheCombattimentoPersonaggio;
+
+	private StatoTurno statoTurno;
 
 	@GetMapping("/ListaTurni")
 	public LinkedList<StatisticheCombattimentoBase> getListaTurni(){
@@ -45,36 +53,43 @@ public class IncontroController extends Observable implements Observer {
 				this.listaTurni.add(new StatisticheCombattimentoNemico(nemicoWrapper.getDescrittoreNemico()));
 		}
 		Collections.sort(listaTurni);
-		return getTurno();
+
+		return statoTurno.getStatoTurno();
 	}
 
-	@GetMapping("/Turno")
-	public String getTurno(){
-		if(this.listaTurni.peekFirst().equals(statisticheCombattimentoPersonaggio)){
-			return "/TurnoPersonaggio";
+	private void getTurnoListaTurni(){
+		if(this.listaTurni.peekFirst().equals(this.statisticheCombattimentoPersonaggio)){
+			statoTurno=new TurnoPersonaggio(this);
 		}
 		else
-			return "/TurnoNemico";
+			statoTurno=new TurnoNemico(this);
 	}
 
 	@GetMapping("/PassaTurno")
-	public void PassaTurno(){
+	public String PassaTurno(){
           StatisticheCombattimentoBase statisticheCombattimentoBase=this.listaTurni.pollFirst();
           this.listaTurni.offerLast(statisticheCombattimentoBase);
+          getTurnoListaTurni();
+          return statoTurno.getStatoTurno();
 	}
 
 	@PostMapping("/Attacca/{posizioneNemico}")
 	public String Attacca(@PathVariable("posizioneNemico")int posizioneNemico,@RequestBody AttaccoMapper attaccoMapper){
-		this.listaTurni.get(posizioneNemico).
-				infliggiDanno(statisticheCombattimentoPersonaggio.
-						calcolaDanno(attaccoMapper.getPosizioneArma(),attaccoMapper.getPosizioneAttacco()));
-		return "/TurnoPersonaggio";
+		return statoTurno.attacca(posizioneNemico,attaccoMapper);
 	}
+
 	@GetMapping("/Difendi")
 	public void Difendi(){
 		statisticheCombattimentoPersonaggio.infliggiDanno(
 				this.listaTurni.peekFirst().calcolaDanno(0,0));
 	}
+
+	@GetMapping("/TornaAlFalo")
+	public String TornaAlFalo(){
+		statisticheCombattimentoPersonaggio.resetStatistiche();
+		return "/Falo";
+	}
+
 
 	/*public String Avvia() {
 		setChanged();
@@ -82,11 +97,6 @@ public class IncontroController extends Observable implements Observer {
 		return "/Incontro";
 	}*/
 
-	@GetMapping("/TornaAlFalo")
-	public String TornaAlFalo(){
-		statisticheCombattimentoPersonaggio.resetStatistiche();
-		return "/TornaAlFalo";
-	}
 
 	@Override
 	public void update(Observable statisticaCombattimento,Object stato){

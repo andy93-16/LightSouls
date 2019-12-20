@@ -11,7 +11,7 @@ public class Armatura extends Equipment
     public void addTitanite(Titanite titanite)
     {
         this.getEquippedTitaniti().add(titanite);
-        for(Difesa difesa: this.getDifese())
+        for(Difesa difesa: this.getDescrittoreEquipment().getDifese())
         {
             if (difesa.getCombination().containsKey(titanite.getDiceColor()))
             {
@@ -28,7 +28,7 @@ public class Armatura extends Equipment
     public void removeTitanite(Titanite titanite){
 
         this.getEquippedTitaniti().remove(titanite);
-        for(Difesa difesa: this.getDifese())
+        for(Difesa difesa: this.getDescrittoreEquipment().getDifese())
         {
             if (difesa.getCombination().containsKey(titanite.getDiceColor()))
             {

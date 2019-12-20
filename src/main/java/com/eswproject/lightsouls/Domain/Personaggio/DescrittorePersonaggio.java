@@ -33,20 +33,20 @@ public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
     @Fetch(FetchMode.SUBSELECT)
     private List<Equipment> zainoEquip;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
-    private List<BodyPart> bodyParts;
-
-    public List<BodyPart> getBodyParts() {
-        return this.bodyParts;
-    }
-
     public List<Equipment> getZainoEquip() {
         return this.zainoEquip;
     }
 
     public List<Titanite> getTitaniti() {
         return this.titaniti;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<BodyPart> bodyParts;
+
+    public List<BodyPart> getBodyParts() {
+        return this.bodyParts;
     }
 
     public void setStatisticaBase(StatisticheBase statisticaBase) {

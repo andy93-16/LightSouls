@@ -2,6 +2,7 @@ package com.eswproject.lightsouls.Domain.Personaggio;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
+import com.eswproject.lightsouls.Domain.Combattimento.StatisticheCombattimentoPersonaggio;
 
 
 import java.util.ArrayList;
@@ -9,15 +10,11 @@ import java.util.List;
 
 public class GestoreEquipaggiamenti{
 
-    private DescrittorePersonaggio descrittorePersonaggio;
-
-    public DescrittorePersonaggio getDescrittorePersonaggio() {
-        return descrittorePersonaggio;
+    public void setStatisticheCombattimentoPersonaggio(StatisticheCombattimentoPersonaggio statisticheCombattimentoPersonaggio) {
+        this.statisticheCombattimentoPersonaggio = statisticheCombattimentoPersonaggio;
     }
 
-    public void setDescrittorePersonaggio(DescrittorePersonaggio descrittorePersonaggio) {
-        this.descrittorePersonaggio = descrittorePersonaggio;
-    }
+    private StatisticheCombattimentoPersonaggio statisticheCombattimentoPersonaggio;
 
     private static GestoreEquipaggiamenti obj;
 
@@ -35,35 +32,36 @@ public class GestoreEquipaggiamenti{
         List<BodyPart> bodyPartSelected=getLocalBodyPartList(bodyParts);
         for(BodyPart bodyPart :bodyPartSelected) {
             eqIn.getEquippedBodyParts().add(bodyPart);
-            this.descrittorePersonaggio.getBodyParts().remove(bodyPart);
+
+            this.statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getBodyParts().remove(bodyPart);
         }
-        this.descrittorePersonaggio.getEquipaggiati().add(eqIn);
-        this.descrittorePersonaggio.getZainoEquip().remove(eqIn);
+        this.statisticheCombattimentoPersonaggio.getEquipaggiati().add(eqIn);
+        this.statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getZainoEquip().remove(eqIn);
 
     }
 
     public void Disequipaggia(int equipmentId){
         Equipment eqOut=getLocalEquipmentInEquipaggiati(equipmentId);
         for(BodyPart bodyPart : eqOut.getEquippedBodyParts()) {
-            this.descrittorePersonaggio.getBodyParts().add(bodyPart);
+            this.statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getBodyParts().add(bodyPart);
 
         }
         eqOut.getEquippedBodyParts().clear();
-        this.descrittorePersonaggio.getEquipaggiati().remove(eqOut);
-        this.descrittorePersonaggio.getZainoEquip().add(eqOut);
+        this.statisticheCombattimentoPersonaggio.getEquipaggiati().remove(eqOut);
+        this.statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getZainoEquip().add(eqOut);
 
     }
 
     public void Potenzia(Equipment equipment, Titanite clientTitanite)
     {
-        if(equipment.getEquippedTitaniti().size()<equipment.getUpgradesMax())
+        if(equipment.getEquippedTitaniti().size()<equipment.getDescrittoreEquipment().getUpgradesMax())
         {
-            for (Titanite titan : this.descrittorePersonaggio.getTitaniti())
+            for (Titanite titan : this.statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getTitaniti())
             {
                 if(clientTitanite.getEquipmentType().EquipmentClass().isInstance(equipment)
                         && clientTitanite.getDiceColor() == titan.getDiceColor())
                 {
-                    equipment.addTitanite(titan);
+                    equipment.getEquippedTitaniti().add(titan);
                     titan.setAvailable(titan.getAvailable() - 1);
                     break;
                 }
@@ -83,13 +81,13 @@ public class GestoreEquipaggiamenti{
                 tmp=titan;
             }
         }
-        equipment.removeTitanite(tmp);
+        equipment.getEquippedTitaniti().remove(tmp);
     }
 
     private Equipment getLocalEquipmentInZaino(int idEquipment){
         Equipment eq=null;
-        for(Equipment equipment:this.descrittorePersonaggio.getZainoEquip()){
-            if(equipment.getId()==idEquipment) {
+        for(Equipment equipment:this.statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getZainoEquip()){
+            if(equipment.getDescrittoreEquipment().getId()==idEquipment) {
                 eq = equipment;
                 break;
             }
@@ -99,8 +97,8 @@ public class GestoreEquipaggiamenti{
 
     public Equipment getLocalEquipmentInEquipaggiati(int idEquipment){
         Equipment eq=null;
-        for(Equipment equipment:this.descrittorePersonaggio.getEquipaggiati()) {
-            if (equipment.getId() == idEquipment) {
+        for(Equipment equipment:this.statisticheCombattimentoPersonaggio.getEquipaggiati()) {
+            if (equipment.getDescrittoreEquipment().getId() == idEquipment) {
                 eq = equipment;
                 break;
             }
@@ -108,11 +106,10 @@ public class GestoreEquipaggiamenti{
         return eq;
     }
 
-
     private List<BodyPart> getLocalBodyPartList(List<BodyPart> bodyParts){
         List<BodyPart> bodyPartList=new ArrayList<>();
         for (BodyPart bodyPart:bodyParts){
-            for(BodyPart personaggioBodyPart:this.descrittorePersonaggio.getBodyParts()){
+            for(BodyPart personaggioBodyPart:statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getBodyParts()){
                 if(bodyPart.getName().equals(personaggioBodyPart.getName()))
                     bodyPartList.add(personaggioBodyPart);
             }

@@ -82,6 +82,7 @@ INSERT INTO body_part(name,body_part_type) VALUES ('Due Mani',0);
 INSERT INTO titanite(equipment_type,available,looted,dice_color,anime) VALUES (0,4,4,0,2);
 INSERT INTO titanite(equipment_type,available,looted,dice_color,anime) VALUES (0,4,4,1,1);
 INSERT INTO titanite(equipment_type,available,looted,dice_color,anime) VALUES (1,3,3,2,1);
+
 --CREATE SOME descrittore_personaggio AND ADD SOME ARTIFACTS
 INSERT INTO statistiche_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
 INSERT INTO descrittore_personaggio(hp,velocita,statistiche_base_id,anime,stamina,nome) VALUES (10,7,6,1000,10,'Giocatore');
@@ -97,6 +98,7 @@ INSERT INTO descrittore_personaggio_titaniti(titaniti_id,descrittore_personaggio
 INSERT INTO descrittore_personaggio_titaniti(titaniti_id,descrittore_personaggio_id) VALUES (2,1);
 INSERT INTO descrittore_personaggio_titaniti(titaniti_id,descrittore_personaggio_id) VALUES (3,1);
 --CREATE SOME NEMICO AND ADD TO ENCOUNTERS
+
 INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',0);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (9,2,1);
@@ -115,6 +117,7 @@ INSERT INTO descrittore_nemico(nome,hp,velocita) VALUES ('Soldier',6,2);
 INSERT INTO descrittore_nemico_equipaggiati(descrittore_nemico_id,equipaggiati_id) VALUES (2,7);
 INSERT INTO nemico_wrapper(number_nemici,descrittore_nemico_id) VALUES (1,1);
 INSERT INTO nemico_wrapper(number_nemici,descrittore_nemico_id) VALUES (2,2);
+
 --ADD ENEMY TO ENCOUNTER ID:1
 INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,1);
 INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,2);

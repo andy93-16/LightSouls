@@ -8,11 +8,10 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public abstract class StatisticheCombattimentoBase extends Observable implements Observer {
+public abstract class StatisticheCombattimentoBase extends Observable implements Comparable<StatisticheCombattimentoBase> {
 
     protected int HP;
 
-    protected StatoCombattente statoCombattente;
 
     protected DescrittorePersonaggioBase descrittorePersonaggioBase;
 
@@ -37,10 +36,16 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
         return equipaggiati;
     }
 
+    private List<Equipment> equipaggiatiUsati;
+
+    public List<Equipment> getEquipaggiatiUsati() {
+        return equipaggiatiUsati;
+    }
+
     public int calcolaDanno(int posizioneArma,int posizioneAttacco){
         Arma arma=(Arma)equipaggiati.get(posizioneArma);
-        if(equipaggiati.isEmpty())
-            notifyObservers(this);
+        getEquipaggiatiUsati().add(arma);
+        getEquipaggiati().remove(arma);
         return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();
     }
 
@@ -64,8 +69,14 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
     }
 
     @Override
-    public void update(Observable equipment,Object used){
+    public int compareTo(StatisticheCombattimentoBase statisticheCombattimentoBase){
+       return descrittorePersonaggioBase.getVelocita()-
+               statisticheCombattimentoBase.getDescrittorePersonaggioBase().getVelocita();
+    }
 
+    public void resetEquipaggiati(){
+        equipaggiati.addAll(equipaggiatiUsati);
+        equipaggiatiUsati.clear();
     }
 
 

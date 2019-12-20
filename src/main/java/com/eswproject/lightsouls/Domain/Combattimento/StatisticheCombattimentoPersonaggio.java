@@ -12,12 +12,16 @@ public class StatisticheCombattimentoPersonaggio extends StatisticheCombattiment
         return stamina;
     }
 
-
     public StatisticheCombattimentoPersonaggio(DescrittorePersonaggio descrittorePersonaggio)
     {
-        super(descrittorePersonaggio);
+        super((DescrittorePersonaggio)descrittorePersonaggio);
         this.stamina=descrittorePersonaggio.getStamina();
 
+    }
+
+    @Override
+    public DescrittorePersonaggio getDescrittorePersonaggioBase(){
+        return (DescrittorePersonaggio)descrittorePersonaggioBase;
     }
 
     public int calcolaDanno(int posizioneArma,int posizioneAttacco){

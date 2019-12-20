@@ -40,9 +40,6 @@ public class PartitaController implements Observer {
 
     private void InitModalita()
     {
-        incontroController.setStatisticheCombattimentoPersonaggio(
-           new StatisticheCombattimentoPersonaggio(this.personaggioController.
-                getDescrittorePersonaggio()));
         this.iterDungeons=this.m.getListaDungeons().iterator();
         nextDungeon();
         nextIncontro();

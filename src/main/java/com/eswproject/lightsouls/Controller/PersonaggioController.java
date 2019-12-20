@@ -27,12 +27,12 @@ public class PersonaggioController {
     @GetMapping("/SetPersonaggio")
     public void SetPersonaggio() {
         statisticheCombattimentoPersonaggio =new StatisticheCombattimentoPersonaggio(pS.findById(1));
-        this.gestoreEquipaggiamenti.setDescrittorePersonaggio(statisticheCombattimentoPersonaggio.getDescrittorePersonaggio());
+        this.gestoreEquipaggiamenti.setStatisticheCombattimentoPersonaggio(statisticheCombattimentoPersonaggio);
     }
 
     @GetMapping("RiepilogoPersonaggio")
-    public DescrittorePersonaggio getDescrittorePersonaggio(){
-        return this.descrittorePersonaggio;
+    public StatisticheCombattimentoPersonaggio getDescrittorePersonaggio(){
+        return statisticheCombattimentoPersonaggio;
     }
 
 	@PostMapping("/PotenziaEquipaggiamento/{idE}")
@@ -51,9 +51,9 @@ public class PersonaggioController {
 
     private Equipment getLocalEquipment(int idE){
         Equipment eq = null;
-        for (Equipment equipment : this.descrittorePersonaggio.getZainoEquip())
+        for (Equipment equipment : statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getZainoEquip())
         {
-            if (equipment.getId() == idE)
+            if (equipment.getDescrittoreEquipment().getId() == idE)
             {
                 eq = equipment;
                 break;

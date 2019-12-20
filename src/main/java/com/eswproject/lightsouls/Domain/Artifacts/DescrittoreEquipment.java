@@ -33,9 +33,7 @@ public abstract class DescrittoreEquipment
 
     private int upgradesMax;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
-    private List<Titanite> equippedTitaniti;
+
 
     @OneToOne
     private StatisticheBase minRequirements;
@@ -47,14 +45,7 @@ public abstract class DescrittoreEquipment
     public List<Difesa> getDifese() {
         return difese;
     }
-
-    public List<Titanite> getEquippedTitaniti() {
-        return equippedTitaniti;
-    }
-
-    public abstract void addTitanite(Titanite titanite);
-
-    public abstract void removeTitanite(Titanite titanite);
+    
 
 	public int getId() {
 		return id;
