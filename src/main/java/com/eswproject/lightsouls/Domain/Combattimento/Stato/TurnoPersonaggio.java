@@ -15,11 +15,11 @@ public class TurnoPersonaggio extends StatoTurno {
        this.incontroController.getListaTurni().get(posizioneNemico).
                infliggiDanno(this.incontroController.getStatisticheCombattimentoPersonaggio().
                        calcolaDanno(attaccoMapper.getPosizioneArma(),attaccoMapper.getPosizioneAttacco()));
-       if(this.incontroController.getStatisticheCombattimentoPersonaggio().getEquipaggiati().isEmpty()){
+       if(this.incontroController.getStatisticheCombattimentoPersonaggio().getEquipaggiati().isEmpty())
+       {
            this.incontroController.getStatisticheCombattimentoPersonaggio().resetEquipaggiati();
            return this.incontroController.PassaTurno();
        }
-       else
        return "TurnoPersonaggio";
    }
 

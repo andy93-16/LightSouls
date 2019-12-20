@@ -1,9 +1,8 @@
 package com.eswproject.lightsouls.Domain.Personaggio;
 
-public enum BodyPartType {
-
+public enum BodyPartType
+{
     Mano,
     Corpo,
     Testa;
-
 }

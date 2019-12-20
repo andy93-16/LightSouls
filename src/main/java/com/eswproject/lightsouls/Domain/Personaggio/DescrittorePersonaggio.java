@@ -9,8 +9,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
-
+public class DescrittorePersonaggio extends DescrittorePersonaggioBase
+{
     @OneToOne
     private StatisticheBase statisticheBase;
 
@@ -68,5 +68,4 @@ public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
     public int getStamina() {
         return stamina;
     }
-
 }

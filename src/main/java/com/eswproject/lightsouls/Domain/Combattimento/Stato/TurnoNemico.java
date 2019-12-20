@@ -5,23 +5,23 @@ import com.eswproject.lightsouls.Domain.Combattimento.AttaccoMapper;
 
 public class TurnoNemico extends StatoTurno {
 
+    String TurnoNemico = "/TurnoNemico";
     public TurnoNemico(IncontroController incontroController){
         super(incontroController);
     }
 
     @Override
     public String attacca(int posizioneNemico, AttaccoMapper attaccoMapper){
-        return "/TurnoNemico";
+        return TurnoNemico;
     }
 
     @Override
     public String getStatoTurno(){
-        return "/TurnoNemico";
+        return TurnoNemico;
     }
 
     @Override
     public String passaTurno(){
-        return "TurnoNemico";
+        return TurnoNemico;
     }
 }
-

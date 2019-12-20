@@ -14,9 +14,8 @@ import java.util.*;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-public class PersonaggioController {
-
-
+public class PersonaggioController
+{
     @Autowired
     PersonaggioService pS;
 
@@ -49,7 +48,8 @@ public class PersonaggioController {
         return "/RiepilogoEquipaggiamenti";
     }
 
-    private Equipment getLocalEquipment(int idE){
+    private Equipment getLocalEquipment(int idE)
+    {
         Equipment eq = null;
         for (Equipment equipment : statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getZainoEquip())
         {

@@ -4,8 +4,8 @@ import com.eswproject.lightsouls.Domain.Personaggio.BodyPartType;
 import javax.persistence.*;
 
 @Entity
-public class BodyPartRequirement {
-
+public class BodyPartRequirement
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,5 +21,4 @@ public class BodyPartRequirement {
     public int getNumberbodyPart() {
         return numberBodyPart;
     }
-
 }

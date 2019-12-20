@@ -5,33 +5,34 @@ import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import javax.persistence.*;
 
 @Entity
-public class Titanite {
+public class Titanite
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private int anime;
+
+    private EquipmentType equipmentType;
+
+    private DiceColor diceColor;
+
+    private int available;
+
+    private int looted;
+
 
     public int getId() {
         return id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     public int getAnime() {
         return anime;
     }
 
-    private int anime;
-
-    public EquipmentType getEquipmentType() {
-        return equipmentType;
+    public int getLooted() {
+        return looted;
     }
-
-    private EquipmentType equipmentType;
-
-    public DiceColor getDiceColor() {
-        return diceColor;
-    }
-
-    private DiceColor diceColor;
 
     public int getAvailable() {
         return available;
@@ -42,14 +43,11 @@ public class Titanite {
         this.available = available;
     }
 
-    private int available;
-
-    public int getLooted() {
-        return looted;
+    public DiceColor getDiceColor() {
+        return diceColor;
     }
 
-    private int looted;
+    public EquipmentType getEquipmentType() {
+        return equipmentType;
+    }
 }
-
-
-

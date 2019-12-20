@@ -12,7 +12,7 @@ import java.util.Observer;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-public class IncontroController extends Observable implements Observer {
+public class IncontroController extends Observable implements Observer, Comparable<IncontroController> {
 
 	private DescrittoreIncontro descrittoreIncontro;
 

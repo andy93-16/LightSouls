@@ -3,8 +3,8 @@ package com.eswproject.lightsouls.Domain.Combattimento.Stato;
 import com.eswproject.lightsouls.Controller.IncontroController;
 import com.eswproject.lightsouls.Domain.Combattimento.AttaccoMapper;
 
-public abstract class StatoTurno {
-
+public abstract class StatoTurno
+{
     IncontroController incontroController;
 
     StatoTurno(IncontroController incontroController){

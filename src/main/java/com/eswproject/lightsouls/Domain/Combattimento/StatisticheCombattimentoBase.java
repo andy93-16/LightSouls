@@ -14,10 +14,14 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
 
     protected DescrittorePersonaggioBase descrittorePersonaggioBase;
 
+    protected List<Equipment> equipaggiati;
+
+    private List<Equipment> equipaggiatiUsati;
+
+
     public int getHP() {
         return HP;
     }
-
 
     public DescrittorePersonaggioBase getDescrittorePersonaggioBase() {
         return descrittorePersonaggioBase;
@@ -28,14 +32,9 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
         this.HP=descrittorePersonaggioBase.getHP();
     }
 
-
-    protected List<Equipment> equipaggiati;
-
     public List<Equipment> getEquipaggiati() {
         return equipaggiati;
     }
-
-    private List<Equipment> equipaggiatiUsati;
 
     public List<Equipment> getEquipaggiatiUsati() {
         return equipaggiatiUsati;
@@ -77,7 +76,4 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
         equipaggiati.addAll(equipaggiatiUsati);
         equipaggiatiUsati.clear();
     }
-
-
-
 }
