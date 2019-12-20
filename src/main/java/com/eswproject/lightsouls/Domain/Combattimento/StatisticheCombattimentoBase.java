@@ -12,7 +12,6 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
 
     protected int HP;
 
-
     protected DescrittorePersonaggioBase descrittorePersonaggioBase;
 
     public int getHP() {
@@ -43,7 +42,7 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
     }
 
     public int calcolaDanno(int posizioneArma,int posizioneAttacco){
-        Arma arma=(Arma)equipaggiati.get(posizioneArma);
+        Equipment arma=equipaggiati.get(posizioneArma);
         getEquipaggiatiUsati().add(arma);
         getEquipaggiati().remove(arma);
         return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();

@@ -1,6 +1,5 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
-import com.eswproject.lightsouls.Domain.Artifacts.Arma;
 import com.eswproject.lightsouls.Domain.Personaggio.DescrittoreNemico;
 
 public class StatisticheCombattimentoNemico extends StatisticheCombattimentoBase {
@@ -10,7 +9,6 @@ public class StatisticheCombattimentoNemico extends StatisticheCombattimentoBase
     }
 
     public int calcolaDanno(int posizioneArma,int posizioneAttacco){
-        Arma arma=(Arma)equipaggiati.get(posizioneArma);
-        return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();
+        return equipaggiati.get(posizioneArma).getAttacchi().get(posizioneAttacco).getDiceRoll();
     }
 }

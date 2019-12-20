@@ -33,8 +33,6 @@ public abstract class DescrittoreEquipment
 
     private int upgradesMax;
 
-
-
     @OneToOne
     private StatisticheBase minRequirements;
 
@@ -45,7 +43,6 @@ public abstract class DescrittoreEquipment
     public List<Difesa> getDifese() {
         return difese;
     }
-    
 
 	public int getId() {
 		return id;

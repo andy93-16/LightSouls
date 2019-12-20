@@ -25,7 +25,7 @@ public class StatisticheCombattimentoPersonaggio extends StatisticheCombattiment
     }
 
     public int calcolaDanno(int posizioneArma,int posizioneAttacco){
-        Arma arma=(Arma)equipaggiati.get(posizioneArma);
+        Arma arma=(Arma)equipaggiati.get(posizioneArma).getDescrittoreEquipment();
         stamina=stamina-arma.getAttacchi().get(posizioneAttacco).getStaminaCost();
         return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();
     }
