@@ -57,9 +57,9 @@ INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (6,2,1);
 INSERT INTO statistiche_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
 INSERT INTO body_part_requirement(body_part_type,number_body_part) VALUES (0,1);
-INSERT INTO equipment(dtype,min_requirements_id,upgrades_max,name,body_part_requirement_id) VALUES ('Arma',4,2, 'Ascia',4);
-INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (4,5); --Tabella di JOIN
-INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (4,6); --Tabella di JOIN
+INSERT INTO descrittore_equipment(dtype,min_requirements_id,upgrades_max,name,body_part_requirement_id) VALUES ('Arma',4,2, 'Ascia',4);
+INSERT INTO descrittore_equipment_attacchi(arma_id,attacchi_id) VALUES (4,5); --Tabella di JOIN
+INSERT INTO descrittore_equipment_difese(equipment_id,difese_id) VALUES (4,6); --Tabella di JOIN
 --EQUIPMENT5
 INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',2);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (7,2,1);
