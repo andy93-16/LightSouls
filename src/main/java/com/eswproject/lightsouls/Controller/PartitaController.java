@@ -1,6 +1,7 @@
 package com.eswproject.lightsouls.Controller;
 
 import com.eswproject.lightsouls.Domain.Combattimento.DescrittoreIncontro;
+import com.eswproject.lightsouls.Domain.Combattimento.StatisticheCombattimentoPersonaggio;
 import com.eswproject.lightsouls.Domain.Partita.CostruttoreModalita;
 import com.eswproject.lightsouls.Domain.Partita.DescrittoreDungeon;
 import com.eswproject.lightsouls.Domain.Partita.Modalita;
@@ -24,6 +25,10 @@ public class PartitaController implements Observer {
     @Autowired
     IncontroController incontroController ;
 
+    @Autowired
+    PersonaggioController personaggioController;
+
+
     Iterator<DescrittoreDungeon> iterDungeons;
 
     Iterator<DescrittoreIncontro> iterIncontri;
@@ -35,6 +40,9 @@ public class PartitaController implements Observer {
 
     private void InitModalita()
     {
+        incontroController.setStatisticheCombattimentoPersonaggio(
+           new StatisticheCombattimentoPersonaggio(this.personaggioController.
+                getDescrittorePersonaggio()));
         this.iterDungeons=this.m.getListaDungeons().iterator();
         nextDungeon();
         nextIncontro();

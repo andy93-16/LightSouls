@@ -1,28 +1,31 @@
 package com.eswproject.lightsouls.Controller;
 
-import com.eswproject.lightsouls.Domain.Artifacts.Azione;
 import com.eswproject.lightsouls.Domain.Combattimento.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Observable;
+import java.util.Observer;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-public class IncontroController extends Observable {
+public class IncontroController extends Observable implements Observer {
 
 	private DescrittoreIncontro descrittoreIncontro;
 
 	private LinkedList<StatisticheCombattimentoBase> listaTurni;
 
-	boolean isComplete = false;
+	public void setStatisticheCombattimentoPersonaggio(StatisticheCombattimentoPersonaggio statisticheCombattimentoPersonaggio) {
+		this.statisticheCombattimentoPersonaggio = statisticheCombattimentoPersonaggio;
+	}
 
-	@Autowired
-	private PersonaggioController personaggioController;
+	private StatisticheCombattimentoPersonaggio statisticheCombattimentoPersonaggio;
 
-	private GestoreIncontro gestoreIncontro= GestoreIncontro.getInstance();
+	@GetMapping("/ListaTurni")
+	public LinkedList<StatisticheCombattimentoBase> getListaTurni(){
+		return listaTurni;
+	}
 
 	@GetMapping("/RiepilogoIncontro")
 	public DescrittoreIncontro getDescrittoreIncontro() {
@@ -33,21 +36,13 @@ public class IncontroController extends Observable {
 		this.descrittoreIncontro = descrittoreIncontro;
 	}
 
-	public boolean isComplete() {
-		return this.isComplete;
-	}
-
-	public void setIsComplete(boolean isComplete) {
-		this.isComplete = isComplete;
-	}
-
 	@GetMapping("/AvviaIncontro")
 	public String AvviaIncontro() {
 		this.listaTurni= new LinkedList<>();
-		this.listaTurni.add(new StatisticheCombattimentoPersonaggio(this.personaggioController.getDescrittorePersonaggio()));
+		this.listaTurni.add(statisticheCombattimentoPersonaggio);
 		for(NemicoWrapper nemicoWrapper: this.descrittoreIncontro.getNemiciWrappers()){
 			for(int i=0;i<nemicoWrapper.getNumberNemici();i++)
-				this.listaTurni.add(new StatisticheCombattimentoBase(nemicoWrapper.getDescrittoreNemico()));
+				this.listaTurni.add(new StatisticheCombattimentoNemico(nemicoWrapper.getDescrittoreNemico()));
 		}
 		Collections.sort(listaTurni);
 		return getTurno();
@@ -55,32 +50,30 @@ public class IncontroController extends Observable {
 
 	@GetMapping("/Turno")
 	public String getTurno(){
-		if(this.listaTurni.peekFirst().getClass().getSimpleName().equals("StatisticheCombattimentoPersonaggio")){
+		if(this.listaTurni.peekFirst().equals(statisticheCombattimentoPersonaggio)){
 			return "/TurnoPersonaggio";
 		}
 		else
 			return "/TurnoNemico";
 	}
 
-	@PostMapping("/Attacca/{posizioneNemico}")
-	public String Attacca(@PathVariable("posizioneNemico")int posizioneNemico,@RequestBody Azione azione){
-		StatisticheCombattimentoBase nemico=this.listaTurni.get(posizioneNemico);
-		int danno=azione.getDiceRoll()-
-				nemico.getDescrittorePersonaggioBase().getDifesa();
-		if(danno>0){
-			int HpLeft=nemico.getHP()-danno;
-			if(HpLeft>0)
-				nemico.setHP(HpLeft);
-			else
-				this.listaTurni.remove(nemico);
-		}
-		return "/TurnoPersonaggio";
-
+	@GetMapping("/PassaTurno")
+	public void PassaTurno(){
+          StatisticheCombattimentoBase statisticheCombattimentoBase=this.listaTurni.pollFirst();
+          this.listaTurni.offerLast(statisticheCombattimentoBase);
 	}
 
-	@GetMapping("/ListaTurni")
-	public LinkedList<StatisticheCombattimentoBase> getListaTurni(){
-		return listaTurni;
+	@PostMapping("/Attacca/{posizioneNemico}")
+	public String Attacca(@PathVariable("posizioneNemico")int posizioneNemico,@RequestBody AttaccoMapper attaccoMapper){
+		this.listaTurni.get(posizioneNemico).
+				infliggiDanno(statisticheCombattimentoPersonaggio.
+						calcolaDanno(attaccoMapper.getPosizioneArma(),attaccoMapper.getPosizioneAttacco()));
+		return "/TurnoPersonaggio";
+	}
+	@GetMapping("/Difendi")
+	public void Difendi(){
+		statisticheCombattimentoPersonaggio.infliggiDanno(
+				this.listaTurni.peekFirst().calcolaDanno(0,0));
 	}
 
 	/*public String Avvia() {
@@ -88,6 +81,18 @@ public class IncontroController extends Observable {
 		notifyObservers();
 		return "/Incontro";
 	}*/
+
+	@GetMapping("/TornaAlFalo")
+	public String TornaAlFalo(){
+		statisticheCombattimentoPersonaggio.resetStatistiche();
+		return "/TornaAlFalo";
+	}
+
+	@Override
+	public void update(Observable statisticaCombattimento,Object stato){
+
+
+	}
 
 
 }

@@ -39,19 +39,5 @@ public abstract class DescrittorePersonaggioBase
         return nome;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Equipment> equipaggiati;
 
-    public List<Equipment> getEquipaggiati() {
-        return equipaggiati;
-    }
-
-    public int getDifesa(){
-        int difesaTot=0;
-        for(Equipment equipment: this.equipaggiati){
-            for(Difesa difesa : equipment.getDifese())
-                difesaTot+=difesa.getDiceRoll();
-        }
-        return difesaTot;
-    }
 }
