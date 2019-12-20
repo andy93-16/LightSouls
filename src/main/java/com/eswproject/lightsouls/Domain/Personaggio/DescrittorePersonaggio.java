@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@DiscriminatorValue("DescrittorePersonaggio")
 public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
 
     @OneToOne

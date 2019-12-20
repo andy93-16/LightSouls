@@ -50,7 +50,7 @@ public class IncontroController extends Observable implements Observer {
 		this.listaTurni.add(statisticheCombattimentoPersonaggio);
 		for(NemicoWrapper nemicoWrapper: this.descrittoreIncontro.getNemiciWrappers()){
 			for(int i=0;i<nemicoWrapper.getNumberNemici();i++)
-				this.listaTurni.add(new StatisticheCombattimentoNemico(nemicoWrapper.getDescrittoreNemico()));
+				this.listaTurni.add(nemicoWrapper.getStatisticheCombattimentoNemico());
 		}
 		Collections.sort(listaTurni);
 

@@ -1,11 +1,22 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Personaggio.BodyPart;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
+import javax.persistence.*;
 import java.util.List;
 
-
+@Entity
 public class Equipment {
+
+    public int getId() {
+        return id;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     public int getUpgradesLeft() {
         return upgradesLeft;
@@ -15,6 +26,7 @@ public class Equipment {
         this.upgradesLeft = upgradesLeft;
     }
 
+    @Column(nullable = true)
     private int upgradesLeft;
 
     public Equipment(DescrittoreEquipment descrittoreEquipment){
@@ -31,26 +43,35 @@ public class Equipment {
         return descrittoreEquipment;
     }
 
+    @OneToOne
     private DescrittoreEquipment descrittoreEquipment;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     private List<BodyPart> equippedBodyParts;
 
     public List<BodyPart> getEquippedBodyParts() {
         return equippedBodyParts;
     }
 
+    @Transient
     private List<Titanite> equippedTitaniti;
+
 
     public List<Attacco> getAttacchi() {
         return attacchi;
     }
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Attacco> attacchi;
 
     public List<Difesa> getDifese() {
         return difese;
     }
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Difesa> difese;
 
     public List<Titanite> getEquippedTitaniti() {

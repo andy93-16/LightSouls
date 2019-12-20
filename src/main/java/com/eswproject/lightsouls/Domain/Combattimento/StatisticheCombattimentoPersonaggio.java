@@ -3,6 +3,11 @@ package com.eswproject.lightsouls.Domain.Combattimento;
 import com.eswproject.lightsouls.Domain.Artifacts.Arma;
 import com.eswproject.lightsouls.Domain.Personaggio.DescrittorePersonaggio;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("Personaggio")
 public class StatisticheCombattimentoPersonaggio extends StatisticheCombattimentoBase{
 
     private int stamina;

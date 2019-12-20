@@ -87,7 +87,7 @@ public class GestoreEquipaggiamenti{
     private Equipment getLocalEquipmentInZaino(int idEquipment){
         Equipment eq=null;
         for(Equipment equipment:this.statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getZainoEquip()){
-            if(equipment.getDescrittoreEquipment().getId()==idEquipment) {
+            if(equipment.getId()==idEquipment) {
                 eq = equipment;
                 break;
             }
@@ -98,7 +98,7 @@ public class GestoreEquipaggiamenti{
     public Equipment getLocalEquipmentInEquipaggiati(int idEquipment){
         Equipment eq=null;
         for(Equipment equipment:this.statisticheCombattimentoPersonaggio.getEquipaggiati()) {
-            if (equipment.getDescrittoreEquipment().getId() == idEquipment) {
+            if (equipment.getId() == idEquipment) {
                 eq = equipment;
                 break;
             }

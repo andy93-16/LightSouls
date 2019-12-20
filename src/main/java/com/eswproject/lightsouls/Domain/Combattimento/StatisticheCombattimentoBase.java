@@ -2,16 +2,27 @@ package com.eswproject.lightsouls.Domain.Combattimento;
 
 import com.eswproject.lightsouls.Domain.Artifacts.*;
 import com.eswproject.lightsouls.Domain.Personaggio.DescrittorePersonaggioBase;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class StatisticheCombattimentoBase extends Observable implements Comparable<StatisticheCombattimentoBase> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Transient
     protected int HP;
 
+    @OneToOne
     protected DescrittorePersonaggioBase descrittorePersonaggioBase;
 
     public int getHP() {
@@ -28,13 +39,16 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
         this.HP=descrittorePersonaggioBase.getHP();
     }
 
-
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     protected List<Equipment> equipaggiati;
 
     public List<Equipment> getEquipaggiati() {
         return equipaggiati;
     }
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Equipment> equipaggiatiUsati;
 
     public List<Equipment> getEquipaggiatiUsati() {

@@ -8,18 +8,18 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.List;
 
-@MappedSuperclass
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY,property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(name = "Nemico", value = DescrittoreNemico.class),
         @JsonSubTypes.Type(name = "Personaggio", value = DescrittorePersonaggio.class)
 })
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class DescrittorePersonaggioBase
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String nome;
+    private String name;
     private int HP;
     private int velocita;
 
@@ -33,8 +33,8 @@ public abstract class DescrittorePersonaggioBase
         return this.velocita;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
 

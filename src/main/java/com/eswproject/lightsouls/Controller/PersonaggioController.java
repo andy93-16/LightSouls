@@ -53,7 +53,7 @@ public class PersonaggioController {
         Equipment eq = null;
         for (Equipment equipment : statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getZainoEquip())
         {
-            if (equipment.getDescrittoreEquipment().getId() == idE)
+            if (equipment.getId() == idE)
             {
                 eq = equipment;
                 break;

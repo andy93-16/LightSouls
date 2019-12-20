@@ -11,14 +11,14 @@ public class NemicoWrapper {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    public StatisticheCombattimentoNemico getStatisticheCombattimentoNemico() {
+        return statisticheCombattimentoNemico;
+    }
+
     @OneToOne
-    private DescrittoreNemico descrittoreNemico;
+    private StatisticheCombattimentoNemico statisticheCombattimentoNemico;
 
     private int numberNemici;
-
-    public DescrittoreNemico getDescrittoreNemico() {
-        return descrittoreNemico;
-    }
 
     public int getNumberNemici() {
         return numberNemici;

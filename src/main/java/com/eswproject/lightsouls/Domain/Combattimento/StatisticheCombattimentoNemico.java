@@ -2,6 +2,10 @@ package com.eswproject.lightsouls.Domain.Combattimento;
 
 import com.eswproject.lightsouls.Domain.Personaggio.DescrittoreNemico;
 
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("Nemico")
 public class StatisticheCombattimentoNemico extends StatisticheCombattimentoBase {
 
     public StatisticheCombattimentoNemico(DescrittoreNemico descrittoreNemico) {

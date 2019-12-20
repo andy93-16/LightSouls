@@ -19,9 +19,6 @@ import java.util.List;
 public abstract class DescrittoreEquipment
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     private String name;
 
     @OneToOne
@@ -44,9 +41,6 @@ public abstract class DescrittoreEquipment
         return difese;
     }
 
-	public int getId() {
-		return id;
-	}
 
     public String getName()
     {
