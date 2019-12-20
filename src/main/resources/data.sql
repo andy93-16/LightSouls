@@ -33,23 +33,23 @@ INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (1,2,1);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (2,2,2);
 INSERT INTO statistiche_base(forza,destrezza,intelligenza,fede) VALUES (1,1,1,1); --E' il primo oggetto creato quindi il suo ID = 1
 INSERT INTO body_part_requirement(body_part_type,number_body_part) VALUES (0,1);
-INSERT INTO equipment(dtype,min_requirements_id,upgrades_max, name,body_part_requirement_id) VALUES ('Arma',1,1, 'Spada leggera',1);
-INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (1,1);
-INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (1,2);--Tabella di JOIN
+INSERT INTO descrittore_equipment(dtype,min_requirements_id,upgrades_max, name,body_part_requirement_id) VALUES ('Arma',1,1, 'Spada leggera',1);
+INSERT INTO descrittore_equipment_attacchi(arma_id,attacchi_id) VALUES (1,1);
+INSERT INTO descrittore_equipment_attacchi(arma_id,attacchi_id) VALUES (1,2);--Tabella di JOIN
 --EQUIPMENT2
 INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (3,2,1);
 INSERT INTO statistiche_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
 INSERT INTO body_part_requirement(body_part_type,number_body_part) VALUES (1,1);
-INSERT INTO equipment(dtype,min_requirements_id,upgrades_max,name,body_part_requirement_id) VALUES ('Armatura',2,2,'Armatura leggera',2);
-INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (2,3); --Tabella di JOIN
+INSERT INTO descrittore_equipment(dtype,min_requirements_id,upgrades_max,name,body_part_requirement_id) VALUES ('Armatura',2,2,'Armatura leggera',2);
+INSERT INTO descrittore_equipment_difese(equipment_id,difese_id) VALUES (2,3); --Tabella di JOIN
 --EQUIPMENT3
 INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (4,2,1);
 INSERT INTO statistiche_base(forza,destrezza,intelligenza,fede) VALUES (2,2,2,2);
 INSERT INTO body_part_requirement(body_part_type,number_body_part) VALUES (1,1);
-INSERT INTO equipment(dtype,min_requirements_id,upgrades_max,name,body_part_requirement_id) VALUES ('Armatura',3,2,'Armatura pesante',3);
-INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (3,4); --Tabella di JOIN
+INSERT INTO descrittore_equipment(dtype,min_requirements_id,upgrades_max,name,body_part_requirement_id) VALUES ('Armatura',3,2,'Armatura pesante',3);
+INSERT INTO descrittore_equipment_difese(equipment_id,difese_id) VALUES (3,4); --Tabella di JOIN
 --EQUIPMENT4
 INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',2);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (5,2,1);
