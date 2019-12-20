@@ -64,7 +64,7 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
     }
 
     @Override
-    public void update(Observable equipment,boolean used){
+    public void update(Observable equipment,Object used){
 
     }
 
