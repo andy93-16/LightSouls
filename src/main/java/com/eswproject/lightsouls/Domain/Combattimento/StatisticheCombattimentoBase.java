@@ -1,18 +1,18 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
-import com.eswproject.lightsouls.Domain.Artifacts.Arma;
-import com.eswproject.lightsouls.Domain.Artifacts.Attacco;
-import com.eswproject.lightsouls.Domain.Artifacts.Difesa;
-import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
+import com.eswproject.lightsouls.Domain.Artifacts.*;
 import com.eswproject.lightsouls.Domain.Personaggio.DescrittorePersonaggioBase;
 
 
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
-public abstract class StatisticheCombattimentoBase extends Observable implements Comparable<StatisticheCombattimentoBase>  {
+public abstract class StatisticheCombattimentoBase extends Observable implements Observer {
 
     protected int HP;
+
+    protected StatoCombattente statoCombattente;
 
     protected DescrittorePersonaggioBase descrittorePersonaggioBase;
 
@@ -30,27 +30,16 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
         this.HP=descrittorePersonaggioBase.getHP();
     }
 
-    @Override
-    public int compareTo(StatisticheCombattimentoBase statisticheCombattimentoBase){
-        return statisticheCombattimentoBase.descrittorePersonaggioBase.getVelocita()-this.descrittorePersonaggioBase.getVelocita();
-    }
 
-    protected List<Equipment> equipaggiatiDisponibili;
+    protected List<Equipment> equipaggiati;
 
-    public List<Equipment> getEquipaggiatiDisponibili() {
-        return equipaggiatiDisponibili;
-    }
-    protected List<Equipment> equipaggiatiNonDisponibili;
-
-    public List<Equipment> getEquipaggiatiNonDisponibili() {
-        return equipaggiatiNonDisponibili;
+    public List<Equipment> getEquipaggiati() {
+        return equipaggiati;
     }
 
     public int calcolaDanno(int posizioneArma,int posizioneAttacco){
-        Arma arma=(Arma)equipaggiatiDisponibili.get(posizioneArma);
-        equipaggiatiNonDisponibili.add(arma);
-        equipaggiatiDisponibili.remove(arma);
-        if(equipaggiatiDisponibili.isEmpty())
+        Arma arma=(Arma)equipaggiati.get(posizioneArma);
+        if(equipaggiati.isEmpty())
             notifyObservers(this);
         return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();
     }
@@ -58,24 +47,26 @@ public abstract class StatisticheCombattimentoBase extends Observable implements
     public void infliggiDanno(int danno){
         if(HP-danno>0)
             HP=HP-danno;
-        else{
-            setChanged();
-            notifyObservers(this);}
+        else{}
     }
 
-    private int getDifesa(){
-        int difesaTot=0;
-        for(Equipment equipment: this.equipaggiatiDisponibili){
-            for(Difesa difesa : equipment.getDifese())
-                difesaTot+=difesa.getDiceRoll();
+    private int getDifesa() {
+        int difesaTot = 0;
+        for (Equipment equipment : this.equipaggiati) {
+            for (Difesa difesa : equipment.getDescrittoreEquipment().getDifese())
+                difesaTot += difesa.getDiceRoll();
         }
-        for(Equipment equipment: this.equipaggiatiNonDisponibili){
-            for(Difesa difesa : equipment.getDifese())
-                difesaTot+=difesa.getDiceRoll();
+        for (Equipment equipment : this.equipaggiati) {
+            for (Difesa difesa : equipment.getDescrittoreEquipment().getDifese())
+                difesaTot += difesa.getDiceRoll();
         }
         return difesaTot;
     }
 
+    @Override
+    public void update(Observable equipment,boolean used){
+
+    }
 
 
 

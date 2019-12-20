@@ -2,6 +2,7 @@ package com.eswproject.lightsouls.Controller;
 
 
 
+import com.eswproject.lightsouls.Domain.Combattimento.StatisticheCombattimentoPersonaggio;
 import com.eswproject.lightsouls.Domain.Personaggio.*;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
@@ -21,12 +22,12 @@ public class PersonaggioController {
 
     private GestoreEquipaggiamenti gestoreEquipaggiamenti=GestoreEquipaggiamenti.getInstance();
 
-    private DescrittorePersonaggio descrittorePersonaggio;
+    private StatisticheCombattimentoPersonaggio statisticheCombattimentoPersonaggio;
 
     @GetMapping("/SetPersonaggio")
     public void SetPersonaggio() {
-        this.descrittorePersonaggio = pS.findById(1);
-        this.gestoreEquipaggiamenti.setDescrittorePersonaggio(this.descrittorePersonaggio);
+        statisticheCombattimentoPersonaggio =new StatisticheCombattimentoPersonaggio(pS.findById(1));
+        this.gestoreEquipaggiamenti.setDescrittorePersonaggio(statisticheCombattimentoPersonaggio.getDescrittorePersonaggio());
     }
 
     @GetMapping("RiepilogoPersonaggio")
