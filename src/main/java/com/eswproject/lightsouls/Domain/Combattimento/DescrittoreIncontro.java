@@ -7,7 +7,6 @@ import java.util.List;
 @Entity
 public class DescrittoreIncontro
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

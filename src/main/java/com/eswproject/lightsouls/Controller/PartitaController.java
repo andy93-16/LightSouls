@@ -1,8 +1,8 @@
 package com.eswproject.lightsouls.Controller;
 
 import com.eswproject.lightsouls.Domain.Combattimento.DescrittoreIncontro;
-import com.eswproject.lightsouls.Domain.Combattimento.StatisticheCombattimentoPersonaggio;
 import com.eswproject.lightsouls.Domain.Partita.CostruttoreModalita;
+import com.eswproject.lightsouls.Domain.Partita.CostruttoreModalitaStoria;
 import com.eswproject.lightsouls.Domain.Partita.DescrittoreDungeon;
 import com.eswproject.lightsouls.Domain.Partita.Modalita;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,35 +20,30 @@ import java.util.Observer;
 public class PartitaController implements Observer {
 
     @Autowired
-    CostruttoreModalita cM;
+    CostruttoreModalita costruttoreModalita;
 
     @Autowired
     IncontroController incontroController ;
-
-    @Autowired
-    PersonaggioController personaggioController;
-
 
     Iterator<DescrittoreDungeon> iterDungeons;
 
     Iterator<DescrittoreIncontro> iterIncontri;
 
-    Modalita m;
+    Modalita modalita;
 
     private boolean dungeonComplete=false;
 
-
     private void InitModalita()
     {
-        this.iterDungeons=this.m.getListaDungeons().iterator();
+        iterDungeons=modalita.getListaDungeons().iterator();
         nextDungeon();
+        this.incontroController.addObserver(this);
         nextIncontro();
     }
 
     private void nextIncontro()
     {
         this.incontroController.setDescrittoreIncontro(iterIncontri.next());
-        this.incontroController.addObserver(this);
     }
 
     private void nextDungeon()
@@ -81,9 +76,9 @@ public class PartitaController implements Observer {
     @GetMapping("/ModalitaStoria")
     public String CostruisciModalitaStoria()
     {
-        this.cM.reset();
-        this.cM.SetupModalita();
-        this.m=cM.getM();
+        costruttoreModalita.reset();
+        costruttoreModalita.SetupModalita();
+        modalita = costruttoreModalita.getModalita();
         InitModalita();
         return "/Falo";
     }

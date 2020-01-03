@@ -38,9 +38,9 @@ export class HttpService {
   public RiepilogoPersonaggio(): Observable<any>{
     return this.httpclient.get<any>('http://localhost:8080/RiepilogoPersonaggio');
   }
-  public Potenzia(id: number, titanite: any): Observable<any> {
+  public Potenzia(equipaggiamentoPos: number, titanite: any): Observable<any> {
     return this.httpclient.post('http://localhost:8080/PotenziaEquipaggiamento/'
-      + id, titanite ,
+      + equipaggiamentoPos, titanite ,
       { responseType: 'text'});
   }
   public Depotenzia(id: number, titanite: any): Observable<any>{
@@ -48,12 +48,12 @@ export class HttpService {
       + id, titanite ,
       { responseType: 'text'});
   }
-  public Equipaggia(bodyParts: any[], equipaggiamentoId: number): Observable<any> {
-    return this.httpclient.post('http://localhost:8080/Equipaggia/' + equipaggiamentoId , bodyParts ,
+  public Equipaggia(bodyParts: any[], equipaggiamentoPos: number): Observable<any> {
+    return this.httpclient.post('http://localhost:8080/Equipaggia/' + equipaggiamentoPos , bodyParts ,
       {responseType: 'text'});
   }
-  public Disequipaggia(equipaggiamentoId: number): Observable<any> {
-    return this.httpclient.get('http://localhost:8080/Disequipaggia/' + equipaggiamentoId,
+  public Disequipaggia(equipaggiamentoPos: number): Observable<any> {
+    return this.httpclient.get('http://localhost:8080/Disequipaggia/' + equipaggiamentoPos,
       {responseType: 'text'});
   }
   public ListaTurni(): Observable<any>{
@@ -62,5 +62,11 @@ export class HttpService {
   public Attacca(attacco: any, posizioneNemico: number): Observable<any> {
     return this.httpclient.post('http://localhost:8080/Attacca/' + posizioneNemico,
        attacco, {responseType: 'text'});
+  }
+  public Difendi(): Observable<any> {
+    return this.httpclient.get('http://localhost:8080/Difendi', {responseType: 'text'});
+  }
+  public Schiva(): Observable<any> {
+    return this.httpclient.get('http://localhost:8080/Schiva', {responseType: 'text'});
   }
 }

@@ -12,10 +12,12 @@ export class DettagliPotenziamentoComponent implements OnInit {
 
   equipaggiamento: any;
   titaniti: any[];
+  equipaggiamentoPos: number;
 
   constructor(private httpservice: HttpService, private router: Router) {
     this.equipaggiamento = this.router.getCurrentNavigation().extras.state.equipaggiamentoSelezionato;
     this.titaniti = this.router.getCurrentNavigation().extras.state.titanitiForEquipment;
+    this.equipaggiamentoPos = this.router.getCurrentNavigation().extras.state.equipaggiamentoPos;
   }
   ngOnInit() {
   }
@@ -25,7 +27,7 @@ export class DettagliPotenziamentoComponent implements OnInit {
   }
 
   Usa(titanite: any): void {
-    this.httpservice.Potenzia(this.equipaggiamento.id, titanite).subscribe(url => this.router.navigate([url]));
+    this.httpservice.Potenzia(this.equipaggiamentoPos, titanite).subscribe(url => this.router.navigate([url]));
   }
 
 }

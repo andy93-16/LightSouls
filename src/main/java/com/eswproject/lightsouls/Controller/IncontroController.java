@@ -1,14 +1,13 @@
 package com.eswproject.lightsouls.Controller;
 
 import com.eswproject.lightsouls.Domain.Combattimento.*;
-import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoTurno;
-import com.eswproject.lightsouls.Domain.Combattimento.Stato.TurnoNemico;
-import com.eswproject.lightsouls.Domain.Combattimento.Stato.TurnoPersonaggio;
+import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
+import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggioBase;
+import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoNemico;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Observable;
-import java.util.Observer;
+
+import java.util.*;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
@@ -16,23 +15,28 @@ public class IncontroController extends Observable implements Observer {
 
 	private DescrittoreIncontro descrittoreIncontro;
 
-	private LinkedList<StatisticheCombattimentoBase> listaTurni;
+	private GestoreIncontro gestoreIncontro=new GestoreIncontro();
 
-	public void setStatisticheCombattimentoPersonaggio(StatisticheCombattimentoPersonaggio statisticheCombattimentoPersonaggio) {
-		this.statisticheCombattimentoPersonaggio = statisticheCombattimentoPersonaggio;
+	private List<StatoNemico> statoNemici=new ArrayList<>();
+
+	private StatoPersonaggio statoPersonaggio;
+
+	public void setDescrittoreIncontro(DescrittoreIncontro descrittoreIncontro) {
+		this.descrittoreIncontro = descrittoreIncontro;
 	}
 
-	public StatisticheCombattimentoPersonaggio getStatisticheCombattimentoPersonaggio() {
-		return statisticheCombattimentoPersonaggio;
+	public StatoPersonaggio getStatoPersonaggio() {
+		return statoPersonaggio;
 	}
 
-	private StatisticheCombattimentoPersonaggio statisticheCombattimentoPersonaggio;
-
-	private StatoTurno statoTurno;
+	public void setStatoPersonaggio(StatoPersonaggio statoPersonaggio) {
+		this.statoPersonaggio = statoPersonaggio;
+		this.statoPersonaggio.addObserver(this);
+	}
 
 	@GetMapping("/ListaTurni")
-	public LinkedList<StatisticheCombattimentoBase> getListaTurni(){
-		return listaTurni;
+	public LinkedList<StatoPersonaggioBase> ListaTurni() {
+		return gestoreIncontro.getListaTurni();
 	}
 
 	@GetMapping("/RiepilogoIncontro")
@@ -40,68 +44,59 @@ public class IncontroController extends Observable implements Observer {
 		return this.descrittoreIncontro;
 	}
 
-	public void setDescrittoreIncontro(DescrittoreIncontro descrittoreIncontro) {
-		this.descrittoreIncontro = descrittoreIncontro;
-	}
-
 	@GetMapping("/AvviaIncontro")
 	public String AvviaIncontro() {
-		this.listaTurni= new LinkedList<>();
-		this.listaTurni.add(statisticheCombattimentoPersonaggio);
-		for(NemicoWrapper nemicoWrapper: this.descrittoreIncontro.getNemiciWrappers()){
-			for(int i=0;i<nemicoWrapper.getNumberNemici();i++)
-				this.listaTurni.add(nemicoWrapper.getStatisticheCombattimentoNemico());
-		}
-		Collections.sort(listaTurni);
-
-		return statoTurno.getStatoTurno();
-	}
-
-	private void getTurnoListaTurni(){
-		if(this.listaTurni.peekFirst().equals(this.statisticheCombattimentoPersonaggio)){
-			statoTurno=new TurnoPersonaggio(this);
-		}
-		else
-			statoTurno=new TurnoNemico(this);
+		setNemici();
+		return gestoreIncontro.Avvia(statoPersonaggio,statoNemici);
 	}
 
 	@GetMapping("/PassaTurno")
-	public String PassaTurno(){
-          StatisticheCombattimentoBase statisticheCombattimentoBase=this.listaTurni.pollFirst();
-          this.listaTurni.offerLast(statisticheCombattimentoBase);
-          getTurnoListaTurni();
-          return statoTurno.getStatoTurno();
+	public String PassaTurno() {
+		return gestoreIncontro.PassaTurno();
 	}
 
 	@PostMapping("/Attacca/{posizioneNemico}")
-	public String Attacca(@PathVariable("posizioneNemico")int posizioneNemico,@RequestBody AttaccoMapper attaccoMapper){
-		return statoTurno.attacca(posizioneNemico,attaccoMapper);
+	public String Attacca(@PathVariable("posizioneNemico") int posizioneNemico, @RequestBody AttaccoMapper attaccoMapper) {
+		return gestoreIncontro.Attacca(posizioneNemico,attaccoMapper);
 	}
 
 	@GetMapping("/Difendi")
-	public void Difendi(){
-		statisticheCombattimentoPersonaggio.infliggiDanno(
-				this.listaTurni.peekFirst().calcolaDanno(0,0));
+	public String Difendi() {
+		return gestoreIncontro.Difendi(statoPersonaggio);
 	}
 
 	@GetMapping("/TornaAlFalo")
-	public String TornaAlFalo(){
-		statisticheCombattimentoPersonaggio.resetStatistiche();
+	public String TornaAlFalo() {
 		return "/Falo";
 	}
 
-
-	/*public String Avvia() {
-		setChanged();
-		notifyObservers();
-		return "/Incontro";
-	}*/
-
-
 	@Override
-	public void update(Observable statisticaCombattimento,Object stato){
+	public void update(Observable statoPersonaggioBase, Object stato) {
+		if (((StatoPersonaggioBase) statoPersonaggioBase).isDead()) {
+			if (statoPersonaggioBase.equals(statoPersonaggio))
+				gestoreIncontro.setConcluso(true);
+			else
+			{
+				statoNemici.remove(statoPersonaggioBase);
+				if (statoNemici.isEmpty()){
+					gestoreIncontro.setConcluso(true);
+					setChanged();
+					notifyObservers();
+				}
+			}
+		}
+		else
+			PassaTurno();
+	}
 
-
+	private void setNemici() {
+		for (NemicoWrapper nemicoWrapper : descrittoreIncontro.getNemiciWrappers())
+			for (int i = 0; i < nemicoWrapper.getNumberNemici(); i++) {
+				StatoNemico statoNemico = nemicoWrapper.getStatoNemico().clone();
+				statoNemico.resetStato();
+				statoNemico.addObserver(this);
+				statoNemici.add(statoNemico);
+			}
 	}
 
 

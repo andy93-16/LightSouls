@@ -9,22 +9,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("DescrittorePersonaggio")
-public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
+@DiscriminatorValue("Personaggio")
+public class Personaggio extends PersonaggioBase {
 
-    @OneToOne
-    private StatisticheBase statisticheBase;
+    private int stamina_base;
+
+    public int getAnime() {
+        return anime;
+    }
 
     private int anime;
 
-    private int stamina;
-
-    public int getStaminaRegen() {
-        return staminaRegen;
+    public int getStamina_base()
+    {
+        return stamina_base;
     }
 
-    @Transient
-    private int staminaRegen=2;
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
@@ -42,6 +42,15 @@ public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
         return this.titaniti;
     }
 
+    @Embedded
+    private StatisticheBase statisticheBase;
+
+    public int getStaminaRegen() {
+        return staminaRegen;
+    }
+
+    private int staminaRegen;
+
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     private List<BodyPart> bodyParts;
@@ -50,24 +59,9 @@ public class DescrittorePersonaggio extends DescrittorePersonaggioBase {
         return this.bodyParts;
     }
 
-    public void setStatisticaBase(StatisticheBase statisticaBase) {
-        this.statisticheBase = statisticaBase;
-    }
-
     public StatisticheBase getStatisticaBase() {
         return this.statisticheBase;
     }
 
-    public int getAnime() {
-        return anime;
-    }
-
-    public void setAnime(int anime) {
-        this.anime = anime;
-    }
-
-    public int getStamina() {
-        return stamina;
-    }
-
 }
+

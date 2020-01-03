@@ -5,6 +5,6 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue(value = "Armatura")
-public class Armatura extends DescrittoreEquipment{
+public class Armatura extends Equipment {
 
 }

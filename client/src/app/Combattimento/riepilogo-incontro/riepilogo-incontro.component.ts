@@ -13,7 +13,7 @@ export class RiepilogoIncontroComponent implements OnInit {
 
   constructor(private httpservice: HttpService, private router: Router) {
     this.httpservice.RiepilogoIncontro().subscribe(
-      descrittoreIncontro => {this.descrittoreIncontro = descrittoreIncontro;}
+      descrittoreIncontro => { this.descrittoreIncontro = descrittoreIncontro;}
     );
   }
 

@@ -11,40 +11,39 @@ export class TurnoPersonaggioComponent implements OnInit {
 
   listaTurni: any[] = [];
   listaNemici: any[] = [];
-  personaggio: any = [];
+  statoPersonaggio: any = [];
 
   constructor(private httpservice: HttpService, private router: Router) {
     this.httpservice.ListaTurni().subscribe(listaTurni => {
       this.listaTurni = listaTurni;
       this.GetPersonaggio();
+      console.log(this.statoPersonaggio);
       this.ListaNemici();
     });
 
   }
 
   ListaNemici(): void{
-    this.listaTurni.forEach(statisticheCombattimento => {
-      if (statisticheCombattimento.descrittorePersonaggioBase.type === 'Nemico') {
-        this.listaNemici.push(statisticheCombattimento);
+    this.listaTurni.forEach( statoPersonaggio => {
+      if (statoPersonaggio.personaggioBase.type === 'Nemico') {
+        this.listaNemici.push(statoPersonaggio);
       }
     });
   }
 
   GetPersonaggio(): void{
-    this.personaggio = this.listaTurni.find( statisticheCombattimento => {
-      return statisticheCombattimento.descrittorePersonaggioBase.type === 'Personaggio'; });
+    this.statoPersonaggio = this.listaTurni.find( statoPersonaggio => {
+      return statoPersonaggio.personaggioBase.type === 'Personaggio'; });
   }
 
   PassaTurno(): void{
   /*  this.httpservice.PassaTurno();*/
   }
 
-  CambiaEquipaggiamento(): void{
-    this.router.navigate(['/CambiaEquipaggiamento']);
-  }
+
   Attacca(nemico: any) {
     this.router.navigate(['/SelezioneAttacco'], {state :
-        { personaggio : this.personaggio,
+        { statoPersonaggio : this.statoPersonaggio,
           nemicoSelezionato : this.listaTurni.indexOf(nemico)}});
   }
 

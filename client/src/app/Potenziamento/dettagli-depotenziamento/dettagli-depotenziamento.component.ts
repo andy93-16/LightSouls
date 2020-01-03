@@ -10,9 +10,11 @@ import {Router} from "@angular/router";
 })
 export class DettagliDepotenziamentoComponent implements OnInit {
   equipaggiamento: any;
+  equipaggiamentoPos: number;
 
   constructor(private httpservice: HttpService, private router: Router) {
-    this.equipaggiamento = this.router.getCurrentNavigation().extras.state;
+    this.equipaggiamento = this.router.getCurrentNavigation().extras.state.equipaggiamentoSelezionato;
+    this.equipaggiamentoPos = this.router.getCurrentNavigation().extras.state.equipaggiamentoPos;
   }
 
   ngOnInit() {
@@ -23,8 +25,7 @@ export class DettagliDepotenziamentoComponent implements OnInit {
   }
 
   Rimuovi(titanite: any): void {
-
-    this.httpservice.Depotenzia(this.equipaggiamento.id, titanite).subscribe(url => this.router.navigate([url]));
+    this.httpservice.Depotenzia(this.equipaggiamentoPos, titanite).subscribe(url => this.router.navigate([url]));
   }
 
 

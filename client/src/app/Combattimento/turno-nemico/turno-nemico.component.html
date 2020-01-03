@@ -1,1 +1,64 @@
-<p>turno-nemico works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Lista Nemici</h2>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>HP</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let nemico of listaNemici">
+          <td>{{nemico.personaggioBase.name}}</td>
+          <td>{{nemico.hp+'/'+nemico.personaggioBase.hp_base}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-lg-6">
+        </div>
+        <div class="col-lg-6" >
+          <h2>Lista Turni</h2>
+          <table class="table table-striped">
+            <tbody>
+            <tr *ngFor="let turno of listaTurni">
+              <td>{{turno.personaggioBase.name}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>HP</th>
+            <th>Stamina</th>
+            <th>StaminaReg</th>
+          </tr>
+          </thead>
+          <tbody>
+          <td>{{statoPersonaggio.personaggioBase.name}}</td>
+          <td>{{statoPersonaggio.hp+'/'+statoPersonaggio.personaggioBase.hp_base}}</td>
+          <td>{{statoPersonaggio.stamina+'/'+statoPersonaggio.personaggioBase.stamina_base}}</td>
+          <td>{{statoPersonaggio.personaggioBase.staminaRegen}}</td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <button type="button" class="btn btn-success" (click)="Difendi()">Difendi</button>
+    </div>
+    <div class="col-lg-6">
+      <button type="button" class="btn btn-success" (click)="Schiva()">Schiva</button>
+    </div>
+  </div>
+</div>
+

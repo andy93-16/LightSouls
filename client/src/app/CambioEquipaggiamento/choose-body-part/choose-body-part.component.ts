@@ -11,12 +11,14 @@ import {HttpService} from "../../http.service";
 
 export class ChooseBodyPartComponent implements OnInit {
 
+  equipaggiamentoPos: any;
   equipaggiamento: any;
   bodyParts: any[];
   bodyPartsSelected: any[] = [];
 
   constructor(private router: Router, private httpservice: HttpService) {
     this.equipaggiamento = this.router.getCurrentNavigation().extras.state.equipaggiamentoSelezionato;
+    this.equipaggiamentoPos = this.router.getCurrentNavigation().extras.state.equipaggiamentoPos;
     this.bodyParts = this.router.getCurrentNavigation().extras.state.bodyPartsForEquipment;
   }
   ngOnInit() {
@@ -31,7 +33,7 @@ export class ChooseBodyPartComponent implements OnInit {
     this.bodyParts.push(bodypart);
   }
   Conferma(): void {
-    this.httpservice.Equipaggia(this.bodyPartsSelected, this.equipaggiamento.id).subscribe(
+    this.httpservice.Equipaggia(this.bodyPartsSelected,this.equipaggiamentoPos).subscribe(
       url => this.router.navigate([url]));
   }
   TornaAEquipaggiaPersonaggio(): void {

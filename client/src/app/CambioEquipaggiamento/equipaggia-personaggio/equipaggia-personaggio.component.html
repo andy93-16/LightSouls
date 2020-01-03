@@ -2,49 +2,50 @@
   <div class="col">
   <div class="row">
       <h2>Riepilogo Equipaggiati</h2>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Body Part Equipped</th>
-          <th>Throwable dice</th>
-          <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let equipaggiamento of this.personaggio.equipaggiati" >
-          <td>{{equipaggiamento.name}}</td>
-          <td>{{equipaggiamento.type}}</td>
-          <td>
-            <table class="table table-striped">
-              <tbody >
-              <tr *ngFor="let bodypart of equipaggiamento.equippedBodyParts">
-                <td>
-              <tr style="color:red">{{bodypart.bodyPartType}}</tr>
-              <tr>{{bodypart.name}}</tr>
-              </td>
-              </tr>
-              </tbody>
-            </table>
-          </td>
-          <td>
-            <table class="table table-striped">
-              <tbody>
-              <tr *ngFor="let azione of equipaggiamento.azioni">
-                <td>
-              <tr style="color:red">{{azione.type}}</tr>
-              <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
-              <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
-              <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
-               </td>
-              </tr>
-              </tbody>
-            </table>
-          </td>
-          <td>
-            <button class="btn btn-dark" (click)="Disequipaggia(equipaggiamento.id)">Disequipaggia</button>
-          </td>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>BodyPartsRequirements</th>
+        <th>Throwable dice</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let equipaggiamento of statoPersonaggio.equipaggiati">
+        <td>{{equipaggiamento.name}}</td>
+        <td>{{equipaggiamento.type}}</td>
+        <td>{{equipaggiamento.bodyPartRequirement.bodyPartType+" : "+equipaggiamento.bodyPartRequirement.numberbodyPart}}</td>
+        <td>
+          <table class="table table-striped">
+            <tbody>
+            <tr *ngFor="let attacco of equipaggiamento.attacchi">
+              <td>
+            <tr style="color:red">{{attacco.type}}</tr>
+            <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+            <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+            <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+            </td>
+            </tr>
+            </tbody>
+          </table>
+          <table class="table table-striped">
+            <tbody>
+            <tr *ngFor="let difesa of equipaggiamento.difese">
+              <td>
+            <tr style="color:red">{{difesa.type}}</tr>
+            <tr *ngIf="difesa.combination.ORANGE">{{"ORANGE:"+difesa.combination.ORANGE}}</tr>
+            <tr *ngIf="difesa.combination.BLACK">{{"BLACK:"+difesa.combination.BLACK}}</tr>
+            <tr *ngIf="difesa.combination.BLUE">{{"BLUE:"+difesa.combination.BLUE}}</tr>
+             </td>
+             </tr>
+            </tbody>
+          </table>
+        <td>
+          <button class="btn btn-dark" (click)="Disequipaggia(equipaggiamento)">Disequipaggia</button>
+        </td>
+      </tr>
         </tbody>
       </table>
     </div>
@@ -68,12 +69,24 @@
     <td>
       <table class="table table-striped">
         <tbody>
-        <tr *ngFor="let azione of equipaggiamento.azioni">
+        <tr *ngFor="let attacco of equipaggiamento.attacchi">
           <td>
-        <tr style="color:red">{{azione.type}}</tr>
-        <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
-        <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
-        <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
+        <tr style="color:red">{{attacco.type}}</tr>
+        <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+        <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+        <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+        </td>
+        </tr>
+        </tbody>
+      </table>
+      <table class="table table-striped">
+        <tbody>
+        <tr *ngFor="let difesa of equipaggiamento.difese">
+          <td>
+        <tr style="color:red">{{difesa.type}}</tr>
+        <tr *ngIf="difesa.combination.ORANGE">{{"ORANGE:"+difesa.combination.ORANGE}}</tr>
+        <tr *ngIf="difesa.combination.BLACK">{{"BLACK:"+difesa.combination.BLACK}}</tr>
+        <tr *ngIf="difesa.combination.BLUE">{{"BLUE:"+difesa.combination.BLUE}}</tr>
         </td>
         </tr>
         </tbody>
@@ -94,6 +107,7 @@
         <th>Type</th>
         <th>BodyPartsRequirements</th>
         <th>Throwable dice</th>
+        <th>Action</th>
       </tr>
       </thead>
       <tbody>
@@ -104,17 +118,28 @@
         <td>
           <table class="table table-striped">
             <tbody>
-            <tr *ngFor="let azione of equipaggiamento.azioni">
+            <tr *ngFor="let attacco of equipaggiamento.attacchi">
               <td>
-            <tr style="color:red">{{azione.type}}</tr>
-            <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
-            <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
-            <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
+            <tr style="color:red">{{attacco.type}}</tr>
+            <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+            <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+            <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
             </td>
             </tr>
             </tbody>
           </table>
-        </td>
+          <table class="table table-striped">
+            <tbody>
+            <tr *ngFor="let difesa of equipaggiamento.difese">
+              <td>
+            <tr style="color:red">{{difesa.type}}</tr>
+            <tr *ngIf="difesa.combination.ORANGE">{{"ORANGE:"+difesa.combination.ORANGE}}</tr>
+            <tr *ngIf="difesa.combination.BLACK">{{"BLACK:"+difesa.combination.BLACK}}</tr>
+            <tr *ngIf="difesa.combination.BLUE">{{"BLUE:"+difesa.combination.BLUE}}</tr>
+            </td>
+            </tr>
+            </tbody>
+          </table>
       </tr>
       </tbody>
     </table>

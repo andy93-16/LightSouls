@@ -1,6 +1,6 @@
-package com.eswproject.lightsouls.Domain.Artifacts;
+package com.eswproject.lightsouls.Domain.Artifacts.Azione;
 
-import com.eswproject.lightsouls.Domain.Dice.Dice;
+import com.eswproject.lightsouls.Domain.Artifacts.Azione.Azione;
 
 import javax.persistence.*;
 
