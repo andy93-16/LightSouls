@@ -4,7 +4,6 @@ import com.eswproject.lightsouls.Domain.Combattimento.*;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggioBase;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoNemico;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -68,19 +67,23 @@ public class IncontroController extends Observable implements Observer {
 
 	@GetMapping("/TornaAlFalo")
 	public String TornaAlFalo() {
+		statoNemici.clear();
+		statoPersonaggio.resetStato();
 		return "/Falo";
 	}
 
 	@Override
 	public void update(Observable statoPersonaggioBase, Object stato) {
-		if (((StatoPersonaggioBase) statoPersonaggioBase).isDead()) {
-			if (statoPersonaggioBase.equals(statoPersonaggio))
+		if (((StatoPersonaggioBase) statoPersonaggioBase).isDead()){
+			if (statoPersonaggioBase.equals(statoPersonaggio)) {
 				gestoreIncontro.setConcluso(true);
+			}
 			else
 			{
 				statoNemici.remove(statoPersonaggioBase);
 				if (statoNemici.isEmpty()){
 					gestoreIncontro.setConcluso(true);
+					gestoreIncontro.generaLoot();
 					setChanged();
 					notifyObservers();
 				}

@@ -55,6 +55,7 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
         if(dannofin>0)
             HP=HP-dannofin;
         if(HP<=0){
+            HP=0;
             dead=true;
             setChanged();
             notifyObservers();

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {HttpService} from "../../http.service";
 
 @Component({
   selector: 'app-risultato-incontro',
@@ -8,7 +9,14 @@ import {Router} from '@angular/router';
 })
 export class RisultatoIncontroComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  loot : any;
+  listaTurni : any[]=[];
+
+  constructor(private router: Router,private httpservice: HttpService) {
+    this.httpservice.ListaTurni().subscribe(listaTurni => {
+      this.listaTurni = listaTurni;
+    });
+  }
 
   ngOnInit() {
   }

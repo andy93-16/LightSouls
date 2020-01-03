@@ -14,8 +14,8 @@
         <tr *ngFor="let nemico of listaNemici">
           <td>{{nemico.personaggioBase.name}}</td>
           <td>{{nemico.hp+'/'+nemico.personaggioBase.hp_base}}</td>
-          <td>
-            <button type="button" class="btn btn-danger" (click)="Attacca(nemico)">Attacca</button>
+          <td >
+            <button *ngIf="nemico.hp>0"  type="button" class="btn btn-danger" (click)="Attacca(nemico)">Attacca</button>
           </td>
         </tr>
         </tbody>

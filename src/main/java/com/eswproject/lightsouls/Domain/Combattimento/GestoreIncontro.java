@@ -3,11 +3,6 @@ package com.eswproject.lightsouls.Domain.Combattimento;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoNemico;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggioBase;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,6 +15,12 @@ public class GestoreIncontro {
 
     private boolean concluso;
 
+    private Loot loot;
+
+    public void generaLoot(){
+
+    }
+
     public String Avvia(StatoPersonaggio statoPersonaggio, List<StatoNemico> statoNemici) {
         listaTurni= new LinkedList<>();
         listaTurni.add(statoPersonaggio);
@@ -30,6 +31,8 @@ public class GestoreIncontro {
 
     public String PassaTurno() {
         listaTurni.offerLast(listaTurni.pollFirst());
+        while(listaTurni.peekFirst().isDead())
+            listaTurni.offerLast(listaTurni.pollFirst());
         return getTurno();
     }
 

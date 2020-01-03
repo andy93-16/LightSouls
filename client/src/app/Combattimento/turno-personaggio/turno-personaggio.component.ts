@@ -17,7 +17,6 @@ export class TurnoPersonaggioComponent implements OnInit {
     this.httpservice.ListaTurni().subscribe(listaTurni => {
       this.listaTurni = listaTurni;
       this.GetPersonaggio();
-      console.log(this.statoPersonaggio);
       this.ListaNemici();
     });
 

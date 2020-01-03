@@ -1,5 +1,24 @@
-<p>
-  Partita Vinta
-</p>
+<div class="container">
+  <div class="row">
+    <h2 *ngIf="loot!==undefined; else persa">PARTITA VINTA</h2>
+    <ng-template #persa>
+    <h2>PARTITA PERSA</h2>
+    </ng-template>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>HP</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let statoPersonaggioBase of listaTurni">
+        <td>{{statoPersonaggioBase.personaggioBase.name}}</td>
+        <td>{{statoPersonaggioBase.hp+'/'+statoPersonaggioBase.personaggioBase.hp_base}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <button class="btn btn-success" (click)="TornaAlFalo()">TornaAlFalo</button>
 
