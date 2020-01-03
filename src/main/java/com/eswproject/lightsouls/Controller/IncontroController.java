@@ -47,6 +47,7 @@ public class IncontroController extends Observable implements Observer {
 	@GetMapping("/AvviaIncontro")
 	public String AvviaIncontro() {
 		setNemici();
+		gestoreIncontro.setConcluso(false);
 		return gestoreIncontro.Avvia(statoPersonaggio,statoNemici);
 	}
 
