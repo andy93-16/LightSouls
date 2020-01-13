@@ -66,6 +66,18 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
         }
     }
 
+    public void infliggiDannoPuro(int danno){
+
+        if(danno>0)
+            HP=HP-danno;
+        if(HP<=0){
+            HP=0;
+            dead=true;
+            setChanged();
+            notifyObservers();
+        }
+    }
+
 
     public abstract int calcolaDanno(int posizioneArma,int posizioneAttacco);
 

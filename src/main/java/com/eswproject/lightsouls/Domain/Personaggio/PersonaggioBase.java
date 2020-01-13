@@ -8,7 +8,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import javax.persistence.*;
 
-
+/**
+ * Questa classe rappresenta il generico personaggio del gioco.
+ * PersonaggioBase viene esteso dalle classi Personaggio e Nemico che ne estendono le funzionalità
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY,property = "type")

@@ -9,13 +9,13 @@ public class Modalita
     @Id
     private String name;
 
+    @OneToMany
+    private List<DescrittoreDungeon> listaDungeons;
+
     public String getName()
     {
         return name;
     }
-
-    @OneToMany
-    private List<DescrittoreDungeon> listaDungeons;
 
     public List<DescrittoreDungeon> getListaDungeons() {
         return listaDungeons;

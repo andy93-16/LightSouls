@@ -43,7 +43,7 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
    public void schiva(int difficoltaSchivata,int danno){
        stamina=stamina-1;
        if(Dice.getInstance().throw_Dice(DiceColor.GREEN,1)<difficoltaSchivata)
-           infliggiDanno(danno);
+           infliggiDannoPuro(danno);
        passaTurno();
    }
 

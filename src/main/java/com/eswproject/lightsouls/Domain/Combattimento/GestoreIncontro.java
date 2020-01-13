@@ -21,7 +21,8 @@ public class GestoreIncontro {
 
     private Loot loot;
 
-    public void generaLoot(){
+    public void generaLoot()
+    {
 
         
 
