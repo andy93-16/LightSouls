@@ -36,7 +36,8 @@ export class TurnoPersonaggioComponent implements OnInit {
   }
 
   PassaTurno(): void{
-  /*  this.httpservice.PassaTurno();*/
+    this.httpservice.PassaTurno().subscribe(url => {
+      this.router.navigate([url])});
   }
 
 
@@ -44,6 +45,11 @@ export class TurnoPersonaggioComponent implements OnInit {
     this.router.navigate(['/SelezioneAttacco'], {state :
         { statoPersonaggio : this.statoPersonaggio,
           nemicoSelezionato : this.listaTurni.indexOf(nemico)}});
+  }
+
+  CambiaEquipaggiamento() {
+    this.router.navigate(['/EquipaggiaPersonaggio'], { state :
+        { prevUrl : this.router.url }}) ;
   }
 
   ngOnInit() {

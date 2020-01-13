@@ -3,6 +3,8 @@ package com.eswproject.lightsouls.Domain.Combattimento;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoNemico;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggioBase;
+import com.eswproject.lightsouls.Domain.Dice.Dice;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +24,7 @@ public class GestoreIncontro {
     }
 
     public String Avvia(StatoPersonaggio statoPersonaggio, List<StatoNemico> statoNemici) {
-        listaTurni= new LinkedList<>();
+        listaTurni = new LinkedList<>();
         listaTurni.add(statoPersonaggio);
         listaTurni.addAll(statoNemici);
         Collections.sort(listaTurni);

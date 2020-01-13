@@ -19,7 +19,8 @@ export class GestisciPersonaggioComponent implements OnInit {
   }
 
   EquipaggiaPersonaggio(): void {
-    this.router.navigate(['/EquipaggiaPersonaggio']);
+    this.router.navigate(['/EquipaggiaPersonaggio'], { state :
+        { prevUrl : this.router.url }})
   }
 
   TornaAlFalo(): void {

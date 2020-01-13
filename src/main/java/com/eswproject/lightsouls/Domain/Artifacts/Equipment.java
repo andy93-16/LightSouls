@@ -2,6 +2,7 @@ package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Azione.Difesa;
 import com.eswproject.lightsouls.Domain.Personaggio.BodyPart;
+import com.eswproject.lightsouls.Domain.Personaggio.ClassName;
 import com.eswproject.lightsouls.Domain.Personaggio.StatisticheBase;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,6 +32,8 @@ public abstract class Equipment
 
 	private String name;
 
+	//@OneToMany(fetch = FetchType.EAGER)
+	//private ArrayList<ClassName> classi;
 
 	@Embedded
 	private StatisticheBase minRequirements;

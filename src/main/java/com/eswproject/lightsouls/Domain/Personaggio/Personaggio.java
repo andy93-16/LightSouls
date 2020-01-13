@@ -12,6 +12,8 @@ import java.util.List;
 @DiscriminatorValue("Personaggio")
 public class Personaggio extends PersonaggioBase {
 
+    private ClassName classe;
+
     private int stamina_base;
 
     public int getAnime() {
@@ -25,6 +27,9 @@ public class Personaggio extends PersonaggioBase {
         return stamina_base;
     }
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Equipment> lootable;
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
@@ -63,5 +68,6 @@ public class Personaggio extends PersonaggioBase {
         return this.statisticheBase;
     }
 
+    public ClassName getClasse() { return classe; }
 }
 

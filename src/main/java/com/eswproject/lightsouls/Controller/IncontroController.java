@@ -16,7 +16,7 @@ public class IncontroController extends Observable implements Observer {
 
 	private GestoreIncontro gestoreIncontro=new GestoreIncontro();
 
-	private List<StatoNemico> statoNemici=new ArrayList<>();
+	private List<StatoNemico> statoNemici;
 
 	private StatoPersonaggio statoPersonaggio;
 
@@ -46,6 +46,7 @@ public class IncontroController extends Observable implements Observer {
 	@GetMapping("/AvviaIncontro")
 	public String AvviaIncontro() {
 		setNemici();
+		statoPersonaggio.resetStato();
 		gestoreIncontro.setConcluso(false);
 		return gestoreIncontro.Avvia(statoPersonaggio,statoNemici);
 	}
@@ -67,8 +68,7 @@ public class IncontroController extends Observable implements Observer {
 
 	@GetMapping("/TornaAlFalo")
 	public String TornaAlFalo() {
-		statoNemici.clear();
-		statoPersonaggio.resetStato();
+
 		return "/Falo";
 	}
 
@@ -94,6 +94,7 @@ public class IncontroController extends Observable implements Observer {
 	}
 
 	private void setNemici() {
+		statoNemici=new ArrayList<>();
 		for (NemicoWrapper nemicoWrapper : descrittoreIncontro.getNemiciWrappers())
 			for (int i = 0; i < nemicoWrapper.getNumberNemici(); i++) {
 				StatoNemico statoNemico = nemicoWrapper.getStatoNemico().clone();
