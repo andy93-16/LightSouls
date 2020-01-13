@@ -18,12 +18,12 @@
         <td>
           <table class="table table-striped">
             <tbody>
-            <tr *ngFor="let azione of equipaggiamento.azioni">
+            <tr *ngFor="let attacco of equipaggiamento.attacchi">
               <td>
-            <tr style="color:red">{{azione.type}}</tr>
-            <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
-            <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
-            <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
+            <tr style="color:red">{{attacco.type}}</tr>
+            <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+            <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+            <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
             </td>
             </tr>
             </tbody>

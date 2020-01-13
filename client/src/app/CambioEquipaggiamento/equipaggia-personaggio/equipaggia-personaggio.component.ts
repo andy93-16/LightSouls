@@ -9,7 +9,7 @@ import {NavigationEnd, Router} from '@angular/router';
 })
 export class EquipaggiaPersonaggioComponent implements OnInit{
 
-  personaggio: any;
+  statoPersonaggio: any;
   equipaggiabili: any[] = [];
   nonEquipaggiabili: any[] = [];
 
@@ -18,14 +18,14 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.httpservice.RiepilogoPersonaggio().subscribe(personaggio => {
-      this.personaggio = personaggio;
+    this.httpservice.RiepilogoPersonaggio().subscribe(statoPersonaggio => {
+      this.statoPersonaggio = statoPersonaggio;
       this.RiepilogoEquipaggiabili(); });
   }
 
   BodyPartsForEquipment(equipaggiamento: any): any[] {
     const bodyPartsFiltered: any[] = [];
-    this.personaggio.bodyParts.forEach(bodyPart => {
+    this.statoPersonaggio.personaggioBase.bodyParts.forEach(bodyPart => {
       if (bodyPart.bodyPartType === equipaggiamento.bodyPartRequirement.bodyPartType) {
         bodyPartsFiltered.push(bodyPart); }
     }
@@ -34,7 +34,7 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
   }
 
   RiepilogoEquipaggiabili(): void {
-    this.personaggio.zainoEquip.forEach ( equipaggiamento => {
+    this.statoPersonaggio.personaggioBase.zainoEquip.forEach ( equipaggiamento => {
       if (this.BodyPartsForEquipment(equipaggiamento).length >= equipaggiamento.bodyPartRequirement.numberbodyPart) {
         this.equipaggiabili.push(equipaggiamento); } else {
         this.nonEquipaggiabili.push(equipaggiamento);
@@ -48,16 +48,19 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
 
   Equipaggia(equipaggiamento: any): void {
     this.router.navigate(['/ChooseBodyPart'],
-      {state: { equipaggiamentoSelezionato: equipaggiamento, bodyPartsForEquipment: this.BodyPartsForEquipment(equipaggiamento)}});
+      {state: { equipaggiamentoPos: this.equipaggiabili.indexOf(equipaggiamento),
+          equipaggiamentoSelezionato: equipaggiamento,
+          bodyPartsForEquipment: this.BodyPartsForEquipment(equipaggiamento)}});
   }
 
-  Disequipaggia(equipaggiamentoId: number): void {
-    this.httpservice.Disequipaggia(equipaggiamentoId).subscribe(
+  Disequipaggia(equipaggiamento: any): void {
+    this.httpservice.Disequipaggia(this.statoPersonaggio.equipaggiati.indexOf(equipaggiamento)).subscribe(
       url => {
         this.ClearRiepilogoEquipaggiabili();
         this.ngOnInit();
         }
     ); }
+
   TornaGestisciPersonaggio(): void {
     this.router.navigate([ '/GestisciPersonaggio']);
   }

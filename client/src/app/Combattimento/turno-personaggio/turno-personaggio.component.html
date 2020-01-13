@@ -12,10 +12,10 @@
         </thead>
         <tbody>
         <tr *ngFor="let nemico of listaNemici">
-          <td>{{nemico.descrittorePersonaggioBase.nome}}</td>
-          <td>{{nemico.hp+'/'+nemico.descrittorePersonaggioBase.hp}}</td>
-          <td>
-            <button type="button" class="btn btn-danger" (click)="Attacca(nemico)">Attacca</button>
+          <td>{{nemico.personaggioBase.name}}</td>
+          <td>{{nemico.hp+'/'+nemico.personaggioBase.hp_base}}</td>
+          <td >
+            <button *ngIf="nemico.hp>0"  type="button" class="btn btn-danger" (click)="Attacca(nemico)">Attacca</button>
           </td>
         </tr>
         </tbody>
@@ -30,7 +30,7 @@
       <table class="table table-striped">
         <tbody>
         <tr *ngFor="let turno of listaTurni">
-          <td>{{turno.descrittorePersonaggioBase.nome}}</td>
+          <td>{{turno.personaggioBase.name}}</td>
         </tr>
         </tbody>
       </table>
@@ -47,10 +47,10 @@
         </tr>
         </thead>
         <tbody>
-         <td>{{personaggio.descrittorePersonaggioBase.nome}}</td>
-         <td>{{personaggio.hp+'/'+personaggio.descrittorePersonaggioBase.hp}}</td>
-         <td>{{personaggio.stamina+'/'+personaggio.descrittorePersonaggioBase.stamina}}</td>
-         <td>{{personaggio.descrittorePersonaggioBase.staminaRegen}}</td>
+         <td>{{statoPersonaggio.personaggioBase.name}}</td>
+         <td>{{statoPersonaggio.hp+'/'+statoPersonaggio.personaggioBase.hp_base}}</td>
+         <td>{{statoPersonaggio.stamina+'/'+statoPersonaggio.personaggioBase.stamina_base}}</td>
+         <td>{{statoPersonaggio.personaggioBase.staminaRegen}}</td>
         </tbody>
       </table>
     </div>
@@ -60,8 +60,6 @@
     <div class="col-lg-6">
       <button type="button" class="btn btn-success" (click)="PassaTurno()">Passa Turno</button>
     </div>
-    <div class="col-lg-6">
-      <button type="button" class="btn btn-danger" (click)="CambiaEquipaggiamento()">Cambia Equipaggaimento</button>
-    </div>
+
   </div>
 </div>

@@ -13,17 +13,29 @@
     </thead>
     <tbody>
     <td>{{equipaggiamento.name}}</td>
-    <td>{{equipaggiamento.upgradesMax-equipaggiamento.equippedTitaniti.length}}</td>
+    <td>{{equipaggiamento.upgrades-equipaggiamento.equippedTitaniti.length}}</td>
     <td>{{equipaggiamento.type}}</td>
     <td>
       <table class="table table-striped">
         <tbody>
-        <tr *ngFor="let azione of equipaggiamento.azioni">
+        <tr *ngFor="let attacco of equipaggiamento.attacchi">
           <td>
-        <tr style="color:red">{{azione.type}}</tr>
-        <tr *ngIf="azione.combination.ORANGE">{{"ORANGE:"+azione.combination.ORANGE}}</tr>
-        <tr *ngIf="azione.combination.BLACK">{{"BLACK:"+azione.combination.BLACK}}</tr>
-        <tr *ngIf="azione.combination.BLUE">{{"BLUE:"+azione.combination.BLUE}}</tr>
+        <tr style="color:red">{{attacco.type}}</tr>
+        <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+        <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+        <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+        </td>
+        </tr>
+        </tbody>
+      </table>
+      <table class="table table-striped">
+        <tbody>
+        <tr *ngFor="let difesa of equipaggiamento.difese">
+          <td>
+        <tr style="color:red">{{difesa.type}}</tr>
+        <tr *ngIf="difesa.combination.ORANGE">{{"ORANGE:"+difesa.combination.ORANGE}}</tr>
+        <tr *ngIf="difesa.combination.BLACK">{{"BLACK:"+difesa.combination.BLACK}}</tr>
+        <tr *ngIf="difesa.combination.BLUE">{{"BLUE:"+difesa.combination.BLUE}}</tr>
         </td>
         </tr>
         </tbody>

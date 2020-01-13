@@ -1,12 +1,9 @@
 package com.eswproject.lightsouls.Controller;
 
-
-
-import com.eswproject.lightsouls.Domain.Combattimento.StatisticheCombattimentoPersonaggio;
+import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
 import com.eswproject.lightsouls.Domain.Personaggio.*;
-import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
-import com.eswproject.lightsouls.Service.PersonaggioService;
+import com.eswproject.lightsouls.Service.StatoPersonaggioBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,64 +11,54 @@ import java.util.*;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-public class PersonaggioController
-{
+public class PersonaggioController {
+
     @Autowired
-    PersonaggioService pS;
+    private StatoPersonaggioBaseService statoPersonaggioBaseService;
+
+    @Autowired
+    private IncontroController incontroController;
 
     private GestoreEquipaggiamenti gestoreEquipaggiamenti=GestoreEquipaggiamenti.getInstance();
 
-    private StatisticheCombattimentoPersonaggio statisticheCombattimentoPersonaggio;
+    private StatoPersonaggio statoPersonaggio;
 
     @GetMapping("/SetPersonaggio")
     public void SetPersonaggio() {
-        statisticheCombattimentoPersonaggio =new StatisticheCombattimentoPersonaggio(pS.findById(1));
-        this.gestoreEquipaggiamenti.setStatisticheCombattimentoPersonaggio(statisticheCombattimentoPersonaggio);
+        statoPersonaggio = (StatoPersonaggio)statoPersonaggioBaseService.findById(1);
+        statoPersonaggio.resetStato();
+        gestoreEquipaggiamenti.setStatoPersonaggio(statoPersonaggio);
+        incontroController.setStatoPersonaggio(statoPersonaggio);
     }
 
     @GetMapping("RiepilogoPersonaggio")
-    public StatisticheCombattimentoPersonaggio getDescrittorePersonaggio(){
-        return statisticheCombattimentoPersonaggio;
+    public StatoPersonaggio getStatoPersonaggio(){
+        return statoPersonaggio;
     }
 
-	@PostMapping("/PotenziaEquipaggiamento/{idE}")
-	public String PotenziaEquipaggiamento(@PathVariable("idE")int idE,@RequestBody Titanite titanite)
+	@PostMapping("/PotenziaEquipaggiamento/{posE}")
+	public String PotenziaEquipaggiamento(@PathVariable("posE")int posE,@RequestBody Titanite titanite)
     {
-       this.gestoreEquipaggiamenti.Potenzia(getLocalEquipment(idE),titanite);
+       this.gestoreEquipaggiamenti.Potenzia(posE,titanite);
        return "/RiepilogoEquipaggiamenti";
     }
 
-    @PostMapping("/DepotenziaEquipaggiamento/{idE}")
-    public String DepotenziaEquipaggiamento(@PathVariable("idE")int idE,@RequestBody Titanite titanite)
+    @PostMapping("/DepotenziaEquipaggiamento/{posE}")
+    public String DepotenziaEquipaggiamento(@PathVariable("posE")int posE,@RequestBody Titanite titanite)
     {
-        this.gestoreEquipaggiamenti.Depotenzia(getLocalEquipment(idE),titanite);
+        this.gestoreEquipaggiamenti.Depotenzia(posE,titanite);
         return "/RiepilogoEquipaggiamenti";
     }
 
-    private Equipment getLocalEquipment(int idE)
-    {
-        Equipment eq = null;
-        for (Equipment equipment : statisticheCombattimentoPersonaggio.getDescrittorePersonaggioBase().getZainoEquip())
-        {
-            if (equipment.getDescrittoreEquipment().getId() == idE)
-            {
-                eq = equipment;
-                break;
-            }
-        }
-        return eq;
-    }
-
-
-    @PostMapping("/Equipaggia/{IdEquipment}")
-    public String Equipaggia(@RequestBody List<BodyPart> bodyParts,@PathVariable("IdEquipment") int idEquipment)
-    {   this.gestoreEquipaggiamenti.Equipaggia(bodyParts,idEquipment);
+    @PostMapping("/Equipaggia/{posE}")
+    public String Equipaggia(@RequestBody List<BodyPart> bodyParts,@PathVariable("posE") int posE)
+    {   this.gestoreEquipaggiamenti.Equipaggia(bodyParts,posE);
         return "/EquipaggiaPersonaggio";
     }
 
-    @GetMapping("/Disequipaggia/{IdEquipment}")
-    public String Disequipaggia(@PathVariable("IdEquipment") int idEquipment){
-        this.gestoreEquipaggiamenti.Disequipaggia(idEquipment);
+    @GetMapping("/Disequipaggia/{posE}")
+    public String Disequipaggia(@PathVariable("posE") int posE){
+        this.gestoreEquipaggiamenti.Disequipaggia(posE);
         return "/EquipaggiaPersonaggio";
     }
 

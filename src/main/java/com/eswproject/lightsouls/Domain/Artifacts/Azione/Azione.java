@@ -1,4 +1,4 @@
-package com.eswproject.lightsouls.Domain.Artifacts;
+package com.eswproject.lightsouls.Domain.Artifacts.Azione;
 
 import com.eswproject.lightsouls.Domain.Dice.*;
 import com.fasterxml.jackson.annotation.JsonSubTypes;

@@ -1,116 +1,124 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
+import com.eswproject.lightsouls.Domain.Artifacts.Azione.Difesa;
 import com.eswproject.lightsouls.Domain.Personaggio.BodyPart;
+import com.eswproject.lightsouls.Domain.Personaggio.StatisticheBase;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY,property = "type")
+@JsonSubTypes({
+		@JsonSubTypes.Type(name = "Arma", value = Arma.class),
+		@JsonSubTypes.Type(name = "Armatura", value = Armatura.class)
+})
+public abstract class Equipment
+{
+	public int getId() {
+		return id;
+	}
 
-public class Equipment {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    public int getUpgradesLeft() {
-        return upgradesLeft;
+	private String name;
+
+
+	@Embedded
+	private StatisticheBase minRequirements;
+
+	public int getUpgrades() {
+		return upgrades;
+	}
+
+	public void setUpgrades(int upgrades) {
+		this.upgrades = upgrades;
+	}
+
+	private int upgrades;
+
+	@OneToOne
+	private BodyPartRequirement bodyPartRequirement;
+
+	public BodyPartRequirement getBodyPartRequirement() {
+		return bodyPartRequirement;
+	}
+
+	public List<Difesa> getDifese() {
+		return difese;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Difesa> difese;
+
+    public String getName()
+    {
+        return name;
     }
 
-    public void setUpgradesLeft(int upgradesLeft) {
-        this.upgradesLeft = upgradesLeft;
-    }
+	public StatisticheBase getMinRequirements() {
+		return minRequirements;
+	}
 
-    private int upgradesLeft;
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<BodyPart> equippedBodyParts;
 
-    public Equipment(DescrittoreEquipment descrittoreEquipment){
-        this.descrittoreEquipment=descrittoreEquipment;
-        this.upgradesLeft=descrittoreEquipment.getUpgradesMax();
-        if(descrittoreEquipment instanceof Arma){
-            Arma arma=(Arma)descrittoreEquipment;
-            attacchi.addAll(arma.getAttacchi());}
-        difese.addAll(descrittoreEquipment.getDifese());
+	public List<BodyPart> getEquippedBodyParts() {
+		return equippedBodyParts;
+	}
 
-    }
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Titanite> equippedTitaniti;
 
-    public DescrittoreEquipment getDescrittoreEquipment() {
-        return descrittoreEquipment;
-    }
+	public List<Titanite> getEquippedTitaniti() {
+		return equippedTitaniti;
+	}
 
-    private DescrittoreEquipment descrittoreEquipment;
+	public void addTitanite(Titanite titanite){
+		upgrades=upgrades-1;
+		getEquippedTitaniti().add(titanite);
+		addCombinationToActions(titanite);
+	}
+	public void removeTitanite(Titanite titanite){
+		upgrades=upgrades+1;
+		getEquippedTitaniti().remove(titanite);
+		removeCombinatoToActions(titanite);
 
-    private List<BodyPart> equippedBodyParts;
+	}
 
-    public List<BodyPart> getEquippedBodyParts() {
-        return equippedBodyParts;
-    }
+	private void addCombinationToActions(Titanite titanite) {
 
-    private List<Titanite> equippedTitaniti;
+		for (Difesa difesa : this.getDifese()) {
+			if (difesa.getCombination().containsKey(titanite.getDiceColor())) {
+				difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor()) + 1);
+			} else {
+				difesa.getCombination().put(titanite.getDiceColor(), 1);
+			}
+		}
+	}
 
-    public List<Attacco> getAttacchi() {
-        return attacchi;
-    }
+	private void removeCombinatoToActions(Titanite titanite){
+		for(Difesa difesa: this.getDifese())
+		{
+			if (difesa.getCombination().containsKey(titanite.getDiceColor()))
+			{
+				if (difesa.getCombination().get(titanite.getDiceColor())>1)
+					difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor())-1);
+				else
+					difesa.getCombination().remove(titanite.getDiceColor());
 
-    private List<Attacco> attacchi;
+			}
+		}
+	}
 
-    public List<Difesa> getDifese() {
-        return difese;
-    }
-
-    private List<Difesa> difese;
-
-    public List<Titanite> getEquippedTitaniti() {
-        return equippedTitaniti;
-    }
-    public void addTitanite(Titanite titanite){
-        upgradesLeft=upgradesLeft-1;
-        getEquippedTitaniti().add(titanite);
-        addCombinationToActions(titanite);
-    }
-    public void removeTitanite(Titanite titanite){
-        upgradesLeft=upgradesLeft+1;
-        getEquippedTitaniti().remove(titanite);
-        removeCombinatoToActions(titanite);
-
-    }
-    private void addCombinationToActions(Titanite titanite) {
-
-        for (Difesa difesa : this.getDescrittoreEquipment().getDifese()) {
-            if (difesa.getCombination().containsKey(titanite.getDiceColor())) {
-                difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor()) + 1);
-            } else {
-                difesa.getCombination().put(titanite.getDiceColor(), 1);
-            }
-        }
-        this.getEquippedTitaniti().add(titanite);
-        for (Attacco attacco : this.attacchi) {
-            if (attacco.getClass().getSimpleName().equals(this.getClass().getSimpleName())) {
-                if (attacco.getCombination().containsKey(titanite.getDiceColor())) {
-                    attacco.getCombination().put(titanite.getDiceColor(), attacco.getCombination().get(titanite.getDiceColor()) + 1);
-                } else {
-                    attacco.getCombination().put(titanite.getDiceColor(), 1);
-                }
-            }
-        }
-    }
-
-    private void removeCombinatoToActions(Titanite titanite){
-        for(Difesa difesa: this.getDescrittoreEquipment().getDifese())
-        {
-            if (difesa.getCombination().containsKey(titanite.getDiceColor()))
-            {
-                if (difesa.getCombination().get(titanite.getDiceColor())>1)
-                    difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor())-1);
-                else
-                    difesa.getCombination().remove(titanite.getDiceColor());
-
-            }
-        }
-        for(Attacco attacco: this.getAttacchi())
-        {
-
-            if (attacco.getCombination().containsKey(titanite.getDiceColor()) && attacco.getClass().getSimpleName().equals(this.getClass().getSimpleName()))
-            {
-                if (attacco.getCombination().get(titanite.getDiceColor())>1)
-                    attacco.getCombination().put(titanite.getDiceColor(), attacco.getCombination().get(titanite.getDiceColor())-1);
-                else
-                    attacco.getCombination().remove(titanite.getDiceColor());
-
-            }
-        }
-    }
 }

@@ -1,19 +1,17 @@
 package com.eswproject.lightsouls.Domain.Personaggio;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Embeddable
 public class StatisticheBase {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(nullable = true)
 	private int forza;
+	@Column(nullable = true)
 	private int destrezza;
+	@Column(nullable = true)
 	private int intelligenza;
+	@Column(nullable = true)
 	private int fede;
 
 	public int getForza() {

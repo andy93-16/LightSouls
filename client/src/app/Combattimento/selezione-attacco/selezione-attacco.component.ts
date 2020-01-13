@@ -13,19 +13,20 @@ import {AttaccoOfArma} from './attacco-of-arma';
 
 export class SelezioneAttaccoComponent implements OnInit {
 
-  personaggio: any = [];
-  posizioneNemico: any = [];
+  statoPersonaggio: any = [];
+  posizioneNemico: number;
   listaAttaccoOfArma: any[] = [] ;
 
   constructor(private router: Router, private httpservice: HttpService) {
-    this.personaggio = this.router.getCurrentNavigation().extras.state.personaggio;
+    this.statoPersonaggio = this.router.getCurrentNavigation().extras.state.statoPersonaggio;
     this.posizioneNemico = this.router.getCurrentNavigation().extras.state.nemicoSelezionato;
+    console.log(this.statoPersonaggio.equipaggiati);
     this.ListaAttacchi();
-    console.log(this.personaggio.descrittorePersonaggioBase.equipaggiati);
+
   }
 
   ListaAttacchi(): void {
-    this.personaggio.descrittorePersonaggioBase.equipaggiati.forEach(
+    this.statoPersonaggio.equipaggiati.forEach(
       equipaggiamento => { if ( equipaggiamento.type === 'Arma') {
            equipaggiamento.attacchi.forEach(azione => {
                const attaccoOfArma: AttaccoOfArma = {
@@ -45,6 +46,10 @@ export class SelezioneAttaccoComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  CambiaEquipaggiamento(): void{
+    this.router.navigate(['/CambiaEquipaggiamento']);
   }
 
 }

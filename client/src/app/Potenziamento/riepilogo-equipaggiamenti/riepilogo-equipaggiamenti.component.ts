@@ -9,14 +9,13 @@ import {Router} from '@angular/router';
 })
 export class RiepilogoEquipaggiamentiComponent implements OnInit {
 
-  personaggio: any;
+  statoPersonaggio: any;
   equipaggiamenti: any[] = [];
 
   constructor(private httpservice: HttpService, private router: Router) {
-    this.httpservice.RiepilogoPersonaggio().subscribe(personaggio => {
-      this.personaggio = personaggio;
-      this.equipaggiamenti = this.equipaggiamenti.concat(this.personaggio.zainoEquip)
-        .concat(this.personaggio.equipaggiati);
+    this.httpservice.RiepilogoPersonaggio().subscribe(statoPersonaggio => {
+      this.statoPersonaggio = statoPersonaggio;
+      this.equipaggiamenti = this.equipaggiamenti.concat(this.statoPersonaggio.personaggioBase.zainoEquip);
       });
   }
 
@@ -25,7 +24,7 @@ export class RiepilogoEquipaggiamentiComponent implements OnInit {
 
   TitanitiForEquipment(equipaggiamento: any): any[] {
     const titaniti: any[] = [];
-    this.personaggio.titaniti.forEach( titanite => {
+    this.statoPersonaggio.personaggioBase.titaniti.forEach( titanite => {
       if (titanite.equipmentType === equipaggiamento.type) {
             titaniti.push(titanite);
       }
@@ -34,12 +33,17 @@ export class RiepilogoEquipaggiamentiComponent implements OnInit {
   }
 
   DettagliPotenziamento(equipaggiamento: any): void {
-    this.router.navigate(['/DettagliPotenziamento'], { state: { equipaggiamentoSelezionato : equipaggiamento,
+    this.router.navigate(['/DettagliPotenziamento'], { state: {
+      equipaggiamentoPos:this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento),
+      equipaggiamentoSelezionato : equipaggiamento,
       titanitiForEquipment : this.TitanitiForEquipment(equipaggiamento)}});
   }
 
   DettagliDepotenziamento(equipaggiamento: any): void {
-    this.router.navigate(['/DettagliDepotenziamento'], { state: equipaggiamento});
+    this.router.navigate(['/DettagliDepotenziamento'], {
+      state:{
+      equipaggiamentoPos:this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento),
+      equipaggiamentoSelezionato : equipaggiamento}});
   }
 
   TornaGestisciPersonaggio(): void {
