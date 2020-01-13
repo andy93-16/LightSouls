@@ -10,9 +10,13 @@ public class Attacco extends Azione
 {
 	private int staminaCost;
 
+	private int difficoltaSchivata;
+
 	public int getStaminaCost() {
 		return this.staminaCost;
 	}
+
+	public int getDifficoltaSchivata(){return this.difficoltaSchivata;}
 
 }
 

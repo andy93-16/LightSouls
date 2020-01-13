@@ -2,6 +2,8 @@ package com.eswproject.lightsouls.Domain.Combattimento.Stato;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Arma;
 import com.eswproject.lightsouls.Domain.Combattimento.AttaccoMapper;
+import com.eswproject.lightsouls.Domain.Dice.Dice;
+import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import com.eswproject.lightsouls.Domain.Personaggio.Personaggio;
 
 import javax.persistence.*;
@@ -36,6 +38,13 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
            getEquipaggiatiUsati().clear();
            passaTurno();
        }
+   }
+
+   public void schiva(int difficoltaSchivata,int danno){
+       stamina=stamina-1;
+       if(Dice.getInstance().throw_Dice(DiceColor.GREEN,1)<difficoltaSchivata)
+           infliggiDanno(danno);
+       passaTurno();
    }
 
    @Override

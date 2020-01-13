@@ -26,8 +26,8 @@ INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) valu
 INSERT INTO modalita_lista_dungeons(modalita_name,lista_dungeons_boss_name) values ('storia','prova3');
 --CREATE SOME EQUIPMENT
 --EQUIPMENT1
-INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',1);
-INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',2);
+INSERT INTO azione(dtype,stamina_cost,difficolta_schivata) VALUES ('Attacco',1,0);
+INSERT INTO azione(dtype,stamina_cost,difficolta_schivata) VALUES ('Attacco',2,0);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (1,1,0);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (1,2,1);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (2,2,2);
@@ -51,7 +51,7 @@ INSERT INTO equipment(dtype,upgrades,name,body_part_requirement_id,
 forza,destrezza,intelligenza,fede) VALUES ('Armatura',3,'Armatura pesante',3,2,2,2,2);
 INSERT INTO equipment_difese(difese_id,equipment_id) VALUES (4,3);
 --EQUIPMENT4
-INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',2);
+INSERT INTO azione(dtype,stamina_cost,difficolta_schivata) VALUES ('Attacco',2,0);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (5,2,1);
 INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (6,2,1);
@@ -61,7 +61,7 @@ forza,destrezza,intelligenza,fede) VALUES ('Arma',4, 'Ascia',4,2,2,2,2);
 INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (4,5); --Tabella di JOIN
 INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (4,6); --Tabella di JOIN
 --EQUIPMENT5
-INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',2);
+INSERT INTO azione(dtype,stamina_cost,difficolta_schivata) VALUES ('Attacco',2,0);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (7,2,1);
 INSERT INTO azione(dtype) VALUES ('Difesa');
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (8,2,1);
@@ -104,7 +104,7 @@ INSERT INTO stato_personaggio_base_equipaggiati(stato_personaggio_base_id,equipa
 --CREATE SOME NEMICO AND ADD TO ENCOUNTERS
 
 INSERT INTO azione(dtype) VALUES ('Difesa');
-INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',0);
+INSERT INTO azione(dtype,stamina_cost,difficolta_schivata) VALUES ('Attacco',0,2);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (10,2,1);
 INSERT INTO equipment(dtype,name,upgrades) VALUES ('Arma','Spada Nemico 1',0);
 INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (6,9);
@@ -113,7 +113,7 @@ INSERT INTO personaggio_base(dtype,name,hp_base,velocita_base) VALUES ('Nemico',
 INSERT INTO stato_personaggio_base(dtype,personaggio_base_name) VALUES ('StatoNemico','Undead Hollow');
 INSERT INTO stato_personaggio_base_equipaggiati(stato_personaggio_base_id,equipaggiati_id) VALUES (2,6);
 INSERT INTO azione(dtype) VALUES ('Difesa');
-INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',0);
+INSERT INTO azione(dtype,stamina_cost,difficolta_schivata) VALUES ('Attacco',0,1);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (12,2,1);
 INSERT INTO equipment(dtype,name,upgrades) VALUES ('Arma','Spada Nemico 2',0);
 INSERT INTO equipment_difese(equipment_id,difese_id) VALUES (7,11);
