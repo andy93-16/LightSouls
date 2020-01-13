@@ -136,7 +136,6 @@ INSERT INTO nemico_wrapper(number_nemici,stato_nemico_id) VALUES (1,3);
 --ADD ENEMY TO ENCOUNTER ID:1
 INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,1);
 INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,2);
-
 --EQUIPMENT6
 INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',2);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (13,2,1);
@@ -149,3 +148,15 @@ INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (8,13); --Tabella di 
 INSERT INTO equipment_difese(difese_id,equipment_id) VALUES (14,8); --Tabella di JOIN
 INSERT INTO equipment_classi_compatibili(equipment_id, classi_compatibili) VALUES (8,0);
 INSERT INTO personaggio_base_lootable (personaggio_name, lootable_id) VALUES ('Guerriero', 8);
+--EQUIPMENT6
+INSERT INTO azione(dtype,stamina_cost) VALUES ('Attacco',2);
+INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (15,2,0);
+INSERT INTO azione(dtype) VALUES ('Difesa');
+INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (16,2,0);
+INSERT INTO body_part_requirement(body_part_type,number_body_part) VALUES (1,1);
+INSERT INTO equipment(dtype,upgrades,name,body_part_requirement_id,
+forza,destrezza,intelligenza,fede) VALUES ('Arma',4, 'Spezza Corazze',7,2,3,2,2);
+INSERT INTO equipment_attacchi(arma_id,attacchi_id) VALUES (9,15); --Tabella di JOIN
+INSERT INTO equipment_difese(difese_id,equipment_id) VALUES (16,9); --Tabella di JOIN
+INSERT INTO equipment_classi_compatibili(equipment_id, classi_compatibili) VALUES (9,0);
+INSERT INTO personaggio_base_lootable (personaggio_name, lootable_id) VALUES ('Guerriero', 9);
