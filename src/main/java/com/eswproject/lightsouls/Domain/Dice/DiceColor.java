@@ -4,6 +4,6 @@ public enum DiceColor
 {
     ORANGE,
     BLACK,
-    GREEN,
-    BLUE
+    BLUE,
+    GREEN;
 }

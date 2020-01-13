@@ -12,9 +12,11 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
   statoPersonaggio: any;
   equipaggiabili: any[] = [];
   nonEquipaggiabili: any[] = [];
+  prevUrl: any;
 
 
   constructor(private httpservice: HttpService, private router: Router) {
+    this.prevUrl=this.router.getCurrentNavigation().extras.state.prevUrl;
   }
 
   ngOnInit() {
@@ -50,7 +52,9 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
     this.router.navigate(['/ChooseBodyPart'],
       {state: { equipaggiamentoPos: this.equipaggiabili.indexOf(equipaggiamento),
           equipaggiamentoSelezionato: equipaggiamento,
-          bodyPartsForEquipment: this.BodyPartsForEquipment(equipaggiamento)}});
+          bodyPartsForEquipment: this.BodyPartsForEquipment(equipaggiamento),
+          prevUrl:this.prevUrl
+          }});
   }
 
   Disequipaggia(equipaggiamento: any): void {
@@ -61,7 +65,7 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
         }
     ); }
 
-  TornaGestisciPersonaggio(): void {
-    this.router.navigate([ '/GestisciPersonaggio']);
+  TornaIndietro(): void {
+    this.router.navigate([this.prevUrl]);
   }
 }
