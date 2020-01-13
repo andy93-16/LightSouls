@@ -48,7 +48,11 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
 
     public abstract String turno();
 
-    public abstract void passaTurno();
+    public void passaTurno()
+    {
+        setChanged();
+        notifyObservers();
+    }
 
     public void infliggiDanno(int danno){
         int dannofin=danno-getDifesa();

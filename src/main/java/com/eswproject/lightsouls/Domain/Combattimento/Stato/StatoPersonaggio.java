@@ -8,9 +8,8 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("StatoPersonaggio")
-public class StatoPersonaggio extends StatoPersonaggioBase{
-
-
+public class StatoPersonaggio extends StatoPersonaggioBase
+{
    @Transient
    private int stamina;
 
@@ -20,7 +19,7 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
 
    public int calcolaDanno(int posizioneArma,int posizioneAttacco){
         Arma arma=(Arma)getEquipaggiati().get(posizioneArma);
-        stamina=stamina-arma.getAttacchi().get(posizioneAttacco).getStaminaCost();
+        stamina -= arma.getAttacchi().get(posizioneAttacco).getStaminaCost();
         getEquipaggiatiUsati().add(arma);
         getEquipaggiati().remove(arma);
         return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();
@@ -38,11 +37,6 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
        }
    }
 
-   @Override
-   public void passaTurno(){
-       setChanged();
-       notifyObservers();
-   }
 
    @Override
    public String turno(){
