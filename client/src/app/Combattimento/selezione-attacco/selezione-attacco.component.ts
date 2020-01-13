@@ -20,7 +20,6 @@ export class SelezioneAttaccoComponent implements OnInit {
   constructor(private router: Router, private httpservice: HttpService) {
     this.statoPersonaggio = this.router.getCurrentNavigation().extras.state.statoPersonaggio;
     this.posizioneNemico = this.router.getCurrentNavigation().extras.state.nemicoSelezionato;
-    console.log(this.statoPersonaggio.equipaggiati);
     this.ListaAttacchi();
 
   }
@@ -48,8 +47,8 @@ export class SelezioneAttaccoComponent implements OnInit {
   ngOnInit() {
   }
 
-  CambiaEquipaggiamento(): void{
-    this.router.navigate(['/CambiaEquipaggiamento']);
+  TornaAdIncontro(): void {
+    this.router.navigate(['/TurnoPersonaggio']);
   }
 
 }

@@ -4,6 +4,8 @@ import com.eswproject.lightsouls.Domain.Combattimento.*;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggioBase;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoNemico;
+import com.eswproject.lightsouls.Domain.Dice.Dice;
+import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -45,6 +47,7 @@ public class IncontroController extends Observable implements Observer {
 
 	@GetMapping("/AvviaIncontro")
 	public String AvviaIncontro() {
+		TornaAlFalo();
 		setNemici();
 		gestoreIncontro.setConcluso(false);
 		return gestoreIncontro.Avvia(statoPersonaggio,statoNemici);
@@ -70,6 +73,12 @@ public class IncontroController extends Observable implements Observer {
 		statoNemici.clear();
 		statoPersonaggio.resetStato();
 		return "/Falo";
+	}
+
+	@GetMapping("/Schiva/{posizioneNemico}")
+	public String Schiva(@PathVariable("posizioneNemico") int posizioneNemico, @RequestBody AttaccoMapper attaccoMapper){
+		Dice.getInstance().throw_Dice(DiceColor.,);
+
 	}
 
 	@Override

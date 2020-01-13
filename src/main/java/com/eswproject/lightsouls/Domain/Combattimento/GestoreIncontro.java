@@ -22,7 +22,7 @@ public class GestoreIncontro {
     }
 
     public String Avvia(StatoPersonaggio statoPersonaggio, List<StatoNemico> statoNemici) {
-        listaTurni= new LinkedList<>();
+        listaTurni = new LinkedList<>();
         listaTurni.add(statoPersonaggio);
         listaTurni.addAll(statoNemici);
         Collections.sort(listaTurni);

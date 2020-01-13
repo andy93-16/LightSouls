@@ -15,11 +15,13 @@ export class ChooseBodyPartComponent implements OnInit {
   equipaggiamento: any;
   bodyParts: any[];
   bodyPartsSelected: any[] = [];
+  prevUrl: any;
 
   constructor(private router: Router, private httpservice: HttpService) {
     this.equipaggiamento = this.router.getCurrentNavigation().extras.state.equipaggiamentoSelezionato;
     this.equipaggiamentoPos = this.router.getCurrentNavigation().extras.state.equipaggiamentoPos;
     this.bodyParts = this.router.getCurrentNavigation().extras.state.bodyPartsForEquipment;
+    this.prevUrl=this.router.getCurrentNavigation().extras.state.prevUrl;
   }
   ngOnInit() {
   }
@@ -34,10 +36,12 @@ export class ChooseBodyPartComponent implements OnInit {
   }
   Conferma(): void {
     this.httpservice.Equipaggia(this.bodyPartsSelected,this.equipaggiamentoPos).subscribe(
-      url => this.router.navigate([url]));
+      url => this.router.navigate(['/EquipaggiaPersonaggio'], { state :
+          { prevUrl : this.prevUrl } }));
   }
   TornaAEquipaggiaPersonaggio(): void {
-    this.router.navigate(['/EquipaggiaPersonaggio']);
+    this.router.navigate(['/EquipaggiaPersonaggio'], { state :
+        { prevUrl : this.prevUrl } });
   }
 
 

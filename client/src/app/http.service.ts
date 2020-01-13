@@ -69,4 +69,7 @@ export class HttpService {
   public Schiva(): Observable<any> {
     return this.httpclient.get('http://localhost:8080/Schiva', {responseType: 'text'});
   }
+  public PassaTurno(): Observable<any> {
+    return this.httpclient.get('http://localhost:8080/PassaTurno',{responseType: 'text'})
+  }
 }

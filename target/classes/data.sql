@@ -126,4 +126,4 @@ INSERT INTO nemico_wrapper(number_nemici,stato_nemico_id) VALUES (1,3);
 
 --ADD ENEMY TO ENCOUNTER ID:1
 INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,1);
-/*INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,2);*/
+INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,2);
