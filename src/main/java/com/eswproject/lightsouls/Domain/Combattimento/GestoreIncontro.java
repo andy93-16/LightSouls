@@ -19,6 +19,8 @@ public class GestoreIncontro {
 
     public void generaLoot(){
 
+
+
     }
 
     public String Avvia(StatoPersonaggio statoPersonaggio, List<StatoNemico> statoNemici) {
