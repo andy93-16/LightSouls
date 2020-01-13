@@ -66,6 +66,11 @@ public class IncontroController extends Observable implements Observer {
 		return gestoreIncontro.Difendi(statoPersonaggio);
 	}
 
+	@GetMapping("/Schiva")
+	public String Schiva() {
+		return gestoreIncontro.Schiva(statoPersonaggio);
+	}
+
 	@GetMapping("/TornaAlFalo")
 	public String TornaAlFalo() {
 
