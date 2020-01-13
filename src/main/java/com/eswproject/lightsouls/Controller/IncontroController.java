@@ -68,6 +68,7 @@ public class IncontroController extends Observable implements Observer {
 
 	@GetMapping("/TornaAlFalo")
 	public String TornaAlFalo() {
+
 		return "/Falo";
 	}
 
