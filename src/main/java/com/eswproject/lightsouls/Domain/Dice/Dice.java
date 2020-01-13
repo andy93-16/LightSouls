@@ -7,6 +7,7 @@ public class Dice
     private int[] black = new int[]{0, 0, 1, 1, 1, 2};
     private int[] blue = new int[]{1, 1, 2, 2, 2, 3};
     private int[] orange = new int[]{1, 2, 2, 2, 3, 4};
+    private int[] green = new int[]{0, 0, 1, 1, 2, 2};
 
     private static Dice obj;
 
@@ -34,6 +35,10 @@ public class Dice
 
             case ORANGE:
                 face = this.orange[new Random().nextInt(this.orange.length)];
+                break;
+
+            case GREEN:
+                face = this.green[new Random().nextInt(this.green.length)];
                 break;
 
             default: //Like BLACK
