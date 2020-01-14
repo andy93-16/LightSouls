@@ -15,28 +15,17 @@ export class RiepilogoEquipaggiamentiComponent implements OnInit {
   constructor(private httpservice: HttpService, private router: Router) {
     this.httpservice.RiepilogoPersonaggio().subscribe(statoPersonaggio => {
       this.statoPersonaggio = statoPersonaggio;
-      this.equipaggiamenti = this.equipaggiamenti.concat(this.statoPersonaggio.personaggioBase.zainoEquip);
-      });
+      this.equipaggiamenti = this.equipaggiamenti.concat(this.statoPersonaggio.personaggioBase.zainoEquip).concat(this.statoPersonaggio.equipaggiati);
+    });
   }
 
   ngOnInit() {
   }
 
-  TitanitiForEquipment(equipaggiamento: any): any[] {
-    const titaniti: any[] = [];
-    this.statoPersonaggio.personaggioBase.titaniti.forEach( titanite => {
-      if (titanite.equipmentType === equipaggiamento.type) {
-            titaniti.push(titanite);
-      }
-    });
-    return titaniti;
-  }
-
   DettagliPotenziamento(equipaggiamento: any): void {
     this.router.navigate(['/DettagliPotenziamento'], { state: {
-      equipaggiamentoPos:this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento),
-      equipaggiamentoSelezionato : equipaggiamento,
-      titanitiForEquipment : this.TitanitiForEquipment(equipaggiamento)}});
+      statoPersonaggio:this.statoPersonaggio,
+      equipaggiamentoSelezionato : equipaggiamento}});
   }
 
   DettagliDepotenziamento(equipaggiamento: any): void {
