@@ -20,7 +20,8 @@ public class Arma extends Equipment{
         return attacchi;
     }
 
-    private void addCombinationToActions(Titanite titanite) {
+    @Override
+    void addCombinationToActions(Titanite titanite) {
 
         for (Difesa difesa : this.getDifese()) {
             if (difesa.getCombination().containsKey(titanite.getDiceColor())) {
@@ -41,7 +42,8 @@ public class Arma extends Equipment{
         }
     }
 
-    private void removeCombinatoToActions(Titanite titanite){
+    @Override
+    void removeCombinationToActions(Titanite titanite){
         for(Difesa difesa: this.getDifese())
         {
             if (difesa.getCombination().containsKey(titanite.getDiceColor()))
