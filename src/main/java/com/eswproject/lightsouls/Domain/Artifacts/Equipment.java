@@ -1,6 +1,7 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Azione.Difesa;
+import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import com.eswproject.lightsouls.Domain.Personaggio.BodyPart;
 import com.eswproject.lightsouls.Domain.Personaggio.ClassName;
 import com.eswproject.lightsouls.Domain.Personaggio.StatisticheBase;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -32,8 +34,8 @@ public abstract class Equipment
 
 	private String name;
 
-	//@OneToMany(fetch = FetchType.EAGER)
-	//private ArrayList<ClassName> classi;
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<ClassName> classi_compatibili;
 
 	@Embedded
 	private StatisticheBase minRequirements;
