@@ -16,11 +16,11 @@ public class Titanite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int available;
+
     private int looted;
 
     private int maxlootable;
-
-    private int available;
 
     private int anime;
 
@@ -55,6 +55,10 @@ public class Titanite {
 
     public int getMaxlootable() {
         return maxlootable;
+    }
+
+    public void setLooted(int looted) {
+        this.looted = looted;
     }
 }
 
