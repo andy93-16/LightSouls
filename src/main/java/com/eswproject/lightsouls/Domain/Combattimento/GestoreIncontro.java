@@ -24,7 +24,7 @@ public class GestoreIncontro {
     public void generaLoot()
     {
 
-        
+
 
     }
 
