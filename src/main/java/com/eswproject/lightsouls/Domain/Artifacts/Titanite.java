@@ -3,6 +3,7 @@ package com.eswproject.lightsouls.Domain.Artifacts;
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Titanite {
@@ -15,23 +16,25 @@ public class Titanite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    public int getAnime() {
-        return anime;
-    }
+    private int looted;
+
+    private int maxlootable;
+
+    private int available;
 
     private int anime;
+
+    private EquipmentType equipmentType;
+
+    private DiceColor diceColor;
 
     public EquipmentType getEquipmentType() {
         return equipmentType;
     }
 
-    private EquipmentType equipmentType;
-
     public DiceColor getDiceColor() {
         return diceColor;
     }
-
-    private DiceColor diceColor;
 
     public int getAvailable() {
         return available;
@@ -42,13 +45,17 @@ public class Titanite {
         this.available = available;
     }
 
-    private int available;
-
     public int getLooted() {
         return looted;
     }
 
-    private int looted;
+    public int getAnime() {
+        return anime;
+    }
+
+    public int getMaxlootable() {
+        return maxlootable;
+    }
 }
 
 

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2 *ngIf="loot!==undefined; else persa">PARTITA VINTA</h2>
+    <h2 *ngIf="!(statopersonaggio.dead); else persa">PARTITA VINTA</h2>
     <ng-template #persa>
     <h2>PARTITA PERSA</h2>
     </ng-template>

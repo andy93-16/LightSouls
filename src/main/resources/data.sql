@@ -3,15 +3,15 @@ INSERT INTO modalita(name) values ('storia');
 INSERT INTO descrittore_dungeon(boss_name) values ('prova1');
 INSERT INTO descrittore_dungeon(boss_name) values ('prova2');
 INSERT INTO descrittore_dungeon(boss_name) values ('prova3');
-INSERT INTO descrittore_incontro values ();
-INSERT INTO descrittore_incontro values ();
-INSERT INTO descrittore_incontro values ();
-INSERT INTO descrittore_incontro values ();
-INSERT INTO descrittore_incontro values ();
-INSERT INTO descrittore_incontro values ();
-INSERT INTO descrittore_incontro values ();
-INSERT INTO descrittore_incontro values ();
-INSERT INTO descrittore_incontro values ();
+INSERT INTO descrittore_incontro (lootables_equip,lootable_titanites) values (1,1);
+INSERT INTO descrittore_incontro (lootables_equip,lootable_titanites) values (1,1);
+INSERT INTO descrittore_incontro (lootables_equip,lootable_titanites) values (1,1);
+INSERT INTO descrittore_incontro (lootables_equip,lootable_titanites) values (1,1);
+INSERT INTO descrittore_incontro (lootables_equip,lootable_titanites) values (1,1);
+INSERT INTO descrittore_incontro (lootables_equip,lootable_titanites) values (1,1);
+INSERT INTO descrittore_incontro (lootables_equip,lootable_titanites) values (1,1);
+INSERT INTO descrittore_incontro (lootables_equip,lootable_titanites) values (1,1);
+INSERT INTO descrittore_incontro (lootables_equip,lootable_titanites) values (1,1);
 INSERT INTO descrittore_dungeon_lista_incontri(descrittore_dungeon_boss_name,lista_incontri_id) values ('prova1',1);
 INSERT INTO descrittore_dungeon_lista_incontri(descrittore_dungeon_boss_name,lista_incontri_id) values ('prova1',2);
 INSERT INTO descrittore_dungeon_lista_incontri(descrittore_dungeon_boss_name,lista_incontri_id) values ('prova1',3);
@@ -88,9 +88,9 @@ INSERT INTO body_part(name,body_part_type) VALUES ('Corpo',1);
 --BODYPART4
 INSERT INTO body_part(name,body_part_type) VALUES ('Due Mani',0);
 --TITANITE
-INSERT INTO titanite(equipment_type,available,looted,dice_color,anime) VALUES (0,4,4,0,2);
-INSERT INTO titanite(equipment_type,available,looted,dice_color,anime) VALUES (0,4,4,1,1);
-INSERT INTO titanite(equipment_type,available,looted,dice_color,anime) VALUES (1,3,3,2,1);
+INSERT INTO titanite(equipment_type,available,looted,dice_color,anime, maxlootable) VALUES (0,4,4,0,2,5);
+INSERT INTO titanite(equipment_type,available,looted,dice_color,anime, maxlootable) VALUES (0,4,4,1,1,5);
+INSERT INTO titanite(equipment_type,available,looted,dice_color,anime, maxlootable) VALUES (1,3,3,2,1,5);
 
 --CREATE SOME descrittore_personaggio AND ADD SOME ARTIFACTS
 INSERT INTO personaggio_base(dtype,classe,hp_base,velocita_base,stamina_base,stamina_regen,name,anime,forza,destrezza,intelligenza,fede)
