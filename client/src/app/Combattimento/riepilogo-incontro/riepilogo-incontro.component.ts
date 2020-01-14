@@ -24,4 +24,8 @@ export class RiepilogoIncontroComponent implements OnInit {
     this.httpservice.AvviaIncontro();
     }
 
+  TornaAlFalo(): void  {
+    this.router.navigate(['/Falo']) ;
+  }
+
 }

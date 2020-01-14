@@ -92,6 +92,7 @@ public abstract class Equipment
 
 	public void addTitanite(Titanite titanite){
 		upgrades=upgrades-1;
+		System.out.println(upgrades);
 		getEquippedTitaniti().add(titanite);
 		addCombinationToActions(titanite);
 	}

@@ -61,6 +61,7 @@ public class GestoreEquipaggiamenti{
                 {
                     ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE).getEquippedTitaniti().add(titan);
                     titan.setAvailable(titan.getAvailable() - 1);
+                    ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE).addTitanite(titan);
                     break;
                 }
             }
