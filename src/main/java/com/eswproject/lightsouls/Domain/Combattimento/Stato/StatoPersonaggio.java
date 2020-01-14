@@ -44,6 +44,7 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
        stamina=stamina-1;
        if(Dice.getInstance().throw_Dice(DiceColor.GREEN,1)<difficoltaSchivata)
            infliggiDannoPuro(danno);
+
        passaTurno();
    }
 

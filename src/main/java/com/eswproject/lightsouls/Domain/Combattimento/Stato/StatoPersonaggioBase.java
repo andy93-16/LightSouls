@@ -48,11 +48,7 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
 
     public abstract String turno();
 
-    public void passaTurno()
-    {
-        setChanged();
-        notifyObservers();
-    }
+    public abstract void passaTurno();
 
     public void infliggiDanno(int danno){
         int dannofin=danno-getDifesa();
@@ -66,8 +62,7 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
         }
     }
 
-    public void infliggiDannoPuro(int danno){
-
+    public void infliggiDannoPuro(int danno){ ;
         if(danno>0)
             HP=HP-danno;
         if(HP<=0){
@@ -77,7 +72,6 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
             notifyObservers();
         }
     }
-
 
     public abstract int calcolaDanno(int posizioneArma,int posizioneAttacco);
 
@@ -118,6 +112,14 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
 
     public void resetStato(){
         this.HP=personaggioBase.getHP_base();
+    }
+
+    public void controlloEquip()
+    {
+        if(this.getEquipaggiati().isEmpty()){
+            this.getEquipaggiati().addAll(this.getEquipaggiatiUsati());
+            this.getEquipaggiatiUsati().clear();
+        }
     }
 
 }
