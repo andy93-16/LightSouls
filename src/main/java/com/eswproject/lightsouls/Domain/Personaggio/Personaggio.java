@@ -10,26 +10,22 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("Personaggio")
-public class Personaggio extends PersonaggioBase {
-
-    private ClassName classe;
-
+public class Personaggio extends PersonaggioBase
+{
     private int stamina_base;
-
-    public int getAnime() {
-        return anime;
-    }
 
     private int anime;
 
-    public int getStamina_base()
-    {
-        return stamina_base;
-    }
+    private int staminaRegen;
+
+    private ClassName classe;
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
-    private List<Equipment> lootable;
+    private List<BodyPart> bodyParts;
+
+    @Embedded
+    private StatisticheBase statisticheBase;
 
     @OneToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
@@ -39,35 +35,52 @@ public class Personaggio extends PersonaggioBase {
     @Fetch(FetchMode.SUBSELECT)
     private List<Equipment> zainoEquip;
 
-    public List<Equipment> getZainoEquip() {
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Equipment> lootable;
+
+    public List<Equipment> getZainoEquip()
+    {
         return this.zainoEquip;
     }
 
-    public List<Titanite> getTitaniti() {
+    public List<Titanite> getTitaniti()
+    {
         return this.titaniti;
     }
 
-    @Embedded
-    private StatisticheBase statisticheBase;
-
-    public int getStaminaRegen() {
+    public int getStaminaRegen()
+    {
         return staminaRegen;
     }
 
-    private int staminaRegen;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
-    private List<BodyPart> bodyParts;
-
-    public List<BodyPart> getBodyParts() {
+    public List<BodyPart> getBodyParts()
+    {
         return this.bodyParts;
     }
 
-    public StatisticheBase getStatisticaBase() {
+    public StatisticheBase getStatisticaBase()
+    {
         return this.statisticheBase;
     }
 
-    public ClassName getClasse() { return classe; }
-}
+    public int getStamina_base()
+    {
+        return stamina_base;
+    }
 
+    public int getAnime()
+    {
+        return anime;
+    }
+
+    public ClassName getClasse()
+    {
+        return classe;
+    }
+
+    public List<Equipment> getLootable()
+    {
+        return lootable;
+    }
+}
