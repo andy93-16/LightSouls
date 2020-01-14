@@ -22,27 +22,17 @@ export class RiepilogoEquipaggiamentiComponent implements OnInit {
   ngOnInit() {
   }
 
-  TitanitiForEquipment(equipaggiamento: any): any[] {
-    const titaniti: any[] = [];
-    this.statoPersonaggio.personaggioBase.titaniti.forEach( titanite => {
-      if (titanite.equipmentType === equipaggiamento.type) {
-            titaniti.push(titanite);
-      }
-    });
-    return titaniti;
-  }
-
   DettagliPotenziamento(equipaggiamento: any): void {
-    this.router.navigate(['/DettagliPotenziamento'], { state: {
-      equipaggiamentoPos:this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento),
+    this.router.navigate(['/DettagliPotenziamento',
+      this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento)], { skipLocationChange: true , state: {
       equipaggiamentoSelezionato : equipaggiamento,
-      titanitiForEquipment : this.TitanitiForEquipment(equipaggiamento)}});
+      }});
   }
 
   DettagliDepotenziamento(equipaggiamento: any): void {
-    this.router.navigate(['/DettagliDepotenziamento'], {
-      state:{
-      equipaggiamentoPos:this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento),
+    this.router.navigate(['/DettagliDepotenziamento',
+      this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento)],
+      {skipLocationChange: true,   state:{
       equipaggiamentoSelezionato : equipaggiamento}});
   }
 
