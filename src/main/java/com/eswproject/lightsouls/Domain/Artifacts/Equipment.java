@@ -44,10 +44,6 @@ public abstract class Equipment
 		return upgrades;
 	}
 
-	public void setUpgrades(int upgrades) {
-		this.upgrades = upgrades;
-	}
-
 	private int upgrades;
 
 	@OneToOne
@@ -92,13 +88,10 @@ public abstract class Equipment
 
 	public void addTitanite(Titanite titanite){
 		upgrades=upgrades-1;
-		System.out.println(upgrades);
-		getEquippedTitaniti().add(titanite);
 		addCombinationToActions(titanite);
 	}
 	public void removeTitanite(Titanite titanite){
 		upgrades=upgrades+1;
-		getEquippedTitaniti().remove(titanite);
 		removeCombinationToActions(titanite);
 	}
 
