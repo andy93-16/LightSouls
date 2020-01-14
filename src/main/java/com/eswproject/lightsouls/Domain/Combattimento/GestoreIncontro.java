@@ -24,7 +24,6 @@ public class GestoreIncontro {
     public void generaLoot(){
 
 
-
     }
 
     public String Avvia(StatoPersonaggio statoPersonaggio, List<StatoNemico> statoNemici) {
@@ -49,14 +48,18 @@ public class GestoreIncontro {
     }
 
     public String Schiva(StatoPersonaggio statoPersonaggio) {
+
+        listaTurni.peekFirst().controlloEquip();
         Arma arma=(Arma)listaTurni.peekFirst().getEquipaggiati().get(0);
         statoPersonaggio.schiva(arma.getAttacchi().get(0).getDifficoltaSchivata(),
                        listaTurni.peekFirst().calcolaDanno(0,0));
+
         return getTurno();
     }
 
 
     public String Difendi(StatoPersonaggio statoPersonaggio) {
+        listaTurni.peekFirst().controlloEquip();
         listaTurni.peekFirst().attacca(statoPersonaggio, new AttaccoMapper(0, 0));
         return getTurno();
     }
