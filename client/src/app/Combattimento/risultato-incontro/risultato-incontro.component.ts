@@ -11,6 +11,7 @@ import {AttaccoOfArma} from "../selezione-attacco/attacco-of-arma";
 export class RisultatoIncontroComponent implements OnInit {
 
   statopersonaggio : any;
+  statonemici : any[]=[];
   loot : any;
   listaTurni : any[];
 
@@ -18,7 +19,7 @@ export class RisultatoIncontroComponent implements OnInit {
     this.httpservice.ListaTurni().subscribe(listaTurni => {
       this.listaTurni = listaTurni;
       this.FiltraPersonaggio();
-      console.log(this.statopersonaggio)
+      this.FiltraNemici();
     });
 
     this.httpservice.GetLoot().subscribe(loot=>{
@@ -35,11 +36,21 @@ export class RisultatoIncontroComponent implements OnInit {
 
   FiltraPersonaggio():void{
     this.listaTurni.forEach(
-    statoPersonaggioBase => { console.log(statoPersonaggioBase.personaggioBase);
+    statoPersonaggioBase => {
     if ( statoPersonaggioBase.personaggioBase.type === 'Personaggio') {
       this.statopersonaggio=statoPersonaggioBase;
     }
     }
   );
+  }
+
+  FiltraNemici():void{
+    this.listaTurni.forEach(
+      statoPersonaggioBase => {
+        if ( statoPersonaggioBase.personaggioBase.type === 'Nemico') {
+          this.statonemici.push(statoPersonaggioBase);
+        }
+      }
+    );
   }
 }

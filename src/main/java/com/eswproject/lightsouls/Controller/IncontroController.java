@@ -4,6 +4,7 @@ import com.eswproject.lightsouls.Domain.Combattimento.*;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggioBase;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoNemico;
+import com.eswproject.lightsouls.Domain.Personaggio.Personaggio;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -97,6 +98,8 @@ public class IncontroController extends Observable implements Observer {
 				if (statoNemici.isEmpty()){
 					gestoreIncontro.setConcluso(true);
 					loot=gestoreIncontro.generaLoot(statoPersonaggio,descrittoreIncontro.getLootablesEquip(),descrittoreIncontro.getLootableTitanites());
+					Personaggio personaggio=(Personaggio)statoPersonaggio.getPersonaggioBase();
+					personaggio.aggiungiLoot(loot);
 					setChanged();
 					notifyObservers();
 				}
