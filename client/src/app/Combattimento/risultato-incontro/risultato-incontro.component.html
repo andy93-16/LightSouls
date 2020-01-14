@@ -1,8 +1,8 @@
 <div class="container">
-  <h2 *ngIf="!(statopersonaggio.dead); else persa">style="color:green;">Incontro Superato</h2>
+  <h1 style="color:green;" *ngIf="!(statopersonaggio.dead); else persa">Incontro Superato</h1>
     <ng-template #persa>
       <div>
-        <h2 style="color:red;">Incontro Fallito</h2>
+        <h1 style="color:red;">Incontro Fallito</h1>
       </div>
     </ng-template>
   <div class="row">

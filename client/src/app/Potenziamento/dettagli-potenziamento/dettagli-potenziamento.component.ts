@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpService} from '../../http.service';
 import {MatDialog} from '@angular/material';
 
@@ -10,15 +10,23 @@ import {MatDialog} from '@angular/material';
 })
 export class DettagliPotenziamentoComponent implements OnInit {
 
-  equipaggiamento: any;
-  titaniti: any[];
-  equipaggiamentoPos: number;
+  pos : number;
+  statoPersonaggio : any;
+  equipaggiamento : any;
+  titaniti: any[] = [];
 
-  constructor(private httpservice: HttpService, private router: Router) {
-    this.equipaggiamento = this.router.getCurrentNavigation().extras.state.equipaggiamentoSelezionato;
-    this.titaniti = this.router.getCurrentNavigation().extras.state.titanitiForEquipment;
-    this.equipaggiamentoPos = this.router.getCurrentNavigation().extras.state.equipaggiamentoPos;
+  constructor(private httpservice: HttpService,private route : ActivatedRoute, private router: Router) {
+
+    this.route.params.subscribe(params => {
+      this.pos = params['posizione']
+    });
+    this.httpservice.RiepilogoPersonaggio().subscribe(statoPersonaggio => {
+      this.statoPersonaggio = statoPersonaggio;
+      this.equipaggiamento = this.statoPersonaggio.personaggioBase.zainoEquip[this.pos];
+      this.TitanitiForEquipment(this.equipaggiamento);
+    });
   }
+
   ngOnInit() {
   }
 
@@ -27,7 +35,17 @@ export class DettagliPotenziamentoComponent implements OnInit {
   }
 
   Usa(titanite: any): void {
-    this.httpservice.Potenzia(this.equipaggiamentoPos, titanite).subscribe(url => this.router.navigate([url]));
+    this.httpservice.Potenzia(this.pos
+      , titanite).subscribe(url => this.router.navigate([url]));
+  }
+
+  TitanitiForEquipment(equipaggiamento: any): void {
+    this.statoPersonaggio.personaggioBase.titaniti.forEach( titanite => {
+      if (titanite.equipmentType === equipaggiamento.type) {
+        this.titaniti.push(titanite);
+      }
+    });
+
   }
 
 }
