@@ -99,33 +99,13 @@ public abstract class Equipment
 	public void removeTitanite(Titanite titanite){
 		upgrades=upgrades+1;
 		getEquippedTitaniti().remove(titanite);
-		removeCombinatoToActions(titanite);
-
+		removeCombinationToActions(titanite);
 	}
 
-	private void addCombinationToActions(Titanite titanite) {
+	abstract void removeCombinationToActions(Titanite titanite);
+	abstract void addCombinationToActions(Titanite titanite);
 
-		for (Difesa difesa : this.getDifese()) {
-			if (difesa.getCombination().containsKey(titanite.getDiceColor())) {
-				difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor()) + 1);
-			} else {
-				difesa.getCombination().put(titanite.getDiceColor(), 1);
-			}
-		}
-	}
 
-	private void removeCombinatoToActions(Titanite titanite){
-		for(Difesa difesa: this.getDifese())
-		{
-			if (difesa.getCombination().containsKey(titanite.getDiceColor()))
-			{
-				if (difesa.getCombination().get(titanite.getDiceColor())>1)
-					difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor())-1);
-				else
-					difesa.getCombination().remove(titanite.getDiceColor());
 
-			}
-		}
-	}
 
 }
