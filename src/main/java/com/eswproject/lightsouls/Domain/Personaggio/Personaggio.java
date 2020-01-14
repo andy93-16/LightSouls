@@ -6,6 +6,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -82,5 +83,17 @@ public class Personaggio extends PersonaggioBase
     public List<Equipment> getLootable()
     {
         return lootable;
+    }
+
+    public List<Titanite> getLootableTitanites()
+    {
+        List<Titanite> lootabletitanites=new ArrayList<>();
+        for (Titanite t: this.getTitaniti()) {
+            if(t.getLooted()<t.getMaxlootable())
+            {
+                lootabletitanites.add(t);
+            }
+        }
+        return lootabletitanites;
     }
 }

@@ -72,4 +72,7 @@ export class HttpService {
   public PassaTurno(): Observable<any> {
     return this.httpclient.get('http://localhost:8080/PassaTurno',{responseType: 'text'})
   }
+  public GetLoot(): Observable<any> {
+    return this.httpclient.get('http://localhost:8080/Loot')
+  }
 }

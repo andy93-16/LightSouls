@@ -20,6 +20,8 @@ public class IncontroController extends Observable implements Observer {
 
 	private StatoPersonaggio statoPersonaggio;
 
+	private Loot loot;
+
 	public void setDescrittoreIncontro(DescrittoreIncontro descrittoreIncontro) {
 		this.descrittoreIncontro = descrittoreIncontro;
 	}
@@ -45,6 +47,7 @@ public class IncontroController extends Observable implements Observer {
 
 	@GetMapping("/AvviaIncontro")
 	public String AvviaIncontro() {
+		loot=null;
 		setNemici();
 		statoPersonaggio.resetStato();
 		gestoreIncontro.setConcluso(false);
@@ -77,6 +80,11 @@ public class IncontroController extends Observable implements Observer {
 		return "/Falo";
 	}
 
+	@GetMapping("/Loot")
+	public Loot GetLoot() {
+		return loot;
+	}
+
 	@Override
 	public void update(Observable statoPersonaggioBase, Object stato) {
 		if (((StatoPersonaggioBase) statoPersonaggioBase).isDead()){
@@ -88,7 +96,7 @@ public class IncontroController extends Observable implements Observer {
 				statoNemici.remove(statoPersonaggioBase);
 				if (statoNemici.isEmpty()){
 					gestoreIncontro.setConcluso(true);
-					gestoreIncontro.generaLoot();
+					loot=gestoreIncontro.generaLoot(statoPersonaggio,descrittoreIncontro.getLootablesEquip(),descrittoreIncontro.getLootableTitanites());
 					setChanged();
 					notifyObservers();
 				}

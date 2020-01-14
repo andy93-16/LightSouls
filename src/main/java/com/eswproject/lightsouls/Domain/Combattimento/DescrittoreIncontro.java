@@ -11,6 +11,10 @@ public class DescrittoreIncontro
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int lootablesEquip;
+
+    private int lootableTitanites;
+
     public int getId() {
         return id;
     }
@@ -22,4 +26,11 @@ public class DescrittoreIncontro
         return nemiciWrappers;
     }
 
+    public int getLootablesEquip() {
+        return lootablesEquip;
+    }
+
+    public int getLootableTitanites() {
+        return lootableTitanites;
+    }
 }
