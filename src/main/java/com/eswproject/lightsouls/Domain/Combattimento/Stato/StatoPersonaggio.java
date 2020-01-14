@@ -63,6 +63,8 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
    public void resetStato(){
       this.HP=personaggioBase.getHP_base();
       this.stamina=((Personaggio)personaggioBase).getStamina_base();
+      this.dead=false;
+
    }
 
 }

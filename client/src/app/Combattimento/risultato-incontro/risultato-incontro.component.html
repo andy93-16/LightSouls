@@ -1,24 +1,114 @@
 <div class="container">
-  <div class="row">
-    <h2 *ngIf="!(statopersonaggio.dead); else persa">PARTITA VINTA</h2>
+  <h2 *ngIf="!(statopersonaggio.dead); else persa">style="color:green;">Incontro Superato</h2>
     <ng-template #persa>
-    <h2>PARTITA PERSA</h2>
+      <div>
+        <h2 style="color:red;">Incontro Fallito</h2>
+      </div>
     </ng-template>
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>HP</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let statoPersonaggioBase of listaTurni">
-        <td>{{statoPersonaggioBase.personaggioBase.name}}</td>
-        <td>{{statoPersonaggioBase.hp+'/'+statoPersonaggioBase.personaggioBase.hp_base}}</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div>
+      <h3>Il Tuo Personaggio</h3>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>HP</th>
+            <th>Stamina</th>
+            <th>Velocità</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{statopersonaggio.personaggioBase.name}}</td>
+            <td>{{statopersonaggio.hp+'/'+statopersonaggio.personaggioBase.hp_base}}</td>
+            <td>{{statopersonaggio.stamina+'/'+statopersonaggio.personaggioBase.stamina_base}}</td>
+            <td>{{statopersonaggio.personaggioBase.velocita_base}}</td>
+          </tr>
+          </tbody>
+        </table>
+      <h3>Nemici Sconfitti</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>HP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let statoPersonaggioBase of statonemici">
+              <td>{{statoPersonaggioBase.personaggioBase.name}}</td>
+              <td>{{statoPersonaggioBase.hp+'/'+statoPersonaggioBase.personaggioBase.hp_base}}</td>
+            </tr>
+          </tbody>
+        </table>
   </div>
-</div>
-<button class="btn btn-success" (click)="TornaAlFalo()">TornaAlFalo</button>
+  </div>
+  <div *ngIf="!(statopersonaggio.dead)">
+    <div class="row">
+      <h2>Equpaggiamenti Ottenuti</h2>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>BodyPartsRequirements</th>
+            <th>Throwable dice</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let equipaggiamento of loot.equipments">
+            <td>{{equipaggiamento.name}}</td>
+            <td>{{equipaggiamento.type}}</td>
+            <td>{{equipaggiamento.bodyPartRequirement.bodyPartType+" : "+equipaggiamento.bodyPartRequirement.numberbodyPart}}</td>
+            <td>
+              <table class="table table-striped">
+                <tbody>
+                <tr *ngFor="let attacco of equipaggiamento.attacchi">
+                  <td>
+                <tr style="color:red">{{attacco.type}}</tr>
+                <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+                <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+                <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+                </td>
+                </tr>
+                </tbody>
+            </table>
 
+            <table class="table table-striped">
+              <tbody>
+              <tr *ngFor="let difesa of equipaggiamento.difese">
+                <td>
+              <tr style="color:red">{{difesa.type}}</tr>
+              <tr *ngIf="difesa.combination.ORANGE">{{"ORANGE:"+difesa.combination.ORANGE}}</tr>
+              <tr *ngIf="difesa.combination.BLACK">{{"BLACK:"+difesa.combination.BLACK}}</tr>
+              <tr *ngIf="difesa.combination.BLUE">{{"BLUE:"+difesa.combination.BLUE}}</tr>
+              </td>
+              </tr>
+              </tbody>
+            </table>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <h2>Titaniti Ottenute</h2>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Tipo Titanite</th>
+          <th>Available</th>
+          <th>Looted</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let titanite of loot.titanites">
+          <td>{{titanite.diceColor}}</td>
+          <td>{{titanite.available}}</td>
+          <td>{{titanite.looted}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<button class="btn btn-success" (click)="TornaAlFalo()">TornaAlFalo</button>
+</div>

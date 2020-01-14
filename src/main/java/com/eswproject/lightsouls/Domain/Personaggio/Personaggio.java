@@ -2,6 +2,7 @@ package com.eswproject.lightsouls.Domain.Personaggio;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
+import com.eswproject.lightsouls.Domain.Combattimento.Loot;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -95,5 +96,25 @@ public class Personaggio extends PersonaggioBase
             }
         }
         return lootabletitanites;
+    }
+
+    public void aggiungiLoot(Loot loot)
+    {
+        this.getZainoEquip().addAll(loot.getEquipments());
+        this.getLootable().removeAll(loot.getEquipments());
+
+        for (Titanite titaniteloot: loot.getTitanites())
+        {
+            for (Titanite titan : this.titaniti)
+            {
+                if(titaniteloot.getEquipmentType()==titan.getEquipmentType()
+                        && titaniteloot.getDiceColor() == titan.getDiceColor())
+                {
+                    titan.setLooted(titan.getLooted()+1);
+                    titan.setAvailable(titan.getAvailable()+1);
+                    break;
+                }
+            }
+        }
     }
 }
