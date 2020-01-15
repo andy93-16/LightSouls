@@ -57,10 +57,11 @@ public class GestoreEquipaggiamenti{
 
     public void Potenzia(int posE, Titanite clientTitanite)
     {
+
         Personaggio player = (Personaggio) statoPersonaggio.getPersonaggioBase();
         Equipment requested_Equipment = player.getZainoEquip().get(posE);
 
-        if(requested_Equipment.getEquippedTitaniti().size() < requested_Equipment.getUpgrades())
+        if(requested_Equipment.getUpgrades() > 0)
         {
             for (Titanite player_Titanite : player.getTitaniti())
             {
@@ -91,6 +92,7 @@ public class GestoreEquipaggiamenti{
             {
                 forged_Titanite.increment_Available();
                 tmp=forged_Titanite;
+                break;
             }
         }
         requested_Equipment.removeTitanite(tmp);
