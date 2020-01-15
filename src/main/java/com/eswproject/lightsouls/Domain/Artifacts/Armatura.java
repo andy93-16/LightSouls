@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "Armatura")
 public class Armatura extends Equipment {
 
-    void addCombinationToActions(Titanite titanite) {
+    @Override
+    void addTitaniteToActions(Titanite titanite) {
 
         for (Difesa difesa : this.getDifese()) {
             if (difesa.getCombination().containsKey(titanite.getDiceColor())) {
@@ -20,7 +21,8 @@ public class Armatura extends Equipment {
         }
     }
 
-    void removeCombinationToActions(Titanite titanite){
+    @Override
+    void removeTitaniteFromActions(Titanite titanite){
         for(Difesa difesa: this.getDifese())
         {
             if (difesa.getCombination().containsKey(titanite.getDiceColor()))

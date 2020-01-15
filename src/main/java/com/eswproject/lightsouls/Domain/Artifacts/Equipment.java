@@ -1,7 +1,6 @@
 package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Azione.Difesa;
-import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import com.eswproject.lightsouls.Domain.Personaggio.BodyPart;
 import com.eswproject.lightsouls.Domain.Personaggio.ClassName;
 import com.eswproject.lightsouls.Domain.Personaggio.StatisticheBase;
@@ -11,9 +10,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -34,11 +31,28 @@ public abstract class Equipment
 
 	private String name;
 
+	private int upgrades;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Titanite> equippedTitaniti;
+
+	@OneToOne
+	private BodyPartRequirement bodyPartRequirement;
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<ClassName> classi_compatibili;
 
 	@Embedded
 	private StatisticheBase minRequirements;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<BodyPart> equippedBodyParts;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	private List<Difesa> difese;
 
 	public int getUpgrades() {
 		return upgrades;
@@ -48,11 +62,6 @@ public abstract class Equipment
 		this.upgrades = upgrades;
 	}
 
-	private int upgrades;
-
-	@OneToOne
-	private BodyPartRequirement bodyPartRequirement;
-
 	public BodyPartRequirement getBodyPartRequirement() {
 		return bodyPartRequirement;
 	}
@@ -60,10 +69,6 @@ public abstract class Equipment
 	public List<Difesa> getDifese() {
 		return difese;
 	}
-
-	@OneToMany(fetch = FetchType.EAGER)
-	@Fetch(FetchMode.SUBSELECT)
-	private List<Difesa> difese;
 
     public String getName()
     {
@@ -74,36 +79,32 @@ public abstract class Equipment
 		return minRequirements;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@Fetch(FetchMode.SUBSELECT)
-	private List<BodyPart> equippedBodyParts;
-
 	public List<BodyPart> getEquippedBodyParts() {
 		return equippedBodyParts;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@Fetch(FetchMode.SUBSELECT)
-	private List<Titanite> equippedTitaniti;
 
-	public List<Titanite> getEquippedTitaniti() {
+	public List<Titanite> getEquippedTitaniti()
+	{
 		return equippedTitaniti;
 	}
 
-	public void addTitanite(Titanite titanite){
-		upgrades=upgrades-1;
-		System.out.println(upgrades);
+	public void addTitanite(Titanite titanite)
+	{
+		upgrades--;
 		getEquippedTitaniti().add(titanite);
-		addCombinationToActions(titanite);
-	}
-	public void removeTitanite(Titanite titanite){
-		upgrades=upgrades+1;
-		getEquippedTitaniti().remove(titanite);
-		removeCombinationToActions(titanite);
+		addTitaniteToActions(titanite);
 	}
 
-	abstract void removeCombinationToActions(Titanite titanite);
-	abstract void addCombinationToActions(Titanite titanite);
+	public void removeTitanite(Titanite titanite)
+	{
+		upgrades++;
+		getEquippedTitaniti().remove(titanite);
+		removeTitaniteFromActions(titanite);
+	}
+
+	abstract void removeTitaniteFromActions(Titanite titanite);
+	abstract void addTitaniteToActions(Titanite titanite);
 
 
 

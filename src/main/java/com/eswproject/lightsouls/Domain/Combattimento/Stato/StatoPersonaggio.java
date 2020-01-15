@@ -22,7 +22,7 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
 
    public int calcolaDanno(int posizioneArma,int posizioneAttacco){
         Arma arma=(Arma)getEquipaggiati().get(posizioneArma);
-        stamina=stamina-arma.getAttacchi().get(posizioneAttacco).getStaminaCost();
+        stamina -= arma.getAttacchi().get(posizioneAttacco).getStaminaCost();
         getEquipaggiatiUsati().add(arma);
         getEquipaggiati().remove(arma);
         return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();
@@ -41,7 +41,7 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
    }
 
    public void schiva(int difficoltaSchivata,int danno){
-       stamina=stamina-1;
+       stamina--;
        if(Dice.getInstance().throw_Dice(DiceColor.GREEN,1)<difficoltaSchivata)
            infliggiDannoPuro(danno);
 

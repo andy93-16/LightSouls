@@ -2,11 +2,14 @@ package com.eswproject.lightsouls.Domain.Artifacts;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Azione.Attacco;
 import com.eswproject.lightsouls.Domain.Artifacts.Azione.Difesa;
+import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @DiscriminatorValue(value = "Arma")
@@ -21,50 +24,48 @@ public class Arma extends Equipment{
     }
 
     @Override
-    void addCombinationToActions(Titanite titanite) {
-
-        for (Difesa difesa : this.getDifese()) {
-            if (difesa.getCombination().containsKey(titanite.getDiceColor())) {
-                difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor()) + 1);
-            } else {
-                difesa.getCombination().put(titanite.getDiceColor(), 1);
+    void addTitaniteToActions(Titanite titanite)
+    {
+        Map<DiceColor, Integer> diceCombo;
+        DiceColor titaniteColor = titanite.getDiceColor();
+        for (Attacco attacco : this.attacchi)
+        {
+            diceCombo = attacco.getCombination();
+            if (diceCombo.containsKey(titaniteColor))
+            {
+                diceCombo.put(titaniteColor, diceCombo.get(titaniteColor) + 1);
             }
-        }
-        this.getEquippedTitaniti().add(titanite);
-        for (Attacco attacco : this.attacchi) {
-            if (attacco.getClass().getSimpleName().equals(this.getClass().getSimpleName())) {
-                if (attacco.getCombination().containsKey(titanite.getDiceColor())) {
-                    attacco.getCombination().put(titanite.getDiceColor(), attacco.getCombination().get(titanite.getDiceColor()) + 1);
-                } else {
-                    attacco.getCombination().put(titanite.getDiceColor(), 1);
-                }
+            else
+            {
+                diceCombo.put(titaniteColor, 1);
             }
         }
     }
 
     @Override
-    void removeCombinationToActions(Titanite titanite){
-        for(Difesa difesa: this.getDifese())
+    void removeTitaniteFromActions(Titanite titanite)
+    {
+        System.out.println("remove pt.0");
+        Map<DiceColor, Integer> diceCombo;
+        DiceColor titaniteColor = titanite.getDiceColor();
+
+        for(Iterator<Attacco> attacco = this.attacchi.iterator(); attacco.hasNext();)
         {
-            if (difesa.getCombination().containsKey(titanite.getDiceColor()))
+            System.out.println("remove pt.1");
+            diceCombo = attacco.next().getCombination();
+            if (diceCombo.containsKey(titaniteColor))
             {
-                if (difesa.getCombination().get(titanite.getDiceColor())>1)
-                    difesa.getCombination().put(titanite.getDiceColor(), difesa.getCombination().get(titanite.getDiceColor())-1);
+                System.out.println("remove pt.2");
+                if (diceCombo.get(titaniteColor)>1)
+                {
+                    System.out.println("remove pt.3 true");
+                    diceCombo.put(titaniteColor, diceCombo.get(titaniteColor) - 1);
+                }
                 else
-                    difesa.getCombination().remove(titanite.getDiceColor());
-
-            }
-        }
-        for(Attacco attacco: this.getAttacchi())
-        {
-
-            if (attacco.getCombination().containsKey(titanite.getDiceColor()) && attacco.getClass().getSimpleName().equals(this.getClass().getSimpleName()))
-            {
-                if (attacco.getCombination().get(titanite.getDiceColor())>1)
-                    attacco.getCombination().put(titanite.getDiceColor(), attacco.getCombination().get(titanite.getDiceColor())-1);
-                else
-                    attacco.getCombination().remove(titanite.getDiceColor());
-
+                {
+                    System.out.println("remove pt.3 false");
+                    diceCombo.remove(titaniteColor);
+                }
             }
         }
     }

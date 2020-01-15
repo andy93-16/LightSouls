@@ -60,6 +60,16 @@ public class Titanite {
     public void setLooted(int looted) {
         this.looted = looted;
     }
+
+    public void decrement_Available()
+    {
+        this.available--;
+    }
+
+    public void increment_Available()
+    {
+        this.available++;
+    }
 }
 
 

@@ -45,5 +45,11 @@ public class StatoNemico extends StatoPersonaggioBase implements Cloneable {
     public String turno(){
         return "/TurnoNemico";
     }
+
+    @Override
+    public void passaTurno(){
+        setChanged();
+        notifyObservers();
+    }
 }
 

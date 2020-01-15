@@ -1,10 +1,16 @@
 package com.eswproject.lightsouls.Domain.Personaggio;
 
+import com.eswproject.lightsouls.Domain.Artifacts.Arma;
+import com.eswproject.lightsouls.Domain.Artifacts.Azione.Attacco;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
+import com.eswproject.lightsouls.Domain.Dice.DiceColor;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class GestoreEquipaggiamenti{
 
@@ -51,17 +57,18 @@ public class GestoreEquipaggiamenti{
 
     public void Potenzia(int posE, Titanite clientTitanite)
     {
-        if(((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE).getEquippedTitaniti().size()<
-                ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE).getUpgrades())
+        Personaggio player = (Personaggio) statoPersonaggio.getPersonaggioBase();
+        Equipment requested_Equipment = player.getZainoEquip().get(posE);
+
+        if(requested_Equipment.getEquippedTitaniti().size() < requested_Equipment.getUpgrades())
         {
-            for (Titanite titan : ((Personaggio)statoPersonaggio.getPersonaggioBase()).getTitaniti())
+            for (Titanite player_Titanite : player.getTitaniti())
             {
-                if(clientTitanite.getEquipmentType().EquipmentClass().isInstance(((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE))
-                        && clientTitanite.getDiceColor() == titan.getDiceColor())
+                if(clientTitanite.getEquipmentType().EquipmentClass().isInstance(requested_Equipment)
+                        && clientTitanite.getDiceColor() == player_Titanite.getDiceColor())
                 {
-                    ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE).getEquippedTitaniti().add(titan);
-                    titan.setAvailable(titan.getAvailable() - 1);
-                    ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE).addTitanite(titan);
+                    player_Titanite.decrement_Available();
+                    requested_Equipment.addTitanite(player_Titanite);
                     break;
                 }
             }
@@ -69,18 +76,23 @@ public class GestoreEquipaggiamenti{
     }
 
 
-    public void Depotenzia(int posE, Titanite clientTitanite)
+    public void Depotenzia(int posE, Titanite titanite_To_Remove)
     {
-        Titanite tmp=null;
-        for (Titanite titan : ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE).getEquippedTitaniti())
+        Equipment requested_Equipment = ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE);
+        System.out.println("lunghezza titaniti equipaggiate = " + requested_Equipment.getEquippedTitaniti().size());
+        for(Titanite t : requested_Equipment.getEquippedTitaniti())
         {
-            if (titan.getDiceColor() == clientTitanite.getDiceColor())
+            System.out.println("Titanite equipaggiata sull'oggetto = " + t.getDiceColor().toString());
+        }
+        for (Titanite forged_Titanite : requested_Equipment.getEquippedTitaniti())
+        {
+            if (forged_Titanite.getDiceColor() == titanite_To_Remove.getDiceColor())
             {
-                titan.setAvailable(titan.getAvailable() + 1);
-                tmp=titan;
+                forged_Titanite.increment_Available();
+                requested_Equipment.removeTitanite(forged_Titanite);
             }
         }
-        ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE).getEquippedTitaniti().remove(tmp);
+
     }
 
    /* private Equipment getLocalEquipmentInZaino(int idEquipment){
