@@ -84,14 +84,16 @@ public class GestoreEquipaggiamenti{
         {
             System.out.println("Titanite equipaggiata sull'oggetto = " + t.getDiceColor().toString());
         }
+        Titanite tmp=null;
         for (Titanite forged_Titanite : requested_Equipment.getEquippedTitaniti())
         {
             if (forged_Titanite.getDiceColor() == titanite_To_Remove.getDiceColor())
             {
                 forged_Titanite.increment_Available();
-                requested_Equipment.removeTitanite(forged_Titanite);
+                tmp=forged_Titanite;
             }
         }
+        requested_Equipment.removeTitanite(tmp);
 
     }
 
