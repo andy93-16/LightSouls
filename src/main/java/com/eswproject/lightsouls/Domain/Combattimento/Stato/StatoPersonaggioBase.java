@@ -116,7 +116,8 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
 
     public void controlloEquip()
     {
-        if(this.getEquipaggiati().isEmpty()){
+        if(this.getEquipaggiati().isEmpty())
+        {
             this.getEquipaggiati().addAll(this.getEquipaggiatiUsati());
             this.getEquipaggiatiUsati().clear();
         }

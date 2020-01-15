@@ -1,6 +1,7 @@
 package com.eswproject.lightsouls.Domain.Combattimento.Stato;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Arma;
+import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Combattimento.AttaccoMapper;
 import com.eswproject.lightsouls.Domain.Dice.Dice;
 import com.eswproject.lightsouls.Domain.Dice.DiceColor;
@@ -33,7 +34,16 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
        statoPersonaggioBase.infliggiDanno(
                calcolaDanno(attaccoMapper.getPosizioneArma(),
                        attaccoMapper.getPosizioneAttacco()));
-       if(getEquipaggiati().isEmpty()){
+       boolean noWeapons = true;
+       for (Equipment eq: this.getEquipaggiati())
+       {
+           if(eq.getClass().getSimpleName().equals(new Arma().getClass().getSimpleName()))
+           {
+               noWeapons=false;
+               break;
+           }
+       }
+       if(noWeapons){
            getEquipaggiati().addAll(getEquipaggiatiUsati());
            getEquipaggiatiUsati().clear();
            passaTurno();

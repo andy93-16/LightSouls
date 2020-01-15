@@ -93,5 +93,4 @@ public class GestoreIncontro {
         else
             return listaTurni.peekFirst().turno();
     }
-
 }
