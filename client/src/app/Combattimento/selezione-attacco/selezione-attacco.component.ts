@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpService} from '../../http.service';
 import {Router} from '@angular/router';
 import {AttaccoOfArma} from './attacco-of-arma';
+import {AttaccoMapper} from "./attacco_mapper";
 
 
 
@@ -38,8 +39,11 @@ export class SelezioneAttaccoComponent implements OnInit {
     );
   }
 
-  Usa(attacco: any): void {
-    this.httpservice.Attacca(attacco, this.posizioneNemico).subscribe(url =>
+  Usa(attaccoOfArma: AttaccoOfArma): void {
+    const attaccoMapper: AttaccoMapper = {
+      posArma : this.statoPersonaggio.equipaggiati.indexOf(attaccoOfArma.arma),
+      posAttacco : attaccoOfArma.arma.attacchi.indexOf(attaccoOfArma.attacco)};
+    this.httpservice.Attacca(attaccoMapper, this.posizioneNemico).subscribe(url =>
      this.router.navigate([url]));
 
   }

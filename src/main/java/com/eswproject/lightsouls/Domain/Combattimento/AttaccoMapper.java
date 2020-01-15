@@ -2,19 +2,18 @@ package com.eswproject.lightsouls.Domain.Combattimento;
 
 public class AttaccoMapper {
 
-    public AttaccoMapper(int pAttacco,int pArma){
-        this.posizioneArma=pArma;
-        this.posizioneAttacco=pAttacco;
+    public AttaccoMapper(int posArma,int posAttacco){
+        this.posArma=posArma;
+        this.posAttacco=posAttacco;
+    }
+    int posArma;
+    int posAttacco;
+
+    public int getPosArma() {
+        return posArma;
     }
 
-    int posizioneArma;
-    int posizioneAttacco;
-
-    public int getPosizioneArma() {
-        return posizioneArma;
-    }
-
-    public int getPosizioneAttacco() {
-        return posizioneAttacco;
+    public int getPosAttacco() {
+        return posAttacco;
     }
 }

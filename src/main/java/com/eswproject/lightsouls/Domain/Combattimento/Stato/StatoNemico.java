@@ -25,8 +25,8 @@ public class StatoNemico extends StatoPersonaggioBase implements Cloneable {
     @Override
     public void attacca(StatoPersonaggioBase statoPersonaggioBase, AttaccoMapper attaccoMapper){
         statoPersonaggioBase.infliggiDanno(
-                calcolaDanno(attaccoMapper.getPosizioneAttacco(),
-                        attaccoMapper.getPosizioneArma()));
+                calcolaDanno(attaccoMapper.getPosAttacco(),
+                        attaccoMapper.getPosArma()));
         if(getEquipaggiati().isEmpty()){
             getEquipaggiati().addAll(getEquipaggiatiUsati());
             getEquipaggiatiUsati().clear();

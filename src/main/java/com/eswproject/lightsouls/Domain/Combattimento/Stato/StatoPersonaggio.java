@@ -31,9 +31,10 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
 
    @Override
    public void attacca(StatoPersonaggioBase statoPersonaggioBase, AttaccoMapper attaccoMapper){
+
        statoPersonaggioBase.infliggiDanno(
-               calcolaDanno(attaccoMapper.getPosizioneArma(),
-                       attaccoMapper.getPosizioneAttacco()));
+               calcolaDanno(attaccoMapper.getPosArma(),
+                       attaccoMapper.getPosAttacco()));
        boolean noWeapons = true;
        for (Equipment eq: this.getEquipaggiati())
        {
