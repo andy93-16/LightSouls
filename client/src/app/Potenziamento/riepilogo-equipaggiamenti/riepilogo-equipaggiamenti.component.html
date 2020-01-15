@@ -15,7 +15,7 @@
     <tbody>
     <tr *ngFor="let equipaggiamento of equipaggiamenti">
       <td>{{equipaggiamento.name}}</td>
-      <td>{{equipaggiamento.upgrades-equipaggiamento.equippedTitaniti.length}}</td>
+      <td>{{equipaggiamento.upgrades}}</td>
       <td>{{equipaggiamento.type}}</td>
       <td>
         <table class="table table-striped">
@@ -44,7 +44,7 @@
         </table>
       </td>
       <td>
-        <button *ngIf="equipaggiamento.upgrades-equipaggiamento.equippedTitaniti.length>0" class="btn btn-danger" (click)="DettagliPotenziamento(equipaggiamento)">Potenzia</button>
+        <button *ngIf="equipaggiamento.upgrades" class="btn btn-danger" (click)="DettagliPotenziamento(equipaggiamento)">Potenzia</button>
         <button *ngIf="equipaggiamento.equippedTitaniti.length>0"class="btn btn-dark" (click)="DettagliDepotenziamento(equipaggiamento)">Depotenzia</button>
       </td>
     </tr>
