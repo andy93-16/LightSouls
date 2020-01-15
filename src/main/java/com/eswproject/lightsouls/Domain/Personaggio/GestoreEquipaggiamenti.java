@@ -80,11 +80,6 @@ public class GestoreEquipaggiamenti{
     public void Depotenzia(int posE, Titanite titanite_To_Remove)
     {
         Equipment requested_Equipment = ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE);
-        System.out.println("lunghezza titaniti equipaggiate = " + requested_Equipment.getEquippedTitaniti().size());
-        for(Titanite t : requested_Equipment.getEquippedTitaniti())
-        {
-            System.out.println("Titanite equipaggiata sull'oggetto = " + t.getDiceColor().toString());
-        }
         Titanite tmp=null;
         for (Titanite forged_Titanite : requested_Equipment.getEquippedTitaniti())
         {

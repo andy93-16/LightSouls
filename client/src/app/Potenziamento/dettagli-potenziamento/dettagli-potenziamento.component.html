@@ -62,7 +62,10 @@
       <td>{{titanite.available}}</td>
       <td>{{titanite.looted}}</td>
       <td>{{titanite.anime}}</td>
-      <td><button  class="btn btn-danger" (click)="Usa(titanite)">Usa</button></td>
+      <td *ngIf="titanite.available > 0; else titanitenondisponibile"><button   class="btn btn-danger" (click)="Usa(titanite)">Usa</button></td>
+      <ng-template #titanitenondisponibile>
+        <td style="color:red">Questo tipo di titanite è esaurito</td>
+      </ng-template>
     </tr>
     </tbody>
   </table>

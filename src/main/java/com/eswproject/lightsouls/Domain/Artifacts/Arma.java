@@ -45,25 +45,20 @@ public class Arma extends Equipment{
     @Override
     void removeTitaniteFromActions(Titanite titanite)
     {
-        System.out.println("remove pt.0");
         Map<DiceColor, Integer> diceCombo;
         DiceColor titaniteColor = titanite.getDiceColor();
 
         for(Iterator<Attacco> attacco = this.attacchi.iterator(); attacco.hasNext();)
         {
-            System.out.println("remove pt.1");
             diceCombo = attacco.next().getCombination();
             if (diceCombo.containsKey(titaniteColor))
             {
-                System.out.println("remove pt.2");
                 if (diceCombo.get(titaniteColor)>1)
                 {
-                    System.out.println("remove pt.3 true");
                     diceCombo.put(titaniteColor, diceCombo.get(titaniteColor) - 1);
                 }
                 else
                 {
-                    System.out.println("remove pt.3 false");
                     diceCombo.remove(titaniteColor);
                 }
             }
