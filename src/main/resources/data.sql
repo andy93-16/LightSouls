@@ -93,12 +93,12 @@ INSERT INTO titanite(equipment_type,available,looted,dice_color,anime, maxlootab
 INSERT INTO titanite(equipment_type,available,looted,dice_color,anime, maxlootable) VALUES (1,2,2,2,1,5);
 
 --CREATE SOME descrittore_personaggio AND ADD SOME ARTIFACTS
-INSERT INTO personaggio_base(dtype,classe,hp_base,velocita_base,stamina_base,stamina_regen,name,anime,forza,destrezza,intelligenza,fede)
-VALUES ('Personaggio',0,10,7,10,2,'Guerriero',10,2,2,2,2);
-/*INSERT INTO personaggio_base_body_parts(personaggio_name,body_parts_name) VALUES ('Guerriero','Mano Sinistra');
-*/INSERT INTO personaggio_base_body_parts(personaggio_name,body_parts_name) VALUES ('Guerriero','Mano Destra');
-INSERT INTO personaggio_base_body_parts(personaggio_name,body_parts_name) VALUES ('Guerriero','Corpo');
-INSERT INTO personaggio_base_zaino_equip(personaggio_name,zaino_equip_id) VALUES ('Guerriero',2);
+INSERT INTO personaggio_base(dtype,classe,hp_base,velocita_base,stamina_base,stamina_regen,name,anime,forza,destrezza,intelligenza,fede,roll_cost)
+VALUES ('Personaggio',0,10,7,4,2,'Guerriero',10,2,2,2,2,2);
+/*INSERT INTO personaggio_base_body_parts(personaggio_name,body_parts_name) VALUES ('Guerriero','Mano Sinistra');*/
+INSERT INTO personaggio_base_body_parts(personaggio_name,body_parts_name) VALUES ('Guerriero','Mano Destra');
+/*INSERT INTO personaggio_base_body_parts(personaggio_name,body_parts_name) VALUES ('Guerriero','Corpo');*/
+/*INSERT INTO personaggio_base_zaino_equip(personaggio_name,zaino_equip_id) VALUES ('Guerriero',2);*/
 INSERT INTO personaggio_base_zaino_equip(zaino_equip_id,personaggio_name) VALUES (3,'Guerriero');
 INSERT INTO personaggio_base_zaino_equip(zaino_equip_id,personaggio_name) VALUES (4,'Guerriero');
 INSERT INTO personaggio_base_zaino_equip(zaino_equip_id,personaggio_name) VALUES (5,'Guerriero');
@@ -107,7 +107,9 @@ INSERT INTO personaggio_base_titaniti(titaniti_id,personaggio_name) VALUES (2,'G
 INSERT INTO personaggio_base_titaniti(titaniti_id,personaggio_name) VALUES (3,'Guerriero');
 INSERT INTO stato_personaggio_base(dtype,personaggio_base_name) VALUES ('StatoPersonaggio','Guerriero');
 INSERT INTO equipment_equipped_body_parts(equipment_id,equipped_body_parts_name) VALUES (1,'Mano Sinistra');
+INSERT INTO equipment_equipped_body_parts(equipment_id,equipped_body_parts_name) VALUES (2,'Corpo');
 INSERT INTO stato_personaggio_base_equipaggiati(stato_personaggio_base_id,equipaggiati_id) VALUES (1,1);
+INSERT INTO stato_personaggio_base_equipaggiati(stato_personaggio_base_id,equipaggiati_id) VALUES (1,2);
 
 
 --CREATE SOME NEMICO AND ADD TO ENCOUNTERS

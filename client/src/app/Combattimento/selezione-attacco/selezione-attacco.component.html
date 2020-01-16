@@ -7,6 +7,7 @@
           <th>Name</th>
           <th>Dice Combination</th>
           <th>Stamina cost</th>
+          <th>Stamina Personggio</th>
           <th>Action</th>
         </tr>
         </thead>
@@ -14,14 +15,20 @@
         <tr *ngFor="let attaccoOfArma of listaAttaccoOfArma">
           <td>{{attaccoOfArma.arma.name}}</td>
           <td>
-        <tr *ngIf="attaccoOfArma.attacco.combination.ORANGE">{{"ORANGE:"+attaccoOfArma.attacco.combination.ORANGE}}</tr>
-        <tr *ngIf="attaccoOfArma.attacco.combination.BLACK">{{"BLACK:"+attaccoOfArma.attacco.combination.BLACK}}</tr>
-        <tr *ngIf="attaccoOfArma.attacco.combination.BLUE">{{"BLUE:"+attaccoOfArma.attacco.combination.BLUE}}</tr>
-         </td>
+            <b>
+              <tr style="color:darkorange" *ngIf="attaccoOfArma.attacco.combination.ORANGE">{{"ORANGE x"+attaccoOfArma.attacco.combination.ORANGE}}</tr>
+              <tr style="color:black" *ngIf="attaccoOfArma.attacco.combination.BLACK">{{"BLACK x"+attaccoOfArma.attacco.combination.BLACK}}</tr>
+              <tr style="color:blue" *ngIf="attaccoOfArma.attacco.combination.BLUE">{{"BLUE x"+attaccoOfArma.attacco.combination.BLUE}}</tr>
+            </b>
+           </td>
          <td>{{attaccoOfArma.attacco.staminaCost}}</td>
-        <td>
+        <td>{{statoPersonaggio.stamina+'/'+statoPersonaggio.personaggioBase.stamina_base}}</td>
+        <td *ngIf="attaccoOfArma.attacco.staminaCost <= statoPersonaggio.stamina, else staminanonsuffciente">
           <button type="button" class="btn btn-danger" (click)="Usa(attaccoOfArma)">Usa</button>
         </td>
+        <ng-template #staminanonsuffciente>
+          <td style="color:red">Non hai abbastanza stamina</td>
+        </ng-template>
         </tr>
         </tbody>
       </table>

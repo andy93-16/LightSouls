@@ -23,10 +23,15 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
 
    public int calcolaDanno(int posizioneArma,int posizioneAttacco){
         Arma arma=(Arma)getEquipaggiati().get(posizioneArma);
-        stamina -= arma.getAttacchi().get(posizioneAttacco).getStaminaCost();
-        getEquipaggiatiUsati().add(arma);
-        getEquipaggiati().remove(arma);
-        return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();
+        int staminacost= arma.getAttacchi().get(posizioneAttacco).getStaminaCost();
+        if(staminacost <= this.getStamina())
+        {
+            stamina -= staminacost;
+            getEquipaggiatiUsati().add(arma);
+            getEquipaggiati().remove(arma);
+            return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();
+        }
+        else return 0;
    }
 
    @Override
@@ -52,7 +57,7 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
    }
 
    public void schiva(int difficoltaSchivata,int danno){
-       stamina--;
+       stamina-=((Personaggio)this.personaggioBase).getRollCost();
        if(Dice.getInstance().throw_Dice(DiceColor.GREEN,1)<difficoltaSchivata)
            infliggiDannoPuro(danno);
 
@@ -66,7 +71,8 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
    }
 
    @Override
-   public String turno(){
+   public String turno()
+   {
        return "/TurnoPersonaggio";
    }
 
@@ -78,4 +84,11 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
 
    }
 
+   public void regenerateStamina()
+   {
+       Personaggio p=((Personaggio)this.getPersonaggioBase());
+       if((stamina+ p.getStaminaRegen()) >= p.getStamina_base()) stamina=p.getStamina_base();
+       else stamina += p.getStaminaRegen();
+
+   }
 }

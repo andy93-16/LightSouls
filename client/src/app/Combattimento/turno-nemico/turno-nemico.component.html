@@ -56,9 +56,12 @@
     <div class="col-lg-6">
       <button type="button" class="btn btn-success" (click)="Difendi()">Difendi</button>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6" *ngIf="statoPersonaggio.stamina >= statoPersonaggio.personaggioBase.rollCost, else nostamina">
       <button type="button" class="btn btn-success" (click)="Schiva()">Schiva</button>
     </div>
+    <ng-template #nostamina>
+      <div class="col-lg-6" style="color:red">Non hai abbastanza stamina per schivare</div>
+    </ng-template>
   </div>
 </div>
 

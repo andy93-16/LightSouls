@@ -55,6 +55,10 @@ public class GestoreIncontro {
         listaTurni.offerLast(listaTurni.pollFirst());
         while(listaTurni.peekFirst().isDead())
             listaTurni.offerLast(listaTurni.pollFirst());
+        if(listaTurni.peekFirst().getClass().getSimpleName().equals((new StatoPersonaggio()).getClass().getSimpleName()))
+        {
+            ((StatoPersonaggio)listaTurni.peekFirst()).regenerateStamina();
+        }
         return getTurno();
     }
 
@@ -66,12 +70,15 @@ public class GestoreIncontro {
 
     public String Schiva(StatoPersonaggio statoPersonaggio) {
 
-        listaTurni.peekFirst().controlloEquip();
-        Arma arma=(Arma)listaTurni.peekFirst().getEquipaggiati().get(0);
-        statoPersonaggio.schiva(arma.getAttacchi().get(0).getDifficoltaSchivata(),
-                       listaTurni.peekFirst().calcolaDanno(0,0));
-
-        return getTurno();
+        if(statoPersonaggio.getStamina() >= ((Personaggio)statoPersonaggio.getPersonaggioBase()).getRollCost())
+        {
+            listaTurni.peekFirst().controlloEquip();
+            Arma arma = (Arma) listaTurni.peekFirst().getEquipaggiati().get(0);
+            statoPersonaggio.schiva(arma.getAttacchi().get(0).getDifficoltaSchivata(),
+                    listaTurni.peekFirst().calcolaDanno(0, 0));
+            return getTurno();
+        }
+        else return Difendi(statoPersonaggio);
     }
 
 

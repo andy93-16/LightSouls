@@ -20,6 +20,8 @@ public class Personaggio extends PersonaggioBase
 
     private int staminaRegen;
 
+    private int rollCost;
+
     private ClassName classe;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -79,6 +81,10 @@ public class Personaggio extends PersonaggioBase
     public ClassName getClasse()
     {
         return classe;
+    }
+
+    public int getRollCost() {
+        return rollCost;
     }
 
     public List<Equipment> getLootable()

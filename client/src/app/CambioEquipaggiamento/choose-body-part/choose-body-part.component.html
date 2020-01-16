@@ -18,14 +18,16 @@
         <td>
           <table class="table table-striped">
             <tbody>
-            <tr *ngFor="let attacco of equipaggiamento.attacchi">
-              <td>
-            <tr style="color:red">{{attacco.type}}</tr>
-            <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
-            <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
-            <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
-            </td>
-            </tr>
+              <tr *ngFor="let attacco of equipaggiamento.attacchi">
+                <td>
+                  <tr style="color:red">{{attacco.type}}</tr>
+                  <b>
+                    <tr style="color:darkorange" *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+                    <tr style="color:black" *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+                    <tr style="color:blue" *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+                  </b>
+                </td>
+              </tr>
             </tbody>
           </table>
         </td>
@@ -45,7 +47,7 @@
     <tbody>
     <tr *ngFor="let bodyPart of bodyParts">
     <td>{{bodyPart.name}}</td>
-    <td>{{bodyPart.type}}</td>
+    <td>{{bodyPart.bodyPartType}}</td>
     <td>
       <button type="button" class="btn btn-danger" (click)="Select(bodyPart)">Select</button>
     </td>
