@@ -23,7 +23,7 @@ public class GestoreIncontro {
 
     private boolean concluso;
 
-    public Loot generaLoot(StatoPersonaggio statoPersonaggio, int totalEquips, int totalTitanites){
+    public Loot generaLoot(StatoPersonaggio statoPersonaggio, int totalEquips, int totalTitanites, int totalanime){
 
         Loot loot=new Loot();
         Random r = new Random();
@@ -34,12 +34,14 @@ public class GestoreIncontro {
         {
             loot.getEquipments().add(personaggio.getLootable().get(r.nextInt(personaggio.getLootable().size())));
         }
-        int i = 0;
-        while (i<totalTitanites)
+
+        for (int i=0; i<totalTitanites; i++)
         {
             loot.getTitanites().add(personaggio.getLootableTitanites().get(r.nextInt(personaggio.getLootableTitanites().size())));
-            i++;
         }
+
+        loot.setAnime(totalanime);
+
         return loot;
     }
 

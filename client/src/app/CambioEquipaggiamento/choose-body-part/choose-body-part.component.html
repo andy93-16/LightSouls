@@ -20,7 +20,7 @@
             <tbody>
               <tr *ngFor="let attacco of equipaggiamento.attacchi">
                 <td>
-                  <tr style="color:red">{{attacco.type}}</tr>
+                  <tr style="color:brown">{{attacco.type}}</tr>
                   <b>
                     <tr style="color:darkorange" *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
                     <tr style="color:black" *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>

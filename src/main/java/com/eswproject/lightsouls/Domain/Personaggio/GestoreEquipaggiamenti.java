@@ -52,21 +52,20 @@ public class GestoreEquipaggiamenti{
         eqOut.getEquippedBodyParts().clear();
         statoPersonaggio.getEquipaggiati().remove(eqOut);
         ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().add(eqOut);
-
     }
 
     public void Potenzia(int posE, Titanite clientTitanite)
     {
         Personaggio player = (Personaggio) statoPersonaggio.getPersonaggioBase();
         Equipment requested_Equipment = player.getZainoEquip().get(posE);
-
-        if(requested_Equipment.getUpgrades() > 0 &&clientTitanite.getAvailable() > 0)
+        if(requested_Equipment.getUpgrades() > 0 && clientTitanite.getAvailable() > 0 && clientTitanite.getAnime() <= player.getAnime())
         {
             for (Titanite player_Titanite : player.getTitaniti())
             {
                 if(clientTitanite.getEquipmentType().EquipmentClass().isInstance(requested_Equipment)
                         && clientTitanite.getDiceColor() == player_Titanite.getDiceColor())
                 {
+                    player.setAnime( player.getAnime() - player_Titanite.getAnime());
                     player_Titanite.decrement_Available();
                     requested_Equipment.addTitanite(player_Titanite);
                     break;
@@ -90,7 +89,6 @@ public class GestoreEquipaggiamenti{
             }
         }
         requested_Equipment.removeTitanite(tmp);
-
     }
 
    /* private Equipment getLocalEquipmentInZaino(int idEquipment){

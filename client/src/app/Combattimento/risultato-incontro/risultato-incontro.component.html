@@ -65,10 +65,12 @@
                 <tbody>
                 <tr *ngFor="let attacco of equipaggiamento.attacchi">
                   <td>
-                <tr style="color:red">{{attacco.type}}</tr>
-                <tr *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
-                <tr *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
-                <tr *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+                <tr style="color:brown">{{attacco.type}}</tr>
+                <b>
+                  <tr style="color:orange" *ngIf="attacco.combination.ORANGE">{{"ORANGE:"+attacco.combination.ORANGE}}</tr>
+                  <tr style="color:black" *ngIf="attacco.combination.BLACK">{{"BLACK:"+attacco.combination.BLACK}}</tr>
+                  <tr style="color:blue" *ngIf="attacco.combination.BLUE">{{"BLUE:"+attacco.combination.BLUE}}</tr>
+                </b>
                 </td>
                 </tr>
                 </tbody>
@@ -78,10 +80,12 @@
               <tbody>
               <tr *ngFor="let difesa of equipaggiamento.difese">
                 <td>
-              <tr style="color:red">{{difesa.type}}</tr>
-              <tr *ngIf="difesa.combination.ORANGE">{{"ORANGE:"+difesa.combination.ORANGE}}</tr>
-              <tr *ngIf="difesa.combination.BLACK">{{"BLACK:"+difesa.combination.BLACK}}</tr>
-              <tr *ngIf="difesa.combination.BLUE">{{"BLUE:"+difesa.combination.BLUE}}</tr>
+              <tr style="color:darkgreen">{{difesa.type}}</tr>
+              <b>
+                <tr style="color:orange" *ngIf="difesa.combination.ORANGE">{{"ORANGE:"+difesa.combination.ORANGE}}</tr>
+                <tr style="color:black" *ngIf="difesa.combination.BLACK">{{"BLACK:"+difesa.combination.BLACK}}</tr>
+                <tr style="color:blue" *ngIf="difesa.combination.BLUE">{{"BLUE:"+difesa.combination.BLUE}}</tr>
+              </b>
               </td>
               </tr>
               </tbody>
@@ -108,6 +112,9 @@
         </tr>
         </tbody>
       </table>
+    </div>
+    <div class="row">
+      <h4>Anime Ottenute: {{loot.anime}}</h4>
     </div>
   </div>
 <button class="btn btn-success" (click)="TornaAlFalo()">TornaAlFalo</button>

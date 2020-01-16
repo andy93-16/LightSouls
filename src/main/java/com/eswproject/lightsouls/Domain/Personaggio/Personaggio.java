@@ -92,6 +92,10 @@ public class Personaggio extends PersonaggioBase
         return lootable;
     }
 
+    public void setAnime(int anime) {
+        this.anime = anime;
+    }
+
     public List<Titanite> getLootableTitanites()
     {
         List<Titanite> lootabletitanites=new ArrayList<>();
@@ -106,6 +110,7 @@ public class Personaggio extends PersonaggioBase
 
     public void aggiungiLoot(Loot loot)
     {
+        this.setAnime(this.getAnime() + loot.getAnime());
         this.getZainoEquip().addAll(loot.getEquipments());
         this.getLootable().removeAll(loot.getEquipments());
 

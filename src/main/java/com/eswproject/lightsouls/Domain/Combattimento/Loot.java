@@ -12,6 +12,8 @@ public class Loot {
 
     private List<Titanite> titanites= new ArrayList<>();
 
+    private int anime;
+
     public List<Equipment> getEquipments() {
         return equipments;
     }
@@ -26,5 +28,13 @@ public class Loot {
 
     public void setTitanites(List<Titanite> titanites) {
         this.titanites = titanites;
+    }
+
+    public int getAnime() {
+        return anime;
+    }
+
+    public void setAnime(int anime) {
+        this.anime = anime;
     }
 }

@@ -15,6 +15,8 @@ public class DescrittoreIncontro
 
     private int lootableTitanites;
 
+    private int lootableAnime;
+
     public int getId() {
         return id;
     }
@@ -32,5 +34,9 @@ public class DescrittoreIncontro
 
     public int getLootableTitanites() {
         return lootableTitanites;
+    }
+
+    public int getLootableAnime() {
+        return lootableAnime;
     }
 }

@@ -50,7 +50,7 @@ export class EquipaggiaPersonaggioComponent implements OnInit{
 
   Equipaggia(equipaggiamento: any): void {
     this.router.navigate(['/ChooseBodyPart'],
-      {skipLocationChange: true, state: { equipaggiamentoPos: this.equipaggiabili.indexOf(equipaggiamento),
+      {skipLocationChange: true, state: { equipaggiamentoPos: this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento),
           equipaggiamentoSelezionato: equipaggiamento,
           bodyPartsForEquipment: this.BodyPartsForEquipment(equipaggiamento),
           prevUrl:this.prevUrl

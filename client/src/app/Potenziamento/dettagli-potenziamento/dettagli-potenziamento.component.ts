@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpService} from '../../http.service';
-import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-dettagli-equipaggiamento',
@@ -45,7 +44,5 @@ export class DettagliPotenziamentoComponent implements OnInit {
         this.titaniti.push(titanite);
       }
     });
-
   }
-
 }

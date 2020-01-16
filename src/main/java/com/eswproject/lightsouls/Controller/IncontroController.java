@@ -97,7 +97,8 @@ public class IncontroController extends Observable implements Observer {
 				statoNemici.remove(statoPersonaggioBase);
 				if (statoNemici.isEmpty()){
 					gestoreIncontro.setConcluso(true);
-					loot=gestoreIncontro.generaLoot(statoPersonaggio,descrittoreIncontro.getLootablesEquip(),descrittoreIncontro.getLootableTitanites());
+					loot=gestoreIncontro.generaLoot(statoPersonaggio,descrittoreIncontro.getLootablesEquip(),
+							descrittoreIncontro.getLootableTitanites(),descrittoreIncontro.getLootableAnime());
 					Personaggio personaggio=(Personaggio)statoPersonaggio.getPersonaggioBase();
 					personaggio.aggiungiLoot(loot);
 					setChanged();
