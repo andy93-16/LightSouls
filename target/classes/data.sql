@@ -134,10 +134,18 @@ INSERT INTO stato_personaggio_base(dtype,personaggio_base_name) VALUES ('StatoNe
 INSERT INTO stato_personaggio_base_equipaggiati(stato_personaggio_base_id,equipaggiati_id) VALUES (3,7);
 INSERT INTO nemico_wrapper(number_nemici,stato_nemico_id) VALUES (1,2);
 INSERT INTO nemico_wrapper(number_nemici,stato_nemico_id) VALUES (1,3);
+INSERT INTO nemico_wrapper(number_nemici,stato_nemico_id) VALUES (2,2);
+INSERT INTO nemico_wrapper(number_nemici,stato_nemico_id) VALUES (2,3);
+
+
 
 --ADD ENEMY TO ENCOUNTER ID:1
 INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,1);
 INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(1,2);
+
+INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(2,3);
+INSERT INTO descrittore_incontro_nemici_wrappers(descrittore_incontro_id,nemici_wrappers_id)VALUES(2,4);
+
 --EQUIPMENT6
 INSERT INTO azione(dtype,stamina_cost,difficolta_schivata) VALUES ('Attacco',2,1);
 INSERT INTO dice_combination(azione_id,combination,dice_color) VALUES (13,2,1);

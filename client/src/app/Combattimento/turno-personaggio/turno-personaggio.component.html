@@ -30,7 +30,7 @@
       <table class="table table-striped">
         <tbody>
         <tr *ngFor="let turno of listaTurni">
-          <td>{{turno.personaggioBase.name}}</td>
+          <td *ngIf="!turno.dead">{{turno.personaggioBase.name}}</td>
         </tr>
         </tbody>
       </table>
