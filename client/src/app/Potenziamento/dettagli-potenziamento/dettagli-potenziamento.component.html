@@ -69,7 +69,7 @@
       </ng-template>
       <td>{{titanite.looted}}</td>
       <td>{{titanite.anime}} richieste su {{statoPersonaggio.personaggioBase.anime}} possedute</td>
-      <td *ngIf="titanite.available > 0 && titanite.anime < statoPersonaggio.personaggioBase.anime; else titanitenondisponibile" ><button   class="btn btn-danger" (click)="Usa(titanite)">Usa</button></td>
+      <td *ngIf="titanite.available > 0 && titanite.anime <= statoPersonaggio.personaggioBase.anime; else titanitenondisponibile" ><button   class="btn btn-danger" (click)="Usa(titanite)">Usa</button></td>
       <ng-template #titanitenondisponibile>
         <td *ngIf="titanite.available <= 0; else noanime" style="color:red">Questo tipo di titanite è esaurito</td>
         <ng-template #noanime>
