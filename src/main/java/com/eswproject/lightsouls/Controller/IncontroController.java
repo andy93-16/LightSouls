@@ -112,9 +112,9 @@ public class IncontroController extends Observable implements Observer {
 
 	private void setNemici() {
 		statoNemici=new ArrayList<>();
-		for (NemicoWrapper nemicoWrapper : descrittoreIncontro.getNemiciWrappers())
-			for (int i = 0; i < nemicoWrapper.getNumberNemici(); i++) {
-				StatoNemico statoNemico = nemicoWrapper.getStatoNemico().clone();
+		for (NemicoMapper nemicoMapper : descrittoreIncontro.getNemicoMapper())
+			for (int i = 0; i < nemicoMapper.getNumberNemici(); i++) {
+				StatoNemico statoNemico = nemicoMapper.getStatoNemico().clone();
 				statoNemico.resetStato();
 				statoNemico.addObserver(this);
 				statoNemici.add(statoNemico);

@@ -20,17 +20,6 @@ public class GestoreEquipaggiamenti{
 
     private StatoPersonaggio statoPersonaggio;
 
-    private static GestoreEquipaggiamenti obj;
-
-    private GestoreEquipaggiamenti() {}
-
-    public static GestoreEquipaggiamenti getInstance()
-    {
-        if (obj==null)
-            obj = new GestoreEquipaggiamenti();
-        return obj;
-    }
-
     public void Equipaggia(List<BodyPart> bodyParts, int posE){
         Equipment eqIn=((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE);
         List<BodyPart> bodyPartsSelected= getLocalBodyPartList(bodyParts);

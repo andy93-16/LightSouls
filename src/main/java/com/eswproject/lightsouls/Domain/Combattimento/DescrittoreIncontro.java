@@ -21,12 +21,12 @@ public class DescrittoreIncontro
         return id;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<NemicoWrapper> nemiciWrappers;
-
-    public List<NemicoWrapper> getNemiciWrappers() {
-        return nemiciWrappers;
+    public List<NemicoMapper> getNemicoMapper() {
+        return nemicoMapper;
     }
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<NemicoMapper> nemicoMapper;
 
     public int getLootablesEquip() {
         return lootablesEquip;

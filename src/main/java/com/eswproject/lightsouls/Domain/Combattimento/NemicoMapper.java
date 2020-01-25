@@ -6,7 +6,7 @@ import com.eswproject.lightsouls.Domain.Personaggio.Nemico;
 import javax.persistence.*;
 
 @Entity
-public class NemicoWrapper {
+public class NemicoMapper {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

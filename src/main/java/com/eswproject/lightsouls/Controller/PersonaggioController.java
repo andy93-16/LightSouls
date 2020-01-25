@@ -19,7 +19,7 @@ public class PersonaggioController {
     @Autowired
     private IncontroController incontroController;
 
-    private GestoreEquipaggiamenti gestoreEquipaggiamenti=GestoreEquipaggiamenti.getInstance();
+    private GestoreEquipaggiamenti gestoreEquipaggiamenti= new GestoreEquipaggiamenti();
 
     private StatoPersonaggio statoPersonaggio;
 
