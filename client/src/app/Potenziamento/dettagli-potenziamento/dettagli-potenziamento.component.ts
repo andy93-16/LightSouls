@@ -9,19 +9,15 @@ import {HttpService} from '../../http.service';
 })
 export class DettagliPotenziamentoComponent implements OnInit {
 
-  pos : number;
   statoPersonaggio : any;
   equipaggiamento : any;
   titaniti: any[] = [];
 
-  constructor(private httpservice: HttpService,private route : ActivatedRoute, private router: Router) {
+  constructor(private httpservice: HttpService, private router: Router) {
 
-    this.route.params.subscribe(params => {
-      this.pos = params['posizione']
-    });
+    this.equipaggiamento = this.router.getCurrentNavigation().extras.state.equipaggiamentoSelezionato;
     this.httpservice.RiepilogoPersonaggio().subscribe(statoPersonaggio => {
       this.statoPersonaggio = statoPersonaggio;
-      this.equipaggiamento = this.statoPersonaggio.personaggioBase.zainoEquip[this.pos];
       this.TitanitiForEquipment(this.equipaggiamento);
     });
   }
@@ -34,7 +30,7 @@ export class DettagliPotenziamentoComponent implements OnInit {
   }
 
   Usa(titanite: any): void {
-    this.httpservice.Potenzia(this.pos
+    this.httpservice.Potenzia(this.equipaggiamento.name
       , titanite).subscribe(url => this.router.navigate([url]));
   }
 

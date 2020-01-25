@@ -51,6 +51,17 @@
         </table>
       </div>
     </div>
+    <div *ngIf="statoPersonaggio.danniInflitti > 0, else subiti">
+      <h4 style="color:darkgreen">Hai inflitto {{statoPersonaggio.danniInflitti}} danni al nemico selezionato nell'ultimo turno</h4>
+    </div>
+    <ng-template #subiti>
+      <div *ngIf="statoPersonaggio.danniSubiti > 0">
+        <h4 style="color:brown">Hai subito {{statoPersonaggio.danniSubiti}} danni nell'ultimo turno</h4>
+      </div>
+      <!--<ng-template #blocked>
+        <h4 style="color:brown"> Attacco bloccato </h4>
+      </ng-template> -->
+    </ng-template>
   </div>
   <div class="row">
     <div class="col-lg-6">

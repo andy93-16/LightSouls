@@ -15,7 +15,7 @@ export class RiepilogoEquipaggiamentiComponent implements OnInit {
   constructor(private httpservice: HttpService, private router: Router) {
     this.httpservice.RiepilogoPersonaggio().subscribe(statoPersonaggio => {
       this.statoPersonaggio = statoPersonaggio;
-      this.equipaggiamenti = this.equipaggiamenti.concat(this.statoPersonaggio.personaggioBase.zainoEquip);
+      this.equipaggiamenti = this.equipaggiamenti.concat(this.statoPersonaggio.personaggioBase.zainoEquip).concat(this.statoPersonaggio.equipaggiati)
       });
   }
 
@@ -23,15 +23,13 @@ export class RiepilogoEquipaggiamentiComponent implements OnInit {
   }
 
   DettagliPotenziamento(equipaggiamento: any): void {
-    this.router.navigate(['/DettagliPotenziamento',
-      this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento)], { skipLocationChange: true , state: {
+    this.router.navigate(['/DettagliPotenziamento'], { skipLocationChange: true , state: {
       equipaggiamentoSelezionato : equipaggiamento,
       }});
   }
 
   DettagliDepotenziamento(equipaggiamento: any): void {
-    this.router.navigate(['/DettagliDepotenziamento',
-      this.statoPersonaggio.personaggioBase.zainoEquip.indexOf(equipaggiamento)],
+    this.router.navigate(['/DettagliDepotenziamento'],
       {skipLocationChange: true,   state:{
       equipaggiamentoSelezionato : equipaggiamento}});
   }

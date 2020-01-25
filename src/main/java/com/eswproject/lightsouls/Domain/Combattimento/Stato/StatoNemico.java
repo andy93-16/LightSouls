@@ -2,7 +2,6 @@ package com.eswproject.lightsouls.Domain.Combattimento.Stato;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Arma;
 import com.eswproject.lightsouls.Domain.Combattimento.AttaccoMapper;
-import com.eswproject.lightsouls.Domain.Personaggio.Nemico;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -24,13 +23,10 @@ public class StatoNemico extends StatoPersonaggioBase implements Cloneable {
 
     @Override
     public void attacca(StatoPersonaggioBase statoPersonaggioBase, AttaccoMapper attaccoMapper){
-        statoPersonaggioBase.infliggiDanno(
-                calcolaDanno(attaccoMapper.getPosAttacco(),
-                        attaccoMapper.getPosArma()));
+        statoPersonaggioBase.setDanniSubiti(statoPersonaggioBase.infliggiDanno(calcolaDanno(attaccoMapper.getPosAttacco(), attaccoMapper.getPosArma())));
         if(getEquipaggiati().isEmpty()){
-            getEquipaggiati().addAll(getEquipaggiatiUsati());
-            getEquipaggiatiUsati().clear();
-            passaTurno();
+            resetEquip();
+            concludiTurno();
         }
     }
 
@@ -47,7 +43,7 @@ public class StatoNemico extends StatoPersonaggioBase implements Cloneable {
     }
 
     @Override
-    public void passaTurno(){
+    public void concludiTurno(){
         setChanged();
         notifyObservers();
     }

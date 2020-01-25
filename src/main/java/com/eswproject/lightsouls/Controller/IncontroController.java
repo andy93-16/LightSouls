@@ -107,7 +107,7 @@ public class IncontroController extends Observable implements Observer {
 			}
 		}
 		else
-			PassaTurno();
+			gestoreIncontro.ConcludiTurno();
 	}
 
 	private void setNemici() {

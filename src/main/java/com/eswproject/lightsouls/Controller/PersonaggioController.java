@@ -36,17 +36,17 @@ public class PersonaggioController {
         return statoPersonaggio;
     }
 
-	@PostMapping("/PotenziaEquipaggiamento/{posE}")
-	public String PotenziaEquipaggiamento(@PathVariable("posE")int posE,@RequestBody Titanite titanite)
+	@PostMapping("/PotenziaEquipaggiamento/{name}")
+	public String PotenziaEquipaggiamento(@PathVariable("name") String name,@RequestBody Titanite titanite)
     {
-       this.gestoreEquipaggiamenti.Potenzia(posE,titanite);
+       this.gestoreEquipaggiamenti.Potenzia(name,titanite);
        return "/RiepilogoEquipaggiamenti";
     }
 
-    @PostMapping("/DepotenziaEquipaggiamento/{posE}")
-    public String DepotenziaEquipaggiamento(@PathVariable("posE")int posE,@RequestBody Titanite titanite)
+    @PostMapping("/DepotenziaEquipaggiamento/{name}")
+    public String DepotenziaEquipaggiamento(@PathVariable("name") String name,@RequestBody Titanite titanite)
     {
-        this.gestoreEquipaggiamenti.Depotenzia(posE,titanite);
+        this.gestoreEquipaggiamenti.Depotenzia(name,titanite);
         return "/RiepilogoEquipaggiamenti";
     }
 

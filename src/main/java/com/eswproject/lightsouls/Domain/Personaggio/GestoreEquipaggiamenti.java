@@ -54,10 +54,10 @@ public class GestoreEquipaggiamenti{
         ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().add(eqOut);
     }
 
-    public void Potenzia(int posE, Titanite clientTitanite)
+    public void Potenzia(String name, Titanite clientTitanite)
     {
         Personaggio player = (Personaggio) statoPersonaggio.getPersonaggioBase();
-        Equipment requested_Equipment = player.getZainoEquip().get(posE);
+        Equipment requested_Equipment= findEquipment(name);
         if(requested_Equipment.getUpgrades() > 0 && clientTitanite.getAvailable() > 0 && clientTitanite.getAnime() <= player.getAnime())
         {
             for (Titanite player_Titanite : player.getTitaniti())
@@ -75,9 +75,9 @@ public class GestoreEquipaggiamenti{
     }
 
 
-    public void Depotenzia(int posE, Titanite titanite_To_Remove)
+    public void Depotenzia(String name, Titanite titanite_To_Remove)
     {
-        Equipment requested_Equipment = ((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip().get(posE);
+        Equipment requested_Equipment= findEquipment(name);
         Titanite tmp=null;
         for (Titanite forged_Titanite : requested_Equipment.getEquippedTitaniti())
         {
@@ -122,5 +122,17 @@ public class GestoreEquipaggiamenti{
             }
         }
         return  bodyPartList;
+    }
+
+    private Equipment findEquipment(String name)
+    {
+        List<Equipment> totalequipment= new ArrayList<>();
+        totalequipment.addAll(this.statoPersonaggio.getEquipaggiati());
+        totalequipment.addAll(((Personaggio)statoPersonaggio.getPersonaggioBase()).getZainoEquip());
+        for (Equipment e: totalequipment)
+        {
+            if(e.getName().equals(name)) return e;
+        }
+        return null;
     }
 }

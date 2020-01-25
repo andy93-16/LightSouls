@@ -17,7 +17,7 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
    @Transient
    private int stamina;
 
-   public int getStamina() {
+    public int getStamina() {
         return stamina;
     }
 
@@ -37,9 +37,8 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
    @Override
    public void attacca(StatoPersonaggioBase statoPersonaggioBase, AttaccoMapper attaccoMapper){
 
-       statoPersonaggioBase.infliggiDanno(
-               calcolaDanno(attaccoMapper.getPosArma(),
-                       attaccoMapper.getPosAttacco()));
+       this.danniInflitti = statoPersonaggioBase.infliggiDanno(calcolaDanno(
+               attaccoMapper.getPosArma(), attaccoMapper.getPosAttacco()));
        boolean noWeapons = true;
        for (Equipment eq: this.getEquipaggiati())
        {
@@ -50,22 +49,22 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
            }
        }
        if(noWeapons){
-           getEquipaggiati().addAll(getEquipaggiatiUsati());
-           getEquipaggiatiUsati().clear();
-           passaTurno();
+           resetEquip();
+           concludiTurno();
        }
    }
 
    public void schiva(int difficoltaSchivata,int danno){
        stamina-=((Personaggio)this.personaggioBase).getRollCost();
        if(Dice.getInstance().throw_Dice(DiceColor.GREEN,1)<difficoltaSchivata)
-           infliggiDannoPuro(danno);
+           this.danniSubiti=danno;
+           infliggiDannoPuro(danniSubiti);
 
-       passaTurno();
+       concludiTurno();
    }
 
    @Override
-   public void passaTurno(){
+   public void concludiTurno(){
        setChanged();
        notifyObservers();
    }

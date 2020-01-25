@@ -1,13 +1,9 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Arma;
-import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
-import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoNemico;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
 import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggioBase;
-import com.eswproject.lightsouls.Domain.Dice.Dice;
-import com.eswproject.lightsouls.Domain.Dice.DiceColor;
 import com.eswproject.lightsouls.Domain.Personaggio.Personaggio;
 
 import java.util.Collections;
@@ -53,7 +49,13 @@ public class GestoreIncontro {
         return getTurno();
     }
 
-    public String PassaTurno() {
+    public String PassaTurno(){
+        listaTurni.peekFirst().resetEquip();
+        listaTurni.peekFirst().resettaDanni();
+        return this.ConcludiTurno();
+    }
+
+    public String ConcludiTurno() {
         listaTurni.offerLast(listaTurni.pollFirst());
         while(listaTurni.peekFirst().isDead())
             listaTurni.offerLast(listaTurni.pollFirst());
@@ -71,10 +73,9 @@ public class GestoreIncontro {
     }
 
     public String Schiva(StatoPersonaggio statoPersonaggio) {
-
+        statoPersonaggio.resettaDanni();
         if(statoPersonaggio.getStamina() >= ((Personaggio)statoPersonaggio.getPersonaggioBase()).getRollCost())
         {
-            listaTurni.peekFirst().controlloEquip();
             Arma arma = (Arma) listaTurni.peekFirst().getEquipaggiati().get(0);
             statoPersonaggio.schiva(arma.getAttacchi().get(0).getDifficoltaSchivata(),
                     listaTurni.peekFirst().calcolaDanno(0, 0));
@@ -85,7 +86,7 @@ public class GestoreIncontro {
 
 
     public String Difendi(StatoPersonaggio statoPersonaggio) {
-        listaTurni.peekFirst().controlloEquip();
+        statoPersonaggio.resettaDanni();
         listaTurni.peekFirst().attacca(statoPersonaggio, new AttaccoMapper(0, 0));
         return getTurno();
     }

@@ -10,16 +10,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class DettagliDepotenziamentoComponent implements OnInit {
   equipaggiamento: any;
-  pos: number;
   statoPersonaggio : any;
 
-  constructor(private httpservice: HttpService, private route : ActivatedRoute, private router: Router) {
-    this.route.params.subscribe(params => {
-      this.pos = params['posizione']
-    });
+  constructor(private httpservice: HttpService, private router: Router) {
+    this.equipaggiamento = this.router.getCurrentNavigation().extras.state.equipaggiamentoSelezionato;
     this.httpservice.RiepilogoPersonaggio().subscribe(statoPersonaggio => {
       this.statoPersonaggio = statoPersonaggio;
-      this.equipaggiamento = this.statoPersonaggio.personaggioBase.zainoEquip[this.pos];
     });
   }
 
@@ -31,7 +27,7 @@ export class DettagliDepotenziamentoComponent implements OnInit {
   }
 
   Rimuovi(titanite: any): void {
-    this.httpservice.Depotenzia(this.pos, titanite).subscribe(url => this.router.navigate([url]));
+    this.httpservice.Depotenzia(this.equipaggiamento.name, titanite).subscribe(url => this.router.navigate([url]));
   }
 
 

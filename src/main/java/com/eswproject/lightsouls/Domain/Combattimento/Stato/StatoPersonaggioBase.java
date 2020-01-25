@@ -33,6 +33,29 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
     @Transient
     protected int HP;
 
+    @Transient
+    protected int danniSubiti;
+
+    @Transient
+    protected int danniInflitti;
+
+    public int getDanniSubiti() {
+        return danniSubiti;
+    }
+
+    public int getDanniInflitti() {
+        return danniInflitti;
+    }
+
+    public void setDanniSubiti(int danniSubiti) {
+        this.danniSubiti = danniSubiti;
+    }
+
+    public void resettaDanni() {
+        danniSubiti=0;
+        danniInflitti=0;
+    }
+
     public PersonaggioBase getPersonaggioBase() {
         return personaggioBase;
     }
@@ -48,18 +71,22 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
 
     public abstract String turno();
 
-    public abstract void passaTurno();
+    public abstract void concludiTurno();
 
-    public void infliggiDanno(int danno){
+    public int infliggiDanno(int danno){
         int dannofin=danno-getDifesa();
         if(dannofin>0)
-            HP=HP-dannofin;
-        if(HP<=0){
-            HP=0;
-            dead=true;
-            setChanged();
-            notifyObservers();
+        {
+            HP = HP - dannofin;
+            if (HP <= 0) {
+                HP = 0;
+                dead = true;
+                setChanged();
+                notifyObservers();
+            }
+            return dannofin;
         }
+        return 0;
     }
 
     public void infliggiDannoPuro(int danno){ ;
@@ -112,15 +139,13 @@ public abstract class StatoPersonaggioBase extends Observable  implements Compar
 
     public void resetStato(){
         this.HP=personaggioBase.getHP_base();
+        this.resettaDanni();
     }
 
-    public void controlloEquip()
+    public void resetEquip()
     {
-        if(this.getEquipaggiati().isEmpty())
-        {
             this.getEquipaggiati().addAll(this.getEquipaggiatiUsati());
             this.getEquipaggiatiUsati().clear();
-        }
     }
 
 }
