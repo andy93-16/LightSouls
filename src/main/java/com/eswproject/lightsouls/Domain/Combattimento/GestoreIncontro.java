@@ -1,9 +1,9 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Arma;
-import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoNemico;
-import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
-import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggioBase;
+import com.eswproject.lightsouls.Domain.Stato.StatoNemico;
+import com.eswproject.lightsouls.Domain.Stato.StatoPersonaggio;
+import com.eswproject.lightsouls.Domain.Stato.StatoPersonaggioBase;
 import com.eswproject.lightsouls.Domain.Personaggio.Personaggio;
 
 import java.util.Collections;
@@ -79,6 +79,7 @@ public class GestoreIncontro {
             Arma arma = (Arma) listaTurni.peekFirst().getEquipaggiati().get(0);
             statoPersonaggio.schiva(arma.getAttacchi().get(0).getDifficoltaSchivata(),
                     listaTurni.peekFirst().calcolaDanno(0, 0));
+
             return getTurno();
         }
         else return Difendi(statoPersonaggio);

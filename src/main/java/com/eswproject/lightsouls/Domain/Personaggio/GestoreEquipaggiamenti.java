@@ -1,16 +1,11 @@
 package com.eswproject.lightsouls.Domain.Personaggio;
 
-import com.eswproject.lightsouls.Domain.Artifacts.Arma;
-import com.eswproject.lightsouls.Domain.Artifacts.Azione.Attacco;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
-import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
-import com.eswproject.lightsouls.Domain.Dice.DiceColor;
+import com.eswproject.lightsouls.Domain.Stato.StatoPersonaggio;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class GestoreEquipaggiamenti{
 

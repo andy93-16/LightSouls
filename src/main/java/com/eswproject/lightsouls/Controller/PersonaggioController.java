@@ -1,6 +1,6 @@
 package com.eswproject.lightsouls.Controller;
 
-import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
+import com.eswproject.lightsouls.Domain.Stato.StatoPersonaggio;
 import com.eswproject.lightsouls.Domain.Personaggio.*;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
 import com.eswproject.lightsouls.Service.StatoPersonaggioBaseService;
@@ -24,7 +24,7 @@ public class PersonaggioController {
     private StatoPersonaggio statoPersonaggio;
 
     @GetMapping("/SetPersonaggio")
-    public void SetPersonaggio() {
+    public void SetStatoPersonaggio() {
         statoPersonaggio = (StatoPersonaggio)statoPersonaggioBaseService.findById(1);
         statoPersonaggio.resetStato();
         gestoreEquipaggiamenti.setStatoPersonaggio(statoPersonaggio);

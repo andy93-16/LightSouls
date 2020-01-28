@@ -1,4 +1,4 @@
-package com.eswproject.lightsouls.Domain.Combattimento.Stato;
+package com.eswproject.lightsouls.Domain.Stato;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Arma;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
@@ -59,7 +59,6 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
        if(Dice.getInstance().throw_Dice(DiceColor.GREEN,1)<difficoltaSchivata)
            this.danniSubiti=danno;
            infliggiDannoPuro(danniSubiti);
-
        concludiTurno();
    }
 
@@ -80,6 +79,7 @@ public class StatoPersonaggio extends StatoPersonaggioBase{
       this.HP=personaggioBase.getHP_base();
       this.stamina=((Personaggio)personaggioBase).getStamina_base();
       this.dead=false;
+      this.resettaDanni();
 
    }
 
