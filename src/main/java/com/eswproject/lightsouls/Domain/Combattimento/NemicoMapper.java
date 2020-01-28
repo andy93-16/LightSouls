@@ -1,6 +1,6 @@
 package com.eswproject.lightsouls.Domain.Combattimento;
 
-import com.eswproject.lightsouls.Domain.Stato.StatoNemico;
+import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoNemico;
 
 import javax.persistence.*;
 

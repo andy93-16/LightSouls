@@ -1,4 +1,4 @@
-package com.eswproject.lightsouls.Domain.Stato;
+package com.eswproject.lightsouls.Domain.Combattimento.Stato;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Azione.Difesa;
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;

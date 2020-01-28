@@ -2,7 +2,7 @@ package com.eswproject.lightsouls.Domain.Personaggio;
 
 import com.eswproject.lightsouls.Domain.Artifacts.Equipment;
 import com.eswproject.lightsouls.Domain.Artifacts.Titanite;
-import com.eswproject.lightsouls.Domain.Stato.StatoPersonaggio;
+import com.eswproject.lightsouls.Domain.Combattimento.Stato.StatoPersonaggio;
 
 import java.util.ArrayList;
 import java.util.List;
