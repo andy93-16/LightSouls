@@ -79,6 +79,7 @@ public class GestoreIncontro {
             Arma arma = (Arma) listaTurni.peekFirst().getEquipaggiati().get(0);
             statoPersonaggio.schiva(arma.getAttacchi().get(0).getDifficoltaSchivata(),
                     listaTurni.peekFirst().calcolaDanno(0, 0));
+            listaTurni.peekFirst().resetEquip();
 
             return getTurno();
         }

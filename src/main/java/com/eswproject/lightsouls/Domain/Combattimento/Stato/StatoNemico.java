@@ -34,7 +34,6 @@ public class StatoNemico extends StatoPersonaggioBase implements Cloneable {
         Arma arma = (Arma)getEquipaggiati().get(posizioneArma);
         getEquipaggiatiUsati().add(arma);
         getEquipaggiati().remove(arma);
-
         return arma.getAttacchi().get(posizioneAttacco).getDiceRoll();
     }
 
